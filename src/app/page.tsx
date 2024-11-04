@@ -1,6 +1,5 @@
 import Particles from '@/components/ui/particles'
 import { VelocityScroll } from '@/components/ui/scroll-based-velocity'
-import WordFadeIn from '@/components/ui/word-fade-in'
 import React from 'react'
 
 
