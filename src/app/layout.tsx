@@ -12,6 +12,11 @@ const geistMono = localFont({
   variable: "--font-geist-mono",
   weight: "100 900",
 });
+const sixtyFourConv = localFont({
+  src: "./fonts/SixtyfourConvergence-Regular.ttf",
+  variable: "--font-sixty-four",
+  weight: "100 900",
+})
 
 export const metadata: Metadata = {
   title: "Create Next App",
@@ -24,9 +29,9 @@ export default function RootLayout({
   children: React.ReactNode;
 }>) {
   return (
-    <html lang="en">
+    <html lang="en" className="dark">
       <body
-        className={`${geistSans.variable} ${geistMono.variable} antialiased`}
+        className={`${geistSans.variable} ${geistMono.variable} ${sixtyFourConv.variable} antialiased`}
       >
         {children}
       </body>
