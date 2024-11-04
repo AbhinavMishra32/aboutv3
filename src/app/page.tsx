@@ -2,8 +2,6 @@ import Particles from '@/components/ui/particles'
 import { VelocityScroll } from '@/components/ui/scroll-based-velocity'
 import React from 'react'
 
-
-
 const Home = () => {
   return (
     <>
