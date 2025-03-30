@@ -1,6 +1,7 @@
 import type { Metadata } from "next";
 import localFont from "next/font/local";
 import "./globals.css";
+import { Playfair_Display, Inter } from "next/font/google"
 
 const geistSans = localFont({
   src: "./fonts/GeistVF.woff",
@@ -18,9 +19,15 @@ const sixtyFourConv = localFont({
   weight: "100 900",
 })
 
+const instrumentSerif = localFont({
+  src: "./fonts/InstrumentSerif-Regular.ttf",
+  variable: "--font-instrument-serif",
+  weight: "100 900",
+})
+
 export const metadata: Metadata = {
-  title: "Abhinav Mishra",
-  description: "Personal website of Abhinav Mishra",
+  title: "Portfolio | Abhinav Mishra",
+  description: "Portfolio of Abhinav Mishra",
 };
 
 export default function RootLayout({
@@ -34,7 +41,7 @@ export default function RootLayout({
       <link rel="icon" href="./favicon.ico" />
       </head>
       <body
-        className={`${geistSans.variable} ${geistMono.variable} ${sixtyFourConv.variable} antialiased`}
+        className={`${geistSans.variable} ${instrumentSerif.variable} ${geistMono.variable} ${sixtyFourConv.variable} antialiased`}
       >
         {children}
       </body>
