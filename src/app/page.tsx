@@ -1,18 +1,28 @@
-import { BackgroundGradientAnimation } from '@/components/ui/background-gradient-animation'
-import DotPattern from '@/components/ui/dot-pattern'
-import Particles from '@/components/ui/particles'
-import { VelocityScroll } from '@/components/ui/scroll-based-velocity'
-import { cn } from '@/lib/utils'
-import React from 'react'
+'use client';
+import RotatingBox from "@/components/RotatingBox";
+import { Environment, OrbitControls, Text } from "@react-three/drei";
+import { Canvas } from "@react-three/fiber";
+import * as THREE from "three";
 
-const Home = () => {
+export default function Home() {
+
+
   return (
     <>
       <div className='h-screen w-screen bg-black'>
-        <p className='text-white'>yooo</p>
+        <Canvas
+          gl={{ toneMapping: THREE.ACESFilmicToneMapping }}
+          camera={{ position: [0, 0, 5], fov: 75 }} className='h-full w-full'
+        >
+          <ambientLight intensity={0.1} />
+          <directionalLight position={[5, 5, 5]} intensity={2} />
+          <Environment preset="night" />
+            <RotatingBox />
+
+          {/* <OrbitControls /> */}
+
+        </Canvas>
       </div>
     </>
-  )
+  );
 }
-
-export default Home
