@@ -19,7 +19,7 @@ export default function Home() {
           <Environment preset="night" />
             <RotatingBox />
 
-          {/* <OrbitControls /> */}
+          <OrbitControls />
 
         </Canvas>
       </div>
