@@ -1,7 +1,7 @@
 'use client';
 import { useRef } from "react";
 import { useFrame, useThree } from "@react-three/fiber";
-import { MeshTransmissionMaterial, Text } from "@react-three/drei";
+import { MeshTransmissionMaterial, Text, Text3D } from "@react-three/drei";
 import * as THREE from "three";
 
 export default function RotatingBox() {
@@ -63,33 +63,156 @@ export default function RotatingBox() {
     temporalDistortion: 0.65,
     attenuationDistance: 0.5,
     clearcoat: 0,
-    attenuationColor: '#ffffff',
+    attenuationColor: "#00ff44",
     color: 'white'
   }
 
   return (
     <group scale={viewport.width / 5}>
-      {/* <Text 
-        position={[0, 0, 0.8]} 
-        fontSize={0.3} 
-        color="white" 
-        anchorX="center" 
-        anchorY="middle"
-        letterSpacing={0.02}
-        maxWidth={2}
-        textAlign="center"
-      >
-        COMING SOON
-      </Text> */}
-      <mesh position={[0, 0, -2]}>
-        <planeGeometry args={[7, 2]} />
-        <meshBasicMaterial map={new THREE.TextureLoader().load('/git.png')} />
+      {/* Space Background */}
+      <mesh position={[0, 0, -10]}>
+        <sphereGeometry args={[50, 64, 32]} />
+        <meshBasicMaterial 
+          color="#000011"
+          side={THREE.BackSide}
+        />
       </mesh>
+      
+      {/* Stars */}
+      {Array.from({ length: 800 }, (_, i) => {
+        const radius = 45;
+        const phi = Math.acos(-1 + (2 * i) / 800);
+        const theta = Math.sqrt(800 * Math.PI) * phi;
+        
+        const x = radius * Math.cos(theta) * Math.sin(phi);
+        const y = radius * Math.sin(theta) * Math.sin(phi);
+        const z = radius * Math.cos(phi);
+        
+        const starSize = Math.random() * 0.03 + 0.003;
+        const brightness = Math.random() * 0.9 + 0.1;
+        const hue = Math.random() * 80 + 180; // Blue to white range
+        
+        return (
+          <mesh key={i} position={[x, y, z]}>
+            <sphereGeometry args={[starSize, 6, 6]} />
+            <meshBasicMaterial 
+              color={`hsl(${hue}, ${Math.random() * 30 + 20}%, ${brightness * 80 + 20}%)`}
+            />
+          </mesh>
+        );
+      })}
+
+      {/* Bright Stars */}
+      {Array.from({ length: 50 }, (_, i) => {
+        const radius = 40;
+        const x = (Math.random() - 0.5) * radius * 2;
+        const y = (Math.random() - 0.5) * radius * 2;
+        const z = (Math.random() - 0.5) * radius * 2;
+        
+        // Mix of blue-white and green stars
+        const isGreen = Math.random() > 0.7;
+        const hue = isGreen ? Math.random() * 60 + 100 : Math.random() * 60 + 180;
+        
+        return (
+          <mesh key={`bright-${i}`} position={[x, y, z]}>
+            <sphereGeometry args={[0.05, 8, 8]} />
+            <meshBasicMaterial 
+              color={`hsl(${hue}, 40%, 90%)`}
+            />
+          </mesh>
+        );
+      })}
+
+      {/* Nebula Clouds */}
+      {Array.from({ length: 15 }, (_, i) => {
+        const radius = 35;
+        const x = (Math.random() - 0.5) * radius * 2;
+        const y = (Math.random() - 0.5) * radius * 2;
+        const z = (Math.random() - 0.5) * radius * 2;
+        
+        const scale = Math.random() * 8 + 3;
+        // Mix of purple/blue and green nebulae
+        const isGreen = Math.random() > 0.6;
+        const hue = isGreen ? Math.random() * 60 + 100 : Math.random() * 60 + 240;
+        
+        return (
+          <mesh key={`nebula-${i}`} position={[x, y, z]} scale={[scale, scale, scale]}>
+            <sphereGeometry args={[1, 16, 16]} />
+            <meshBasicMaterial 
+              color={`hsl(${hue}, 60%, 15%)`}
+              transparent
+              opacity={0.3}
+            />
+          </mesh>
+        );
+      })}
+
+      {/* Distant Galaxies */}
+      {Array.from({ length: 8 }, (_, i) => {
+        const radius = 42;
+        const x = (Math.random() - 0.5) * radius * 2;
+        const y = (Math.random() - 0.5) * radius * 2;
+        const z = (Math.random() - 0.5) * radius * 2;
+        
+        const scale = Math.random() * 2 + 0.5;
+        // Mix of blue and green tinted galaxies
+        const isGreen = Math.random() > 0.5;
+        const hue = isGreen ? Math.random() * 40 + 120 : Math.random() * 40 + 200;
+        
+        return (
+          <mesh key={`galaxy-${i}`} position={[x, y, z]} scale={[scale, scale * 0.3, scale]}>
+            <sphereGeometry args={[1.5, 12, 12]} />
+            <meshBasicMaterial 
+              color={`hsl(${hue}, 40%, 25%)`}
+              transparent
+              opacity={0.4}
+            />
+          </mesh>
+        );
+      })}
+      
+      {/* Lighting for glow effects */}
+      <ambientLight intensity={0.2} />
+      <pointLight position={[2, 1, 2]} intensity={1.5} color="#00ff44" />
+      <pointLight position={[-2, -1, 2]} intensity={1} color="#00aa33" />
+      
       <mesh ref={meshRef}>
         {/* <boxGeometry args={[1, 1, 1]} /> */}
-        <torusGeometry args={[0.6, 0.2, 128, 64]} />
+        <torusGeometry args={[0.6, 0.1, 128, 64]} />
         <MeshTransmissionMaterial {...materialProps} />
       </mesh>
+
+      {/* 3D Text */}
+      <Text3D
+        position={[-1.35, -0.06, 0]}
+        size={0.2}
+        // font="/Lexend Zetta_Bold.json"
+        font="Space Grotesk Medium_Regular.json"
+        height={0.03}
+        curveSegments={32}
+        bevelEnabled={true}
+        bevelThickness={0.005}
+        bevelSize={0.003}
+        bevelSegments={5}
+      >
+        UNDER DEVELOPMENT
+        <MeshTransmissionMaterial
+          {...materialProps}
+          // transmission={0.95}
+          roughness={0.1}
+          ior={1.5}
+          chromaticAberration={0.2}
+          distortion={0.3}
+          distortionScale={0.2}
+          temporalDistortion={0.5}
+          attenuationDistance={1.5}
+          attenuationColor="#00ff44"
+          toneMapped={false}
+         />
+      </Text3D>
+
+      <Text position={[0, -1.2, 0]} fontSize={0.06} color="rgb(4, 106, 52)">abhinavmishra.in</Text>
+
     </group>
   );
 }
