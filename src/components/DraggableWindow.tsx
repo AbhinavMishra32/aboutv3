@@ -20,26 +20,40 @@ type DraggableWindowProps = {
 export function DraggableWindow({ title, open, onClose, className, children, constraintsRef, zIndex, onActivate, isActive }: DraggableWindowProps) {
   const [size, setSize] = React.useState<{ width: number; height: number }>(() => {
     if (typeof window !== "undefined") {
-      const vw = Math.min(1200, Math.floor(window.innerWidth * 0.85));
-      const vh = Math.floor(window.innerHeight * 0.7);
+      const vw = Math.min(1400, Math.floor(window.innerWidth * 0.92));
+      const vh = Math.floor(window.innerHeight * 0.78);
       return { width: vw, height: vh };
     }
     return { width: 960, height: 640 };
   });
+
+  // Responsively adjust window size on viewport resize
+  React.useEffect(() => {
+    const onResize = () => {
+      const vw = Math.min(1400, Math.floor(window.innerWidth * 0.92));
+      const vh = Math.floor(window.innerHeight * 0.78);
+      setSize(prev => ({
+        width: Math.max(320, Math.min(vw, prev.width > vw ? vw : prev.width)),
+        height: Math.max(260, Math.min(vh, prev.height > vh ? vh : prev.height)),
+      }));
+    };
+    window.addEventListener("resize", onResize);
+    return () => window.removeEventListener("resize", onResize);
+  }, []);
 
   if (!open) return null;
 
   return (
     <Rnd
       style={{ zIndex, position: "absolute" }}
-      default={{ x: 60, y: 60, width: size.width, height: size.height }}
+      default={{ x: 40, y: 40, width: size.width, height: size.height }}
       size={{ width: size.width, height: size.height }}
       onResizeStop={(_, __, ref) => {
         setSize({ width: ref.offsetWidth, height: ref.offsetHeight });
       }}
       onDragStop={onActivate ? () => onActivate() : undefined}
-      minWidth={480}
-      minHeight={360}
+      minWidth={320}
+      minHeight={260}
       bounds="parent"
       dragHandleClassName="win-drag"
       enableResizing={{ top: true, right: true, bottom: true, left: true, topRight: true, bottomRight: true, bottomLeft: true, topLeft: true }}
