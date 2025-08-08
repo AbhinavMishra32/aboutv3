@@ -5,6 +5,7 @@ import { cn } from "@/lib/cn";
 import { FileText, User2, Code2, Layers, Star, Globe } from "lucide-react";
 import { DraggableWindow } from "@/components/DraggableWindow";
 import { MacDock } from "@/components/MacDock";
+import { DesktopIcons } from "@/components/DesktopIcons";
 import { PongWindow, StarfieldWindow } from "@/components/FunWindows";
 
 type TabKey = "README.md" | "about.ts" | "experience.tsx" | "projects.tsx" | "awards.md" | "contact.json";
@@ -170,14 +171,13 @@ export default function VSCodePortfolio() {
         </main>
         </div>
       </DraggableWindow>
-      {safariOpen && (
-        <DraggableWindow
-          open
-          constraintsRef={boundsRef}
-          zIndex={topWindow === "safari" ? 100 : 60}
-          isActive={topWindow === "safari"}
-          onActivate={() => setTopWindow("safari")}
-        >
+      <DraggableWindow
+        open={safariOpen}
+        constraintsRef={boundsRef}
+        zIndex={topWindow === "safari" ? 100 : 60}
+        isActive={topWindow === "safari"}
+        onActivate={() => setTopWindow("safari")}
+      >
           {/* Safari toolbar */}
           <div className="win-drag flex items-center gap-2 border-b border-white/10 bg-neutral-900/70 px-3 py-2 cursor-grab active:cursor-grabbing rounded-t-2xl">
             <div className="flex items-center gap-2">
@@ -227,14 +227,9 @@ export default function VSCodePortfolio() {
               </div>
             )}
           </div>
-        </DraggableWindow>
-      )}
-      {pongOpen && (
-        <PongWindow onClose={() => setPongOpen(false)} zIndex={topWindow === "pong" ? 100 : 60} onActivate={() => setTopWindow("pong")} />
-      )}
-      {starOpen && (
-        <StarfieldWindow onClose={() => setStarOpen(false)} zIndex={topWindow === "starfield" ? 100 : 60} onActivate={() => setTopWindow("starfield")} />
-      )}
+      </DraggableWindow>
+      <PongWindow open={pongOpen} onClose={() => setPongOpen(false)} zIndex={topWindow === "pong" ? 100 : 60} onActivate={() => setTopWindow("pong")} boundsRef={boundsRef} />
+      <StarfieldWindow open={starOpen} onClose={() => setStarOpen(false)} zIndex={topWindow === "starfield" ? 100 : 60} onActivate={() => setTopWindow("starfield")} boundsRef={boundsRef} />
       <MacDock
         onLaunch={(key) => {
           if (key === "safari") {
@@ -245,6 +240,14 @@ export default function VSCodePortfolio() {
             setVsOpen(true);
             setTopWindow("vscode");
           }
+          if (key === "pong") { setPongOpen(true); setTopWindow("pong"); }
+          if (key === "starfield") { setStarOpen(true); setTopWindow("starfield"); }
+        }}
+      />
+      <DesktopIcons
+        onLaunch={(key) => {
+          if (key === "safari") { setSafariOpen(true); setTopWindow("safari"); }
+          if (key === "vscode") { setVsOpen(true); setTopWindow("vscode"); }
           if (key === "pong") { setPongOpen(true); setTopWindow("pong"); }
           if (key === "starfield") { setStarOpen(true); setTopWindow("starfield"); }
         }}

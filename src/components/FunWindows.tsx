@@ -1,27 +1,46 @@
 "use client";
 
 import { Rnd } from "react-rnd";
+import { AnimatePresence, motion } from "framer-motion";
 import React from "react";
 
-export function PongWindow({ onClose, zIndex = 80, onActivate }: { onClose: () => void; zIndex?: number; onActivate?: () => void }) {
+export function PongWindow({ open = true, onClose, zIndex = 80, onActivate, boundsRef }: { open?: boolean; onClose: () => void; zIndex?: number; onActivate?: () => void; boundsRef?: React.RefObject<HTMLDivElement | null> }) {
   return (
-    <Rnd
-      default={{ x: 120, y: 120, width: 520, height: 340 }}
-      bounds="parent"
-      className="absolute rounded-2xl border border-white/10 bg-neutral-950/85 backdrop-blur-xl shadow-[0_20px_60px_-25px_rgba(0,0,0,0.6)] overflow-hidden"
-      style={{ zIndex }}
-      minWidth={360}
-      minHeight={240}
-      onMouseDown={onActivate}
-    >
-      <div className="win-drag flex items-center gap-2 border-b border-white/10 bg-neutral-900/70 px-3 py-2">
-        <span className="inline-block h-3 w-3 rounded-full bg-rose-500" onClick={onClose} />
-        <span className="inline-block h-3 w-3 rounded-full bg-amber-400" />
-        <span className="inline-block h-3 w-3 rounded-full bg-emerald-500" />
-        <div className="ml-3 text-sm text-neutral-300">Pong</div>
-      </div>
-      <PongCanvas />
-    </Rnd>
+    <AnimatePresence>
+      {open && (
+        <motion.div
+          key="pong"
+          initial={{ opacity: 0, scale: 0.85, y: 60, transformOrigin: "bottom center" }}
+          animate={{ opacity: 1, scale: 1, y: 0, transformOrigin: "bottom center" }}
+          exit={{ opacity: 0, scale: 0.9, y: 40, transformOrigin: "bottom center" }}
+          transition={{ duration: 0.22, ease: "easeOut" }}
+          style={{ position: "relative" }}
+        >
+          <Rnd
+          default={{ x: 120, y: 120, width: 520, height: 340 }}
+          bounds={boundsRef?.current || "window"}
+          className="absolute rounded-2xl border border-white/10 bg-neutral-950/85 backdrop-blur-xl shadow-[0_20px_60px_-25px_rgba(0,0,0,0.6)] overflow-hidden"
+          style={{ zIndex }}
+          minWidth={360}
+          minHeight={240}
+          onMouseDown={onActivate}
+          onDragStart={onActivate}
+          onDragStop={(_, data) => {
+            onActivate?.();
+            if (data.y < 0) (data.node as HTMLElement).style.top = "0px";
+          }}
+        >
+          <div className="win-drag flex items-center gap-2 border-b border-white/10 bg-neutral-900/70 px-3 py-2">
+            <span className="inline-block h-3 w-3 rounded-full bg-rose-500" onClick={onClose} />
+            <span className="inline-block h-3 w-3 rounded-full bg-amber-400" />
+            <span className="inline-block h-3 w-3 rounded-full bg-emerald-500" />
+            <div className="ml-3 text-sm text-neutral-300">Pong</div>
+          </div>
+          <PongCanvas />
+          </Rnd>
+        </motion.div>
+      )}
+    </AnimatePresence>
   );
 }
 
@@ -173,25 +192,43 @@ function PongCanvas() {
   return <canvas ref={ref} className="w-full h-[calc(100%-40px)]" />;
 }
 
-export function StarfieldWindow({ onClose, zIndex = 85, onActivate }: { onClose: () => void; zIndex?: number; onActivate?: () => void }) {
+export function StarfieldWindow({ open = true, onClose, zIndex = 85, onActivate, boundsRef }: { open?: boolean; onClose: () => void; zIndex?: number; onActivate?: () => void; boundsRef?: React.RefObject<HTMLDivElement | null> }) {
   return (
-    <Rnd
-      default={{ x: 180, y: 160, width: 560, height: 360 }}
-      bounds="parent"
-      className="absolute rounded-2xl border border-white/10 bg-neutral-950/85 backdrop-blur-xl shadow-[0_20px_60px_-25px_rgba(0,0,0,0.6)] overflow-hidden"
-      style={{ zIndex }}
-      minWidth={360}
-      minHeight={240}
-      onMouseDown={onActivate}
-    >
-      <div className="win-drag flex items-center gap-2 border-b border-white/10 bg-neutral-900/70 px-3 py-2">
-        <span className="inline-block h-3 w-3 rounded-full bg-rose-500" onClick={onClose} />
-        <span className="inline-block h-3 w-3 rounded-full bg-amber-400" />
-        <span className="inline-block h-3 w-3 rounded-full bg-emerald-500" />
-        <div className="ml-3 text-sm text-neutral-300">Starfield</div>
-      </div>
-      <StarfieldCanvas />
-    </Rnd>
+    <AnimatePresence>
+      {open && (
+        <motion.div
+          key="starfield"
+          initial={{ opacity: 0, scale: 0.85, y: 60, transformOrigin: "bottom center" }}
+          animate={{ opacity: 1, scale: 1, y: 0, transformOrigin: "bottom center" }}
+          exit={{ opacity: 0, scale: 0.9, y: 40, transformOrigin: "bottom center" }}
+          transition={{ duration: 0.22, ease: "easeOut" }}
+          style={{ position: "relative" }}
+        >
+          <Rnd
+          default={{ x: 180, y: 160, width: 560, height: 360 }}
+          bounds={boundsRef?.current || "window"}
+          className="absolute rounded-2xl border border-white/10 bg-neutral-950/85 backdrop-blur-xl shadow-[0_20px_60px_-25px_rgba(0,0,0,0.6)] overflow-hidden"
+          style={{ zIndex }}
+          minWidth={360}
+          minHeight={240}
+          onMouseDown={onActivate}
+          onDragStart={onActivate}
+          onDragStop={(_, data) => {
+            onActivate?.();
+            if (data.y < 0) (data.node as HTMLElement).style.top = "0px";
+          }}
+        >
+          <div className="win-drag flex items-center gap-2 border-b border-white/10 bg-neutral-900/70 px-3 py-2">
+            <span className="inline-block h-3 w-3 rounded-full bg-rose-500" onClick={onClose} />
+            <span className="inline-block h-3 w-3 rounded-full bg-amber-400" />
+            <span className="inline-block h-3 w-3 rounded-full bg-emerald-500" />
+            <div className="ml-3 text-sm text-neutral-300">Starfield</div>
+          </div>
+          <StarfieldCanvas />
+          </Rnd>
+        </motion.div>
+      )}
+    </AnimatePresence>
   );
 }
 
