@@ -361,9 +361,9 @@ function ProjectsPane() {
   return (
     <div className="grid sm:grid-cols-2 gap-4">
       {[
-        { name: "Decipath AI", date: "Jan 2025 – Mar 2025", desc: "Next.js‑powered roadmap generator using LLMs and prompt chaining, fine‑tuned for branching card layouts (ShadCN UI).", tech: ["Next.js", "Vercel AI", "Tailwind"], live: "https://abhinavmishra.in", src: "https://github.com/AbhinavMishra32" },
-        { name: "Mentor Map", date: "Dec 2024", desc: "AI‑powered career guidance platform that won Smart India Hackathon 2024; personalized roadmaps, quizzes, realtime counseling, and progress tracking.", tech: ["React", "Firebase", "AI"], live: "https://abhinavmishra.in" },
-        { name: "XiteCoin Blockchain", date: "Jan 2024 – Jun 2024", desc: "Complete blockchain system from scratch with proof‑of‑work, P2P networking, and cryptographic ledger security.", tech: ["Node.js", "Crypto", "CLI"], src: "https://github.com/AbhinavMishra32" },
+        { name: "Decipath AI", date: "Jan 2025 – Mar 2025", desc: "Next.js‑powered roadmap generator using LLMs and prompt chaining, fine‑tuned for branching card layouts (ShadCN UI).", tech: ["Next.js", "Vercel AI", "Tailwind"], live: "https://decipath.abhinavmishra.in", src: "https://github.com/AbhinavMishra32" },
+        { name: "Mentor Map", date: "Dec 2024", desc: "AI‑powered career guidance platform that won Smart India Hackathon 2024; personalized roadmaps, quizzes, realtime counseling, and progress tracking.", tech: ["React", "Firebase", "AI"], live: "https://mentormap.abhinavmishra.in" },
+        { name: "XiteCoin Blockchain", date: "Jan 2024 – Jun 2024", desc: "Complete blockchain system from scratch with proof‑of‑work, P2P networking, and cryptographic ledger security.", tech: ["Node.js", "Crypto", "CLI"], src: "https://github.com/AbhinavMishra32/xitecoin" },
       ].map((p) => (
         <div key={p.name} className="rounded-xl border border-white/10 bg-white/5 p-4 flex flex-col">
           <div className="flex items-center justify-between gap-3">
