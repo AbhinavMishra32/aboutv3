@@ -80,6 +80,7 @@ const OTHER_PROJECT_CARDS: Array<{
     description: "A note‑taking app focused on clean UI and fast capture workflows.",
     tags: ["TypeScript", "Notes", "UI"],
     accent: "accent-pink",
+    live: "https://dbnotes.abhinavmishra.in",
     source: "https://github.com/AbhinavMishra32/Notely",
   },
   {
