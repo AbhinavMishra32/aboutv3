@@ -1,402 +1,459 @@
-const TOC = [
-  { id: "experience", label: "Experience" },
-  { id: "projects", label: "Projects" },
-  { id: "writing", label: "Writing" },
-  { id: "achievements", label: "Achievements" },
+"use client";
+
+import { useEffect, useState } from "react";
+
+const NAV_ITEMS = [
+  { id: "work", label: "Work" },
   { id: "skills", label: "Skills" },
-  { id: "education", label: "Education" },
+  { id: "highlights", label: "Highlights" },
+  { id: "writing", label: "Writing" },
+  { id: "contact", label: "Contact" },
 ];
 
-const EXPERIENCES = [
-  {
-    company: "Lunacal.ai",
-    location: "Bangalore, KA",
-    role: "Software Developer Intern (Full Time)",
-    period: "Sep 2025 – Present",
-    highlights: [
-      "Built CI/testing workflows and guarded releases for the production web stack.",
-      "Implemented SMS scheduling and delivery workflows with logging and billing hooks.",
-      "Improved observability and automated parts of domain provisioning on Azure infrastructure.",
-    ],
-  },
-  {
-    company: "Ludotronics",
-    location: "Bhubaneswar, OD",
-    role: "Software Developer (Part-time)",
-    period: "Jun 2025 – Sep 2025",
-    highlights: [
-      "Developed PayEvenly, a Splitwise-style expense app for the Indian market using React Native and UPI.",
-      "Added voice input and OCR receipt parsing to speed up split creation.",
-      "Built the FastAPI backend with SQLite and managed Expo builds for release preparation.",
-    ],
-  },
-  {
-    company: "Expert Buddy",
-    location: "Jaipur, RJ",
-    role: "Next.js Frontend Developer Intern (Full Time)",
-    period: "Apr 2025 – Sep 2025",
-    highlights: [
-      "Delivered StudyBank with Next.js SSR, cookie-based auth, and caching for key user data.",
-      "Shipped AI-powered student support features including agentic chat and PDF analysis.",
-      "Improved engagement and SEO with real-time notifications and server-side data fetching.",
-    ],
-  },
-];
+type Project = {
+  slug: string;
+  name: string;
+  description: string;
+  tags: string[];
+  accent: string;
+  live?: string;
+  source?: string;
+};
 
-const PROJECTS = [
+const FEATURED_PROJECTS: Project[] = [
   {
+    slug: "decipath-ai",
     name: "Decipath AI",
-    timeframe: "Jan 2025 – Mar 2025",
-    stack: ["Next.js", "TypeScript", "ShadCN UI", "OpenAI API", "React Flow"],
     description:
-      "Full-stack SaaS that generates structured learning roadmaps with graph layouts and path optimization.",
+      "AI roadmap builder that turns goals into structured learning graphs with intelligent layout and path optimization.",
+    tags: ["Next.js", "TypeScript", "OpenAI API", "React Flow"],
+    accent: "accent-violet",
     live: "https://decipath.abhinavmishra.in",
     source: "https://github.com/AbhinavMishra32",
   },
   {
+    slug: "mentor-map",
     name: "Mentor Map",
-    timeframe: "Dec 2024",
-    stack: ["React", "Node.js", "PostgreSQL", "OpenAI API"],
     description:
-      "Career guidance platform with role-based access, real-time updates, and adaptive roadmaps. Built for Smart India Hackathon 2024.",
+      "Career guidance platform built for Smart India Hackathon 2024, featuring adaptive roadmaps and real-time collaboration.",
+    tags: ["React", "Node.js", "PostgreSQL"],
+    accent: "accent-cyan",
     live: "https://mentormap.abhinavmishra.in",
   },
   {
-    name: "XiteCoin Blockchain",
-    timeframe: "Jan 2024 – Jun 2024",
-    stack: ["Python"],
+    slug: "payevenly",
+    name: "PayEvenly",
     description:
-      "Pure Python blockchain with custom proof-of-work, gossip-based P2P, Merkle validation, and JSON-RPC nodes.",
+      "Splitwise-style expense app with UPI settlement, voice input, and OCR receipt parsing for fast group splits.",
+    tags: ["React Native", "FastAPI", "Expo"],
+    accent: "accent-pink",
+  },
+  {
+    slug: "xitecoin",
+    name: "XiteCoin Blockchain",
+    description:
+      "Pure Python blockchain with custom proof-of-work, gossip P2P, Merkle validation, and JSON-RPC nodes.",
+    tags: ["Python", "P2P", "Cryptography"],
+    accent: "accent-emerald",
     source: "https://github.com/AbhinavMishra32/xitecoin",
   },
 ];
 
-const OTHER_PROJECTS = ["Jchess", "Notely", "pdf-rag"];
-
-const ACHIEVEMENTS = [
+const OTHER_PROJECT_CARDS: Array<{
+  name: string;
+  description: string;
+  tags: string[];
+  accent: string;
+  source?: string;
+  live?: string;
+}> = [
   {
-    title: "Smart India Hackathon 2024 — Winner",
-    meta: "Mohali, PB · Dec 2024 · ₹100,000 prize",
-    detail:
-      "Built Mentor Map, an AI-driven career guidance platform recognized by Dr. Sanjeev (C-DAC Mohali).",
+    name: "Jchess",
+    description:
+      "A fully-functional chess game built with libGDX featuring full rule enforcement, check/checkmate detection, and drag-and-drop gameplay.",
+    tags: ["Java", "libGDX", "Desktop"],
+    accent: "accent-cyan",
+    source: "https://github.com/AbhinavMishra32/jchess",
   },
   {
-    title: "Open Source Contributor — MetaCall",
-    meta: "GitHub · 1,700+ stars",
-    detail:
-      "Implemented an Intellisense feature using TypeScript and the VSCode API.",
-    link: "https://github.com/metacall/core",
+    name: "Notely",
+    description: "A note‑taking app focused on clean UI and fast capture workflows.",
+    tags: ["TypeScript", "Notes", "UI"],
+    accent: "accent-pink",
+    source: "https://github.com/AbhinavMishra32/Notely",
+  },
+  {
+    name: "pdf-rag",
+    description: "RAG pipeline for PDFs using OpenAI embeddings and a vector database for fast retrieval.",
+    tags: ["OpenAI API", "Vector DB", "RAG"],
+    accent: "accent-violet",
+    source: "https://github.com/AbhinavMishra32/pdf-rag",
   },
 ];
 
-const SKILLS = {
-  languages: ["Python", "JavaScript", "TypeScript"],
-  frameworks: ["React", "Next.js", "Node.js", "React Native", "Tailwind CSS", "Supabase", "ShadCN UI"],
-  tools: ["PostgreSQL", "Prisma ORM", "tRPC", "Turborepo", "Vercel"],
-};
+const SKILL_GROUPS = [
+  {
+    title: "Product Engineering",
+    description: "Shipping modern web products with strong DX and clean architecture.",
+    items: ["Next.js", "React", "TypeScript", "Node.js", "tRPC"],
+    accent: "accent-violet",
+  },
+  {
+    title: "Mobile & UI",
+    description: "Design-forward interfaces with smooth UX on mobile and web.",
+    items: ["React Native", "Expo", "Tailwind CSS", "ShadCN UI", "Design Systems"],
+    accent: "accent-pink",
+  },
+  {
+    title: "Data & Infra",
+    description: "Reliable data layers, deployments, and production observability.",
+    items: ["PostgreSQL", "Prisma ORM", "Supabase", "Vercel", "Observability"],
+    accent: "accent-emerald",
+  },
+];
 
-type BlogPost = {
-  title: string;
-  description?: string;
-  date?: string;
-  tags?: string[];
-  slug?: string;
-};
+const HIGHLIGHTS = [
+  {
+    title: "Smart India Hackathon winner",
+    description:
+      "Mentor Map earned national recognition for an AI-driven career guidance platform.",
+    metric: "80K+",
+    metricLabel: "teams competed",
+    accent: "accent-cyan",
+  },
+  {
+    title: "Open-source contributor",
+    description:
+      "Shipped an Intellisense feature for MetaCall using TypeScript and the VSCode API.",
+    metric: "1.7K+",
+    metricLabel: "GitHub stars",
+    link: "https://github.com/metacall/core",
+    accent: "accent-violet",
+  },
+  {
+    title: "Currently building at Lunacal.ai",
+    description:
+      "Working on scheduling and communication infrastructure with a focus on reliability and rollout safety.",
+    metric: "Now",
+    metricLabel: "shipping",
+    accent: "accent-emerald",
+  },
+];
 
-const BLOG_POSTS: BlogPost[] = [];
+const BLOG_POSTS: Array<{ title: string; description: string }> = [];
 
 export default function Home() {
+  const [isLoading, setIsLoading] = useState(true);
+
+  useEffect(() => {
+    const timer = window.setTimeout(() => {
+      setIsLoading(false);
+    }, 4000);
+    return () => window.clearTimeout(timer);
+  }, []);
+
+  useEffect(() => {
+    document.body.style.overflow = isLoading ? "hidden" : "";
+    return () => {
+      document.body.style.overflow = "";
+    };
+  }, [isLoading]);
+
   return (
-    <main className="min-h-svh paper-texture">
-      <div className="mx-auto max-w-6xl px-6 py-14 md:py-20">
-        <div className="grid gap-12 lg:grid-cols-[220px_1fr]">
-          <aside className="hidden lg:block">
-            <div className="sticky top-10 space-y-6">
-              <div className="font-sans text-xs uppercase tracking-[0.35em] text-foreground/60">Contents</div>
-              <nav className="space-y-3 text-sm">
-                {TOC.map((item) => (
-                  <a
-                    key={item.id}
-                    href={`#${item.id}`}
-                    className="flex items-center justify-between border-b border-foreground/10 pb-2 text-foreground/70 transition hover:text-foreground"
-                  >
-                    <span>{item.label}</span>
-                    <span className="font-sans text-xs text-foreground/40">→</span>
-                  </a>
-                ))}
-              </nav>
+    <main className="page-shell">
+      <div className="glow-grid" />
+      <div className={`loader-screen ${isLoading ? "is-active" : "is-hidden"}`} aria-hidden={!isLoading}>
+        <div className="loader-content">
+          <div className="loader-title">ABHINAV MISHRA</div>
+        </div>
+      </div>
+      <div className="mx-auto max-w-6xl px-6 py-12 md:py-16">
+        <header className="flex flex-wrap items-center justify-between gap-4">
+          <div className="display-text text-sm uppercase tracking-[0.2em] text-white/70">Abhinav Mishra</div>
+          <nav className="flex flex-wrap items-center gap-4 text-[11px] uppercase tracking-[0.22em] text-white/55">
+            {NAV_ITEMS.map((item) => (
+              <a key={item.id} href={`#${item.id}`} className="link-muted">
+                {item.label}
+              </a>
+            ))}
+            <a
+              href="mailto:abhinavmishra3322@gmail.com"
+              className="rounded-full border border-white/10 bg-white/10 px-4 py-1.5 text-white/80 transition hover:bg-white/20"
+            >
+              Email
+            </a>
+          </nav>
+        </header>
+
+        <section className="mt-12 grid gap-8 lg:grid-cols-[1.15fr_0.85fr]">
+          <div className="space-y-6">
+            <div className="kicker">Product engineering · modern web</div>
+            <div className="space-y-4">
+              <h1 className="hero-title text-4xl font-semibold text-white sm:text-5xl lg:text-6xl">
+                Building <span className="accent-gradient accent-italic">sleek, reliable</span> products with modern UI and strong systems.
+              </h1>
+              <p className="max-w-2xl text-lg text-white/70">
+                I design and ship web and mobile experiences that feel fast, polished, and dependable. My work blends
+                product thinking with solid engineering and careful UI details.
+              </p>
             </div>
-          </aside>
+            <div className="flex flex-wrap gap-4">
+              <a href="#work" className="btn-primary">
+                View Work
+              </a>
+              <a href="https://abhinavmishra.in" target="_blank" rel="noreferrer" className="btn-ghost">
+                abhinavmishra.in
+              </a>
+            </div>
+            <div className="flex flex-wrap gap-2 text-[11px] uppercase tracking-[0.22em] text-white/50">
+              {[
+                "Full-stack systems",
+                "Design-forward UI",
+                "AI-enabled products",
+                "Performance",
+              ].map((item) => (
+                <span key={item} className="tag rounded-full px-3 py-1">
+                  {item}
+                </span>
+              ))}
+            </div>
+          </div>
 
-          <div className="space-y-14">
-            <header className="space-y-8">
-              <div className="space-y-4">
-                <div className="inline-flex items-center gap-3 font-sans text-xs uppercase tracking-[0.4em] text-foreground/60">
-                  <span>Portfolio</span>
-                  <span className="h-px w-10 bg-foreground/30" />
-                </div>
-                <div className="space-y-3">
-                  <h1 className="text-4xl font-semibold tracking-tight md:text-5xl">Abhinav Mishra</h1>
-                  <p className="max-w-2xl text-lg text-foreground/80">
-                    Software developer focused on web, backend systems, and product craftsmanship.
-                    Building reliable features across web and mobile.
-                  </p>
-                </div>
+          <div className="panel panel-strong rounded-3xl p-6">
+            <div className="flex items-center justify-between">
+              <div className="text-xs uppercase tracking-[0.35em] text-white/50">Now</div>
+              <span className="rounded-full border border-white/15 bg-white/10 px-3 py-1 text-[10px] uppercase tracking-[0.3em] text-white/70">
+                Active
+              </span>
+            </div>
+            <div className="mt-5 space-y-4">
+              <div className="space-y-2">
+                <div className="display-text text-xl text-white">Shipping product systems</div>
+                <div className="text-sm text-white/60">Lunacal.ai · scheduling & communication platform</div>
               </div>
-
-              <div className="grid gap-4 md:grid-cols-[1.15fr_0.85fr]">
-                <div className="paper-card rounded-2xl p-6">
-                  <div className="flex flex-wrap items-center gap-2 text-sm text-foreground/70">
-                    <span>Ghaziabad, UP</span>
-                    <span className="text-foreground/40">·</span>
-                    <a href="tel:+917701956829" className="hover:text-foreground">+91 7701956829</a>
-                    <span className="text-foreground/40">·</span>
-                    <a href="mailto:abhinavmishra3322@gmail.com" className="hover:text-foreground">
-                      abhinavmishra3322@gmail.com
-                    </a>
-                  </div>
-                  <div className="mt-3 flex flex-wrap gap-3 font-sans text-xs uppercase tracking-[0.2em] text-foreground/60">
-                    <a href="https://abhinavmishra.in" target="_blank" rel="noreferrer" className="hover:text-foreground">
-                      abhinavmishra.in
-                    </a>
-                    <span>@AbhinavMishra32</span>
-                  </div>
+              <div className="grid grid-cols-2 gap-3 text-sm">
+                <div className="rounded-2xl border border-white/10 bg-white/5 p-3">
+                  <div className="text-xs uppercase tracking-[0.3em] text-white/40">Base</div>
+                  <div className="mt-2 text-white">Ghaziabad, India</div>
+                  <div className="text-white/50">IST (UTC +5:30)</div>
                 </div>
-                <div className="paper-card rounded-2xl p-6">
-                  <div className="font-sans text-xs uppercase tracking-[0.3em] text-foreground/60">Focus Areas</div>
-                  <div className="mt-4 flex flex-wrap gap-2 text-sm">
-                    {[
-                      "Full-stack web",
-                      "Systems reliability",
-                      "AI-enabled products",
-                      "Developer tooling",
-                      "Mobile UX",
-                    ].map((item) => (
-                      <span
-                        key={item}
-                        className="rounded-full border border-foreground/10 bg-white/70 px-3 py-1 text-foreground/80"
-                      >
-                        {item}
-                      </span>
-                    ))}
-                  </div>
+                <div className="rounded-2xl border border-white/10 bg-white/5 p-3">
+                  <div className="text-xs uppercase tracking-[0.3em] text-white/40">Availability</div>
+                  <div className="mt-2 text-white">Collab ready</div>
+                  <div className="text-white/50">Product builds</div>
                 </div>
               </div>
-            </header>
-
-            <section id="experience" className="space-y-8">
-              <SectionHeading number="01" title="Experience" subtitle="Recent roles and focus areas." />
-              <div className="space-y-8">
-                {EXPERIENCES.map((role) => (
-                  <article key={role.company} className="relative pl-6">
-                    <div className="absolute left-0 top-2 h-2 w-2 rounded-full bg-foreground/60" />
-                    <div className="flex flex-col gap-2">
-                      <div className="flex flex-wrap items-baseline justify-between gap-2">
-                        <h3 className="text-xl font-semibold">{role.company}</h3>
-                        <span className="font-sans text-xs uppercase tracking-[0.2em] text-foreground/60">
-                          {role.period}
-                        </span>
-                      </div>
-                      <div className="text-sm text-foreground/70">
-                        {role.role} · {role.location}
-                      </div>
-                      <ul className="mt-2 list-disc space-y-1 pl-4 text-[15px] text-foreground/80">
-                        {role.highlights.map((item) => (
-                          <li key={item}>{item}</li>
-                        ))}
-                      </ul>
-                    </div>
-                  </article>
-                ))}
-              </div>
-            </section>
-
-            <section id="projects" className="space-y-8">
-              <SectionHeading number="02" title="Projects" subtitle="Selected work and experiments." />
-              <div className="grid gap-4 md:grid-cols-2">
-                {PROJECTS.map((project) => (
-                  <article key={project.name} className="paper-card rounded-2xl p-6">
-                    <div className="flex items-start justify-between gap-3">
-                      <div>
-                        <h3 className="text-lg font-semibold">{project.name}</h3>
-                        <div className="mt-1 text-xs text-foreground/60">{project.timeframe}</div>
-                      </div>
-                      <div className="font-sans text-[11px] uppercase tracking-[0.25em] text-foreground/50">Project</div>
-                    </div>
-                    <p className="mt-3 text-sm text-foreground/80">{project.description}</p>
-                    <div className="mt-4 flex flex-wrap gap-2 text-xs">
-                      {project.stack.map((item) => (
-                        <span key={item} className="rounded-full border border-foreground/10 bg-white/70 px-2.5 py-1">
-                          {item}
-                        </span>
-                      ))}
-                    </div>
-                    <div className="mt-4 flex flex-wrap gap-3 text-sm">
-                      {project.live && (
-                        <a
-                          href={project.live}
-                          target="_blank"
-                          rel="noreferrer"
-                          className="font-sans text-xs uppercase tracking-[0.2em] text-foreground/70 hover:text-foreground"
-                        >
-                          Live
-                        </a>
-                      )}
-                      {project.source && (
-                        <a
-                          href={project.source}
-                          target="_blank"
-                          rel="noreferrer"
-                          className="font-sans text-xs uppercase tracking-[0.2em] text-foreground/70 hover:text-foreground"
-                        >
-                          Source
-                        </a>
-                      )}
-                    </div>
-                  </article>
-                ))}
-              </div>
-              <div className="text-sm text-foreground/70">
-                More projects: {OTHER_PROJECTS.join(", ")}
-              </div>
-            </section>
-
-            <section id="writing" className="space-y-8">
-              <SectionHeading number="03" title="Knowledge Sharing" subtitle="A space reserved for notes, essays, and build logs." />
-              {BLOG_POSTS.length === 0 ? (
-                <div className="paper-card rounded-2xl p-6">
-                  <div className="flex items-center justify-between gap-4">
-                    <div>
-                      <div className="font-sans text-xs uppercase tracking-[0.3em] text-foreground/60">Coming soon</div>
-                      <h3 className="mt-2 text-lg font-semibold">Notes & Writing</h3>
-                    </div>
-                    <div className="font-sans text-xs uppercase tracking-[0.3em] text-foreground/50">Drafted</div>
-                  </div>
-                  <p className="mt-3 text-sm text-foreground/75">
-                    This section is intentionally reserved for future posts. The layout is ready to surface essays,
-                    technical notes, and project retrospectives once they are published.
-                  </p>
-                  <div className="mt-4 flex flex-wrap gap-2 text-xs">
-                    {["Engineering notes", "Product learnings", "Book summaries"].map((item) => (
-                      <span key={item} className="rounded-full border border-foreground/10 bg-white/70 px-2.5 py-1">
-                        {item}
-                      </span>
-                    ))}
-                  </div>
-                </div>
-              ) : (
-                <div className="grid gap-4 md:grid-cols-2">
-                  {BLOG_POSTS.map((post) => (
-                    <article key={post.title} className="paper-card rounded-2xl p-6">
-                      <div className="font-sans text-xs uppercase tracking-[0.3em] text-foreground/60">Note</div>
-                      <h3 className="mt-2 text-lg font-semibold">{post.title}</h3>
-                      {post.description && <p className="mt-2 text-sm text-foreground/75">{post.description}</p>}
-                      {post.date && <div className="mt-3 text-xs text-foreground/60">{post.date}</div>}
-                      {post.tags && (
-                        <div className="mt-3 flex flex-wrap gap-2 text-xs">
-                          {post.tags.map((tag) => (
-                            <span key={tag} className="rounded-full border border-foreground/10 bg-white/70 px-2.5 py-1">
-                              {tag}
-                            </span>
-                          ))}
-                        </div>
-                      )}
-                    </article>
+              <div className="rounded-2xl border border-white/10 bg-white/5 p-3">
+                <div className="text-xs uppercase tracking-[0.3em] text-white/40">Focus</div>
+                <div className="mt-2 flex flex-wrap gap-2 text-[11px] uppercase tracking-[0.2em] text-white/55">
+                  {["Product systems", "Reliability", "AI UX", "Developer tooling"].map((item) => (
+                    <span key={item} className="tag rounded-full px-3 py-1">
+                      {item}
+                    </span>
                   ))}
                 </div>
-              )}
-            </section>
+              </div>
+              <div className="rounded-2xl border border-white/10 bg-white/5 p-3 text-sm">
+                <div className="text-xs uppercase tracking-[0.3em] text-white/40">Reach me</div>
+                <a href="mailto:abhinavmishra3322@gmail.com" className="mt-2 block link-muted">
+                  abhinavmishra3322@gmail.com
+                </a>
+                <div className="text-white/50">@AbhinavMishra32</div>
+              </div>
+            </div>
+          </div>
+        </section>
 
-            <section id="achievements" className="space-y-8">
-              <SectionHeading number="04" title="Achievements" subtitle="Selected awards and contributions." />
-              <div className="grid gap-4 md:grid-cols-2">
-                {ACHIEVEMENTS.map((item) => {
-                  const content = (
-                    <div className="paper-card rounded-2xl p-6">
-                      <h3 className="text-lg font-semibold">{item.title}</h3>
-                      <div className="mt-1 text-xs text-foreground/60">{item.meta}</div>
-                      <p className="mt-3 text-sm text-foreground/75">{item.detail}</p>
-                    </div>
-                  );
-                  return item.link ? (
-                    <a key={item.title} href={item.link} target="_blank" rel="noreferrer">
-                      {content}
+        <section id="work" className="mt-16 space-y-8">
+          <SectionHeader
+            title="Featured work"
+            subtitle="A curated set of projects that show my product + engineering range."
+          />
+          <div className="grid gap-4 lg:grid-cols-3">
+            {FEATURED_PROJECTS.map((project, index) => (
+              <article
+                key={project.slug}
+                className={`panel panel-accent ${project.accent} rounded-3xl p-6 ${index === 0 ? "lg:col-span-2" : ""}`}
+              >
+                <div className="flex items-start justify-between gap-4">
+                  <div>
+                    <h3 className="text-lg font-semibold text-white">{project.name}</h3>
+                  </div>
+                  <div className="text-xs uppercase tracking-[0.3em] text-white/45">Project</div>
+                </div>
+                <p className="mt-3 text-sm text-white/70">{project.description}</p>
+                <div className="mt-4 flex flex-wrap gap-2 text-xs">
+                  {project.tags.map((item) => (
+                    <span key={item} className="tag rounded-full px-2.5 py-1">
+                      {item}
+                    </span>
+                  ))}
+                </div>
+                <div className="mt-4 flex flex-wrap gap-3 text-sm">
+                  {project.live && (
+                    <a href={project.live} target="_blank" rel="noreferrer" className="link-muted">
+                      Live
                     </a>
-                  ) : (
-                    <div key={item.title}>{content}</div>
-                  );
-                })}
-              </div>
-            </section>
+                  )}
+                  {project.source && (
+                    <a href={project.source} target="_blank" rel="noreferrer" className="link-muted">
+                      Source
+                    </a>
+                  )}
+                </div>
+              </article>
+            ))}
+          </div>
+          <div className="mt-4 grid gap-4 md:grid-cols-3">
+            {OTHER_PROJECT_CARDS.map((project) => (
+              <article key={project.name} className={`panel panel-accent ${project.accent} rounded-3xl p-5`}>
+                <div className="flex items-start justify-between gap-3">
+                  <h3 className="text-base font-semibold text-white">{project.name}</h3>
+                  <span className="text-[10px] uppercase tracking-[0.3em] text-white/45">Project</span>
+                </div>
+                <p className="mt-2 text-sm text-white/70">{project.description}</p>
+                <div className="mt-3 flex flex-wrap gap-2 text-[11px] uppercase tracking-[0.2em] text-white/55">
+                  {project.tags.map((tag) => (
+                    <span key={tag} className="tag rounded-full px-2.5 py-1">
+                      {tag}
+                    </span>
+                  ))}
+                </div>
+                <div className="mt-4 flex flex-wrap gap-3 text-sm">
+                  {project.live && (
+                    <a href={project.live} target="_blank" rel="noreferrer" className="link-muted">
+                      Live
+                    </a>
+                  )}
+                  {project.source && (
+                    <a href={project.source} target="_blank" rel="noreferrer" className="link-muted">
+                      Source
+                    </a>
+                  )}
+                </div>
+              </article>
+            ))}
+          </div>
+        </section>
 
-            <section id="skills" className="space-y-8">
-              <SectionHeading number="05" title="Technical Skills" subtitle="Core languages and tools." />
-              <div className="grid gap-4 md:grid-cols-3">
-                <SkillCard title="Languages" items={SKILLS.languages} />
-                <SkillCard title="Frameworks & Libraries" items={SKILLS.frameworks} />
-                <SkillCard title="Databases & Tools" items={SKILLS.tools} />
-              </div>
-            </section>
-
-            <section id="education" className="space-y-8">
-              <SectionHeading number="06" title="Education" />
-              <div className="paper-card rounded-2xl p-6">
-                <div className="flex flex-col gap-2">
-                  <h3 className="text-lg font-semibold">ABES Engineering College</h3>
-                  <div className="text-sm text-foreground/70">Bachelor of Technology in Computer Science</div>
-                  <div className="text-xs text-foreground/60">Ghaziabad, UP</div>
+        <section id="skills" className="mt-16 space-y-8">
+          <SectionHeader title="Skills" subtitle="What I like to build with." />
+          <div className="grid gap-4 md:grid-cols-3">
+            {SKILL_GROUPS.map((group) => (
+              <div key={group.title} className={`panel panel-accent ${group.accent} rounded-3xl p-6`}>
+                <div className="text-xs uppercase tracking-[0.35em] text-white/50">{group.title}</div>
+                <p className="mt-3 text-sm text-white/70">{group.description}</p>
+                <div className="mt-4 flex flex-wrap gap-2 text-sm">
+                  {group.items.map((item) => (
+                    <span key={item} className="tag rounded-full px-3 py-1">
+                      {item}
+                    </span>
+                  ))}
                 </div>
               </div>
-            </section>
-
-            <footer className="pt-6">
-              <div className="chapter-rule" />
-              <div className="mt-6 flex flex-wrap items-center justify-between gap-3 text-xs text-foreground/60">
-                <span>Last updated: Feb 2026</span>
-                <span className="font-sans uppercase tracking-[0.3em]">Abhinav Mishra</span>
-              </div>
-            </footer>
+            ))}
           </div>
-        </div>
+        </section>
+
+        <section id="highlights" className="mt-16 space-y-8">
+          <SectionHeader title="Highlights" subtitle="Signals of impact beyond the UI." />
+          <div className="grid gap-4 md:grid-cols-3">
+            {HIGHLIGHTS.map((item) => {
+              const content = (
+                <div className={`panel panel-accent ${item.accent} rounded-3xl p-6`}>
+                  <div className="flex items-center justify-between">
+                    <div className="metric">{item.metric}</div>
+                    <div className="text-xs uppercase tracking-[0.3em] text-white/45">{item.metricLabel}</div>
+                  </div>
+                  <h3 className="mt-4 text-lg font-semibold text-white">{item.title}</h3>
+                  <p className="mt-3 text-sm text-white/70">{item.description}</p>
+                </div>
+              );
+              return item.link ? (
+                <a key={item.title} href={item.link} target="_blank" rel="noreferrer">
+                  {content}
+                </a>
+              ) : (
+                <div key={item.title}>{content}</div>
+              );
+            })}
+          </div>
+        </section>
+
+        <section id="writing" className="mt-16 space-y-8">
+          <SectionHeader title="Writing" subtitle="Notes, build logs, and knowledge sharing." />
+          {BLOG_POSTS.length === 0 ? (
+            <div className="panel panel-accent accent-cyan rounded-3xl p-6">
+              <div className="flex items-center justify-between gap-4">
+                <div>
+                  <div className="text-xs uppercase tracking-[0.3em] text-white/50">Coming soon</div>
+                  <h3 className="mt-2 text-lg font-semibold text-white">Knowledge drops</h3>
+                </div>
+                <div className="text-xs uppercase tracking-[0.3em] text-white/40">Drafting</div>
+              </div>
+              <p className="mt-3 text-sm text-white/70">
+                This section is ready for essays, technical walkthroughs, and product notes once published.
+              </p>
+              <div className="mt-4 flex flex-wrap gap-2 text-xs">
+                {["Engineering notes", "Product learnings", "Book summaries"].map((item) => (
+                  <span key={item} className="tag rounded-full px-2.5 py-1">
+                    {item}
+                  </span>
+                ))}
+              </div>
+            </div>
+          ) : (
+            <div className="grid gap-4 md:grid-cols-2">
+              {BLOG_POSTS.map((post) => (
+                <article key={post.title} className="panel rounded-3xl p-6">
+                  <div className="text-xs uppercase tracking-[0.3em] text-white/50">Note</div>
+                  <h3 className="mt-2 text-lg font-semibold text-white">{post.title}</h3>
+                  <p className="mt-2 text-sm text-white/70">{post.description}</p>
+                </article>
+              ))}
+            </div>
+          )}
+        </section>
+
+        <section id="contact" className="mt-16">
+          <div className="panel panel-strong rounded-3xl p-8">
+            <div className="flex flex-wrap items-center justify-between gap-6">
+              <div>
+                <div className="kicker">Let&apos;s build</div>
+                <h3 className="display-text mt-3 text-2xl font-semibold text-white">Open to product collaborations</h3>
+                <p className="mt-2 text-sm text-white/70">
+                  For partnerships, product builds, or collaborations, reach out and we can make it happen.
+                </p>
+              </div>
+              <div className="flex flex-wrap gap-3">
+                <a href="mailto:abhinavmishra3322@gmail.com" className="btn-primary">
+                  Email me
+                </a>
+              </div>
+            </div>
+          </div>
+        </section>
+
+        <footer className="mt-16 pb-6 text-xs text-white/50">
+          <div className="section-rule" />
+          <div className="mt-6 flex flex-wrap items-center justify-between gap-3">
+            <span>© 2026 Abhinav Mishra</span>
+            <span className="uppercase tracking-[0.3em]">Built with Next.js</span>
+          </div>
+        </footer>
       </div>
     </main>
   );
 }
 
-function SectionHeading({
-  number,
-  title,
-  subtitle,
-}: {
-  number: string;
-  title: string;
-  subtitle?: string;
-}) {
+function SectionHeader({ title, subtitle }: { title: string; subtitle?: string }) {
   return (
     <div className="space-y-3">
       <div className="flex items-center gap-3">
-        <span className="font-sans text-xs uppercase tracking-[0.4em] text-foreground/60">Chapter {number}</span>
-        <div className="chapter-rule flex-1" />
+        <h2 className="display-text text-2xl font-semibold text-white md:text-3xl">{title}</h2>
+        <div className="section-rule flex-1" />
       </div>
-      <div className="space-y-2">
-        <h2 className="text-2xl font-semibold tracking-tight md:text-3xl">{title}</h2>
-        {subtitle && <p className="text-sm text-foreground/70">{subtitle}</p>}
-      </div>
-    </div>
-  );
-}
-
-function SkillCard({ title, items }: { title: string; items: string[] }) {
-  return (
-    <div className="paper-card rounded-2xl p-6">
-      <div className="font-sans text-xs uppercase tracking-[0.3em] text-foreground/60">{title}</div>
-      <div className="mt-4 flex flex-wrap gap-2 text-sm">
-        {items.map((item) => (
-          <span key={item} className="rounded-full border border-foreground/10 bg-white/70 px-3 py-1">
-            {item}
-          </span>
-        ))}
-      </div>
+      {subtitle && <p className="text-sm text-white/60">{subtitle}</p>}
     </div>
   );
 }

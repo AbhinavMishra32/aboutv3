@@ -80,7 +80,6 @@ export default function BentoGrid() {
       preview: (
         <ul className="mt-3 grid grid-cols-2 gap-2 text-xs md:text-sm text-neutral-300">
           <li>Ghaziabad, UP</li>
-          <li>+91 7701956829</li>
           <li>abhinavmishra3322@gmail.com</li>
           <li className="flex items-center gap-1">
             <Link2 className="size-3" /> abhinavmishra.in
@@ -99,7 +98,7 @@ export default function BentoGrid() {
             </div>
             <div className="rounded-xl border border-white/10 p-3 bg-white/5">
               <div className="text-xs text-neutral-400">Contact</div>
-              <div>+91 7701956829 · abhinavmishra3322@gmail.com</div>
+              <div>abhinavmishra3322@gmail.com</div>
             </div>
           </div>
         </div>
@@ -402,5 +401,4 @@ export default function BentoGrid() {
     </LayoutGroup>
   );
 }
-
 
