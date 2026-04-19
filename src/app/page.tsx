@@ -1,12 +1,9 @@
 import Link from "next/link";
+import { Icon } from "@iconify/react";
 import {
   ArrowRight,
   ArrowUpRight,
   ArrowUp,
-  Github,
-  Globe,
-  Mail,
-  type LucideIcon,
 } from "lucide-react";
 import { SiteThemeToggle } from "@/components/SiteThemeToggle";
 import { getAllPosts } from "@/lib/blog";
@@ -89,10 +86,11 @@ const WORK_ITEMS: WorkItem[] = [
   },
 ];
 
-const CONTACT_LINKS: Array<{ label: string; href: string; icon: LucideIcon }> = [
-  { label: "GitHub", href: "https://github.com/AbhinavMishra32", icon: Github },
-  { label: "Website", href: "https://abhinavmishra.in", icon: Globe },
-  { label: "Email", href: "mailto:abhinavmishra3322@gmail.com", icon: Mail },
+const CONTACT_LINKS: Array<{ label: string; href: string; icon: string }> = [
+  { label: "X", href: "https://x.com/do_anything_guy", icon: "ri:twitter-x-fill" },
+  { label: "GitHub", href: "https://github.com/AbhinavMishra32", icon: "mdi:github" },
+  { label: "LinkedIn", href: "https://linkedin.com/in/im-abhinavmishra", icon: "mdi:linkedin" },
+  { label: "Website", href: "https://abhinavmishra.in", icon: "mdi:web" },
 ];
 
 export default async function HomePage() {
@@ -295,23 +293,19 @@ export default async function HomePage() {
             on social media or send me an email.
           </p>
           <div className="connect-links">
-            {CONTACT_LINKS.map((link) => {
-              const Icon = link.icon;
-
-              return (
-                <a
-                  key={link.label}
-                  href={link.href}
-                  target={link.href.startsWith("http") ? "_blank" : undefined}
-                  rel={link.href.startsWith("http") ? "noreferrer" : undefined}
-                  className="contact-icon-link"
-                  aria-label={link.label}
-                  title={link.label}
-                >
-                  <Icon size={22} strokeWidth={1.9} />
-                </a>
-              );
-            })}
+            {CONTACT_LINKS.map((link) => (
+              <a
+                key={link.label}
+                href={link.href}
+                target={link.href.startsWith("http") ? "_blank" : undefined}
+                rel={link.href.startsWith("http") ? "noreferrer" : undefined}
+                className="contact-icon-link"
+                aria-label={link.label}
+                title={link.label}
+              >
+                <Icon icon={link.icon} className="contact-icon-glyph" />
+              </a>
+            ))}
           </div>
           <a href="mailto:abhinavmishra3322@gmail.com" className="connect-email">
             abhinavmishra3322@gmail.com
@@ -319,7 +313,6 @@ export default async function HomePage() {
         </div>
 
         <div className="home-footer">
-          <span className="footer-note">Built with Next.js and kept intentionally minimal.</span>
           <div className="home-footer-actions">
             <a href="#top" className="back-to-top">
               <ArrowUp size={15} strokeWidth={1.9} />
