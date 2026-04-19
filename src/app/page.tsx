@@ -1,4 +1,12 @@
 import Link from "next/link";
+import {
+  ArrowRight,
+  ArrowUp,
+  Github,
+  Globe,
+  Mail,
+  type LucideIcon,
+} from "lucide-react";
 import { SiteThemeToggle } from "@/components/SiteThemeToggle";
 import { getAllPosts } from "@/lib/blog";
 
@@ -11,11 +19,11 @@ type Project = {
   source?: string;
 };
 
-type Highlight = {
+type WorkItem = {
   title: string;
+  subtitle: string;
+  period: string;
   detail: string;
-  meta: string;
-  href?: string;
 };
 
 const PROJECTS: Project[] = [
@@ -53,114 +61,130 @@ const PROJECTS: Project[] = [
   },
 ];
 
-const HIGHLIGHTS: Highlight[] = [
+const WORK_ITEMS: WorkItem[] = [
   {
-    title: "Shipping product systems at Lunacal.ai",
+    title: "Lunacal.ai",
+    subtitle: "Product systems and software engineering",
+    period: "Current",
     detail:
       "Focused on scheduling and communication infrastructure with an emphasis on reliability, rollout safety, and product polish.",
-    meta: "Current focus",
   },
   {
-    title: "Smart India Hackathon winner",
+    title: "Mentor Map",
+    subtitle: "Smart India Hackathon winner",
+    period: "2024",
     detail:
       "Built Mentor Map as an AI-driven guidance platform and took it from problem framing to a working product under real deadlines.",
-    meta: "National recognition",
   },
 ];
 
-const CONTACT_LINKS = [
-  { label: "GitHub", href: "https://github.com/AbhinavMishra32" },
-  { label: "Website", href: "https://abhinavmishra.in" },
-  { label: "Email", href: "mailto:abhinavmishra3322@gmail.com" },
+const CONTACT_LINKS: Array<{ label: string; href: string; icon: LucideIcon }> = [
+  { label: "GitHub", href: "https://github.com/AbhinavMishra32", icon: Github },
+  { label: "Website", href: "https://abhinavmishra.in", icon: Globe },
+  { label: "Email", href: "mailto:abhinavmishra3322@gmail.com", icon: Mail },
 ];
-
-function formatDate(date: string) {
-  return new Intl.DateTimeFormat("en-US", {
-    month: "short",
-    day: "numeric",
-    year: "numeric",
-  }).format(new Date(`${date}T00:00:00`));
-}
 
 export default async function HomePage() {
   const posts = await getAllPosts();
-  const latestPosts = posts.slice(0, 4);
+  const latestPosts = posts.slice(0, 3);
 
   return (
-    <main className="site-shell">
+    <main id="top" className="site-shell">
       <header className="site-header">
-        <div className="site-brand">
-          <Link href="/" className="site-name">
-            Abhinav Mishra
-          </Link>
-          <p className="site-tagline">Engineer building thoughtful products, modern interfaces, and reliable systems.</p>
-        </div>
+        <Link href="/" className="site-name">
+          Abhinav Mishra
+        </Link>
 
-        <nav className="site-nav" aria-label="Primary">
-          <Link href="/blog" className="nav-link">
-            Blog
-          </Link>
-          <a href="#projects" className="nav-link">
-            Projects
-          </a>
-          <a href="#highlights" className="nav-link">
-            Highlights
-          </a>
-          <a href="#contact" className="nav-link">
-            Contact
-          </a>
-        </nav>
+        <div className="header-actions">
+          <nav className="site-nav" aria-label="Primary">
+            <a href="#work" className="nav-link">
+              Work
+            </a>
+            <a href="#projects" className="nav-link">
+              Projects
+            </a>
+            <Link href="/blog" className="nav-link">
+              Blog
+            </Link>
+          </nav>
+          <SiteThemeToggle variant="compact" />
+        </div>
       </header>
 
       <section className="hero">
-        <p className="eyebrow">Hello</p>
-        <h1 className="hero-title">
-          Abhinav Mishra
-          <span>software developer</span>
-        </h1>
-        <p className="lead">
-          I design and ship products that balance a calm user experience with strong engineering underneath. Most of my
-          work sits at the intersection of product thinking, frontend systems, and dependable backend infrastructure.
-        </p>
-        <p className="lead">
-          I am currently building at{" "}
-          <a className="inline-link" href="https://lunacal.ai" target="_blank" rel="noreferrer">
-            Lunacal.ai
-          </a>
-          , while exploring AI-assisted interfaces, developer tooling, and faster ways to turn rough ideas into polished
-          software.
-        </p>
+        <div className="hero-identity">
+          <h1 className="hero-name">Abhinav Mishra</h1>
+          <p className="hero-role">Software Developer</p>
+        </div>
+        <div className="hero-copy">
+          <p className="hero-paragraph">
+            I&apos;m a{" "}
+            <span className="hero-emphasis">
+              software engineer, product builder, and interface-focused problem solver
+            </span>{" "}
+            who cares about clarity, pacing, and how a product feels in actual use.
+          </p>
+          <p className="hero-paragraph">
+            I love building systems that stay reliable without feeling heavy. Most of my work sits between frontend
+            craft, product thinking, and the less visible engineering work that keeps a product calm under pressure.
+          </p>
+          <p className="hero-paragraph">
+            Right now I&apos;m building at{" "}
+            <a className="inline-link" href="https://lunacal.ai" target="_blank" rel="noreferrer">
+              Lunacal.ai
+            </a>
+            , while exploring AI-assisted workflows, design-sensitive tooling, and faster ways to turn rough ideas into
+            polished software.
+          </p>
+        </div>
         <div className="facts">
           <span>Based in Ghaziabad, India</span>
           <span>Open to product collaborations</span>
           <span>Focused on reliability, AI UX, and frontend craft</span>
         </div>
-        <div className="intro-links">
-          {CONTACT_LINKS.map((link) => (
-            <a
-              key={link.label}
-              className="inline-link"
-              href={link.href}
-              target={link.href.startsWith("http") ? "_blank" : undefined}
-              rel={link.href.startsWith("http") ? "noreferrer" : undefined}
-            >
-              {link.label}
-            </a>
+      </section>
+
+      <section id="work" className="section-block">
+        <div className="section-head">
+          <h2 className="section-title">Work</h2>
+          <a href="#projects" className="section-action">
+            See projects
+          </a>
+        </div>
+
+        <div className="work-list">
+          {WORK_ITEMS.map((item) => (
+            <article key={item.title} className="work-row">
+              <div className="work-head">
+                <div>
+                  <h3 className="work-title">{item.title}</h3>
+                  <div className="work-subtitle">{item.subtitle}</div>
+                </div>
+                <div className="work-period">{item.period}</div>
+              </div>
+              <p className="work-detail">{item.detail}</p>
+            </article>
           ))}
         </div>
       </section>
 
       <section id="projects" className="section-block">
         <div className="section-head">
-          <h2 className="section-title">Selected Work</h2>
-          <p className="section-note">A few projects that represent how I like to build.</p>
+          <h2 className="section-title">Projects</h2>
+          <a
+            href="https://github.com/AbhinavMishra32"
+            target="_blank"
+            rel="noreferrer"
+            className="section-action"
+          >
+            View GitHub
+          </a>
         </div>
 
         <div className="project-list">
           {PROJECTS.map((project, index) => (
             <article key={project.name} className="project-row">
               <div className="project-number">0{index + 1}</div>
-
               <div className="project-main">
                 <div className="project-heading">
                   <div className="project-title-row">
@@ -178,7 +202,6 @@ export default async function HomePage() {
                   </div>
                   <div className="project-stackline">{project.stackLine}</div>
                 </div>
-
                 <p className="project-summary">{project.summary}</p>
               </div>
 
@@ -199,97 +222,74 @@ export default async function HomePage() {
         </div>
       </section>
 
-      <section id="highlights" className="section-block">
-        <div className="section-head">
-          <h2 className="section-title">Highlights</h2>
-          <p className="section-note">A few milestones and areas of current focus.</p>
-        </div>
-
-        <div className="note-list">
-          {HIGHLIGHTS.map((item) => {
-            const content = (
-              <>
-                <div className="note-topline">{item.meta}</div>
-                <h3 className="note-title">{item.title}</h3>
-                <p className="note-copy">{item.detail}</p>
-              </>
-            );
-
-            return item.href ? (
-              <a
-                key={item.title}
-                href={item.href}
-                target="_blank"
-                rel="noreferrer"
-                className="note-item note-item-link"
-              >
-                {content}
-              </a>
-            ) : (
-              <article key={item.title} className="note-item">
-                {content}
-              </article>
-            );
-          })}
-        </div>
-      </section>
-
       <section id="writing" className="section-block">
         <div className="section-head">
-          <h2 className="section-title">Writing</h2>
-          <p className="section-note">
-            Short essays on product clarity, shipping, and the systems that make software feel dependable.
-          </p>
+          <h2 className="section-title">Blog posts</h2>
+          <Link href="/blog" className="section-action">
+            See all posts
+          </Link>
         </div>
 
         <div className="article-list">
-          {latestPosts.map((post) => (
-            <Link key={post.slug} href={`/blog/${post.slug}`} className="article-link">
-              <div className="article-link-main">
+          {latestPosts.map((post, index) => (
+            <Link
+              key={post.slug}
+              href={`/blog/${post.slug}`}
+              className={`article-link ${index === 0 ? "article-link-featured" : ""}`}
+            >
+              <div className="article-link-copy">
                 <div className="article-link-title">{post.title}</div>
                 <div className="article-link-summary">{post.summary}</div>
               </div>
-              <div className="article-link-meta">
-                <span>{formatDate(post.date)}</span>
-                <span>{post.tags.join(" · ")}</span>
+              <div className="article-link-arrow" aria-hidden="true">
+                <ArrowRight size={18} strokeWidth={1.9} />
               </div>
             </Link>
           ))}
         </div>
-
-        <div className="section-tail">
-          <Link href="/blog" className="inline-link">
-            View all posts
-          </Link>
-        </div>
       </section>
 
       <section id="contact" className="section-block">
-        <div className="section-head">
-          <h2 className="section-title">Find Me</h2>
-          <p className="section-note">The easiest way to reach me is by email, but these links work too.</p>
+        <h2 className="section-title">Let&apos;s Connect</h2>
+        <div className="connect-block">
+          <p className="connect-copy">
+            If you want to get in touch with me about a product, an engineering problem, or just to say hi, reach out
+            on social media or send me an email.
+          </p>
+          <div className="connect-links">
+            {CONTACT_LINKS.map((link) => {
+              const Icon = link.icon;
+
+              return (
+                <a
+                  key={link.label}
+                  href={link.href}
+                  target={link.href.startsWith("http") ? "_blank" : undefined}
+                  rel={link.href.startsWith("http") ? "noreferrer" : undefined}
+                  className="contact-icon-link"
+                  aria-label={link.label}
+                  title={link.label}
+                >
+                  <Icon size={22} strokeWidth={1.9} />
+                </a>
+              );
+            })}
+          </div>
+          <a href="mailto:abhinavmishra3322@gmail.com" className="connect-email">
+            abhinavmishra3322@gmail.com
+          </a>
         </div>
 
-        <div className="contact-list">
-          {CONTACT_LINKS.map((link) => (
-            <a
-              key={link.label}
-              href={link.href}
-              target={link.href.startsWith("http") ? "_blank" : undefined}
-              rel={link.href.startsWith("http") ? "noreferrer" : undefined}
-              className="contact-row"
-            >
-              <span>{link.label}</span>
-              <span className="contact-row-arrow">→</span>
+        <div className="home-footer">
+          <span className="footer-note">Built with Next.js and kept intentionally minimal.</span>
+          <div className="home-footer-actions">
+            <a href="#top" className="back-to-top">
+              <ArrowUp size={15} strokeWidth={1.9} />
+              <span>Back to top</span>
             </a>
-          ))}
+          </div>
         </div>
       </section>
-
-      <footer className="site-footer">
-        <p className="footer-note">Built with Next.js, then pared back until only the essential pieces remained.</p>
-        <SiteThemeToggle />
-      </footer>
     </main>
   );
 }

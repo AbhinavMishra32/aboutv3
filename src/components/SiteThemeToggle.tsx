@@ -1,10 +1,15 @@
 "use client";
 
 import { useEffect, useState } from "react";
+import { Monitor, MoonStar, SunMedium } from "lucide-react";
 
 type ThemePreference = "system" | "light" | "dark";
+type SiteThemeToggleProps = {
+  variant?: "full" | "compact";
+};
 
 const STORAGE_KEY = "site-theme-preference";
+const THEME_ORDER: ThemePreference[] = ["system", "light", "dark"];
 
 function resolveTheme(preference: ThemePreference) {
   if (preference !== "system") {
@@ -20,7 +25,19 @@ function applyTheme(preference: ThemePreference) {
   root.dataset.theme = resolveTheme(preference);
 }
 
-export function SiteThemeToggle() {
+function getThemeIcon(theme: ThemePreference) {
+  if (theme === "light") {
+    return SunMedium;
+  }
+
+  if (theme === "dark") {
+    return MoonStar;
+  }
+
+  return Monitor;
+}
+
+export function SiteThemeToggle({ variant = "full" }: SiteThemeToggleProps) {
   const [theme, setTheme] = useState<ThemePreference>("system");
 
   useEffect(() => {
@@ -50,6 +67,27 @@ export function SiteThemeToggle() {
     window.localStorage.setItem(STORAGE_KEY, nextTheme);
     setTheme(nextTheme);
     applyTheme(nextTheme);
+  }
+
+  function cycleTheme() {
+    const nextIndex = (THEME_ORDER.indexOf(theme) + 1) % THEME_ORDER.length;
+    setPreference(THEME_ORDER[nextIndex]);
+  }
+
+  if (variant === "compact") {
+    const ThemeIcon = getThemeIcon(theme);
+
+    return (
+      <button
+        type="button"
+        className="theme-toggle-icon"
+        onClick={cycleTheme}
+        aria-label={`Theme preference is ${theme}. Click to cycle theme.`}
+        title={`Theme: ${theme}`}
+      >
+        <ThemeIcon size={16} strokeWidth={1.8} />
+      </button>
+    );
   }
 
   return (
