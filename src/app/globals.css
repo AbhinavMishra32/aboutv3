@@ -198,8 +198,7 @@ textarea {
   color: var(--subtle);
 }
 
-.intro-links,
-.project-links {
+.intro-links {
   display: flex;
   flex-wrap: wrap;
   gap: 0.5rem 1rem;
@@ -239,7 +238,63 @@ textarea {
   gap: 1rem;
 }
 
-.project-card,
+.project-card {
+  position: relative;
+  display: grid;
+  grid-template-columns: minmax(0, 1fr) auto;
+  gap: 1.1rem 1.4rem;
+  padding: 1.25rem 1.35rem;
+  border: 1px solid var(--line);
+  border-radius: 1.6rem;
+  background:
+    linear-gradient(135deg, rgba(255, 255, 255, 0.88), rgba(255, 255, 255, 0.62)),
+    var(--surface);
+  box-shadow: var(--shadow);
+  backdrop-filter: blur(18px);
+  overflow: hidden;
+  transition:
+    transform 0.22s ease,
+    border-color 0.22s ease,
+    box-shadow 0.22s ease;
+}
+
+:root[data-theme="dark"] .project-card {
+  background:
+    linear-gradient(135deg, rgba(255, 255, 255, 0.08), rgba(255, 255, 255, 0.03)),
+    var(--surface);
+}
+
+.project-card::before {
+  content: "";
+  position: absolute;
+  left: 1.3rem;
+  top: 1.2rem;
+  bottom: 1.2rem;
+  width: 2px;
+  border-radius: 999px;
+  background: linear-gradient(180deg, var(--accent), rgba(26, 92, 255, 0.06));
+  opacity: 0.34;
+}
+
+.project-card::after {
+  content: "";
+  position: absolute;
+  inset: 0;
+  background: radial-gradient(circle at top right, var(--accent-soft), transparent 32%);
+  pointer-events: none;
+}
+
+.project-card:hover {
+  transform: translateY(-2px);
+  border-color: rgba(26, 92, 255, 0.2);
+  box-shadow: 0 26px 70px rgba(15, 23, 42, 0.09);
+}
+
+.project-card > * {
+  position: relative;
+  z-index: 1;
+}
+
 .note-item {
   display: grid;
   gap: 0.8rem;
@@ -261,11 +316,35 @@ textarea {
   transform: translateY(-2px);
 }
 
-.project-top {
+.project-body {
+  display: grid;
+  gap: 0.8rem;
+  padding-left: 0.9rem;
+}
+
+.project-kicker-row {
   display: flex;
-  align-items: flex-start;
-  justify-content: space-between;
-  gap: 1rem;
+  flex-wrap: wrap;
+  align-items: center;
+  gap: 0.55rem 0.9rem;
+}
+
+.project-index {
+  font-size: 0.72rem;
+  font-weight: 600;
+  text-transform: uppercase;
+  letter-spacing: 0.16em;
+  color: var(--subtle);
+}
+
+.project-stack {
+  font-size: 0.9rem;
+  color: var(--subtle);
+}
+
+.project-copy {
+  display: grid;
+  gap: 0.35rem;
 }
 
 .project-title,
@@ -277,18 +356,68 @@ textarea {
   letter-spacing: -0.03em;
 }
 
-.chip-row {
+.project-title {
+  font-size: 1.28rem;
+}
+
+.project-meta {
   display: flex;
   flex-wrap: wrap;
   gap: 0.5rem;
 }
 
-.chip {
-  border: 1px solid var(--line);
-  border-radius: 999px;
-  padding: 0.22rem 0.62rem;
-  font-size: 0.8rem;
+.project-badge {
+  display: inline-flex;
+  align-items: center;
+  min-height: 2rem;
+  padding: 0.32rem 0.7rem;
+  border: 1px solid rgba(20, 20, 19, 0.08);
+  border-radius: 0.85rem;
+  background: rgba(255, 255, 255, 0.72);
+  font-size: 0.72rem;
+  font-weight: 600;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
   color: var(--muted);
+}
+
+.project-badge-primary {
+  border-color: transparent;
+  background: var(--accent-soft);
+  color: var(--accent);
+}
+
+:root[data-theme="dark"] .project-badge {
+  border-color: rgba(255, 255, 255, 0.08);
+  background: rgba(255, 255, 255, 0.05);
+}
+
+.project-links {
+  display: grid;
+  align-content: start;
+  justify-items: end;
+  gap: 0.65rem;
+  min-width: 5rem;
+  padding-left: 1rem;
+  border-left: 1px solid var(--line);
+}
+
+.project-link {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.35rem;
+  font-size: 0.94rem;
+  color: var(--accent);
+  transition: gap 0.2s ease, color 0.2s ease;
+}
+
+.project-link::after {
+  content: "↗";
+  font-size: 0.88em;
+}
+
+.project-link:hover {
+  gap: 0.5rem;
 }
 
 .article-list {
@@ -508,10 +637,30 @@ textarea {
 @media (max-width: 720px) {
   .site-header,
   .section-head,
-  .project-top,
   .site-footer {
     flex-direction: column;
     align-items: flex-start;
+  }
+
+  .project-card {
+    grid-template-columns: 1fr;
+  }
+
+  .project-links {
+    grid-auto-flow: column;
+    justify-items: start;
+    justify-content: start;
+    min-width: 0;
+    padding-left: 0.9rem;
+    border-left: 0;
+    border-top: 1px solid var(--line);
+    padding-top: 0.9rem;
+    margin-left: 0.9rem;
+  }
+
+  .project-kicker-row {
+    align-items: flex-start;
+    gap: 0.3rem 0.8rem;
   }
 
   .article-link {

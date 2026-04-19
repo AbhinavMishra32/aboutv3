@@ -5,7 +5,8 @@ import { getAllPosts } from "@/lib/blog";
 type Project = {
   name: string;
   summary: string;
-  stack: string[];
+  stackLine: string;
+  buildTags: string[];
   live?: string;
   source?: string;
 };
@@ -22,7 +23,8 @@ const PROJECTS: Project[] = [
     name: "Decipath AI",
     summary:
       "An AI roadmap builder that turns broad goals into structured learning paths with practical milestones.",
-    stack: ["Next.js", "TypeScript", "OpenAI API", "React Flow"],
+    stackLine: "Next.js · TypeScript · OpenAI API · React Flow",
+    buildTags: ["Hand-built core", "AI-assisted UI polish"],
     live: "https://decipath.abhinavmishra.in",
     source: "https://github.com/AbhinavMishra32",
   },
@@ -30,20 +32,23 @@ const PROJECTS: Project[] = [
     name: "Mentor Map",
     summary:
       "A career guidance platform built for Smart India Hackathon with adaptive roadmaps and collaborative planning.",
-    stack: ["React", "Node.js", "PostgreSQL"],
+    stackLine: "React · Node.js · PostgreSQL",
+    buildTags: ["Hand-built core", "AI-assisted UI polish"],
     live: "https://mentormap.abhinavmishra.in",
   },
   {
     name: "PayEvenly",
     summary:
       "A Splitwise-style expense app with UPI settlement, voice input, and OCR receipt parsing for faster group splits.",
-    stack: ["React Native", "FastAPI", "Expo"],
+    stackLine: "React Native · FastAPI · Expo",
+    buildTags: ["Hand-built core", "Product-first flow"],
   },
   {
     name: "XiteCoin",
     summary:
       "A Python blockchain experiment with custom proof-of-work, gossip-based networking, and JSON-RPC nodes.",
-    stack: ["Python", "P2P", "Cryptography"],
+    stackLine: "Python · P2P · Cryptography",
+    buildTags: ["Fully hand-coded", "No AI in the build"],
     source: "https://github.com/AbhinavMishra32/xitecoin",
   },
 ];
@@ -60,13 +65,6 @@ const HIGHLIGHTS: Highlight[] = [
     detail:
       "Built Mentor Map as an AI-driven guidance platform and took it from problem framing to a working product under real deadlines.",
     meta: "National recognition",
-  },
-  {
-    title: "Open-source contributor",
-    detail:
-      "Contributed TypeScript and editor tooling work to MetaCall, with a strong interest in developer experience and product ergonomics.",
-    meta: "MetaCall core",
-    href: "https://github.com/metacall/core",
   },
 ];
 
@@ -159,32 +157,40 @@ export default async function HomePage() {
         </div>
 
         <div className="project-list">
-          {PROJECTS.map((project) => (
+          {PROJECTS.map((project, index) => (
             <article key={project.name} className="project-card">
-              <div className="project-top">
-                <div>
+              <div className="project-body">
+                <div className="project-kicker-row">
+                  <span className="project-index">Case {String(index + 1).padStart(2, "0")}</span>
+                  <span className="project-stack">{project.stackLine}</span>
+                </div>
+                <div className="project-copy">
                   <h3 className="project-title">{project.name}</h3>
                   <p className="project-summary">{project.summary}</p>
                 </div>
-                <div className="project-links">
-                  {project.live ? (
-                    <a href={project.live} target="_blank" rel="noreferrer" className="inline-link">
-                      Live
-                    </a>
-                  ) : null}
-                  {project.source ? (
-                    <a href={project.source} target="_blank" rel="noreferrer" className="inline-link">
-                      Source
-                    </a>
-                  ) : null}
+                <div className="project-meta">
+                  {project.buildTags.map((tag, tagIndex) => (
+                    <span
+                      key={tag}
+                      className={`project-badge ${tagIndex === 0 ? "project-badge-primary" : ""}`}
+                    >
+                      {tag}
+                    </span>
+                  ))}
                 </div>
               </div>
-              <div className="chip-row">
-                {project.stack.map((item) => (
-                  <span key={item} className="chip">
-                    {item}
-                  </span>
-                ))}
+
+              <div className="project-links">
+                {project.live ? (
+                  <a href={project.live} target="_blank" rel="noreferrer" className="project-link">
+                    Live
+                  </a>
+                ) : null}
+                {project.source ? (
+                  <a href={project.source} target="_blank" rel="noreferrer" className="project-link">
+                    Source
+                  </a>
+                ) : null}
               </div>
             </article>
           ))}
