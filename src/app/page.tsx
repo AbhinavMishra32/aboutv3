@@ -1,3 +1,4 @@
+import Image from "next/image";
 import Link from "next/link";
 import { Icon } from "@iconify/react";
 import {
@@ -25,6 +26,17 @@ type WorkItem = {
   subtitle: string;
   period: string;
   detail: string;
+};
+
+type StoryBeat = {
+  step: string;
+  label: string;
+  title: string;
+  paragraphs: string[];
+  image: string;
+  imageAlt: string;
+  linkLabel?: string;
+  linkHref?: string;
 };
 
 const PROJECTS: Project[] = [
@@ -86,6 +98,46 @@ const WORK_ITEMS: WorkItem[] = [
   },
 ];
 
+const STORY_BEATS: StoryBeat[] = [
+  {
+    step: "01",
+    label: "Learning by building",
+    title: "A notes app taught me how to think past the framework.",
+    paragraphs: [
+      "A lot of my frontend experience came from solo projects, where I had to make product decisions, troubleshoot bugs, and keep moving without waiting for someone else to unblock me. One of the earliest was a rich-text notes app with a responsive dashboard of note cards arranged in a grid.",
+      "I wanted each card to expand smoothly from its exact position, but CSS Grid kept fighting the animation. I used React refs and getBoundingClientRect() to measure the clicked card, rendered a duplicate outside the grid, and animated that copy with Framer Motion so it felt like the original card was opening in place. Getting the offsets right across screen sizes took careful layout math and a lot of debugging, but it taught me to work from first principles instead of stopping at the first limitation.",
+    ],
+    image: "/story-notes-motion.svg",
+    imageAlt: "Minimal illustration of note cards expanding out of a grid.",
+    linkLabel: "View the notes app",
+    linkHref: "https://dbnotes.abhinavmishra.in",
+  },
+  {
+    step: "02",
+    label: "Shipping in a real product",
+    title: "Studybank taught me how to own a feature and improve it at the same time.",
+    paragraphs: [
+      "During my internship at Expert Buddy, I worked on a major feature called Studybank, where students could upload notes and other students could search, preview, and download them. I built large parts of the UI from Figma, handled frontend troubleshooting on my own, and used docs, search, and AI to understand why bugs were happening instead of just patching symptoms.",
+      "While building the upload flow, I realized the long metadata form created too much friction. I proposed an AI-assisted autofill option, built a proof of concept in two days, and showed the CEO and design team how it could make uploads faster while keeping manual control. Once everyone aligned on the flow, I helped shape the final interface and shipped the production version.",
+    ],
+    image: "/story-studybank-ai.svg",
+    imageAlt: "Minimal illustration of a file upload interface with AI-assisted autofill.",
+  },
+  {
+    step: "03",
+    label: "High-agency environments",
+    title: "Hackathons and solo projects made me comfortable carrying the whole interface.",
+    paragraphs: [
+      "During Smart India Hackathon, I took ownership of the UI for Mentor Map and helped turn the idea into a product that felt usable under real time pressure. Building the whole interface in that environment taught me how to move quickly, make product calls, and stay calm while the scope kept shifting.",
+      "That same habit shows up across my side projects as well. I like working independently, debugging the hard edges myself, and understanding how something behaves before I reach for shortcuts. Whether it is AI tooling, frontend interaction design, or a first-principles side project, I usually learn the fastest when I am close to the problem.",
+    ],
+    image: "/story-high-agency.svg",
+    imageAlt: "Minimal illustration of interface design boards and a product flow under construction.",
+    linkLabel: "See selected projects",
+    linkHref: "#projects",
+  },
+];
+
 const CONTACT_LINKS: Array<{ label: string; href: string; icon: string }> = [
   { label: "X", href: "https://x.com/do_anything_guy", icon: "ri:twitter-x-fill" },
   { label: "GitHub", href: "https://github.com/AbhinavMishra32", icon: "mdi:github" },
@@ -106,6 +158,9 @@ export default async function HomePage() {
 
         <div className="header-actions">
           <nav className="site-nav" aria-label="Primary">
+            <a href="#story" className="nav-link">
+              Story
+            </a>
             <a href="#work" className="nav-link">
               Work
             </a>
@@ -151,6 +206,62 @@ export default async function HomePage() {
           <span>Open to product collaborations</span>
           <span>Focused on reliability, AI UX, and frontend craft</span>
         </div>
+      </section>
+
+      <section id="story" className="section-block">
+        <div className="section-head">
+          <h2 className="section-title">Story</h2>
+          <p className="section-note">Three moments that shaped how I build.</p>
+        </div>
+
+        <p className="story-lead">
+          A lot of my experience came from building on my own. Solo projects taught me how to turn rough ideas into
+          working products, while internship and hackathon work taught me how to bring that same ownership into real
+          teams, real constraints, and tighter deadlines.
+        </p>
+
+        <div className="story-list">
+              {STORY_BEATS.map((beat) => (
+            <article key={beat.step} className="story-card">
+              <div className="story-visual">
+                <Image src={beat.image} alt={beat.imageAlt} className="story-image" width={640} height={448} />
+              </div>
+
+              <div className="story-copy-block">
+                <div className="story-meta">
+                  <span className="story-step">{beat.step}</span>
+                  <span>{beat.label}</span>
+                </div>
+
+                <h3 className="story-card-title">{beat.title}</h3>
+
+                <div className="story-paragraphs">
+                  {beat.paragraphs.map((paragraph) => (
+                    <p key={paragraph} className="story-card-copy">
+                      {paragraph}
+                    </p>
+                  ))}
+                </div>
+
+                {beat.linkHref ? (
+                  <a
+                    href={beat.linkHref}
+                    target={beat.linkHref.startsWith("http") ? "_blank" : undefined}
+                    rel={beat.linkHref.startsWith("http") ? "noreferrer" : undefined}
+                    className="story-link inline-link"
+                  >
+                    {beat.linkLabel}
+                  </a>
+                ) : null}
+              </div>
+            </article>
+          ))}
+        </div>
+
+        <p className="story-closer">
+          I tend to do my best work in high-agency environments: close to the product, close to the bugs, and close to
+          the people using it. That is usually where I learn the fastest and build the best.
+        </p>
       </section>
 
       <section id="work" className="section-block">

@@ -1,0 +1,45 @@
+<svg width="640" height="448" viewBox="0 0 640 448" fill="none" xmlns="http://www.w3.org/2000/svg">
+  <rect width="640" height="448" rx="30" fill="#F7F4ED"/>
+  <rect x="54" y="72" width="172" height="120" rx="22" fill="#FFFFFF" stroke="#E4DDD3"/>
+  <rect x="72" y="93" width="74" height="10" rx="5" fill="#D9D2C8"/>
+  <rect x="72" y="114" width="118" height="8" rx="4" fill="#ECE6DC"/>
+  <rect x="72" y="129" width="98" height="8" rx="4" fill="#ECE6DC"/>
+  <rect x="250" y="72" width="138" height="96" rx="20" fill="#FCFAF6" stroke="#E7E0D7"/>
+  <rect x="268" y="92" width="58" height="9" rx="4.5" fill="#D9D2C8"/>
+  <rect x="268" y="111" width="92" height="7" rx="3.5" fill="#EEE7DE"/>
+  <rect x="268" y="125" width="80" height="7" rx="3.5" fill="#EEE7DE"/>
+  <rect x="86" y="230" width="154" height="104" rx="20" fill="#FCFAF6" stroke="#E7E0D7"/>
+  <rect x="104" y="249" width="62" height="9" rx="4.5" fill="#D9D2C8"/>
+  <rect x="104" y="268" width="104" height="7" rx="3.5" fill="#EEE7DE"/>
+  <rect x="104" y="282" width="88" height="7" rx="3.5" fill="#EEE7DE"/>
+  <g filter="url(#shadow)">
+    <rect x="226" y="122" width="268" height="180" rx="28" fill="url(#card)" stroke="#C6D8FF"/>
+    <rect x="258" y="156" width="104" height="12" rx="6" fill="#3B6DFF" fill-opacity="0.22"/>
+    <rect x="258" y="180" width="174" height="10" rx="5" fill="#E8F0FF"/>
+    <rect x="258" y="198" width="154" height="10" rx="5" fill="#E8F0FF"/>
+    <rect x="258" y="216" width="164" height="10" rx="5" fill="#E8F0FF"/>
+    <rect x="258" y="252" width="74" height="28" rx="14" fill="#3B6DFF"/>
+    <rect x="344" y="252" width="92" height="28" rx="14" fill="#FFFFFF" stroke="#D8E4FF"/>
+  </g>
+  <path d="M195 180C222 180 226 180 226 180" stroke="#CBBFB0" stroke-width="3" stroke-linecap="round"/>
+  <path d="M240 102C249.87 111.516 255.729 117.586 266 128" stroke="#D7CBBB" stroke-width="3" stroke-linecap="round"/>
+  <circle cx="182" cy="180" r="9" fill="#FFFFFF" stroke="#D7CBBB" stroke-width="3"/>
+  <path d="M182 171V189" stroke="#D7CBBB" stroke-width="3" stroke-linecap="round"/>
+  <path d="M173 180H191" stroke="#D7CBBB" stroke-width="3" stroke-linecap="round"/>
+  <defs>
+    <filter id="shadow" x="206" y="106" width="308" height="220" filterUnits="userSpaceOnUse" color-interpolation-filters="sRGB">
+      <feFlood flood-opacity="0" result="BackgroundImageFix"/>
+      <feColorMatrix in="SourceAlpha" type="matrix" values="0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 127 0" result="hardAlpha"/>
+      <feOffset dy="10"/>
+      <feGaussianBlur stdDeviation="10"/>
+      <feComposite in2="hardAlpha" operator="out"/>
+      <feColorMatrix type="matrix" values="0 0 0 0 0.203922 0 0 0 0 0.266667 0 0 0 0 0.364706 0 0 0 0.12 0"/>
+      <feBlend mode="normal" in2="BackgroundImageFix" result="effect1_dropShadow_0_1"/>
+      <feBlend mode="normal" in="SourceGraphic" in2="effect1_dropShadow_0_1" result="shape"/>
+    </filter>
+    <linearGradient id="card" x1="360" y1="122" x2="360" y2="302" gradientUnits="userSpaceOnUse">
+      <stop stop-color="#F9FBFF"/>
+      <stop offset="1" stop-color="#EEF4FF"/>
+    </linearGradient>
+  </defs>
+</svg>

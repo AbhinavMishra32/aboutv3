@@ -1,0 +1,42 @@
+<svg width="640" height="448" viewBox="0 0 640 448" fill="none" xmlns="http://www.w3.org/2000/svg">
+  <rect width="640" height="448" rx="30" fill="#F7F4ED"/>
+  <g filter="url(#shadow)">
+    <rect x="68" y="92" width="232" height="264" rx="26" fill="#FFFDFC" stroke="#E4DDD3"/>
+    <rect x="100" y="128" width="168" height="96" rx="18" fill="#111827"/>
+    <rect x="116" y="144" width="66" height="10" rx="5" fill="#FFFFFF" fill-opacity="0.16"/>
+    <rect x="116" y="166" width="118" height="8" rx="4" fill="#FFFFFF" fill-opacity="0.1"/>
+    <rect x="116" y="181" width="104" height="8" rx="4" fill="#FFFFFF" fill-opacity="0.1"/>
+    <rect x="100" y="252" width="72" height="22" rx="11" fill="#3B6DFF" fill-opacity="0.16"/>
+    <rect x="182" y="252" width="86" height="22" rx="11" fill="#EEE7DE"/>
+    <rect x="100" y="296" width="168" height="14" rx="7" fill="#EEE7DE"/>
+    <rect x="100" y="322" width="132" height="14" rx="7" fill="#EEE7DE"/>
+  </g>
+  <g filter="url(#shadow)">
+    <rect x="340" y="116" width="232" height="216" rx="26" fill="url(#board)" stroke="#D7E2FF"/>
+    <circle cx="392" cy="174" r="16" fill="#3B6DFF"/>
+    <circle cx="456" cy="224" r="16" fill="#111827"/>
+    <circle cx="520" cy="174" r="16" fill="#6ED08B"/>
+    <path d="M392 174H456" stroke="#BFD2FF" stroke-width="4" stroke-linecap="round"/>
+    <path d="M456 224L520 174" stroke="#BFD2FF" stroke-width="4" stroke-linecap="round"/>
+    <rect x="376" y="264" width="160" height="14" rx="7" fill="#FFFFFF" fill-opacity="0.9"/>
+    <rect x="404" y="290" width="104" height="12" rx="6" fill="#FFFFFF" fill-opacity="0.74"/>
+  </g>
+  <circle cx="320" cy="224" r="34" fill="#FFFFFF" stroke="#E4DDD3"/>
+  <path d="M320 201L325.618 215.382H341L328.691 224.236L334.309 238.618L320 229.764L305.691 238.618L311.309 224.236L299 215.382H314.382L320 201Z" fill="#111827"/>
+  <defs>
+    <filter id="shadow" x="52" y="80" width="536" height="292" filterUnits="userSpaceOnUse" color-interpolation-filters="sRGB">
+      <feFlood flood-opacity="0" result="BackgroundImageFix"/>
+      <feColorMatrix in="SourceAlpha" type="matrix" values="0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 127 0" result="hardAlpha"/>
+      <feOffset dy="10"/>
+      <feGaussianBlur stdDeviation="8"/>
+      <feComposite in2="hardAlpha" operator="out"/>
+      <feColorMatrix type="matrix" values="0 0 0 0 0.203922 0 0 0 0 0.266667 0 0 0 0 0.364706 0 0 0 0.1 0"/>
+      <feBlend mode="normal" in2="BackgroundImageFix" result="effect1_dropShadow_0_1"/>
+      <feBlend mode="normal" in="SourceGraphic" in2="effect1_dropShadow_0_1" result="shape"/>
+    </filter>
+    <linearGradient id="board" x1="456" y1="116" x2="456" y2="332" gradientUnits="userSpaceOnUse">
+      <stop stop-color="#F9FBFF"/>
+      <stop offset="1" stop-color="#EEF4FF"/>
+    </linearGradient>
+  </defs>
+</svg>
