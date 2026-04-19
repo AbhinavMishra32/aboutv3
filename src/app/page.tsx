@@ -1,6 +1,7 @@
 import Link from "next/link";
 import {
   ArrowRight,
+  ArrowUpRight,
   ArrowUp,
   Github,
   Globe,
@@ -15,6 +16,9 @@ type Project = {
   summary: string;
   stackLine: string;
   buildTags: string[];
+  iconUrl?: string;
+  iconLabel?: string;
+  iconTone?: "rose" | "violet" | "amber" | "slate";
   live?: string;
   source?: string;
 };
@@ -33,6 +37,7 @@ const PROJECTS: Project[] = [
       "An AI roadmap builder that turns broad goals into structured learning paths with practical milestones.",
     stackLine: "Next.js · TypeScript · OpenAI API · React Flow",
     buildTags: ["Hand-built core", "AI-assisted UI polish"],
+    iconUrl: "https://decipath.abhinavmishra.in/favicon.ico",
     live: "https://decipath.abhinavmishra.in",
     source: "https://github.com/AbhinavMishra32",
   },
@@ -42,6 +47,8 @@ const PROJECTS: Project[] = [
       "A career guidance platform built for Smart India Hackathon with adaptive roadmaps and collaborative planning.",
     stackLine: "React · Node.js · PostgreSQL",
     buildTags: ["Hand-built core", "AI-assisted UI polish"],
+    iconLabel: "M",
+    iconTone: "violet",
     live: "https://mentormap.abhinavmishra.in",
   },
   {
@@ -50,6 +57,8 @@ const PROJECTS: Project[] = [
       "A Splitwise-style expense app with UPI settlement, voice input, and OCR receipt parsing for faster group splits.",
     stackLine: "React Native · FastAPI · Expo",
     buildTags: ["Hand-built core", "Product-first flow"],
+    iconLabel: "P",
+    iconTone: "rose",
   },
   {
     name: "XiteCoin",
@@ -57,6 +66,8 @@ const PROJECTS: Project[] = [
       "A Python blockchain experiment with custom proof-of-work, gossip-based networking, and JSON-RPC nodes.",
     stackLine: "Python · P2P · Cryptography",
     buildTags: ["Fully hand-coded", "No AI in the build"],
+    iconLabel: "X",
+    iconTone: "slate",
     source: "https://github.com/AbhinavMishra32/xitecoin",
   },
 ];
@@ -170,7 +181,7 @@ export default async function HomePage() {
 
       <section id="projects" className="section-block">
         <div className="section-head">
-          <h2 className="section-title">Projects</h2>
+          <h2 className="section-title">Side-projects</h2>
           <a
             href="https://github.com/AbhinavMishra32"
             target="_blank"
@@ -182,41 +193,72 @@ export default async function HomePage() {
         </div>
 
         <div className="project-list">
-          {PROJECTS.map((project, index) => (
-            <article key={project.name} className="project-row">
-              <div className="project-number">0{index + 1}</div>
-              <div className="project-main">
-                <div className="project-heading">
-                  <div className="project-title-row">
-                    <h3 className="project-title">{project.name}</h3>
-                    <div className="project-meta">
-                      {project.buildTags.map((tag, tagIndex) => (
-                        <span
-                          key={tag}
-                          className={`project-badge ${tagIndex === 0 ? "project-badge-primary" : ""}`}
-                        >
-                          {tag}
-                        </span>
-                      ))}
-                    </div>
-                  </div>
-                  <div className="project-stackline">{project.stackLine}</div>
+          {PROJECTS.map((project) => (
+            <article key={project.name} className="project-card">
+              <div className="project-card-top">
+                <div
+                  className={`project-icon ${project.iconLabel ? `project-icon-${project.iconTone ?? "slate"}` : ""}`}
+                  aria-hidden="true"
+                >
+                  {project.iconUrl ? (
+                    <span
+                      className="project-icon-image"
+                      style={{ backgroundImage: `url("${project.iconUrl}")` }}
+                    />
+                  ) : (
+                    <span className="project-icon-letter">{project.iconLabel}</span>
+                  )}
                 </div>
-                <p className="project-summary">{project.summary}</p>
+
+                {project.live ?? project.source ? (
+                  <a
+                    href={project.live ?? project.source}
+                    target="_blank"
+                    rel="noreferrer"
+                    className="project-launch"
+                    aria-label={`Open ${project.name}`}
+                    title={`Open ${project.name}`}
+                  >
+                    <ArrowUpRight size={18} strokeWidth={1.8} />
+                  </a>
+                ) : null}
               </div>
 
-              <div className="project-actions">
-                {project.live ? (
-                  <a href={project.live} target="_blank" rel="noreferrer" className="project-link">
-                    Live
-                  </a>
-                ) : null}
-                {project.source ? (
-                  <a href={project.source} target="_blank" rel="noreferrer" className="project-link">
-                    Source
-                  </a>
-                ) : null}
+              <div className="project-card-body">
+                <div className="project-card-heading">
+                  <h3 className="project-card-title">{project.name}</h3>
+                  {project.live ? <span className="project-live-dot" aria-hidden="true" /> : null}
+                </div>
+                <p className="project-card-summary">{project.summary}</p>
               </div>
+
+              <div className="project-meta">
+                {project.buildTags.map((tag, tagIndex) => (
+                  <span
+                    key={tag}
+                    className={`project-badge ${tagIndex === 0 ? "project-badge-primary" : ""}`}
+                  >
+                    {tag}
+                  </span>
+                ))}
+              </div>
+
+              <div className="project-stackline">{project.stackLine}</div>
+
+              {project.live || project.source ? (
+                <div className="project-card-links">
+                  {project.live ? (
+                    <a href={project.live} target="_blank" rel="noreferrer" className="project-link">
+                      Live
+                    </a>
+                  ) : null}
+                  {project.source ? (
+                    <a href={project.source} target="_blank" rel="noreferrer" className="project-link">
+                      Source
+                    </a>
+                  ) : null}
+                </div>
+              ) : null}
             </article>
           ))}
         </div>
@@ -231,12 +273,8 @@ export default async function HomePage() {
         </div>
 
         <div className="article-list">
-          {latestPosts.map((post, index) => (
-            <Link
-              key={post.slug}
-              href={`/blog/${post.slug}`}
-              className={`article-link ${index === 0 ? "article-link-featured" : ""}`}
-            >
+          {latestPosts.map((post) => (
+            <Link key={post.slug} href={`/blog/${post.slug}`} className="article-link">
               <div className="article-link-copy">
                 <div className="article-link-title">{post.title}</div>
                 <div className="article-link-summary">{post.summary}</div>
