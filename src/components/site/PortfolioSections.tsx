@@ -42,6 +42,60 @@ const BROWSE_ITEMS = [
   },
 ];
 
+function ProjectTechMark({
+  tech,
+}: {
+  tech:
+    | {
+        name: string;
+        src: string;
+      }
+    | {
+        name: string;
+        icon: "bootstrap" | "pow";
+      };
+}) {
+  if ("src" in tech) {
+    // CDN-served brand marks are intentional here so the cards can use the real logos directly.
+    // eslint-disable-next-line @next/next/no-img-element
+    return <img src={tech.src} alt={tech.name} className="project-tech-logo-image" loading="lazy" />;
+  }
+
+  if (tech.icon === "bootstrap") {
+    return (
+      <span className="project-tech-logo-custom" aria-hidden="true">
+        <svg viewBox="0 0 24 24" fill="none">
+          <circle cx="6" cy="12" r="2.25" stroke="currentColor" strokeWidth="1.7" />
+          <circle cx="18" cy="7" r="2.25" stroke="currentColor" strokeWidth="1.7" />
+          <circle cx="18" cy="17" r="2.25" stroke="currentColor" strokeWidth="1.7" />
+          <path
+            d="M8.2 11.05 15.7 7.95M8.2 12.95l7.5 3.1"
+            stroke="currentColor"
+            strokeWidth="1.7"
+            strokeLinecap="round"
+          />
+        </svg>
+      </span>
+    );
+  }
+
+  return (
+    <span className="project-tech-logo-custom" aria-hidden="true">
+      <svg viewBox="0 0 24 24" fill="none">
+        <path
+          d="M6.5 9.25c0-1.52 1.23-2.75 2.75-2.75h5.5c1.52 0 2.75 1.23 2.75 2.75v5.5c0 1.52-1.23 2.75-2.75 2.75h-5.5c-1.52 0-2.75-1.23-2.75-2.75z"
+          stroke="currentColor"
+          strokeWidth="1.7"
+        />
+        <path
+          d="m12 4.75 1.05 2.11 2.33.34-1.69 1.65.4 2.32L12 10.07 9.91 11.2l.4-2.32L8.62 7.2l2.33-.34Z"
+          fill="currentColor"
+        />
+      </svg>
+    </span>
+  );
+}
+
 export function HeroSection() {
   return (
     <section className="hero">
@@ -266,7 +320,13 @@ export function ProjectsSection({ page = false }: { page?: boolean }) {
               ))}
             </div>
 
-            <div className="project-stackline">{project.stackLine}</div>
+            <div className="project-tech-row" aria-label={`${project.name} technologies`}>
+              {project.techLogos.map((tech) => (
+                <span key={tech.name} className="project-tech-chip" title={tech.name} aria-label={tech.name}>
+                  <ProjectTechMark tech={tech} />
+                </span>
+              ))}
+            </div>
 
             {project.live || project.source ? (
               <div className="project-card-links">

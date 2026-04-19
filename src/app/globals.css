@@ -703,11 +703,6 @@ textarea {
   letter-spacing: -0.03em;
 }
 
-.project-stackline {
-  font-size: 0.8rem;
-  color: var(--subtle);
-}
-
 .project-meta {
   display: flex;
   flex-wrap: wrap;
@@ -733,6 +728,72 @@ textarea {
   border-color: rgba(26, 92, 255, 0.18);
   background: rgba(26, 92, 255, 0.08);
   color: var(--accent);
+}
+
+.project-tech-row {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.42rem;
+}
+
+.project-tech-chip {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  width: 2rem;
+  height: 2rem;
+  border: 1px solid rgba(20, 20, 19, 0.08);
+  border-radius: 0.72rem;
+  background: rgba(255, 255, 255, 0.74);
+  box-shadow: 0 8px 18px rgba(15, 23, 42, 0.06);
+  transition:
+    transform 0.18s ease,
+    border-color 0.18s ease,
+    background-color 0.18s ease;
+}
+
+.project-tech-chip:hover {
+  transform: translateY(-1px);
+  border-color: rgba(20, 20, 19, 0.14);
+  background: rgba(255, 255, 255, 0.92);
+}
+
+:root[data-theme="dark"] .project-tech-chip {
+  border-color: rgba(255, 255, 255, 0.08);
+  background: rgba(255, 255, 255, 0.05);
+  box-shadow: none;
+}
+
+:root[data-theme="dark"] .project-tech-chip:hover {
+  border-color: rgba(255, 255, 255, 0.16);
+  background: rgba(255, 255, 255, 0.08);
+}
+
+.project-tech-logo-image,
+.project-tech-logo-custom {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  width: 1rem;
+  height: 1rem;
+}
+
+.project-tech-logo-image {
+  object-fit: contain;
+}
+
+.project-tech-logo-custom {
+  color: rgba(20, 20, 19, 0.82);
+}
+
+:root[data-theme="dark"] .project-tech-logo-custom {
+  color: rgba(255, 255, 255, 0.88);
+}
+
+.project-tech-logo-custom svg {
+  display: block;
+  width: 100%;
+  height: 100%;
 }
 
 .project-card-links {

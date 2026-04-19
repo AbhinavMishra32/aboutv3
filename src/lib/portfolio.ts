@@ -1,7 +1,16 @@
 export type Project = {
   name: string;
   summary: string;
-  stackLine: string;
+  techLogos: Array<
+    | {
+        name: string;
+        src: string;
+      }
+    | {
+        name: string;
+        icon: "bootstrap" | "pow";
+      }
+  >;
   buildTags: string[];
   iconUrl?: string;
   iconLabel?: string;
@@ -35,7 +44,12 @@ export const PROJECTS: Project[] = [
     name: "Decipath AI",
     summary:
       "An AI roadmap builder that turns broad goals into structured learning paths with practical milestones.",
-    stackLine: "Next.js · TypeScript · OpenAI API · React Flow",
+    techLogos: [
+      { name: "Next.js", src: "https://cdn.simpleicons.org/nextdotjs/141413/e9e6dc?viewbox=auto" },
+      { name: "TypeScript", src: "https://cdn.simpleicons.org/typescript?viewbox=auto" },
+      { name: "OpenAI", src: "https://cdn.simpleicons.org/openai/141413/e9e6dc?viewbox=auto" },
+      { name: "React", src: "https://cdn.simpleicons.org/react?viewbox=auto" },
+    ],
     buildTags: ["Hand-built core", "AI-assisted UI polish"],
     iconUrl: "https://decipath.abhinavmishra.in/favicon.ico",
     live: "https://decipath.abhinavmishra.in",
@@ -47,7 +61,11 @@ export const PROJECTS: Project[] = [
     name: "Mentor Map",
     summary:
       "A career guidance platform built for Smart India Hackathon with adaptive roadmaps and collaborative planning.",
-    stackLine: "React · Node.js · PostgreSQL",
+    techLogos: [
+      { name: "React", src: "https://cdn.simpleicons.org/react?viewbox=auto" },
+      { name: "Node.js", src: "https://cdn.simpleicons.org/nodedotjs?viewbox=auto" },
+      { name: "PostgreSQL", src: "https://cdn.simpleicons.org/postgresql?viewbox=auto" },
+    ],
     buildTags: ["Hand-built core", "AI-assisted UI polish"],
     iconLabel: "M",
     iconTone: "violet",
@@ -59,7 +77,11 @@ export const PROJECTS: Project[] = [
     name: "PayEvenly",
     summary:
       "A Splitwise-style expense app with UPI settlement, voice input, and OCR receipt parsing for faster group splits.",
-    stackLine: "React Native · FastAPI · Expo",
+    techLogos: [
+      { name: "React Native", src: "https://cdn.simpleicons.org/react?viewbox=auto" },
+      { name: "FastAPI", src: "https://cdn.simpleicons.org/fastapi?viewbox=auto" },
+      { name: "Expo", src: "https://cdn.simpleicons.org/expo/141413/e9e6dc?viewbox=auto" },
+    ],
     buildTags: ["Hand-built core", "Product-first flow"],
     iconLabel: "P",
     iconTone: "rose",
@@ -70,7 +92,11 @@ export const PROJECTS: Project[] = [
     name: "XiteCoin",
     summary:
       "A Python blockchain experiment with custom proof-of-work, gossip-based networking, and JSON-RPC nodes.",
-    stackLine: "Python · P2P · Cryptography",
+    techLogos: [
+      { name: "Python", src: "https://cdn.simpleicons.org/python?viewbox=auto" },
+      { name: "Bootstrap network", icon: "bootstrap" },
+      { name: "Proof of work", icon: "pow" },
+    ],
     buildTags: ["Fully hand-coded", "No AI in the build"],
     iconLabel: "X",
     iconTone: "slate",
