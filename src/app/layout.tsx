@@ -1,12 +1,12 @@
 import type { Metadata } from "next";
 import Script from "next/script";
-import { Nixie_One, Instrument_Serif, IBM_Plex_Mono } from "next/font/google";
+import { Space_Grotesk, Instrument_Serif, IBM_Plex_Mono } from "next/font/google";
 import "./globals.css";
 
-const nixieOne = Nixie_One({
+const spaceGrotesk = Space_Grotesk({
   variable: "--font-space",
   subsets: ["latin"],
-  weight: "400",
+  weight: ["400", "500", "600", "700"],
 });
 
 const instrumentSerif = Instrument_Serif({
@@ -48,7 +48,7 @@ export default function RootLayout({
   return (
     <html lang="en" suppressHydrationWarning>
       <body
-        className={`${nixieOne.variable} ${instrumentSerif.variable} ${ibmPlexMono.variable} antialiased`}
+        className={`${spaceGrotesk.variable} ${instrumentSerif.variable} ${ibmPlexMono.variable} antialiased`}
       >
         <Script id="theme-init" strategy="beforeInteractive">
           {themeScript}
