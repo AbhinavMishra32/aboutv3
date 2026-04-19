@@ -1,9 +1,9 @@
 import type { Metadata } from "next";
 import Script from "next/script";
-import { Space_Grotesk, Instrument_Serif, IBM_Plex_Mono } from "next/font/google";
+import { Familjen_Grotesk, Instrument_Serif, IBM_Plex_Mono } from "next/font/google";
 import "./globals.css";
 
-const spaceGrotesk = Space_Grotesk({
+const familjenGrotesk = Familjen_Grotesk({
   variable: "--font-space",
   subsets: ["latin"],
   weight: ["400", "500", "600", "700"],
@@ -48,7 +48,7 @@ export default function RootLayout({
   return (
     <html lang="en" suppressHydrationWarning>
       <body
-        className={`${spaceGrotesk.variable} ${instrumentSerif.variable} ${ibmPlexMono.variable} antialiased`}
+        className={`${familjenGrotesk.variable} ${instrumentSerif.variable} ${ibmPlexMono.variable} antialiased`}
       >
         <Script id="theme-init" strategy="beforeInteractive">
           {themeScript}

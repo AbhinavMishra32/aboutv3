@@ -1,5 +1,5 @@
 import { PortfolioShell } from "@/components/site/PortfolioShell";
-import { BrowseSection, HeroSection, WritingPreviewSection } from "@/components/site/PortfolioSections";
+import { HeroSection, ProjectsSection, WorkSection, WritingPreviewSection } from "@/components/site/PortfolioSections";
 import { getAllPosts } from "@/lib/blog";
 
 export default async function HomePage() {
@@ -8,7 +8,8 @@ export default async function HomePage() {
   return (
     <PortfolioShell active="overview">
       <HeroSection />
-      <BrowseSection />
+      <WorkSection />
+      <ProjectsSection />
       <WritingPreviewSection posts={posts} />
     </PortfolioShell>
   );
