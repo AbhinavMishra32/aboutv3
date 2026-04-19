@@ -2,7 +2,7 @@ import Image from "next/image";
 import Link from "next/link";
 import { ArrowRight } from "lucide-react";
 import { BlogPostMeta } from "@/lib/blog";
-import { getRepoSummary } from "@/lib/github";
+import { getRepoDetail } from "@/lib/github";
 import { PROJECTS, STORY_BEATS, WORK_ITEMS } from "@/lib/portfolio";
 import { ProjectsExperience } from "@/components/site/ProjectsExperience";
 
@@ -200,10 +200,20 @@ export function WorkSection({ page = false }: { page?: boolean }) {
 }
 
 export async function ProjectsSection({ page = false }: { page?: boolean }) {
-  const repoSummaries = await Promise.all(
-    PROJECTS.filter((project) => project.repo).map(async (project) => [project.slug, await getRepoSummary(project.slug, project.repo!)])
+  const repoDetails = await Promise.all(
+    PROJECTS.filter((project) => project.repo).map(async (project) => [project.slug, await getRepoDetail(project.slug, project.repo!)] as const)
   );
-  const summaries = Object.fromEntries(repoSummaries);
+  const details = Object.fromEntries(repoDetails);
+  const summaries = Object.fromEntries(
+    repoDetails.map(([slug, detail]) => [
+      slug,
+      {
+        slug,
+        totalCommits: detail.totalCommits,
+        pushedAt: detail.pushedAt,
+      },
+    ])
+  );
 
   return (
     <section className={page ? "projects-page-section" : "section-block"}>
@@ -218,7 +228,7 @@ export async function ProjectsSection({ page = false }: { page?: boolean }) {
         )}
       </div>
 
-      <ProjectsExperience projects={PROJECTS} summaries={summaries} />
+      <ProjectsExperience projects={PROJECTS} summaries={summaries} details={details} />
     </section>
   );
 }

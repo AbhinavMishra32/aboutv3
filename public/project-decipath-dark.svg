@@ -1,7 +1,7 @@
 <svg width="960" height="600" viewBox="0 0 960 600" fill="none" xmlns="http://www.w3.org/2000/svg">
   <rect width="960" height="600" rx="36" fill="#101010"/>
   <rect x="70" y="74" width="820" height="452" rx="34" fill="#121317" stroke="#262933"/>
-  <rect x="102" y="106" width="278" height="388" rx="28" fill="url(#panel)" stroke="#333B59"/>
+  <rect x="102" y="106" width="278" height="388" rx="28" fill="#131722" stroke="#333B59"/>
   <rect x="130" y="136" width="104" height="20" rx="10" fill="#2D3350"/>
   <rect x="130" y="176" width="214" height="86" rx="24" fill="#171A24" stroke="#2D3550"/>
   <rect x="152" y="198" width="118" height="14" rx="7" fill="#5663B8"/>
@@ -12,7 +12,7 @@
   <rect x="154" y="366" width="88" height="12" rx="6" fill="#8794FF"/>
   <rect x="130" y="414" width="156" height="16" rx="8" fill="#2D3350"/>
   <rect x="130" y="446" width="116" height="16" rx="8" fill="#242A3E"/>
-  <rect x="414" y="106" width="444" height="388" rx="28" fill="url(#canvas)" stroke="#31385B"/>
+  <rect x="414" y="106" width="444" height="388" rx="28" fill="#131521" stroke="#31385B"/>
   <rect x="446" y="138" width="164" height="22" rx="11" fill="rgba(255,255,255,0.09)"/>
   <g opacity="0.42">
     <path d="M466 178H812" stroke="#3A4162" stroke-dasharray="2 10"/>
@@ -27,7 +27,7 @@
     <path d="M716 122V462" stroke="#3A4162" stroke-dasharray="2 10"/>
     <path d="M786 122V462" stroke="#3A4162" stroke-dasharray="2 10"/>
   </g>
-  <ellipse cx="716" cy="304" rx="132" ry="156" fill="url(#glow)"/>
+  <ellipse cx="716" cy="304" rx="132" ry="156" fill="#2A2750" opacity="0.72"/>
   <rect x="492" y="198" width="138" height="76" rx="22" fill="#12151F" stroke="#6774E4"/>
   <rect x="516" y="220" width="84" height="12" rx="6" fill="#F0F3FF"/>
   <rect x="516" y="244" width="56" height="12" rx="6" fill="#8794FF"/>
@@ -53,19 +53,5 @@
   <rect x="738" y="410" width="50" height="10" rx="5" fill="#F3F5FF"/>
   <rect x="738" y="430" width="32" height="10" rx="5" fill="#7CE0B0"/>
   <defs>
-    <linearGradient id="panel" x1="102" y1="106" x2="380" y2="494" gradientUnits="userSpaceOnUse">
-      <stop stop-color="#151925"/>
-      <stop offset="1" stop-color="#0F121A"/>
-    </linearGradient>
-    <linearGradient id="canvas" x1="414" y1="106" x2="858" y2="494" gradientUnits="userSpaceOnUse">
-      <stop stop-color="#141523"/>
-      <stop offset="0.56" stop-color="#0C0D13"/>
-      <stop offset="1" stop-color="#191B31"/>
-    </linearGradient>
-    <radialGradient id="glow" cx="0" cy="0" r="1" gradientUnits="userSpaceOnUse" gradientTransform="translate(716 304) rotate(90) scale(156 132)">
-      <stop stop-color="#4E43A9" stop-opacity="0.96"/>
-      <stop offset="0.54" stop-color="#2E2759" stop-opacity="0.64"/>
-      <stop offset="1" stop-color="#151523" stop-opacity="0"/>
-    </radialGradient>
   </defs>
 </svg>

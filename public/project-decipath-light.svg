@@ -2,7 +2,7 @@
   <rect width="960" height="600" rx="36" fill="#F7F4ED"/>
   <g filter="url(#shadow)">
     <rect x="70" y="74" width="820" height="452" rx="34" fill="#FFFCF7" stroke="#E6DED1"/>
-    <rect x="102" y="106" width="278" height="388" rx="28" fill="url(#panel)" stroke="#DBE1F2"/>
+    <rect x="102" y="106" width="278" height="388" rx="28" fill="#F1F4FB" stroke="#DBE1F2"/>
     <rect x="130" y="136" width="104" height="20" rx="10" fill="#D7DFF5"/>
     <rect x="130" y="176" width="214" height="86" rx="24" fill="#FFFFFF" stroke="#E4EAF8"/>
     <rect x="152" y="198" width="118" height="14" rx="7" fill="#C5D2F7"/>
@@ -13,7 +13,7 @@
     <rect x="154" y="366" width="88" height="12" rx="6" fill="#717DFA"/>
     <rect x="130" y="414" width="156" height="16" rx="8" fill="#D7DFF5"/>
     <rect x="130" y="446" width="116" height="16" rx="8" fill="#E8ECF7"/>
-    <rect x="414" y="106" width="444" height="388" rx="28" fill="url(#canvas)" stroke="#D6D4F4"/>
+    <rect x="414" y="106" width="444" height="388" rx="28" fill="#F3F0FB" stroke="#D6D4F4"/>
     <rect x="446" y="138" width="164" height="22" rx="11" fill="rgba(255,255,255,0.78)"/>
     <g opacity="0.52">
       <path d="M466 178H812" stroke="#D9D4F0" stroke-dasharray="2 10"/>
@@ -28,7 +28,7 @@
       <path d="M716 122V462" stroke="#D9D4F0" stroke-dasharray="2 10"/>
       <path d="M786 122V462" stroke="#D9D4F0" stroke-dasharray="2 10"/>
     </g>
-    <ellipse cx="716" cy="304" rx="128" ry="150" fill="url(#glow)" opacity="0.75"/>
+    <ellipse cx="716" cy="304" rx="128" ry="150" fill="#DDD9FF" opacity="0.55"/>
     <g filter="url(#nodeShadow)">
       <rect x="492" y="198" width="138" height="76" rx="22" fill="#171A24" stroke="#4D56AC"/>
       <rect x="516" y="220" width="84" height="12" rx="6" fill="#EEF1FF"/>
@@ -57,20 +57,6 @@
     <rect x="738" y="430" width="32" height="10" rx="5" fill="#7CE0B0"/>
   </g>
   <defs>
-    <linearGradient id="panel" x1="102" y1="106" x2="380" y2="494" gradientUnits="userSpaceOnUse">
-      <stop stop-color="#F4F7FE"/>
-      <stop offset="1" stop-color="#EEF1F8"/>
-    </linearGradient>
-    <linearGradient id="canvas" x1="414" y1="106" x2="858" y2="494" gradientUnits="userSpaceOnUse">
-      <stop stop-color="#F5F1FF"/>
-      <stop offset="0.58" stop-color="#F7F3FF"/>
-      <stop offset="1" stop-color="#EEF2FF"/>
-    </linearGradient>
-    <radialGradient id="glow" cx="0" cy="0" r="1" gradientUnits="userSpaceOnUse" gradientTransform="translate(716 304) rotate(90) scale(150 128)">
-      <stop stop-color="#C9C6FF"/>
-      <stop offset="0.5" stop-color="#DBD7FF" stop-opacity="0.75"/>
-      <stop offset="1" stop-color="#F4F1FF" stop-opacity="0"/>
-    </radialGradient>
     <filter id="shadow" x="50" y="58" width="860" height="492" filterUnits="userSpaceOnUse" color-interpolation-filters="sRGB">
       <feFlood flood-opacity="0" result="BackgroundImageFix"/>
       <feColorMatrix in="SourceAlpha" type="matrix" values="0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 127 0" result="hardAlpha"/>

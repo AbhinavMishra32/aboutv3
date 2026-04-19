@@ -3,13 +3,8 @@
 import Image from "next/image";
 import {
   ArrowUpRight,
-  CalendarDays,
   ExternalLink,
   Github,
-  GitCommitHorizontal,
-  Layers3,
-  LoaderCircle,
-  Sparkles,
   X,
 } from "lucide-react";
 import { useEffect, useState } from "react";
@@ -191,68 +186,21 @@ function RepoMetrics({ detail }: { detail: RepoDetail }) {
 export function ProjectsExperience({
   projects,
   summaries,
+  details,
 }: {
   projects: Project[];
   summaries: Partial<Record<string, RepoSummary>>;
+  details: Partial<Record<string, RepoDetail>>;
 }) {
   const [isMounted, setIsMounted] = useState(false);
   const [selectedSlug, setSelectedSlug] = useState<string | null>(null);
-  const [detailCache, setDetailCache] = useState<Record<string, RepoDetail>>({});
-  const [loadingSlug, setLoadingSlug] = useState<string | null>(null);
-  const [errorCache, setErrorCache] = useState<Record<string, string>>({});
 
   const selectedProject = projects.find((project) => project.slug === selectedSlug) ?? null;
-  const selectedDetail = selectedSlug ? detailCache[selectedSlug] : undefined;
-  const selectedError = selectedSlug ? errorCache[selectedSlug] : undefined;
+  const selectedDetail = selectedSlug ? details[selectedSlug] : undefined;
 
   useEffect(() => {
     setIsMounted(true);
   }, []);
-
-  useEffect(() => {
-    if (!selectedProject?.repo || !selectedSlug || detailCache[selectedSlug] || loadingSlug === selectedSlug) {
-      return;
-    }
-
-    let cancelled = false;
-
-    const load = async () => {
-      setLoadingSlug(selectedSlug);
-
-      try {
-        const response = await fetch(`/api/projects/${selectedSlug}`);
-        const data = (await response.json()) as RepoDetail | { error?: string };
-
-        if (!response.ok) {
-          throw new Error("error" in data ? data.error : "Unable to load project repo detail");
-        }
-
-        if (!cancelled) {
-          setDetailCache((current) => ({
-            ...current,
-            [selectedSlug]: data as RepoDetail,
-          }));
-        }
-      } catch (error) {
-        if (!cancelled) {
-          setErrorCache((current) => ({
-            ...current,
-            [selectedSlug]: error instanceof Error ? error.message : "Unable to load repository detail",
-          }));
-        }
-      } finally {
-        if (!cancelled) {
-          setLoadingSlug((current) => (current === selectedSlug ? null : current));
-        }
-      }
-    };
-
-    void load();
-
-    return () => {
-      cancelled = true;
-    };
-  }, [detailCache, loadingSlug, selectedProject, selectedSlug]);
 
   useEffect(() => {
     if (!selectedProject) {
@@ -373,112 +321,16 @@ export function ProjectsExperience({
                 </div>
 
                 <div className="project-modal-content">
-                  <div className="project-modal-main">
+                  <aside className="project-modal-aside">
                     <div className="project-modal-visual">
-                      <ThemedProjectPreview project={selectedProject} priority sizes="(max-width: 900px) 100vw, 70vw" />
+                      <ThemedProjectPreview project={selectedProject} priority sizes="(max-width: 900px) 100vw, 30vw" />
                     </div>
 
-                    <section className="project-detail-section">
-                      <div className="project-detail-section-head">
-                        <div>
-                          <p className="project-detail-kicker">How it took shape</p>
-                          <h4 className="project-detail-title">The build arc behind the UI.</h4>
-                        </div>
-                        <Sparkles size={16} />
-                      </div>
-
-                      <div className="project-arc-list">
-                        {selectedProject.buildArc.map((step) => (
-                          <article key={step.label} className="project-arc-card">
-                            <div className="project-arc-label">{step.label}</div>
-                            <h5 className="project-arc-title">{step.title}</h5>
-                            <p className="project-arc-copy">{step.detail}</p>
-                          </article>
-                        ))}
-                      </div>
-                    </section>
-
-                    {selectedProject.repo ? (
-                      <section className="project-detail-section">
-                        <div className="project-detail-section-head">
-                          <div>
-                            <p className="project-detail-kicker">Commit calendar</p>
-                            <h4 className="project-detail-title">How the repo moved over time.</h4>
-                          </div>
-                          <CalendarDays size={16} />
-                        </div>
-
-                        {selectedDetail ? (
-                          <>
-                            <p className="project-detail-copy">
-                              Last 18 weeks of recorded activity ending {formatDate(selectedDetail.pushedAt)}.
-                            </p>
-                            <CommitCalendar calendar={selectedDetail.calendar} />
-                          </>
-                        ) : (
-                          <div className="project-loading-card">
-                            <LoaderCircle size={18} className="project-loading-icon" />
-                            <span>Loading GitHub activity…</span>
-                          </div>
-                        )}
-                      </section>
-                    ) : (
-                      <section className="project-detail-section">
-                        <div className="project-detail-section-head">
-                          <div>
-                            <p className="project-detail-kicker">Repo activity</p>
-                            <h4 className="project-detail-title">Public telemetry is not linked for this one.</h4>
-                          </div>
-                          <Layers3 size={16} />
-                        </div>
-                        <p className="project-detail-copy">{selectedProject.repoNote}</p>
-                      </section>
-                    )}
-
-                    {selectedProject.repo ? (
-                      <section className="project-detail-section">
-                        <div className="project-detail-section-head">
-                          <div>
-                            <p className="project-detail-kicker">Commit log</p>
-                            <h4 className="project-detail-title">Every recorded commit on the main branch.</h4>
-                          </div>
-                          <GitCommitHorizontal size={16} />
-                        </div>
-
-                        {selectedError ? (
-                          <p className="project-detail-copy">{selectedError}</p>
-                        ) : selectedDetail ? (
-                          <div className="project-commit-log">
-                            {selectedDetail.allCommits.map((commit) => (
-                              <a
-                                key={commit.sha}
-                                href={commit.url}
-                                target="_blank"
-                                rel="noreferrer"
-                                className="project-commit-row"
-                              >
-                                <div className="project-commit-sha">{commit.sha.slice(0, 7)}</div>
-                                <div className="project-commit-message">{commit.message}</div>
-                                <div className="project-commit-date">{formatDate(commit.date)}</div>
-                              </a>
-                            ))}
-                          </div>
-                        ) : (
-                          <div className="project-loading-card">
-                            <LoaderCircle size={18} className="project-loading-icon" />
-                            <span>Loading commit history…</span>
-                          </div>
-                        )}
-                      </section>
-                    ) : null}
-                  </div>
-
-                  <aside className="project-modal-aside">
                     <section className="project-side-card">
                       <div className="project-detail-section-head">
                         <div>
-                          <p className="project-detail-kicker">Project at a glance</p>
-                          <h4 className="project-detail-title">Signals, stack, and links.</h4>
+                          <p className="project-detail-kicker">At a glance</p>
+                          <h4 className="project-detail-title">Stack, tags, and links.</h4>
                         </div>
                       </div>
 
@@ -510,13 +362,13 @@ export function ProjectsExperience({
                         {selectedProject.live ? (
                           <a href={selectedProject.live} target="_blank" rel="noreferrer" className="project-action-pill">
                             <ExternalLink size={14} />
-                            <span>Live product</span>
+                            <span>Live</span>
                           </a>
                         ) : null}
                         {selectedProject.source ? (
                           <a href={selectedProject.source} target="_blank" rel="noreferrer" className="project-action-pill">
                             <Github size={14} />
-                            <span>Repository</span>
+                            <span>Repo</span>
                           </a>
                         ) : null}
                       </div>
@@ -526,22 +378,14 @@ export function ProjectsExperience({
                       <section className="project-side-card">
                         <div className="project-detail-section-head">
                           <div>
-                            <p className="project-detail-kicker">GitHub telemetry</p>
-                            <h4 className="project-detail-title">Repo stats.</h4>
+                            <p className="project-detail-kicker">Telemetry</p>
+                            <h4 className="project-detail-title">Build stats.</h4>
                           </div>
                         </div>
 
                         <RepoMetrics detail={selectedDetail} />
 
                         <div className="project-side-meta">
-                          <div className="project-side-meta-row">
-                            <span>Stars</span>
-                            <strong>{formatNumber(selectedDetail.stars)}</strong>
-                          </div>
-                          <div className="project-side-meta-row">
-                            <span>Forks</span>
-                            <strong>{formatNumber(selectedDetail.forks)}</strong>
-                          </div>
                           <div className="project-side-meta-row">
                             <span>Span</span>
                             <strong>{formatNumber(selectedDetail.commitSpanDays)} days</strong>
@@ -550,21 +394,6 @@ export function ProjectsExperience({
                             <span>Branch</span>
                             <strong>{selectedDetail.defaultBranch}</strong>
                           </div>
-                        </div>
-
-                        <div className="project-language-list">
-                          {selectedDetail.languages.map((language) => (
-                            <span key={language.name} className="project-language-pill">
-                              {language.name} · {language.share}%
-                            </span>
-                          ))}
-                        </div>
-                      </section>
-                    ) : selectedProject.repo ? (
-                      <section className="project-side-card">
-                        <div className="project-loading-card">
-                          <LoaderCircle size={18} className="project-loading-icon" />
-                          <span>Loading repo stats…</span>
                         </div>
                       </section>
                     ) : null}
@@ -599,6 +428,90 @@ export function ProjectsExperience({
                       </section>
                     ) : null}
                   </aside>
+
+                  <div className="project-modal-main">
+                    <section className="project-detail-section">
+                      <div className="project-detail-section-head">
+                        <div>
+                          <p className="project-detail-kicker">Build arc</p>
+                          <h4 className="project-detail-title">How the project took shape.</h4>
+                        </div>
+                      </div>
+
+                      <div className="project-arc-list">
+                        {selectedProject.buildArc.map((step) => (
+                          <article key={step.label} className="project-arc-card">
+                            <div className="project-arc-label">{step.label}</div>
+                            <h5 className="project-arc-title">{step.title}</h5>
+                            <p className="project-arc-copy">{step.detail}</p>
+                          </article>
+                        ))}
+                      </div>
+                    </section>
+
+                    {selectedProject.repo ? (
+                      <section className="project-detail-section">
+                        <div className="project-detail-section-head">
+                          <div>
+                            <p className="project-detail-kicker">Commit calendar</p>
+                            <h4 className="project-detail-title">Activity at a glance.</h4>
+                          </div>
+                        </div>
+
+                        {selectedDetail ? (
+                          <>
+                            <p className="project-detail-copy">
+                              Last 18 weeks of recorded activity ending {formatDate(selectedDetail.pushedAt)}.
+                            </p>
+                            <CommitCalendar calendar={selectedDetail.calendar} />
+                          </>
+                        ) : (
+                          <p className="project-detail-copy">GitHub activity was not included in this build.</p>
+                        )}
+                      </section>
+                    ) : (
+                      <section className="project-detail-section">
+                        <div className="project-detail-section-head">
+                          <div>
+                            <p className="project-detail-kicker">Repo activity</p>
+                            <h4 className="project-detail-title">Public telemetry is not linked for this one.</h4>
+                          </div>
+                        </div>
+                        <p className="project-detail-copy">{selectedProject.repoNote}</p>
+                      </section>
+                    )}
+
+                    {selectedProject.repo ? (
+                      <section className="project-detail-section">
+                        <div className="project-detail-section-head">
+                          <div>
+                            <p className="project-detail-kicker">Commit log</p>
+                            <h4 className="project-detail-title">Main branch history.</h4>
+                          </div>
+                        </div>
+
+                        {selectedDetail ? (
+                          <div className="project-commit-log">
+                            {selectedDetail.allCommits.map((commit) => (
+                              <a
+                                key={commit.sha}
+                                href={commit.url}
+                                target="_blank"
+                                rel="noreferrer"
+                                className="project-commit-row"
+                              >
+                                <div className="project-commit-sha">{commit.sha.slice(0, 7)}</div>
+                                <div className="project-commit-message">{commit.message}</div>
+                                <div className="project-commit-date">{formatDate(commit.date)}</div>
+                              </a>
+                            ))}
+                          </div>
+                        ) : (
+                          <p className="project-detail-copy">Commit history was not included in this build.</p>
+                        )}
+                      </section>
+                    ) : null}
+                  </div>
                 </div>
               </div>
             </div>,

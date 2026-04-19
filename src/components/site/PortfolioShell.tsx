@@ -16,10 +16,10 @@ export function PortfolioShell({
 }) {
   return (
     <div className="blog-page">
-      <div className={`site-shell ${article ? "site-shell--article" : ""}`}>
+      <div className="site-shell">
         <SiteHeader active={active} tagline={tagline} />
 
-        <main>{children}</main>
+        <main className={`site-main ${article ? "site-main--article" : ""}`}>{children}</main>
 
         <footer className="site-footer site-footer-compact">
           <div className="footer-inline">

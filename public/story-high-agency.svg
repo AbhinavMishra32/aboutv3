@@ -12,7 +12,7 @@
     <rect x="100" y="322" width="132" height="14" rx="7" fill="#EEE7DE"/>
   </g>
   <g filter="url(#shadow)">
-    <rect x="340" y="116" width="232" height="216" rx="26" fill="url(#board)" stroke="#D7E2FF"/>
+    <rect x="340" y="116" width="232" height="216" rx="26" fill="#F1F5FF" stroke="#D7E2FF"/>
     <circle cx="392" cy="174" r="16" fill="#3B6DFF"/>
     <circle cx="456" cy="224" r="16" fill="#111827"/>
     <circle cx="520" cy="174" r="16" fill="#6ED08B"/>
@@ -34,9 +34,5 @@
       <feBlend mode="normal" in2="BackgroundImageFix" result="effect1_dropShadow_0_1"/>
       <feBlend mode="normal" in="SourceGraphic" in2="effect1_dropShadow_0_1" result="shape"/>
     </filter>
-    <linearGradient id="board" x1="456" y1="116" x2="456" y2="332" gradientUnits="userSpaceOnUse">
-      <stop stop-color="#F9FBFF"/>
-      <stop offset="1" stop-color="#EEF4FF"/>
-    </linearGradient>
   </defs>
 </svg>
