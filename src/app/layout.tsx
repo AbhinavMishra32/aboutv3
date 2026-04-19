@@ -1,4 +1,5 @@
 import type { Metadata } from "next";
+import Script from "next/script";
 import { Space_Grotesk, Instrument_Serif, IBM_Plex_Mono } from "next/font/google";
 import "./globals.css";
 
@@ -20,9 +21,23 @@ const ibmPlexMono = IBM_Plex_Mono({
   weight: ["400", "500", "600"],
 });
 
+const themeScript = `
+  (() => {
+    const storageKey = "site-theme-preference";
+    const root = document.documentElement;
+    const stored = window.localStorage.getItem(storageKey);
+    const preference = stored === "light" || stored === "dark" || stored === "system" ? stored : "system";
+    const resolved = preference === "system"
+      ? window.matchMedia("(prefers-color-scheme: dark)").matches ? "dark" : "light"
+      : preference;
+    root.dataset.themePreference = preference;
+    root.dataset.theme = resolved;
+  })();
+`;
+
 export const metadata: Metadata = {
-  title: "Abhinav Mishra — Portfolio",
-  description: "Software developer focused on web, backend systems, and product craftsmanship.",
+  title: "Abhinav Mishra",
+  description: "Software developer building thoughtful products, modern interfaces, and reliable systems.",
 };
 
 export default function RootLayout({
@@ -31,8 +46,13 @@ export default function RootLayout({
   children: React.ReactNode;
 }>) {
   return (
-    <html lang="en">
-      <body className={`${spaceGrotesk.variable} ${instrumentSerif.variable} ${ibmPlexMono.variable} antialiased`}>
+    <html lang="en" suppressHydrationWarning>
+      <body
+        className={`${spaceGrotesk.variable} ${instrumentSerif.variable} ${ibmPlexMono.variable} antialiased`}
+      >
+        <Script id="theme-init" strategy="beforeInteractive">
+          {themeScript}
+        </Script>
         {children}
       </body>
     </html>
