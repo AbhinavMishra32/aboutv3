@@ -158,29 +158,31 @@ export default async function HomePage() {
 
         <div className="project-list">
           {PROJECTS.map((project, index) => (
-            <article key={project.name} className="project-card">
-              <div className="project-body">
-                <div className="project-kicker-row">
-                  <span className="project-index">Case {String(index + 1).padStart(2, "0")}</span>
-                  <span className="project-stack">{project.stackLine}</span>
+            <article key={project.name} className="project-row">
+              <div className="project-number">0{index + 1}</div>
+
+              <div className="project-main">
+                <div className="project-heading">
+                  <div className="project-title-row">
+                    <h3 className="project-title">{project.name}</h3>
+                    <div className="project-meta">
+                      {project.buildTags.map((tag, tagIndex) => (
+                        <span
+                          key={tag}
+                          className={`project-badge ${tagIndex === 0 ? "project-badge-primary" : ""}`}
+                        >
+                          {tag}
+                        </span>
+                      ))}
+                    </div>
+                  </div>
+                  <div className="project-stackline">{project.stackLine}</div>
                 </div>
-                <div className="project-copy">
-                  <h3 className="project-title">{project.name}</h3>
-                  <p className="project-summary">{project.summary}</p>
-                </div>
-                <div className="project-meta">
-                  {project.buildTags.map((tag, tagIndex) => (
-                    <span
-                      key={tag}
-                      className={`project-badge ${tagIndex === 0 ? "project-badge-primary" : ""}`}
-                    >
-                      {tag}
-                    </span>
-                  ))}
-                </div>
+
+                <p className="project-summary">{project.summary}</p>
               </div>
 
-              <div className="project-links">
+              <div className="project-actions">
                 {project.live ? (
                   <a href={project.live} target="_blank" rel="noreferrer" className="project-link">
                     Live
