@@ -263,10 +263,11 @@ textarea {
 }
 
 .hero-emphasis {
-  font-family: var(--font-space), serif;
+  font-family: var(--font-accent), serif;
   font-size: 1.15em;
   font-style: italic;
-  font-weight: 500;
+  font-weight: 400;
+  letter-spacing: -0.01em;
   color: var(--text);
 }
 

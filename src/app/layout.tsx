@@ -1,12 +1,18 @@
 import type { Metadata } from "next";
 import Script from "next/script";
-import { Literata, IBM_Plex_Mono } from "next/font/google";
+import { IBM_Plex_Mono, Instrument_Sans, Instrument_Serif } from "next/font/google";
 import "./globals.css";
 
-const literata = Literata({
+const instrumentSans = Instrument_Sans({
   variable: "--font-space",
   subsets: ["latin"],
   weight: ["400", "500", "600", "700"],
+});
+
+const instrumentSerif = Instrument_Serif({
+  variable: "--font-accent",
+  subsets: ["latin"],
+  weight: ["400"],
   style: ["normal", "italic"],
 });
 
@@ -43,7 +49,7 @@ export default function RootLayout({
   return (
     <html lang="en" suppressHydrationWarning>
       <body
-        className={`${literata.variable} ${ibmPlexMono.variable} antialiased`}
+        className={`${instrumentSans.variable} ${instrumentSerif.variable} ${ibmPlexMono.variable} antialiased`}
       >
         <Script id="theme-init" strategy="beforeInteractive">
           {themeScript}
