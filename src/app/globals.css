@@ -932,7 +932,7 @@ textarea {
   position: relative;
   width: min(100%, 58rem);
   max-height: calc(100vh - 2rem);
-  overflow: auto;
+  overflow: hidden;
   border: 1px solid var(--line);
   border-radius: 1rem;
   background: var(--bg);
@@ -1004,6 +1004,33 @@ textarea {
   display: grid;
   gap: 0.85rem;
   align-content: start;
+}
+
+.project-modal-panel.is-ready {
+  overflow: auto;
+}
+
+.project-modal-section-stack,
+.project-modal-main-stack {
+  display: grid;
+  gap: 0.85rem;
+  opacity: 0;
+  transform: translateY(8px);
+  pointer-events: none;
+  transition:
+    opacity 0.18s cubic-bezier(0.22, 1, 0.36, 1),
+    transform 0.18s cubic-bezier(0.22, 1, 0.36, 1);
+}
+
+.project-modal-section-stack.is-visible,
+.project-modal-main-stack.is-visible {
+  opacity: 1;
+  transform: translateY(0);
+  pointer-events: auto;
+}
+
+.project-modal-detail-lead {
+  margin-top: 0.15rem;
 }
 
 .project-modal-visual {
