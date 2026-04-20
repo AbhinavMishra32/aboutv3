@@ -3,7 +3,7 @@
 import Image from "next/image";
 import { AnimatePresence, LayoutGroup, motion, type Transition } from "framer-motion";
 import { ArrowUpRight, ExternalLink, Github, X } from "lucide-react";
-import { useCallback, useEffect, useRef, useState } from "react";
+import { useCallback, useEffect, useState } from "react";
 import type { RepoDetail, RepoSummary } from "@/lib/github";
 import type { Project } from "@/lib/portfolio";
 
@@ -29,8 +29,6 @@ const OVERLAY_TRANSITION: Transition = {
 const SHARED_CARD_RADIUS = 18;
 const SHARED_PREVIEW_RADIUS = 14;
 const SHARED_ICON_RADIUS = 12;
-const MODAL_DETAIL_ENTER_DELAY_MS = 180;
-const MODAL_DETAIL_EXIT_DELAY_MS = 120;
 
 function ProjectTechMark({
   tech,
@@ -242,52 +240,36 @@ export function ProjectsExperience({
 }) {
   const [selectedSlug, setSelectedSlug] = useState<string | null>(null);
   const [showModalDetails, setShowModalDetails] = useState(false);
-  const openTimerRef = useRef<number | null>(null);
-  const closeTimerRef = useRef<number | null>(null);
+  const [isClosing, setIsClosing] = useState(false);
 
   const selectedProject = projects.find((project) => project.slug === selectedSlug) ?? null;
   const selectedDetail = selectedSlug ? details[selectedSlug] : undefined;
 
-  const clearModalTimers = useCallback(() => {
-    if (openTimerRef.current) {
-      window.clearTimeout(openTimerRef.current);
-      openTimerRef.current = null;
-    }
-
-    if (closeTimerRef.current) {
-      window.clearTimeout(closeTimerRef.current);
-      closeTimerRef.current = null;
-    }
-  }, []);
-
   const openProject = useCallback((slug: string) => {
-    clearModalTimers();
+    setIsClosing(false);
     setShowModalDetails(false);
     setSelectedSlug(slug);
-  }, [clearModalTimers]);
+  }, []);
 
   const closeProject = useCallback(() => {
     if (!selectedSlug) return;
 
-    clearModalTimers();
-    setShowModalDetails(false);
-
-    closeTimerRef.current = window.setTimeout(() => {
+    if (!showModalDetails) {
+      setIsClosing(false);
       setSelectedSlug(null);
-      closeTimerRef.current = null;
-    }, MODAL_DETAIL_EXIT_DELAY_MS);
-  }, [clearModalTimers, selectedSlug]);
+      return;
+    }
 
-  useEffect(() => {
-    return () => {
-      clearModalTimers();
-    };
-  }, [clearModalTimers]);
+    setIsClosing(true);
+    setShowModalDetails(false);
+  }, [selectedSlug, showModalDetails]);
 
   useEffect(() => {
     if (!selectedProject) {
       document.body.style.removeProperty("overflow");
       document.body.style.removeProperty("padding-right");
+      setShowModalDetails(false);
+      setIsClosing(false);
       return;
     }
 
@@ -304,20 +286,6 @@ export function ProjectsExperience({
       document.body.style.paddingRight = previousPaddingRight;
     };
   }, [selectedProject]);
-
-  useEffect(() => {
-    clearModalTimers();
-
-    if (!selectedProject) {
-      setShowModalDetails(false);
-      return;
-    }
-
-    openTimerRef.current = window.setTimeout(() => {
-      setShowModalDetails(true);
-      openTimerRef.current = null;
-    }, MODAL_DETAIL_ENTER_DELAY_MS);
-  }, [clearModalTimers, selectedProject]);
 
   useEffect(() => {
     if (!selectedProject) return;
@@ -436,6 +404,11 @@ export function ProjectsExperience({
                 className={`project-modal-panel ${showModalDetails ? "project-modal-panel-ready" : ""}`}
                 transition={CARD_TRANSITION}
                 style={{ borderRadius: 22, boxShadow: "0 28px 80px rgba(17, 17, 16, 0.16)" }}
+                onLayoutAnimationComplete={() => {
+                  if (selectedProject && !isClosing && !showModalDetails) {
+                    setShowModalDetails(true);
+                  }
+                }}
                 role="dialog"
                 aria-modal="true"
                 aria-label={`${selectedProject.name} project details`}
@@ -489,7 +462,15 @@ export function ProjectsExperience({
                   <ProjectHeaderBlock project={selectedProject} expanded />
                 </div>
 
-                <AnimatePresence initial={false}>
+                <AnimatePresence
+                  initial={false}
+                  onExitComplete={() => {
+                    if (isClosing) {
+                      setSelectedSlug(null);
+                      setIsClosing(false);
+                    }
+                  }}
+                >
                   {showModalDetails ? (
                     <motion.div
                       key="project-modal-details"

@@ -929,6 +929,8 @@ textarea {
 }
 
 .project-modal-panel {
+  --project-modal-surface: rgba(255, 255, 255, 0.96);
+  --project-modal-surface-strong: rgba(255, 255, 255, 0.985);
   position: relative;
   pointer-events: auto;
   width: min(100%, 54rem);
@@ -940,6 +942,11 @@ textarea {
   background: var(--bg);
   display: grid;
   gap: 0;
+}
+
+:root[data-theme="dark"] .project-modal-panel {
+  --project-modal-surface: rgba(24, 24, 23, 0.96);
+  --project-modal-surface-strong: rgba(28, 28, 27, 0.985);
 }
 
 .project-modal-panel.project-modal-panel-ready {
@@ -997,7 +1004,7 @@ textarea {
   height: 2rem;
   border: 1px solid var(--line);
   border-radius: 999px;
-  background: var(--surface-strong);
+  background: var(--project-modal-surface-strong);
   color: var(--text);
   cursor: pointer;
 }
@@ -1035,6 +1042,17 @@ textarea {
   border: 1px solid var(--line);
   border-radius: 0.9rem;
   background: var(--surface);
+}
+
+.project-modal-panel .project-detail-section,
+.project-modal-panel .project-side-card,
+.project-modal-panel .project-arc-card,
+.project-modal-panel .project-metric-card,
+.project-modal-panel .project-side-commit,
+.project-modal-panel .project-highlight-item,
+.project-modal-panel .project-action-pill,
+.project-modal-panel .project-tech-chip {
+  background: var(--project-modal-surface);
 }
 
 .project-detail-section-head {
