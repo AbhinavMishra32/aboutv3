@@ -281,7 +281,7 @@ export const WORK_ITEMS: WorkItem[] = [
     subtitle: "Next.js Frontend Developer Intern · StudyBank and AI student tools",
     period: "Apr 2025 - Sep 2025",
     detail:
-      "Built large parts of StudyBank in Next.js, including SSR-oriented auth and faster data flows across student-facing pages. I also worked on AI-powered support features, including document analysis and chat-style student help tools, while handling frontend troubleshooting and UI polish across the product.",
+      "Built the full frontend for StudyBank in Next.js, including SSR-oriented auth and faster data flows across student-facing pages. I also worked on AI-powered support features, including document analysis and chat-style student help tools, while handling frontend troubleshooting and UI polish across the product.",
   },
 ];
 
@@ -304,7 +304,7 @@ export const STORY_BEATS: StoryBeat[] = [
     label: "Shipping in a real product",
     title: "Studybank taught me how to own a feature and improve it at the same time.",
     paragraphs: [
-      "During my internship at Expert Buddy, I worked on a major feature called Studybank, where students could upload notes and other students could search, preview, and download them. I built large parts of the UI from Figma, handled frontend troubleshooting on my own, and used docs, search, and AI to understand why bugs were happening instead of just patching symptoms.",
+      "During my internship at Expert Buddy, I worked on a major feature called StudyBank, where students could upload notes and other students could search, preview, and download them. I built the full frontend from Figma, handled frontend troubleshooting on my own, and used docs, search, and AI to understand why bugs were happening instead of just patching symptoms.",
       "While building the upload flow, I realized the long metadata form created too much friction. I proposed an AI-assisted autofill option, built a proof of concept in two days, and showed the CEO and design team how it could make uploads faster while keeping manual control. Once everyone aligned on the flow, I helped shape the final interface and shipped the production version.",
     ],
     image: "/story-studybank-ai.svg",
