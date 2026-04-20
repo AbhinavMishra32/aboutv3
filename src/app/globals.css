@@ -46,7 +46,7 @@ body {
   min-height: 100vh;
   background: var(--bg);
   color: var(--text);
-  font-family: var(--font-space), sans-serif;
+  font-family: var(--font-space), serif;
   font-feature-settings: "liga" 1, "kern" 1;
   line-height: 1.6;
   transition:
@@ -263,9 +263,10 @@ textarea {
 }
 
 .hero-emphasis {
-  font-family: var(--font-display), serif;
+  font-family: var(--font-space), serif;
   font-size: 1.15em;
   font-style: italic;
+  font-weight: 500;
   color: var(--text);
 }
 

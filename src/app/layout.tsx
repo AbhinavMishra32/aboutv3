@@ -1,18 +1,12 @@
 import type { Metadata } from "next";
 import Script from "next/script";
-import { Familjen_Grotesk, Newsreader, IBM_Plex_Mono } from "next/font/google";
+import { Literata, IBM_Plex_Mono } from "next/font/google";
 import "./globals.css";
 
-const familjenGrotesk = Familjen_Grotesk({
+const literata = Literata({
   variable: "--font-space",
   subsets: ["latin"],
   weight: ["400", "500", "600", "700"],
-});
-
-const newsreader = Newsreader({
-  variable: "--font-display",
-  subsets: ["latin"],
-  weight: ["400", "500"],
   style: ["normal", "italic"],
 });
 
@@ -49,7 +43,7 @@ export default function RootLayout({
   return (
     <html lang="en" suppressHydrationWarning>
       <body
-        className={`${familjenGrotesk.variable} ${newsreader.variable} ${ibmPlexMono.variable} antialiased`}
+        className={`${literata.variable} ${ibmPlexMono.variable} antialiased`}
       >
         <Script id="theme-init" strategy="beforeInteractive">
           {themeScript}
