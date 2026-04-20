@@ -1,6 +1,6 @@
 import type { Metadata } from "next";
 import Script from "next/script";
-import { Familjen_Grotesk, Instrument_Serif, IBM_Plex_Mono } from "next/font/google";
+import { Familjen_Grotesk, Newsreader, IBM_Plex_Mono } from "next/font/google";
 import "./globals.css";
 
 const familjenGrotesk = Familjen_Grotesk({
@@ -9,10 +9,11 @@ const familjenGrotesk = Familjen_Grotesk({
   weight: ["400", "500", "600", "700"],
 });
 
-const instrumentSerif = Instrument_Serif({
+const newsreader = Newsreader({
   variable: "--font-display",
   subsets: ["latin"],
-  weight: ["400"],
+  weight: ["400", "500"],
+  style: ["normal", "italic"],
 });
 
 const ibmPlexMono = IBM_Plex_Mono({
@@ -48,7 +49,7 @@ export default function RootLayout({
   return (
     <html lang="en" suppressHydrationWarning>
       <body
-        className={`${familjenGrotesk.variable} ${instrumentSerif.variable} ${ibmPlexMono.variable} antialiased`}
+        className={`${familjenGrotesk.variable} ${newsreader.variable} ${ibmPlexMono.variable} antialiased`}
       >
         <Script id="theme-init" strategy="beforeInteractive">
           {themeScript}

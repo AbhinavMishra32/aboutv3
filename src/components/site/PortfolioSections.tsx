@@ -49,33 +49,31 @@ export function HeroSection() {
     <section className="hero">
       <div className="hero-identity">
         <h1 className="hero-name">Abhinav Mishra</h1>
-        <p className="hero-role">Software Developer</p>
+        <p className="hero-role">Software Engineer</p>
       </div>
       <div className="hero-copy">
         <p className="hero-paragraph">
-          I&apos;m a{" "}
-          <span className="hero-emphasis">
-            software engineer, product builder, and interface-focused problem solver
-          </span>{" "}
-          who cares about clarity, pacing, and how a product feels in actual use.
+          I&apos;m a <span className="hero-emphasis">software engineer</span>, product builder, and
+          interface-focused problem solver who cares about clarity, pacing, and how a product{" "}
+          <span className="hero-emphasis">actually feels in use</span>.
         </p>
         <p className="hero-paragraph">
-          I like shipping dependable products with clean UI, thoughtful systems, and enough technical depth to keep
-          the experience calm when things get messy underneath.
+          I like shipping dependable products with <span className="hero-emphasis">clean UI</span>, thoughtful
+          systems, and enough technical depth to keep the experience calm even when things get messy underneath.
         </p>
         <p className="hero-paragraph">
           Right now I&apos;m building at{" "}
           <a className="inline-link" href="https://lunacal.ai" target="_blank" rel="noreferrer">
             Lunacal.ai
           </a>
-          , while exploring AI-assisted workflows, design-sensitive tooling, and faster ways to turn rough ideas into
-          polished software.
+          , while exploring AI-assisted workflows, design-sensitive tooling, and faster ways to turn{" "}
+          <span className="hero-emphasis">rough ideas into polished software</span>.
         </p>
       </div>
       <div className="facts">
         <span>Based in Ghaziabad, India</span>
         <span>Open to product collaborations</span>
-        <span>Focused on reliability, AI UX, and frontend craft</span>
+        <span>Reliability, AI UX, and frontend craft</span>
       </div>
     </section>
   );
