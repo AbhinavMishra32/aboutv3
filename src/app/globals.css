@@ -932,12 +932,17 @@ textarea {
   pointer-events: auto;
   width: min(100%, 54rem);
   max-height: calc(100vh - 2rem);
-  overflow: auto;
+  overflow: hidden;
+  overscroll-behavior: contain;
   border: 1px solid var(--line);
   border-radius: 1rem;
   background: var(--bg);
   display: grid;
   gap: 0;
+}
+
+.project-modal-panel.project-modal-panel-ready {
+  overflow: auto;
 }
 
 .project-modal-preview {
