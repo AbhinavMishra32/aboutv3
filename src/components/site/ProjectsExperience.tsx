@@ -359,7 +359,7 @@ export function ProjectsExperience({
                     }
               }
               whileTap={isSelected ? undefined : { scale: 0.995 }}
-              className="project-card project-card-button project-card-rich"
+              className={`project-card project-card-button project-card-rich ${isSelected ? "project-card-selected" : ""}`}
               style={{ borderRadius: SHARED_CARD_RADIUS, boxShadow: "0 10px 28px rgba(17, 17, 16, 0.04)" }}
               aria-haspopup="dialog"
               aria-expanded={isSelected}
@@ -417,7 +417,7 @@ export function ProjectsExperience({
         ? createPortal(
             <AnimatePresence initial={false}>
               {selectedProject ? (
-                <div className="project-modal-shell">
+                <motion.div className="project-modal-shell" layoutRoot>
                   <motion.button
                     type="button"
                     className="project-modal-backdrop"
@@ -676,7 +676,7 @@ export function ProjectsExperience({
                       </div>
                     </div>
                   </motion.div>
-                </div>
+                </motion.div>
               ) : null}
             </AnimatePresence>,
             document.body

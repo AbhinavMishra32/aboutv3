@@ -617,6 +617,11 @@ textarea {
   will-change: transform;
 }
 
+.project-card-selected {
+  opacity: 0.01;
+  pointer-events: none;
+}
+
 .project-card-button:focus-visible {
   outline: 2px solid var(--accent);
   outline-offset: 3px;
