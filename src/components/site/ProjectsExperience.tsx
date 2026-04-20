@@ -3,7 +3,8 @@
 import Image from "next/image";
 import { AnimatePresence, LayoutGroup, motion, type Transition } from "framer-motion";
 import { ArrowUpRight, ExternalLink, Github, X } from "lucide-react";
-import { useCallback, useEffect, useState } from "react";
+import { useEffect, useState } from "react";
+import { createPortal } from "react-dom";
 import type { RepoDetail, RepoSummary } from "@/lib/github";
 import type { Project } from "@/lib/portfolio";
 
@@ -26,9 +27,13 @@ const OVERLAY_TRANSITION: Transition = {
   ease: [0.22, 1, 0.36, 1] as const,
 };
 
+const PANEL_TRANSITION: Transition = {
+  duration: 0.24,
+  ease: [0.22, 1, 0.36, 1] as const,
+};
+
 const SHARED_CARD_RADIUS = 18;
 const SHARED_PREVIEW_RADIUS = 14;
-const SHARED_ICON_RADIUS = 12;
 
 function ProjectTechMark({
   tech,
@@ -238,38 +243,20 @@ export function ProjectsExperience({
   summaries: Partial<Record<string, RepoSummary>>;
   details: Partial<Record<string, RepoDetail>>;
 }) {
+  const [isMounted, setIsMounted] = useState(false);
   const [selectedSlug, setSelectedSlug] = useState<string | null>(null);
-  const [showModalDetails, setShowModalDetails] = useState(false);
-  const [isClosing, setIsClosing] = useState(false);
 
   const selectedProject = projects.find((project) => project.slug === selectedSlug) ?? null;
   const selectedDetail = selectedSlug ? details[selectedSlug] : undefined;
 
-  const openProject = useCallback((slug: string) => {
-    setIsClosing(false);
-    setShowModalDetails(false);
-    setSelectedSlug(slug);
+  useEffect(() => {
+    setIsMounted(true);
   }, []);
-
-  const closeProject = useCallback(() => {
-    if (!selectedSlug) return;
-
-    if (!showModalDetails) {
-      setIsClosing(false);
-      setSelectedSlug(null);
-      return;
-    }
-
-    setIsClosing(true);
-    setShowModalDetails(false);
-  }, [selectedSlug, showModalDetails]);
 
   useEffect(() => {
     if (!selectedProject) {
       document.body.style.removeProperty("overflow");
       document.body.style.removeProperty("padding-right");
-      setShowModalDetails(false);
-      setIsClosing(false);
       return;
     }
 
@@ -292,7 +279,7 @@ export function ProjectsExperience({
 
     const onKeyDown = (event: KeyboardEvent) => {
       if (event.key === "Escape") {
-        closeProject();
+        setSelectedSlug(null);
       }
     };
 
@@ -301,7 +288,7 @@ export function ProjectsExperience({
     return () => {
       document.removeEventListener("keydown", onKeyDown);
     };
-  }, [closeProject, selectedProject]);
+  }, [selectedProject]);
 
   return (
     <LayoutGroup id="project-experience">
@@ -331,7 +318,7 @@ export function ProjectsExperience({
               style={{ borderRadius: SHARED_CARD_RADIUS, boxShadow: "0 10px 28px rgba(17, 17, 16, 0.04)" }}
               aria-haspopup="dialog"
               aria-expanded={isSelected}
-              onClick={() => openProject(project.slug)}
+              onClick={() => setSelectedSlug(project.slug)}
             >
               <motion.div
                 layoutId={`project-preview-${project.slug}`}
@@ -343,11 +330,8 @@ export function ProjectsExperience({
               </motion.div>
 
               <div className="project-card-top">
-                <motion.div
-                  layoutId={`project-icon-${project.slug}`}
+                <div
                   className={`project-icon ${project.iconLabel ? `project-icon-${project.iconTone ?? "slate"}` : ""}`}
-                  transition={CARD_TRANSITION}
-                  style={{ borderRadius: SHARED_ICON_RADIUS }}
                   aria-hidden="true"
                 >
                   {project.iconUrl ? (
@@ -355,7 +339,7 @@ export function ProjectsExperience({
                   ) : (
                     <span className="project-icon-letter">{project.iconLabel}</span>
                   )}
-                </motion.div>
+                </div>
 
                 <span className="project-card-open">Open project</span>
               </div>
@@ -384,315 +368,267 @@ export function ProjectsExperience({
         })}
       </div>
 
-      <AnimatePresence initial={false}>
-        {selectedProject ? (
-          <>
-            <motion.button
-              type="button"
-              className="project-modal-backdrop"
-              aria-label="Close project details"
-              initial={{ opacity: 0 }}
-              animate={{ opacity: 1 }}
-              exit={{ opacity: 0 }}
-              transition={OVERLAY_TRANSITION}
-              onClick={closeProject}
-            />
-
-            <motion.div className="project-modal-shell" layoutRoot>
-              <motion.div
-                layoutId={`project-card-${selectedProject.slug}`}
-                className={`project-modal-panel ${showModalDetails ? "project-modal-panel-ready" : ""}`}
-                transition={CARD_TRANSITION}
-                style={{ borderRadius: 22, boxShadow: "0 28px 80px rgba(17, 17, 16, 0.16)" }}
-                onLayoutAnimationComplete={() => {
-                  if (selectedProject && !isClosing && !showModalDetails) {
-                    setShowModalDetails(true);
-                  }
-                }}
-                role="dialog"
-                aria-modal="true"
-                aria-label={`${selectedProject.name} project details`}
-              >
-                <motion.div
-                  layoutId={`project-preview-${selectedProject.slug}`}
-                  className="project-preview project-modal-preview"
-                  transition={CARD_TRANSITION}
-                  style={{ borderRadius: 18 }}
-                >
-                  <ThemedProjectPreview
-                    project={selectedProject}
-                    priority
-                    sizes="(max-width: 900px) 100vw, 50vw"
+      {isMounted
+        ? createPortal(
+            <AnimatePresence initial={false}>
+              {selectedProject ? (
+                <div className="project-modal-shell">
+                  <motion.button
+                    type="button"
+                    className="project-modal-backdrop"
+                    aria-label="Close project details"
+                    initial={{ opacity: 0 }}
+                    animate={{ opacity: 1 }}
+                    exit={{ opacity: 0 }}
+                    transition={OVERLAY_TRANSITION}
+                    onClick={() => setSelectedSlug(null)}
                   />
-                </motion.div>
 
-                <div className="project-modal-header">
-                  <div className="project-modal-topline">
-                    <motion.div
-                      layoutId={`project-icon-${selectedProject.slug}`}
-                      className={`project-icon ${selectedProject.iconLabel ? `project-icon-${selectedProject.iconTone ?? "slate"}` : ""}`}
-                      transition={CARD_TRANSITION}
-                      style={{ borderRadius: SHARED_ICON_RADIUS }}
-                      aria-hidden="true"
-                    >
-                      {selectedProject.iconUrl ? (
-                        <span
-                          className="project-icon-image"
-                          style={{ backgroundImage: `url("${selectedProject.iconUrl}")` }}
-                        />
-                      ) : (
-                        <span className="project-icon-letter">{selectedProject.iconLabel}</span>
-                      )}
-                    </motion.div>
+                  <motion.div
+                    className="project-modal-panel"
+                    initial={{ opacity: 0, y: 14, scale: 0.985 }}
+                    animate={{ opacity: 1, y: 0, scale: 1 }}
+                    exit={{ opacity: 0, y: 10, scale: 0.99 }}
+                    transition={PANEL_TRANSITION}
+                    role="dialog"
+                    aria-modal="true"
+                    aria-label={`${selectedProject.name} project details`}
+                  >
+                    <div className="project-modal-header">
+                      <div className="project-modal-heading">
+                        <motion.div layoutId={`project-eyebrow-${selectedProject.slug}`} className="project-card-eyebrow">
+                          {selectedProject.focus}
+                        </motion.div>
 
-                    <motion.button
-                      type="button"
-                      className="project-modal-close"
-                      aria-label="Close project details"
-                      initial={{ opacity: 0, scale: 0.94 }}
-                      animate={{ opacity: 1, scale: 1 }}
-                      exit={{ opacity: 0, scale: 0.94 }}
-                      transition={OVERLAY_TRANSITION}
-                      onClick={closeProject}
-                    >
-                      <X size={18} />
-                    </motion.button>
-                  </div>
+                        <div className="project-card-heading">
+                          <motion.h3 layoutId={`project-title-${selectedProject.slug}`} className="project-modal-title">
+                            {selectedProject.name}
+                          </motion.h3>
+                          {selectedProject.live ? <span className="project-live-dot" aria-hidden="true" /> : null}
+                        </div>
 
-                  <ProjectHeaderBlock project={selectedProject} expanded />
-                </div>
+                        <p className="project-modal-copy">{selectedProject.detail}</p>
+                      </div>
 
-                <AnimatePresence
-                  initial={false}
-                  onExitComplete={() => {
-                    if (isClosing) {
-                      setSelectedSlug(null);
-                      setIsClosing(false);
-                    }
-                  }}
-                >
-                  {showModalDetails ? (
-                    <motion.div
-                      key="project-modal-details"
-                      className="project-modal-details"
-                      initial={{ opacity: 0, y: 8, filter: "blur(8px)" }}
-                      animate={{ opacity: 1, y: 0, filter: "blur(0px)" }}
-                      exit={{ opacity: 0, y: 6, filter: "blur(6px)" }}
-                      transition={{ duration: 0.18, ease: [0.22, 1, 0.36, 1] }}
-                    >
-                      <div className="project-modal-content">
-                        <aside className="project-modal-aside">
+                      <button
+                        type="button"
+                        className="project-modal-close"
+                        aria-label="Close project details"
+                        onClick={() => setSelectedSlug(null)}
+                      >
+                        <X size={18} />
+                      </button>
+                    </div>
+
+                    <div className="project-modal-content">
+                      <aside className="project-modal-aside">
+                        <motion.div
+                          layoutId={`project-preview-${selectedProject.slug}`}
+                          className="project-modal-visual"
+                          transition={CARD_TRANSITION}
+                          style={{ borderRadius: SHARED_PREVIEW_RADIUS }}
+                        >
+                          <ThemedProjectPreview
+                            project={selectedProject}
+                            priority
+                            sizes="(max-width: 900px) 100vw, 32vw"
+                          />
+                        </motion.div>
+
+                        <section className="project-side-card">
+                          <div className="project-detail-section-head">
+                            <div>
+                              <p className="project-detail-kicker">At a glance</p>
+                              <h4 className="project-detail-title">Stack, tags, and links.</h4>
+                            </div>
+                          </div>
+
+                          <div className="project-meta">
+                            {selectedProject.buildTags.map((tag, tagIndex) => (
+                              <span key={tag} className={`project-badge ${tagIndex === 0 ? "project-badge-primary" : ""}`}>
+                                {tag}
+                              </span>
+                            ))}
+                          </div>
+
+                          <div className="project-tech-row" aria-label={`${selectedProject.name} technologies`}>
+                            {selectedProject.techLogos.map((tech) => (
+                              <span key={tech.name} className="project-tech-chip" title={tech.name} aria-label={tech.name}>
+                                <ProjectTechMark tech={tech} />
+                              </span>
+                            ))}
+                          </div>
+
+                          <div className="project-highlight-list">
+                            {selectedProject.featureHighlights.map((highlight) => (
+                              <div key={highlight} className="project-highlight-item">
+                                {highlight}
+                              </div>
+                            ))}
+                          </div>
+
+                          <div className="project-action-row">
+                            {selectedProject.live ? (
+                              <a href={selectedProject.live} target="_blank" rel="noreferrer" className="project-action-pill">
+                                <ExternalLink size={14} />
+                                <span>Live</span>
+                              </a>
+                            ) : null}
+                            {selectedProject.source ? (
+                              <a href={selectedProject.source} target="_blank" rel="noreferrer" className="project-action-pill">
+                                <Github size={14} />
+                                <span>Repo</span>
+                              </a>
+                            ) : null}
+                          </div>
+                        </section>
+
+                        {selectedDetail ? (
                           <section className="project-side-card">
                             <div className="project-detail-section-head">
                               <div>
-                                <p className="project-detail-kicker">At a glance</p>
-                                <h4 className="project-detail-title">Stack, tags, and links.</h4>
+                                <p className="project-detail-kicker">Telemetry</p>
+                                <h4 className="project-detail-title">Build stats.</h4>
                               </div>
                             </div>
 
-                            <div className="project-meta">
-                              {selectedProject.buildTags.map((tag, tagIndex) => (
-                                <span key={tag} className={`project-badge ${tagIndex === 0 ? "project-badge-primary" : ""}`}>
-                                  {tag}
-                                </span>
-                              ))}
-                            </div>
+                            <RepoMetrics detail={selectedDetail} />
 
-                            <div className="project-tech-row" aria-label={`${selectedProject.name} technologies`}>
-                              {selectedProject.techLogos.map((tech) => (
-                                <span key={tech.name} className="project-tech-chip" title={tech.name} aria-label={tech.name}>
-                                  <ProjectTechMark tech={tech} />
-                                </span>
-                              ))}
-                            </div>
-
-                            <div className="project-highlight-list">
-                              {selectedProject.featureHighlights.map((highlight) => (
-                                <div key={highlight} className="project-highlight-item">
-                                  {highlight}
-                                </div>
-                              ))}
-                            </div>
-
-                            <div className="project-action-row">
-                              {selectedProject.live ? (
-                                <a href={selectedProject.live} target="_blank" rel="noreferrer" className="project-action-pill">
-                                  <ExternalLink size={14} />
-                                  <span>Live</span>
-                                </a>
-                              ) : null}
-                              {selectedProject.source ? (
-                                <a
-                                  href={selectedProject.source}
-                                  target="_blank"
-                                  rel="noreferrer"
-                                  className="project-action-pill"
-                                >
-                                  <Github size={14} />
-                                  <span>Repo</span>
-                                </a>
-                              ) : null}
+                            <div className="project-side-meta">
+                              <div className="project-side-meta-row">
+                                <span>Span</span>
+                                <strong>{formatNumber(selectedDetail.commitSpanDays)} days</strong>
+                              </div>
+                              <div className="project-side-meta-row">
+                                <span>Branch</span>
+                                <strong>{selectedDetail.defaultBranch}</strong>
+                              </div>
                             </div>
                           </section>
+                        ) : null}
 
-                          {selectedDetail ? (
-                            <section className="project-side-card">
-                              <div className="project-detail-section-head">
-                                <div>
-                                  <p className="project-detail-kicker">Telemetry</p>
-                                  <h4 className="project-detail-title">Build stats.</h4>
-                                </div>
+                        {selectedDetail ? (
+                          <section className="project-side-card">
+                            <div className="project-detail-section-head">
+                              <div>
+                                <p className="project-detail-kicker">Recent commits</p>
+                                <h4 className="project-detail-title">Latest snapshots.</h4>
                               </div>
+                            </div>
 
-                              <RepoMetrics detail={selectedDetail} />
+                            <div className="project-side-commits">
+                              {selectedDetail.recentCommits.map((commit) => (
+                                <a
+                                  key={commit.sha}
+                                  href={commit.url}
+                                  target="_blank"
+                                  rel="noreferrer"
+                                  className="project-side-commit"
+                                >
+                                  <div className="project-side-commit-message">{commit.message}</div>
+                                  <div className="project-side-commit-meta">
+                                    <span>{commit.sha.slice(0, 7)}</span>
+                                    <span>{formatMonthYear(commit.date)}</span>
+                                    <ArrowUpRight size={12} />
+                                  </div>
+                                </a>
+                              ))}
+                            </div>
+                          </section>
+                        ) : null}
+                      </aside>
 
-                              <div className="project-side-meta">
-                                <div className="project-side-meta-row">
-                                  <span>Span</span>
-                                  <strong>{formatNumber(selectedDetail.commitSpanDays)} days</strong>
-                                </div>
-                                <div className="project-side-meta-row">
-                                  <span>Branch</span>
-                                  <strong>{selectedDetail.defaultBranch}</strong>
-                                </div>
+                      <div className="project-modal-main">
+                        <section className="project-detail-section">
+                          <div className="project-detail-section-head">
+                            <div>
+                              <p className="project-detail-kicker">Build arc</p>
+                              <h4 className="project-detail-title">How the project took shape.</h4>
+                            </div>
+                          </div>
+
+                          <div className="project-arc-list">
+                            {selectedProject.buildArc.map((step) => (
+                              <article key={step.label} className="project-arc-card">
+                                <div className="project-arc-label">{step.label}</div>
+                                <h5 className="project-arc-title">{step.title}</h5>
+                                <p className="project-arc-copy">{step.detail}</p>
+                              </article>
+                            ))}
+                          </div>
+                        </section>
+
+                        {selectedProject.repo ? (
+                          <section className="project-detail-section">
+                            <div className="project-detail-section-head">
+                              <div>
+                                <p className="project-detail-kicker">Commit calendar</p>
+                                <h4 className="project-detail-title">Activity at a glance.</h4>
                               </div>
-                            </section>
-                          ) : null}
+                            </div>
 
-                          {selectedDetail ? (
-                            <section className="project-side-card">
-                              <div className="project-detail-section-head">
-                                <div>
-                                  <p className="project-detail-kicker">Recent commits</p>
-                                  <h4 className="project-detail-title">Latest snapshots.</h4>
-                                </div>
+                            {selectedDetail ? (
+                              <>
+                                <p className="project-detail-copy">
+                                  Last 18 weeks of recorded activity ending {formatDate(selectedDetail.pushedAt)}.
+                                </p>
+                                <CommitCalendar calendar={selectedDetail.calendar} />
+                              </>
+                            ) : (
+                              <p className="project-detail-copy">GitHub activity was not included in this build.</p>
+                            )}
+                          </section>
+                        ) : (
+                          <section className="project-detail-section">
+                            <div className="project-detail-section-head">
+                              <div>
+                                <p className="project-detail-kicker">Repo activity</p>
+                                <h4 className="project-detail-title">Public telemetry is not linked for this one.</h4>
                               </div>
+                            </div>
+                            <p className="project-detail-copy">{selectedProject.repoNote}</p>
+                          </section>
+                        )}
 
-                              <div className="project-side-commits">
-                                {selectedDetail.recentCommits.map((commit) => (
+                        {selectedProject.repo ? (
+                          <section className="project-detail-section">
+                            <div className="project-detail-section-head">
+                              <div>
+                                <p className="project-detail-kicker">Commit log</p>
+                                <h4 className="project-detail-title">Main branch history.</h4>
+                              </div>
+                            </div>
+
+                            {selectedDetail ? (
+                              <div className="project-commit-log">
+                                {selectedDetail.allCommits.map((commit) => (
                                   <a
                                     key={commit.sha}
                                     href={commit.url}
                                     target="_blank"
                                     rel="noreferrer"
-                                    className="project-side-commit"
+                                    className="project-commit-row"
                                   >
-                                    <div className="project-side-commit-message">{commit.message}</div>
-                                    <div className="project-side-commit-meta">
-                                      <span>{commit.sha.slice(0, 7)}</span>
-                                      <span>{formatMonthYear(commit.date)}</span>
-                                      <ArrowUpRight size={12} />
-                                    </div>
+                                    <div className="project-commit-sha">{commit.sha.slice(0, 7)}</div>
+                                    <div className="project-commit-message">{commit.message}</div>
+                                    <div className="project-commit-date">{formatDate(commit.date)}</div>
                                   </a>
                                 ))}
                               </div>
-                            </section>
-                          ) : null}
-                        </aside>
-
-                        <div className="project-modal-main">
-                          <section className="project-detail-section">
-                            <div className="project-detail-section-head">
-                              <div>
-                                <p className="project-detail-kicker">Overview</p>
-                                <h4 className="project-detail-title">What this build is trying to do.</h4>
-                              </div>
-                            </div>
-
-                            <p className="project-detail-copy">{selectedProject.detail}</p>
+                            ) : (
+                              <p className="project-detail-copy">Commit history was not included in this build.</p>
+                            )}
                           </section>
-
-                          <section className="project-detail-section">
-                            <div className="project-detail-section-head">
-                              <div>
-                                <p className="project-detail-kicker">Build arc</p>
-                                <h4 className="project-detail-title">How the project took shape.</h4>
-                              </div>
-                            </div>
-
-                            <div className="project-arc-list">
-                              {selectedProject.buildArc.map((step) => (
-                                <article key={step.label} className="project-arc-card">
-                                  <div className="project-arc-label">{step.label}</div>
-                                  <h5 className="project-arc-title">{step.title}</h5>
-                                  <p className="project-arc-copy">{step.detail}</p>
-                                </article>
-                              ))}
-                            </div>
-                          </section>
-
-                          {selectedProject.repo ? (
-                            <section className="project-detail-section">
-                              <div className="project-detail-section-head">
-                                <div>
-                                  <p className="project-detail-kicker">Commit calendar</p>
-                                  <h4 className="project-detail-title">Activity at a glance.</h4>
-                                </div>
-                              </div>
-
-                              {selectedDetail ? (
-                                <>
-                                  <p className="project-detail-copy">
-                                    Last 18 weeks of recorded activity ending {formatDate(selectedDetail.pushedAt)}.
-                                  </p>
-                                  <CommitCalendar calendar={selectedDetail.calendar} />
-                                </>
-                              ) : (
-                                <p className="project-detail-copy">GitHub activity was not included in this build.</p>
-                              )}
-                            </section>
-                          ) : (
-                            <section className="project-detail-section">
-                              <div className="project-detail-section-head">
-                                <div>
-                                  <p className="project-detail-kicker">Repo activity</p>
-                                  <h4 className="project-detail-title">Public telemetry is not linked for this one.</h4>
-                                </div>
-                              </div>
-                              <p className="project-detail-copy">{selectedProject.repoNote}</p>
-                            </section>
-                          )}
-
-                          {selectedProject.repo ? (
-                            <section className="project-detail-section">
-                              <div className="project-detail-section-head">
-                                <div>
-                                  <p className="project-detail-kicker">Commit log</p>
-                                  <h4 className="project-detail-title">Main branch history.</h4>
-                                </div>
-                              </div>
-
-                              {selectedDetail ? (
-                                <div className="project-commit-log">
-                                  {selectedDetail.allCommits.map((commit) => (
-                                    <a
-                                      key={commit.sha}
-                                      href={commit.url}
-                                      target="_blank"
-                                      rel="noreferrer"
-                                      className="project-commit-row"
-                                    >
-                                      <div className="project-commit-sha">{commit.sha.slice(0, 7)}</div>
-                                      <div className="project-commit-message">{commit.message}</div>
-                                      <div className="project-commit-date">{formatDate(commit.date)}</div>
-                                    </a>
-                                  ))}
-                                </div>
-                              ) : (
-                                <p className="project-detail-copy">Commit history was not included in this build.</p>
-                              )}
-                            </section>
-                          ) : null}
-                        </div>
+                        ) : null}
                       </div>
-                    </motion.div>
-                  ) : null}
-                </AnimatePresence>
-              </motion.div>
-            </motion.div>
-          </>
-        ) : null}
-      </AnimatePresence>
+                    </div>
+                  </motion.div>
+                </div>
+              ) : null}
+            </AnimatePresence>,
+            document.body
+          )
+        : null}
     </LayoutGroup>
   );
 }
