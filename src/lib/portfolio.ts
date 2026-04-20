@@ -264,24 +264,24 @@ export const PROJECTS: Project[] = [
 export const WORK_ITEMS: WorkItem[] = [
   {
     title: "Lunacal.ai",
-    subtitle: "Product systems and software engineering",
-    period: "Current",
+    subtitle: "Software Developer Intern · product infrastructure and rollout systems",
+    period: "Sep 2025 - Present",
     detail:
-      "Focused on scheduling and communication infrastructure with an emphasis on reliability, rollout safety, and product polish.",
+      "Working across the core scheduling stack on release safety, communication infrastructure, and operational tooling. A lot of my work has gone into rollout controls, testing and CI foundations, SMS workflows, AI meeting orchestration, and automation around custom domain provisioning.",
+  },
+  {
+    title: "Ludotronics",
+    subtitle: "Software Developer · PayEvenly",
+    period: "Jun 2025 - Sep 2025",
+    detail:
+      "Built PayEvenly, a Splitwise-style React Native app for India focused on faster group settlements. The app combined UPI payments, AI voice input, and OCR receipt parsing, with a FastAPI + SQLite backend and Expo-based mobile delivery.",
   },
   {
     title: "Expert Buddy",
-    subtitle: "Frontend systems and Studybank",
-    period: "2025",
+    subtitle: "Next.js Frontend Developer Intern · StudyBank and AI student tools",
+    period: "Apr 2025 - Sep 2025",
     detail:
-      "Built large parts of the Studybank UI from product designs, troubleshot frontend issues independently, and pushed the upload flow toward a faster AI-assisted experience.",
-  },
-  {
-    title: "Mentor Map",
-    subtitle: "Smart India Hackathon winner",
-    period: "2024",
-    detail:
-      "Handled the interface for Mentor Map and helped take the product from idea to a working experience under hackathon pressure.",
+      "Built large parts of StudyBank in Next.js, including SSR-oriented auth and faster data flows across student-facing pages. I also worked on AI-powered support features, including document analysis and chat-style student help tools, while handling frontend troubleshooting and UI polish across the product.",
   },
 ];
 
