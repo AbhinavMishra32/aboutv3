@@ -1,7 +1,6 @@
 import Image from "next/image";
 import Link from "next/link";
 import { ArrowRight } from "lucide-react";
-import { BlogPostMeta } from "@/lib/blog";
 import { getRepoDetail } from "@/lib/github";
 import { PROJECTS, STORY_BEATS, WORK_ITEMS } from "@/lib/portfolio";
 import { ProjectsExperience } from "@/components/site/ProjectsExperience";
@@ -12,7 +11,7 @@ const BROWSE_ITEMS = [
     label: "Story",
     title: "How I learned to build with high agency.",
     summary:
-      "The solo builds, internship work, and debugging moments that shaped the way I approach frontend engineering.",
+      "The solo builds, internship work, and debugging moments that shaped the way I approach full-stack engineering.",
     image: "/story-notes-motion.svg",
     imageAlt: "Illustration of note cards expanding from a grid.",
   },
@@ -21,7 +20,7 @@ const BROWSE_ITEMS = [
     label: "Work",
     title: "Recent product engineering across real teams.",
     summary:
-      "A clearer look at Lunacal, Studybank, and the way I handle frontend systems, rollout safety, and polish.",
+      "A clearer look at Lunacal, Studybank, and the way I handle backend-heavy systems, rollout safety, and polish.",
     image: "/story-studybank-ai.svg",
     imageAlt: "Illustration of a product upload flow with AI assistance.",
   },
@@ -37,8 +36,8 @@ const BROWSE_ITEMS = [
   {
     href: "/blog",
     label: "Blog",
-    title: "Notes on clarity, reliability, and frontend craft.",
-    summary: "Writing about the engineering choices that make software feel calmer and easier to trust.",
+    title: "A backend and full-stack blog is dropping soon.",
+    summary: "Longer notes on systems, infrastructure, AI tooling, and the product choices that make software trustworthy.",
     image: "/project-mentormap.svg",
     imageAlt: "Illustration of Mentor Map with roadmap and collaboration panels.",
   },
@@ -53,13 +52,13 @@ export function HeroSection() {
       </div>
       <div className="hero-copy">
         <p className="hero-paragraph">
-          I&apos;m a <span className="hero-emphasis">software engineer</span>, product builder, and
-          interface-focused problem solver who cares about clarity, pacing, and how a product{" "}
-          <span className="hero-emphasis">actually feels in use</span>.
+          I&apos;m a <span className="hero-emphasis">full-stack software engineer</span> with a backend-systems
+          bias: APIs, databases, automation, integrations, release safety, and the interface work needed to make all
+          of it feel usable.
         </p>
         <p className="hero-paragraph">
-          I like shipping dependable products with <span className="hero-emphasis">clean UI</span>, thoughtful
-          systems, and enough technical depth to keep the experience calm even when things get messy underneath.
+          I like shipping dependable products where the <span className="hero-emphasis">backend holds up</span>, the
+          data flows make sense, and the UI stays calm because the underlying system has been thought through.
         </p>
         <p className="hero-paragraph">
           Right now I&apos;m building at{" "}
@@ -72,8 +71,8 @@ export function HeroSection() {
       </div>
       <div className="facts">
         <span>Based in Ghaziabad, India</span>
-        <span>Open to product collaborations</span>
-        <span>Reliability, AI UX, and frontend craft</span>
+        <span>Full-stack + backend systems</span>
+        <span>Reliability, AI UX, and infra-minded product work</span>
       </div>
     </section>
   );
@@ -175,7 +174,7 @@ export function WorkSection({ page = false }: { page?: boolean }) {
             See full work
           </Link>
         ) : (
-          <p className="section-note">Recent product engineering, frontend systems, and UI ownership.</p>
+          <p className="section-note">Recent product engineering, backend systems, rollout safety, and product ownership.</p>
         )}
       </div>
 
@@ -231,31 +230,28 @@ export async function ProjectsSection({ page = false }: { page?: boolean }) {
   );
 }
 
-export function WritingPreviewSection({ posts }: { posts: BlogPostMeta[] }) {
-  const latestPosts = posts.slice(0, 3);
-
+export function WritingPreviewSection() {
   return (
     <section className="section-block">
       <div className="section-head">
-        <h2 className="section-title">Blog posts</h2>
+        <h2 className="section-title">Writing</h2>
         <Link href="/blog" className="section-action">
-          See all posts
+          Blog soon
         </Link>
       </div>
 
-      <div className="article-list">
-        {latestPosts.map((post) => (
-          <Link key={post.slug} href={`/blog/${post.slug}`} className="article-link">
-            <div className="article-link-copy">
-              <div className="article-link-title">{post.title}</div>
-              <div className="article-link-summary">{post.summary}</div>
-            </div>
-            <div className="article-link-arrow" aria-hidden="true">
-              <ArrowRight size={16} strokeWidth={1.8} />
-            </div>
-          </Link>
-        ))}
-      </div>
+      <Link href="/blog" className="writing-soon-link">
+        <div className="article-link-copy">
+          <div className="article-link-title">A proper engineering blog is dropping soon.</div>
+          <div className="article-link-summary">
+            I&apos;m lining up notes on backend systems, full-stack product work, AI tooling, and the parts of shipping
+            software that usually happen below the polished screen.
+          </div>
+        </div>
+        <div className="article-link-arrow" aria-hidden="true">
+          <ArrowRight size={16} strokeWidth={1.8} />
+        </div>
+      </Link>
     </section>
   );
 }

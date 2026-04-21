@@ -35,9 +35,9 @@ export default function Hero() {
 
           {/* Subtext */}
           <p className="mt-5 text-base sm:text-lg text-neutral-300/90">
-            A <span className="font-semibold">full‑stack developer</span> with a product focus and strong foundations in
-            <span className="font-semibold"> design</span>. I love crafting seamless user experiences and building
-            performant, scalable AI‑powered tools across web and mobile.
+            A <span className="font-semibold">full-stack developer</span> with a product focus and strong backend
+            foundations. I love building reliable systems, clean data flows, and scalable AI-powered tools across web
+            and mobile.
           </p>
 
           {/* CTAs */}
@@ -63,5 +63,4 @@ export default function Hero() {
     </section>
   );
 }
-
 

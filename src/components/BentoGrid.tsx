@@ -184,7 +184,7 @@ export default function BentoGrid() {
       preview: (
         <ul className="mt-3 text-sm space-y-2">
           <li className="flex items-start gap-2"><span className="mt-0.5 size-1.5 rounded-full bg-violet-400" /> LUDOTRONICS · Software Developer · Jun 2025 – Present</li>
-          <li className="flex items-start gap-2"><span className="mt-0.5 size-1.5 rounded-full bg-violet-400" /> Expert Buddy · Next.js Frontend Intern · Apr 2025 – Present</li>
+          <li className="flex items-start gap-2"><span className="mt-0.5 size-1.5 rounded-full bg-violet-400" /> Expert Buddy · Software Developer Intern · Apr 2025 - Present</li>
         </ul>
       ),
       detail: (
@@ -198,7 +198,7 @@ export default function BentoGrid() {
             </ul>
           </section>
           <section>
-            <h4 className="font-medium">Expert Buddy — Next.js Frontend Developer Intern (Apr 2025 – Present)</h4>
+            <h4 className="font-medium">Expert Buddy - Software Developer Intern (Apr 2025 - Present)</h4>
             <ul className="list-disc pl-5 mt-2 space-y-1 text-sm">
               <li>Shipped StudyBank with SSR and custom caching for auth, wallet, and notifications.</li>
               <li>Built chat and realtime notifications via TalkJS + Gupshup WhatsApp.</li>
@@ -307,7 +307,7 @@ export default function BentoGrid() {
       className: "sm:col-span-2 md:col-span-3 lg:col-span-3 md:row-span-3",
       preview: (
         <div className="mt-4 grid grid-cols-2 gap-2 text-sm">
-          {["App Design", "No Code development", "Frontend", "AI Prototyping"].map((s) => (
+          {["Backend Systems", "APIs", "Full-Stack Apps", "AI Prototyping"].map((s) => (
             <div key={s} className="rounded-xl bg-white/5 px-3 py-2">{s}</div>
           ))}
         </div>
@@ -401,4 +401,3 @@ export default function BentoGrid() {
     </LayoutGroup>
   );
 }
-

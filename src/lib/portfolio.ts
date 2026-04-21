@@ -11,7 +11,7 @@ export type Project = {
       }
     | {
         name: string;
-        icon: "bootstrap" | "pow";
+        icon: "ai" | "bootstrap" | "pow";
       }
   >;
   buildTags: string[];
@@ -67,7 +67,7 @@ export const PROJECTS: Project[] = [
     techLogos: [
       { name: "Next.js", src: "https://cdn.simpleicons.org/nextdotjs/141413/e9e6dc?viewbox=auto" },
       { name: "TypeScript", src: "https://cdn.simpleicons.org/typescript?viewbox=auto" },
-      { name: "OpenAI", src: "https://cdn.simpleicons.org/openai/141413/e9e6dc?viewbox=auto" },
+      { name: "OpenAI", icon: "ai" },
       { name: "React", src: "https://cdn.simpleicons.org/react?viewbox=auto" },
     ],
     buildTags: ["Hand-built core", "AI-assisted UI polish"],
@@ -131,14 +131,14 @@ export const PROJECTS: Project[] = [
     featureHighlights: [
       "Friendly landing page that frames counselling, AI roadmap, and interview support",
       "Student dashboard with lesson progress, skill progress, and course tracking",
-      "UI ownership across the product during the Smart India Hackathon sprint",
+      "Product ownership across the app during the Smart India Hackathon sprint",
     ],
     buildArc: [
       {
         label: "Landing",
         title: "Sell the idea clearly before the user clicks deeper.",
         detail:
-          "The first front-end job was making the product understandable fast: career guidance, AI roadmap generation, and interview prep all needed to read clearly from the homepage.",
+          "The first product job was making the system understandable fast: career guidance, AI roadmap generation, and interview prep all needed to read clearly from the homepage.",
       },
       {
         label: "Dashboard",
@@ -278,10 +278,10 @@ export const WORK_ITEMS: WorkItem[] = [
   },
   {
     title: "Expert Buddy",
-    subtitle: "Next.js Frontend Developer Intern · StudyBank and AI student tools",
+    subtitle: "Software Developer Intern · StudyBank and AI student tools",
     period: "Apr 2025 - Sep 2025",
     detail:
-      "Built the full frontend for StudyBank in Next.js, including SSR-oriented auth and faster data flows across student-facing pages. I also worked on AI-powered support features, including document analysis and chat-style student help tools, while handling frontend troubleshooting and UI polish across the product.",
+      "Built StudyBank in Next.js across auth-aware pages, data flows, and student-facing product surfaces. I also worked on AI-powered support features, including document analysis and chat-style student help tools, while debugging data, auth, and interface issues across the product.",
   },
 ];
 
@@ -291,7 +291,7 @@ export const STORY_BEATS: StoryBeat[] = [
     label: "Learning by building",
     title: "A notes app taught me how to think past the framework.",
     paragraphs: [
-      "A lot of my frontend experience came from solo projects, where I had to make product decisions, troubleshoot bugs, and keep moving without waiting for someone else to unblock me. One of the earliest was a rich-text notes app with a responsive dashboard of note cards arranged in a grid.",
+      "A lot of my engineering experience came from solo projects, where I had to make product decisions, design the system, troubleshoot bugs, and keep moving without waiting for someone else to unblock me. One of the earliest was a rich-text notes app with a responsive dashboard of note cards arranged in a grid.",
       "I wanted each card to expand smoothly from its exact position, but CSS Grid kept fighting the animation. I used React refs and getBoundingClientRect() to measure the clicked card, rendered a duplicate outside the grid, and animated that copy with Framer Motion so it felt like the original card was opening in place. Getting the offsets right across screen sizes took careful layout math and a lot of debugging, but it taught me to work from first principles instead of stopping at the first limitation.",
     ],
     image: "/story-notes-motion.svg",
@@ -304,7 +304,7 @@ export const STORY_BEATS: StoryBeat[] = [
     label: "Shipping in a real product",
     title: "Studybank taught me how to own a feature and improve it at the same time.",
     paragraphs: [
-      "During my internship at Expert Buddy, I worked on a major feature called StudyBank, where students could upload notes and other students could search, preview, and download them. I built the full frontend from Figma, handled frontend troubleshooting on my own, and used docs, search, and AI to understand why bugs were happening instead of just patching symptoms.",
+      "During my internship at Expert Buddy, I worked on a major feature called StudyBank, where students could upload notes and other students could search, preview, and download them. I built the Next.js product surface from Figma, wired the experience around auth-aware data flows, handled debugging on my own, and used docs, search, and AI to understand why bugs were happening instead of just patching symptoms.",
       "While building the upload flow, I realized the long metadata form created too much friction. I proposed an AI-assisted autofill option, built a proof of concept in two days, and showed the CEO and design team how it could make uploads faster while keeping manual control. Once everyone aligned on the flow, I helped shape the final interface and shipped the production version.",
     ],
     image: "/story-studybank-ai.svg",
@@ -313,10 +313,10 @@ export const STORY_BEATS: StoryBeat[] = [
   {
     step: "03",
     label: "High-agency environments",
-    title: "Hackathons and solo projects made me comfortable carrying the whole interface.",
+    title: "Hackathons and solo projects made me comfortable carrying the whole product.",
     paragraphs: [
-      "During Smart India Hackathon, I took ownership of the UI for Mentor Map and helped turn the idea into a product that felt usable under real time pressure. Building the whole interface in that environment taught me how to move quickly, make product calls, and stay calm while the scope kept shifting.",
-      "That same habit shows up across my side projects as well. I like working independently, debugging the hard edges myself, and understanding how something behaves before I reach for shortcuts. Whether it is AI tooling, frontend interaction design, or a first-principles side project, I usually learn the fastest when I am close to the problem.",
+      "During Smart India Hackathon, I took ownership of the product experience for Mentor Map and helped turn the idea into something usable under real time pressure. Building the core flow in that environment taught me how to move quickly, make product calls, and stay calm while the scope kept shifting.",
+      "That same habit shows up across my side projects as well. I like working independently, debugging the hard edges myself, and understanding how something behaves before I reach for shortcuts. Whether it is AI tooling, backend systems, or a first-principles side project, I usually learn the fastest when I am close to the problem.",
     ],
     image: "/story-high-agency.svg",
     imageAlt: "Minimal illustration of interface design boards and a product flow under construction.",

@@ -6,7 +6,7 @@ export function BlogShell({ children }: { children: ReactNode }) {
     <PortfolioShell
       active="blog"
       article
-      tagline="Notes on software, product clarity, and the craft behind dependable systems."
+      tagline="A backend-heavy full-stack blog is dropping soon."
     >
       {children}
     </PortfolioShell>

@@ -1392,7 +1392,8 @@ textarea {
 }
 
 .article-link,
-.blog-post-card {
+.blog-post-card,
+.writing-soon-link {
   display: grid;
   grid-template-columns: minmax(0, 1fr) auto;
   gap: 0.55rem 0.85rem;
@@ -1420,13 +1421,15 @@ textarea {
 }
 
 .article-link:hover,
-.blog-post-card:hover {
+.blog-post-card:hover,
+.writing-soon-link:hover {
   color: var(--text);
   background: rgba(20, 20, 19, 0.05);
 }
 
 :root[data-theme="dark"] .article-link:hover,
-:root[data-theme="dark"] .blog-post-card:hover {
+:root[data-theme="dark"] .blog-post-card:hover,
+:root[data-theme="dark"] .writing-soon-link:hover {
   background: rgba(255, 255, 255, 0.06);
 }
 
@@ -1674,6 +1677,40 @@ textarea {
 
 .blog-body {
   font-size: 1rem;
+}
+
+.blog-coming-soon {
+  gap: 1.15rem;
+}
+
+.blog-soon-panel {
+  display: grid;
+  margin-top: 0.2rem;
+  border-top: 1px solid var(--line);
+  border-bottom: 1px solid var(--line);
+}
+
+.blog-soon-panel > div {
+  display: grid;
+  grid-template-columns: 2.4rem minmax(0, 1fr);
+  gap: 0.9rem;
+  padding: 1rem 0.05rem;
+}
+
+.blog-soon-panel > div + div {
+  border-top: 1px solid var(--line);
+}
+
+.blog-soon-panel p {
+  margin: 0;
+  color: var(--muted);
+}
+
+.blog-soon-label {
+  font-family: var(--font-ibm-mono), monospace;
+  font-size: 0.74rem;
+  letter-spacing: 0.08em;
+  color: var(--subtle);
 }
 
 .blog-post-grid {
@@ -1994,7 +2031,8 @@ textarea {
     grid-template-columns: 1fr;
   }
 
-  .article-link {
+  .article-link,
+  .writing-soon-link {
     grid-template-columns: 1fr;
   }
   .section-note {

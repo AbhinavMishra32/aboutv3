@@ -41,13 +41,32 @@ function ProjectTechMark({
       }
     | {
         name: string;
-        icon: "bootstrap" | "pow";
+        icon: "ai" | "bootstrap" | "pow";
       };
 }) {
   if ("src" in tech) {
     // CDN-served brand marks are intentional here so the cards can use the real logos directly.
     // eslint-disable-next-line @next/next/no-img-element
     return <img src={tech.src} alt={tech.name} className="project-tech-logo-image" loading="lazy" />;
+  }
+
+  if (tech.icon === "ai") {
+    return (
+      <span className="project-tech-logo-custom" aria-hidden="true">
+        <svg viewBox="0 0 24 24" fill="none">
+          <path
+            d="M12 4.5c1.55 0 2.86.9 3.47 2.16a3.88 3.88 0 0 1 4.03 3.84c0 1.48-.84 2.77-2.06 3.42.22 1.42-.37 2.92-1.68 3.68-1.29.75-2.88.62-4.04-.18a3.86 3.86 0 0 1-4.48.18 3.88 3.88 0 0 1-1.68-3.68A3.86 3.86 0 0 1 3.5 10.5c0-2 1.52-3.65 3.47-3.84A3.86 3.86 0 0 1 12 4.5Z"
+            stroke="currentColor"
+            strokeWidth="1.6"
+          />
+          <path
+            d="m8.2 10.2 3.8-2.15 3.8 2.15v4.3L12 16.65 8.2 14.5z"
+            stroke="currentColor"
+            strokeWidth="1.6"
+          />
+        </svg>
+      </span>
+    );
   }
 
   if (tech.icon === "bootstrap") {

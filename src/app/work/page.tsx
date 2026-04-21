@@ -6,7 +6,7 @@ export default function WorkPage() {
     <PortfolioShell
       active="work"
       article
-      tagline="Recent product engineering across frontend systems, rollout safety, and interface ownership."
+      tagline="Recent product engineering across backend systems, rollout safety, automation, and product ownership."
     >
       <WorkSection page />
     </PortfolioShell>
