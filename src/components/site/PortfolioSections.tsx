@@ -3,6 +3,7 @@ import Link from "next/link";
 import { ArrowRight } from "lucide-react";
 import { getRepoDetail } from "@/lib/github";
 import { PROJECTS, STORY_BEATS, WORK_ITEMS } from "@/lib/portfolio";
+import { HeroIntroVisualLoader } from "@/components/site/HeroIntroVisualLoader";
 import { HeroSignal } from "@/components/site/HeroSignal";
 import { ProjectsExperience } from "@/components/site/ProjectsExperience";
 
@@ -47,6 +48,7 @@ const BROWSE_ITEMS = [
 export function HeroSection() {
   return (
     <section className="hero">
+      <HeroIntroVisualLoader />
       <div className="hero-identity">
         <HeroSignal />
       </div>
