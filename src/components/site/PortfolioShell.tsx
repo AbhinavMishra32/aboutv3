@@ -1,6 +1,7 @@
 import type { ReactNode } from "react";
 import { Icon } from "@iconify/react";
 import { SiteHeader } from "@/components/site/SiteHeader";
+import { SiteIntro } from "@/components/site/SiteIntro";
 import { CONTACT_LINKS } from "@/lib/portfolio";
 
 export function PortfolioShell({
@@ -16,6 +17,7 @@ export function PortfolioShell({
 }) {
   return (
     <div className="blog-page">
+      <SiteIntro />
       <div className="site-shell">
         <SiteHeader active={active} tagline={tagline} />
 
