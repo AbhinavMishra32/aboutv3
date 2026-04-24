@@ -3,6 +3,7 @@ import Link from "next/link";
 import { ArrowRight } from "lucide-react";
 import { getRepoDetail } from "@/lib/github";
 import { PROJECTS, STORY_BEATS, WORK_ITEMS } from "@/lib/portfolio";
+import { HeroSignal } from "@/components/site/HeroSignal";
 import { ProjectsExperience } from "@/components/site/ProjectsExperience";
 
 const BROWSE_ITEMS = [
@@ -47,8 +48,7 @@ export function HeroSection() {
   return (
     <section className="hero">
       <div className="hero-identity">
-        <h1 className="hero-name">Abhinav Mishra</h1>
-        <p className="hero-role">Software Engineer</p>
+        <HeroSignal />
       </div>
       <div className="hero-copy">
         <p className="hero-paragraph">
