@@ -158,6 +158,25 @@ body {
   }
 }
 
+@keyframes page-intro-arrive {
+  0% {
+    opacity: 0.18;
+    transform: translateY(2.2rem) scale(0.972);
+    filter: blur(18px);
+  }
+
+  58% {
+    opacity: 0.96;
+    filter: blur(2px);
+  }
+
+  100% {
+    opacity: 1;
+    transform: translateY(0) scale(1);
+    filter: blur(0);
+  }
+}
+
 :root[data-theme="dark"] body {
   background: var(--bg);
 }
@@ -181,6 +200,17 @@ textarea {
   width: min(100% - 1.75rem, 43rem);
   margin: 0 auto;
   padding: 1rem 0 3rem;
+  transform-origin: center 4rem;
+}
+
+:root[data-intro-state="active"] .site-shell {
+  opacity: 0.18;
+  transform: translateY(2.2rem) scale(0.972);
+  filter: blur(18px);
+}
+
+:root[data-intro-state="leaving"] .site-shell {
+  animation: page-intro-arrive 0.9s cubic-bezier(0.22, 1, 0.36, 1) both;
 }
 
 .site-main {
@@ -203,9 +233,11 @@ textarea {
   color: #f4f1ea;
   background: #0f0f0e;
   pointer-events: auto;
+  transition: background-color 0.9s cubic-bezier(0.7, 0, 0.3, 1);
 }
 
 .site-intro.is-leaving {
+  background: transparent;
   pointer-events: none;
 }
 
@@ -220,7 +252,7 @@ textarea {
   background:
     radial-gradient(circle at 52% 120%, rgba(154, 184, 255, 0.16), transparent 38%),
     #0f0f0e;
-  transition: transform 0.62s cubic-bezier(0.7, 0, 0.3, 1);
+  transition: transform 0.82s cubic-bezier(0.7, 0, 0.3, 1);
 }
 
 .site-intro::before {
@@ -303,8 +335,8 @@ textarea {
 
 .site-intro.is-leaving .site-intro-core {
   opacity: 0;
-  transform: translateY(-0.8rem) scale(0.97);
-  filter: blur(8px);
+  transform: translateY(-1.2rem) scale(0.96);
+  filter: blur(12px);
 }
 
 .site-intro-kicker {
@@ -2371,6 +2403,12 @@ textarea {
     animation: none !important;
     transition: none !important;
     scroll-behavior: auto !important;
+  }
+
+  :root[data-intro-state] .site-shell {
+    opacity: 1;
+    transform: none;
+    filter: none;
   }
 }
 

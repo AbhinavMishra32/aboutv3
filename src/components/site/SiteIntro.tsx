@@ -15,35 +15,41 @@ export function SiteIntro() {
   const [isLeaving, setIsLeaving] = useState(false);
 
   useEffect(() => {
+    const root = document.documentElement;
     const prefersReducedMotion = window.matchMedia("(prefers-reduced-motion: reduce)").matches;
     const alreadySeen = window.sessionStorage.getItem(STORAGE_KEY);
 
     if (alreadySeen) {
+      root.removeAttribute("data-intro-state");
       return;
     }
 
     window.sessionStorage.setItem(STORAGE_KEY, "true");
+    root.dataset.introState = "active";
     setShouldRender(true);
 
     const previousOverflow = document.body.style.overflow;
     document.body.style.overflow = "hidden";
 
-    const leaveDelay = prefersReducedMotion ? 350 : 1900;
-    const removeDelay = prefersReducedMotion ? 700 : 2550;
+    const leaveDelay = prefersReducedMotion ? 350 : 1800;
+    const removeDelay = prefersReducedMotion ? 700 : 2700;
 
     const leaveTimer = window.setTimeout(() => {
+      root.dataset.introState = "leaving";
       setIsLeaving(true);
     }, leaveDelay);
 
     const removeTimer = window.setTimeout(() => {
       setShouldRender(false);
       document.body.style.overflow = previousOverflow;
+      root.removeAttribute("data-intro-state");
     }, removeDelay);
 
     return () => {
       window.clearTimeout(leaveTimer);
       window.clearTimeout(removeTimer);
       document.body.style.overflow = previousOverflow;
+      root.removeAttribute("data-intro-state");
     };
   }, []);
 
