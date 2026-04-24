@@ -52,27 +52,29 @@ export function HeroSection() {
       </div>
       <div className="hero-copy">
         <p className="hero-paragraph">
-          I&apos;m a <span className="hero-emphasis">full-stack software engineer</span> with a backend-systems
-          bias: APIs, databases, automation, integrations, release safety, and the interface work needed to make all
-          of it feel usable.
+          I&apos;m a <span className="hero-emphasis">full-stack software engineer</span> who likes the hard middle of
+          product engineering: turning ambiguous requirements into stable APIs, clean data flows, reliable automations,
+          and interfaces that make complex systems feel obvious.
         </p>
         <p className="hero-paragraph">
-          I like shipping dependable products where the <span className="hero-emphasis">backend holds up</span>, the
-          data flows make sense, and the UI stays calm because the underlying system has been thought through.
+          My strongest work sits where backend depth meets product taste. I care about the parts users never see:
+          failure modes, rollout safety, database shape, integration edge cases, and the small UI decisions that make a
+          product feel fast, trustworthy, and finished.
         </p>
         <p className="hero-paragraph">
           Right now I&apos;m building at{" "}
           <a className="inline-link" href="https://lunacal.ai" target="_blank" rel="noreferrer">
             Lunacal.ai
           </a>
-          , while exploring AI-assisted workflows, design-sensitive tooling, and faster ways to turn{" "}
-          <span className="hero-emphasis">rough ideas into polished software</span>.
+          , where my work is centered on the kind of ownership strong teams expect across the stack: shipping
+          carefully, debugging deeply, communicating clearly, and using AI-assisted workflows to turn{" "}
+          <span className="hero-emphasis">rough ideas into polished, dependable software</span>.
         </p>
       </div>
       <div className="facts">
         <span>Based in Ghaziabad, India</span>
-        <span>Full-stack + backend systems</span>
-        <span>Reliability, AI UX, and infra-minded product work</span>
+        <span>Full-stack product engineering</span>
+        <span>Backend systems, reliability, AI UX, and thoughtful product polish</span>
       </div>
     </section>
   );
