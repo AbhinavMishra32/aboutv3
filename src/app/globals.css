@@ -651,7 +651,8 @@ textarea {
 }
 
 :root[data-theme="dark"] .project-preview {
-  border-color: rgba(255, 255, 255, 0.08);
+  border-color: rgba(255, 255, 255, 0.04);
+  background: #101010;
 }
 
 .project-preview-image {
