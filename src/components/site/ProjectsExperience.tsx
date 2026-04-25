@@ -23,13 +23,13 @@ const HOVER_TRANSITION: Transition = {
 };
 
 const OVERLAY_TRANSITION: Transition = {
-  duration: 0.22,
+  duration: 0.28,
   ease: [0.22, 1, 0.36, 1] as const,
 };
 
 const SHARED_CARD_RADIUS = 18;
 const SHARED_PREVIEW_RADIUS = 14;
-const MODAL_DETAILS_EXIT_MS = 150;
+const MODAL_DETAILS_EXIT_MS = 90;
 
 function ProjectTechMark({
   tech,
@@ -261,7 +261,6 @@ export function ProjectsExperience({
   const [isMounted, setIsMounted] = useState(false);
   const [selectedSlug, setSelectedSlug] = useState<string | null>(null);
   const [showModalDetails, setShowModalDetails] = useState(false);
-  const [isClosing, setIsClosing] = useState(false);
   const closeTimerRef = useRef<number | null>(null);
 
   const selectedProject = projects.find((project) => project.slug === selectedSlug) ?? null;
@@ -281,9 +280,8 @@ export function ProjectsExperience({
   const openProject = useCallback(
     (slug: string) => {
       clearCloseTimer();
-      setIsClosing(false);
-      setShowModalDetails(false);
       setSelectedSlug(slug);
+      setShowModalDetails(true);
     },
     [clearCloseTimer]
   );
@@ -294,17 +292,14 @@ export function ProjectsExperience({
     clearCloseTimer();
 
     if (!showModalDetails) {
-      setIsClosing(false);
       setSelectedSlug(null);
       return;
     }
 
-    setIsClosing(true);
     setShowModalDetails(false);
 
     closeTimerRef.current = window.setTimeout(() => {
       setSelectedSlug(null);
-      setIsClosing(false);
       closeTimerRef.current = null;
     }, MODAL_DETAILS_EXIT_MS);
   }, [clearCloseTimer, selectedSlug, showModalDetails]);
@@ -320,7 +315,6 @@ export function ProjectsExperience({
       document.body.style.removeProperty("overflow");
       document.body.style.removeProperty("padding-right");
       setShowModalDetails(false);
-      setIsClosing(false);
       return;
     }
 
@@ -357,7 +351,7 @@ export function ProjectsExperience({
   return (
     <LayoutGroup id="project-experience">
       <div className="project-list">
-        {projects.map((project) => {
+        {projects.map((project, projectIndex) => {
           const isSelected = selectedSlug === project.slug;
 
           return (
@@ -371,15 +365,20 @@ export function ProjectsExperience({
                 isSelected
                   ? undefined
                   : {
-                      y: -6,
-                      scale: 1.012,
-                      boxShadow: "0 22px 48px rgba(17, 17, 16, 0.12)",
+                      y: -4,
+                      scale: 1.006,
+                      boxShadow:
+                        "inset 0 1px 0 rgba(255, 255, 255, 0.68), 0 22px 58px rgba(0, 0, 0, 0.09)",
                       transition: HOVER_TRANSITION,
                     }
               }
               whileTap={isSelected ? undefined : { scale: 0.995 }}
               className={`project-card project-card-button project-card-rich ${isSelected ? "project-card-selected" : ""}`}
-              style={{ borderRadius: SHARED_CARD_RADIUS, boxShadow: "0 10px 28px rgba(17, 17, 16, 0.04)" }}
+              style={{
+                borderRadius: SHARED_CARD_RADIUS,
+                boxShadow:
+                  "inset 0 1px 0 rgba(255, 255, 255, 0.62), 0 1px 2px rgba(0, 0, 0, 0.035), 0 16px 44px rgba(0, 0, 0, 0.05)",
+              }}
               aria-haspopup="dialog"
               aria-expanded={isSelected}
               onClick={() => openProject(project.slug)}
@@ -390,7 +389,7 @@ export function ProjectsExperience({
                 transition={CARD_TRANSITION}
                 style={{ borderRadius: SHARED_PREVIEW_RADIUS }}
               >
-                <ThemedProjectPreview project={project} />
+                <ThemedProjectPreview project={project} priority={projectIndex < 2} />
               </motion.div>
 
               <div className="project-card-top">
@@ -452,12 +451,7 @@ export function ProjectsExperience({
                     layoutId={`project-card-${selectedProject.slug}`}
                     className={`project-modal-panel ${showModalDetails ? "is-ready" : ""}`}
                     transition={CARD_TRANSITION}
-                    style={{ borderRadius: 22, boxShadow: "0 28px 80px rgba(17, 17, 16, 0.16)" }}
-                    onLayoutAnimationComplete={() => {
-                      if (selectedProject && !isClosing && !showModalDetails) {
-                        setShowModalDetails(true);
-                      }
-                    }}
+                    style={{ borderRadius: 22 }}
                     role="dialog"
                     aria-modal="true"
                     aria-label={`${selectedProject.name} project details`}
