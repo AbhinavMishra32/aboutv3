@@ -1,5 +1,6 @@
 import Link from "next/link";
 import { SiteThemeToggle } from "@/components/SiteThemeToggle";
+import { HeaderTagline } from "@/components/site/HeaderTagline";
 
 type NavKey = "overview" | "now" | "story" | "work" | "projects" | "blog";
 
@@ -14,8 +15,10 @@ const NAV_ITEMS: Array<{ key: NavKey; label: string; href: string }> = [
 
 export function SiteHeader({
   active,
+  tagline,
 }: {
   active: NavKey;
+  tagline?: string;
 }) {
   return (
     <header className="site-header">
@@ -23,6 +26,7 @@ export function SiteHeader({
         <Link href="/" className="site-name">
           Abhinav Mishra
         </Link>
+        {tagline ? <HeaderTagline>{tagline}</HeaderTagline> : null}
       </div>
 
       <div className="header-actions">

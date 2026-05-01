@@ -19,16 +19,9 @@ export function PortfolioShell({
     <div className="blog-page">
       <SiteIntro />
       <div className="site-shell">
-        <SiteHeader active={active} />
+        <SiteHeader active={active} tagline={tagline} />
 
-        <main className={`site-main ${article ? "site-main--article" : ""}`}>
-          {tagline ? (
-            <div className={`site-page-intro ${article ? "is-article" : ""}`}>
-              <p>{tagline}</p>
-            </div>
-          ) : null}
-          {children}
-        </main>
+        <main className={`site-main ${article ? "site-main--article" : ""}`}>{children}</main>
 
         <footer className="site-footer site-footer-compact">
           <div className="footer-inline">
