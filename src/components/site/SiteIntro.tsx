@@ -77,7 +77,7 @@ export function SiteIntro() {
           <span>Abhinav</span>
           <span>Mishra</span>
         </div>
-        <p className="site-intro-role">Full-stack product engineering / backend systems / AI workflows</p>
+        <p className="site-intro-role">Full-stack TypeScript engineering / AI systems / Rust + TypeScript tools</p>
 
         <div className="site-intro-console">
           {INTRO_ROWS.map(([index, label, value]) => (

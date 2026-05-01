@@ -62,29 +62,22 @@ export function HeroSection() {
       </div>
       <div className="hero-copy">
         <p className="hero-paragraph">
-          I&apos;m a <span className="hero-emphasis">full-stack software engineer</span> who likes the hard middle of
-          product engineering: turning ambiguous requirements into stable APIs, clean data flows, reliable automations,
-          and interfaces that make complex systems feel obvious.
+          I&apos;m a <span className="hero-emphasis">full-stack TypeScript engineer</span> building production AI and
+          automation systems.
         </p>
         <p className="hero-paragraph">
-          My strongest work sits where backend depth meets product taste. I care about the parts users never see:
-          failure modes, rollout safety, database shape, integration edge cases, and the small UI decisions that make a
-          product feel fast, trustworthy, and finished.
+          I&apos;ve worked on scheduling infrastructure, SMS pipelines, feature rollouts, CI and testing systems, AI
+          workflows, and observability for real products.
         </p>
         <p className="hero-paragraph">
-          Right now I&apos;m building at{" "}
-          <a className="inline-link" href="https://lunacal.ai" target="_blank" rel="noreferrer">
-            Lunacal.ai
-          </a>
-          , where my work is centered on the kind of ownership strong teams expect across the stack: shipping
-          carefully, debugging deeply, communicating clearly, and using AI-assisted workflows to turn{" "}
-          <span className="hero-emphasis">rough ideas into polished, dependable software</span>.
+          Currently I&apos;m building <span className="hero-emphasis">Rust and TypeScript systems tools by hand</span>,
+          while shipping production work across backend systems, automation, and product infrastructure.
         </p>
       </div>
       <div className="facts">
         <span>Based in Ghaziabad, India</span>
-        <span>Full-stack product engineering</span>
-        <span>Backend systems, reliability, AI UX, and thoughtful product polish</span>
+        <span>Full-stack TypeScript engineering</span>
+        <span>AI systems, automations, observability, and Rust plus TypeScript tools</span>
       </div>
     </section>
   );
