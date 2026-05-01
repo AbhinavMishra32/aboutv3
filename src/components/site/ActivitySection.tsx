@@ -137,7 +137,7 @@ function FeedItem({ item }: { item: ActivityFeedItem }) {
   );
 }
 
-export async function ActivitySection() {
+export async function ActivitySection({ page = false }: { page?: boolean }) {
   const snapshot = await getActivitySnapshot();
   const wireLabel = snapshot.todayCommits.length > 0 ? "Today's commit wire" : "Latest commit wire";
   const metricTiles = [
@@ -165,7 +165,11 @@ export async function ActivitySection() {
   const signalBars = Array.from({ length: 18 }, (_, index) => (index % 6) + 1);
 
   return (
-    <section className="section-block activity-section" id="now" aria-labelledby="activity-title">
+    <section
+      className={`${page ? "activity-page-section" : "section-block"} activity-section`}
+      id="now"
+      aria-labelledby="activity-title"
+    >
       <div className="activity-stage">
         <div className="activity-copy">
           <p className="eyebrow">What&apos;s happening</p>

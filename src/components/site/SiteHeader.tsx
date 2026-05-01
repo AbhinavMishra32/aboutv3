@@ -1,10 +1,11 @@
 import Link from "next/link";
 import { SiteThemeToggle } from "@/components/SiteThemeToggle";
 
-type NavKey = "overview" | "story" | "work" | "projects" | "blog";
+type NavKey = "overview" | "now" | "story" | "work" | "projects" | "blog";
 
 const NAV_ITEMS: Array<{ key: NavKey; label: string; href: string }> = [
   { key: "overview", label: "Overview", href: "/" },
+  { key: "now", label: "Now", href: "/now" },
   { key: "story", label: "Story", href: "/story" },
   { key: "work", label: "Work", href: "/work" },
   { key: "projects", label: "Projects", href: "/projects" },

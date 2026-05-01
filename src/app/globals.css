@@ -1094,6 +1094,10 @@ textarea {
   gap: 1rem;
 }
 
+.activity-page-section {
+  padding-top: 0.15rem;
+}
+
 .activity-stage {
   display: grid;
   grid-template-columns: minmax(0, 1.08fr) minmax(16rem, 0.92fr);

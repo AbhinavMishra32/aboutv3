@@ -10,7 +10,7 @@ export function PortfolioShell({
   tagline,
   article = false,
 }: {
-  active: "overview" | "story" | "work" | "projects" | "blog";
+  active: "overview" | "now" | "story" | "work" | "projects" | "blog";
   children: ReactNode;
   tagline?: string;
   article?: boolean;
