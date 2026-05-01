@@ -5,8 +5,9 @@ import { PROJECTS, type Project } from "@/lib/portfolio";
 
 export const ACTIVITY_TIME_ZONE = "Asia/Kolkata";
 
-const GITHUB_USERNAME = "AbhinavMishra32";
-const GITHUB_EVENTS_URL = `https://api.github.com/users/${GITHUB_USERNAME}/events/public`;
+const GITHUB_USERNAME = process.env.GITHUB_USERNAME ?? "AbhinavMishra32";
+const GITHUB_EVENTS_URL = `https://api.github.com/users/${GITHUB_USERNAME}/events/public?per_page=100`;
+const GITHUB_ACTIVITY_REVALIDATE_SECONDS = 900;
 
 export type ActivityCommit = {
   id: string;
@@ -177,6 +178,21 @@ function dedupeCommits(commits: ActivityCommit[]) {
   return unique;
 }
 
+function getGitHubHeaders() {
+  const headers: Record<string, string> = {
+    Accept: "application/vnd.github+json",
+    "X-GitHub-Api-Version": "2026-03-10",
+    "User-Agent": "aboutv3-activity-feed",
+  };
+  const token = process.env.GITHUB_TOKEN ?? process.env.GH_TOKEN;
+
+  if (token) {
+    headers.Authorization = `Bearer ${token}`;
+  }
+
+  return headers;
+}
+
 function commitsFromEvent(event: GitHubEvent): ActivityCommit[] {
   if (event.type !== "PushEvent") return [];
 
@@ -210,16 +226,33 @@ function commitsFromEvent(event: GitHubEvent): ActivityCommit[] {
     .filter(isPresent);
 }
 
-async function getPublicGitHubCommits() {
+function getTrackedProjectForCommit(commit: ActivityCommit) {
+  return PROJECTS.find((project) => {
+    if (!project.repo) return false;
+
+    return (
+      project.repo.owner.toLowerCase() === commit.repoOwner.toLowerCase() &&
+      project.repo.name.toLowerCase() === commit.repoName.toLowerCase()
+    );
+  });
+}
+
+function attachProjectName(commit: ActivityCommit): ActivityCommit {
+  const project = getTrackedProjectForCommit(commit);
+  return project ? { ...commit, project: project.name } : commit;
+}
+
+async function getPublicGitHubCommits({ realtime = false }: { realtime?: boolean } = {}) {
   try {
     const response = await fetch(GITHUB_EVENTS_URL, {
-      headers: {
-        Accept: "application/vnd.github+json",
-        "User-Agent": "aboutv3-activity-feed",
-      },
-      next: {
-        revalidate: 900,
-      },
+      headers: getGitHubHeaders(),
+      ...(realtime
+        ? { cache: "no-store" as const }
+        : {
+            next: {
+              revalidate: GITHUB_ACTIVITY_REVALIDATE_SECONDS,
+            },
+          }),
     });
 
     if (!response.ok) return [];
@@ -227,7 +260,7 @@ async function getPublicGitHubCommits() {
     const payload = (await response.json()) as unknown;
     if (!Array.isArray(payload)) return [];
 
-    return payload.filter(isGitHubEvent).flatMap(commitsFromEvent);
+    return payload.filter(isGitHubEvent).flatMap(commitsFromEvent).map(attachProjectName);
   } catch {
     return [];
   }
@@ -307,6 +340,34 @@ async function getProjectPulses() {
   };
 }
 
+function mergeLiveProjectPulses(projects: ActivityProjectPulse[], commits: ActivityCommit[]) {
+  const latestByProject = new Map<string, ActivityCommit>();
+
+  for (const commit of commits) {
+    const project = getTrackedProjectForCommit(commit);
+    if (!project) continue;
+
+    const current = latestByProject.get(project.slug);
+    if (!current || new Date(commit.date).getTime() > new Date(current.date).getTime()) {
+      latestByProject.set(project.slug, { ...commit, project: project.name });
+    }
+  }
+
+  return projects.map((project) => {
+    const liveCommit = latestByProject.get(project.slug);
+    if (!liveCommit) return project;
+
+    const currentUpdatedAt = project.updatedAt ? new Date(project.updatedAt).getTime() : 0;
+    if (new Date(liveCommit.date).getTime() <= currentUpdatedAt) return project;
+
+    return {
+      ...project,
+      updatedAt: liveCommit.date,
+      latestCommit: liveCommit,
+    };
+  });
+}
+
 function buildFeed(commits: ActivityCommit[], posts: BlogPostMeta[], projects: ActivityProjectPulse[]) {
   const commitItems: ActivityFeedItem[] = commits.slice(0, 8).map((commit) => ({
     id: `commit-${commit.repo}-${commit.sha}`,
@@ -350,14 +411,15 @@ function buildFeed(commits: ActivityCommit[], posts: BlogPostMeta[], projects: A
   return sortFeed([...commitItems, ...postItems, ...projectItems]).slice(0, 12);
 }
 
-export const getActivitySnapshot = cache(async function getActivitySnapshot(): Promise<ActivitySnapshot> {
+async function buildActivitySnapshot({ realtime = false }: { realtime?: boolean } = {}): Promise<ActivitySnapshot> {
   const generatedAt = new Date().toISOString();
-  const [{ projects, projectCommits }, publicCommits, posts] = await Promise.all([
+  const [{ projects: cachedProjects, projectCommits }, publicCommits, posts] = await Promise.all([
     getProjectPulses(),
-    getPublicGitHubCommits(),
+    getPublicGitHubCommits({ realtime }),
     getAllPosts(),
   ]);
 
+  const projects = mergeLiveProjectPulses(cachedProjects, publicCommits);
   const commits = sortCommits(dedupeCommits([...publicCommits, ...projectCommits])).slice(0, 24);
   const todayKey = getLocalDateKey(generatedAt);
   const todayCommits = commits.filter((commit) => getLocalDateKey(commit.date) === todayKey);
@@ -380,4 +442,12 @@ export const getActivitySnapshot = cache(async function getActivitySnapshot(): P
       posts: posts.length,
     },
   };
+}
+
+export const getActivitySnapshot = cache(async function getActivitySnapshot(): Promise<ActivitySnapshot> {
+  return buildActivitySnapshot();
 });
+
+export async function getRealtimeActivitySnapshot(): Promise<ActivitySnapshot> {
+  return buildActivitySnapshot({ realtime: true });
+}

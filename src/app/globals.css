@@ -1281,6 +1281,15 @@ textarea {
   animation: activity-status-pulse 1.8s ease-in-out infinite;
 }
 
+.activity-live-pill.is-syncing .activity-live-dot {
+  animation-duration: 0.72s;
+}
+
+.activity-live-pill.is-offline .activity-live-dot {
+  background: #ffb84c;
+  box-shadow: 0 0 0 0.24rem rgba(255, 184, 76, 0.14);
+}
+
 .activity-metrics {
   position: relative;
   z-index: 1;
