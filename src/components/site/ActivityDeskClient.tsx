@@ -542,8 +542,7 @@ export function ActivityDeskClient({
             My GitHub calendar for the work in motion.
           </h2>
           <p className="activity-lede">
-            Commits, project movement, open-source signals, and notes from the workbench, folded into a daily
-            contribution graph.
+            Commits, project movement, open-source signals, and writing folded into a daily contribution graph.
           </p>
 
           <div className="activity-actions" aria-label="Activity links">

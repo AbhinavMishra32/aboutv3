@@ -11,7 +11,7 @@ export const metadata: Metadata = {
 
 export default function NowPage() {
   return (
-    <PortfolioShell active="now" tagline="What I am building, learning, writing, and shipping right now.">
+    <PortfolioShell active="now" tagline="Live activity from current builds, writing, and GitHub.">
       <ActivitySection page />
     </PortfolioShell>
   );

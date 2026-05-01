@@ -20,7 +20,7 @@ const BROWSE_ITEMS = [
   {
     href: "/work",
     label: "Work",
-    title: "Recent product engineering across real teams.",
+    title: "Engineering work across real teams.",
     summary:
       "A clearer look at Lunacal, Studybank, and the way I handle backend-heavy systems, rollout safety, and polish.",
     image: "/story-studybank-ai.svg",
@@ -29,17 +29,16 @@ const BROWSE_ITEMS = [
   {
     href: "/projects",
     label: "Projects",
-    title: "Selected builds with visual previews and feature detail.",
-    summary:
-      "Decipath, Construct, Mentor Map, and XiteCoin, shown through more concrete interface-driven artwork.",
+    title: "Products, experiments, and systems I have built.",
+    summary: "A closer look at Decipath, Construct, Mentor Map, XiteCoin, and the engineering behind each one.",
     image: "/project-decipath-light.svg",
     imageAlt: "Illustration of Decipath with a roadmap graph and prompt panel.",
   },
   {
     href: "/blog",
     label: "Blog",
-    title: "A backend and full-stack blog is dropping soon.",
-    summary: "Longer notes on systems, infrastructure, AI tooling, and the product choices that make software trustworthy.",
+    title: "Notes on shipping software that holds up.",
+    summary: "Writing on systems, infrastructure, AI tooling, and the product choices behind reliable software.",
     image: "/project-mentormap.svg",
     imageAlt: "Illustration of Mentor Map with roadmap and collaboration panels.",
   },
@@ -94,7 +93,7 @@ export function BrowseSection() {
     <section className="section-block">
       <div className="section-head">
         <h2 className="section-title">Browse</h2>
-        <p className="section-note">Switch sections from the top nav, or start here.</p>
+        <p className="section-note">A quick path through the work, projects, writing, and story.</p>
       </div>
 
       <div className="browse-grid">
@@ -185,7 +184,7 @@ export function WorkSection({ page = false }: { page?: boolean }) {
             See full work
           </Link>
         ) : (
-          <p className="section-note">Recent product engineering, backend systems, rollout safety, and product ownership.</p>
+          <p className="section-note">Backend systems, rollout safety, automation, and product ownership.</p>
         )}
       </div>
 
@@ -232,7 +231,7 @@ export async function ProjectsSection({ page = false }: { page?: boolean }) {
             See all projects
           </Link>
         ) : (
-          <p className="section-note">Interface-led previews drawn from what each build actually does.</p>
+          <p className="section-note">Products, experiments, and systems with the details that made them work.</p>
         )}
       </div>
 
