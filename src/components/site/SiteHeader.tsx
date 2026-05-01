@@ -14,10 +14,8 @@ const NAV_ITEMS: Array<{ key: NavKey; label: string; href: string }> = [
 
 export function SiteHeader({
   active,
-  tagline,
 }: {
   active: NavKey;
-  tagline?: string;
 }) {
   return (
     <header className="site-header">
@@ -25,7 +23,6 @@ export function SiteHeader({
         <Link href="/" className="site-name">
           Abhinav Mishra
         </Link>
-        {tagline ? <p className="site-tagline">{tagline}</p> : null}
       </div>
 
       <div className="header-actions">
