@@ -7,7 +7,40 @@ export const ACTIVITY_TIME_ZONE = "Asia/Kolkata";
 
 const GITHUB_USERNAME = process.env.GITHUB_USERNAME ?? "AbhinavMishra32";
 const GITHUB_EVENTS_URL = `https://api.github.com/users/${GITHUB_USERNAME}/events/public?per_page=100`;
+const GITHUB_GRAPHQL_URL = "https://api.github.com/graphql";
 const GITHUB_ACTIVITY_REVALIDATE_SECONDS = 900;
+const CONTRIBUTION_CALENDAR_DAYS = 365;
+
+export type ActivityContributionLevel = 0 | 1 | 2 | 3 | 4;
+
+export type ActivityContributionDay = {
+  date: string;
+  weekday: number;
+  contributionCount: number;
+  contributionLevel: ActivityContributionLevel;
+  color?: string;
+};
+
+export type ActivityContributionWeek = {
+  firstDay: string;
+  contributionDays: ActivityContributionDay[];
+};
+
+export type ActivityContributionMonth = {
+  firstDay: string;
+  name: string;
+  totalWeeks: number;
+  year: number;
+};
+
+export type ActivityContributionCalendar = {
+  source: "github-graphql" | "activity-feed";
+  startedAt: string;
+  endedAt: string;
+  totalContributions: number;
+  weeks: ActivityContributionWeek[];
+  months: ActivityContributionMonth[];
+};
 
 export type ActivityCommit = {
   id: string;
@@ -59,6 +92,7 @@ export type ActivityFeedItem = {
 export type ActivitySnapshot = {
   generatedAt: string;
   timeZone: typeof ACTIVITY_TIME_ZONE;
+  calendar: ActivityContributionCalendar;
   commits: ActivityCommit[];
   todayCommits: ActivityCommit[];
   tickerCommits: ActivityCommit[];
@@ -82,6 +116,30 @@ type GitHubEvent = {
     name: string;
   };
   payload?: unknown;
+};
+
+type GitHubContributionCalendarPayload = {
+  data?: {
+    user?: {
+      contributionsCollection?: {
+        contributionCalendar?: {
+          totalContributions: number;
+          weeks: {
+            firstDay: string;
+            contributionDays: {
+              color: string;
+              contributionCount: number;
+              contributionLevel: string;
+              date: string;
+              weekday: number;
+            }[];
+          }[];
+          months: ActivityContributionMonth[];
+        };
+      };
+    };
+  };
+  errors?: unknown;
 };
 
 const FOCUS_SIGNALS: ActivityFocusSignal[] = [
@@ -156,6 +214,43 @@ function getLocalDateKey(value: string | Date) {
   return `${year}-${month}-${day}`;
 }
 
+function getGitHubToken() {
+  return process.env.GITHUB_TOKEN ?? process.env.GH_TOKEN;
+}
+
+function startOfUtcDay(date: Date) {
+  return new Date(Date.UTC(date.getUTCFullYear(), date.getUTCMonth(), date.getUTCDate()));
+}
+
+function addUtcDays(date: Date, days: number) {
+  const nextDate = new Date(date);
+  nextDate.setUTCDate(nextDate.getUTCDate() + days);
+  return nextDate;
+}
+
+function startOfSundayWeek(date: Date) {
+  const weekStart = startOfUtcDay(date);
+  weekStart.setUTCDate(weekStart.getUTCDate() - weekStart.getUTCDay());
+  return weekStart;
+}
+
+function getDateKey(date: Date) {
+  return date.toISOString().slice(0, 10);
+}
+
+function getCalendarRange(generatedAt: string) {
+  const endDay = startOfUtcDay(new Date(generatedAt));
+  const startDay = startOfSundayWeek(addUtcDays(endDay, -(CONTRIBUTION_CALENDAR_DAYS - 1)));
+  const endOfDay = new Date(Date.UTC(endDay.getUTCFullYear(), endDay.getUTCMonth(), endDay.getUTCDate(), 23, 59, 59));
+
+  return {
+    startDay,
+    endDay,
+    startedAt: startDay.toISOString(),
+    endedAt: endOfDay.toISOString(),
+  };
+}
+
 function sortCommits(commits: ActivityCommit[]) {
   return [...commits].sort((a, b) => new Date(b.date).getTime() - new Date(a.date).getTime());
 }
@@ -184,13 +279,195 @@ function getGitHubHeaders() {
     "X-GitHub-Api-Version": "2026-03-10",
     "User-Agent": "aboutv3-activity-feed",
   };
-  const token = process.env.GITHUB_TOKEN ?? process.env.GH_TOKEN;
+  const token = getGitHubToken();
 
   if (token) {
     headers.Authorization = `Bearer ${token}`;
   }
 
   return headers;
+}
+
+function getContributionLevel(level: string, count: number): ActivityContributionLevel {
+  if (level === "FIRST_QUARTILE") return 1;
+  if (level === "SECOND_QUARTILE") return 2;
+  if (level === "THIRD_QUARTILE") return 3;
+  if (level === "FOURTH_QUARTILE") return 4;
+  return count > 0 ? 1 : 0;
+}
+
+function getFallbackContributionLevel(count: number, maxCount: number): ActivityContributionLevel {
+  if (count <= 0) return 0;
+  if (maxCount <= 1) return 1;
+
+  const ratio = count / maxCount;
+  if (ratio <= 0.25) return 1;
+  if (ratio <= 0.5) return 2;
+  if (ratio <= 0.75) return 3;
+  return 4;
+}
+
+function buildCalendarMonths(weeks: ActivityContributionWeek[]): ActivityContributionMonth[] {
+  const monthStarts: ActivityContributionMonth[] = [];
+
+  weeks.forEach((week) => {
+    week.contributionDays.forEach((day) => {
+      if (!day.date.endsWith("-01")) return;
+
+      const date = new Date(`${day.date}T12:00:00.000Z`);
+      monthStarts.push({
+        firstDay: day.date,
+        name: new Intl.DateTimeFormat("en-US", { month: "long", timeZone: "UTC" }).format(date),
+        totalWeeks: 1,
+        year: date.getUTCFullYear(),
+      });
+    });
+  });
+
+  return monthStarts;
+}
+
+async function getGitHubContributionCalendar({
+  generatedAt,
+  realtime = false,
+}: {
+  generatedAt: string;
+  realtime?: boolean;
+}): Promise<ActivityContributionCalendar | null> {
+  const token = getGitHubToken();
+  if (!token) return null;
+
+  const range = getCalendarRange(generatedAt);
+  const query = `
+    query ContributionCalendar($login: String!, $from: DateTime!, $to: DateTime!) {
+      user(login: $login) {
+        contributionsCollection(from: $from, to: $to) {
+          contributionCalendar {
+            totalContributions
+            weeks {
+              firstDay
+              contributionDays {
+                color
+                contributionCount
+                contributionLevel
+                date
+                weekday
+              }
+            }
+            months {
+              firstDay
+              name
+              totalWeeks
+              year
+            }
+          }
+        }
+      }
+    }
+  `;
+  const requestOptions: RequestInit & { next?: { revalidate: number } } = {
+    method: "POST",
+    headers: {
+      Accept: "application/vnd.github+json",
+      Authorization: `Bearer ${token}`,
+      "Content-Type": "application/json",
+      "User-Agent": "aboutv3-activity-feed",
+    },
+    body: JSON.stringify({
+      query,
+      variables: {
+        login: GITHUB_USERNAME,
+        from: range.startedAt,
+        to: range.endedAt,
+      },
+    }),
+  };
+
+  if (realtime) {
+    requestOptions.cache = "no-store";
+  } else {
+    requestOptions.next = {
+      revalidate: GITHUB_ACTIVITY_REVALIDATE_SECONDS,
+    };
+  }
+
+  try {
+    const response = await fetch(GITHUB_GRAPHQL_URL, requestOptions);
+    if (!response.ok) return null;
+
+    const payload = (await response.json()) as GitHubContributionCalendarPayload;
+    if (payload.errors) return null;
+
+    const calendar = payload.data?.user?.contributionsCollection?.contributionCalendar;
+    if (!calendar) return null;
+
+    return {
+      source: "github-graphql",
+      startedAt: range.startedAt,
+      endedAt: range.endedAt,
+      totalContributions: calendar.totalContributions,
+      weeks: calendar.weeks.map((week) => ({
+        firstDay: week.firstDay,
+        contributionDays: week.contributionDays.map((day) => ({
+          date: day.date,
+          weekday: day.weekday,
+          contributionCount: day.contributionCount,
+          contributionLevel: getContributionLevel(day.contributionLevel, day.contributionCount),
+          color: day.color,
+        })),
+      })),
+      months: calendar.months,
+    };
+  } catch {
+    return null;
+  }
+}
+
+function buildFallbackContributionCalendar(commits: ActivityCommit[], generatedAt: string): ActivityContributionCalendar {
+  const range = getCalendarRange(generatedAt);
+  const countByDate = new Map<string, number>();
+
+  commits.forEach((commit) => {
+    const dateKey = getLocalDateKey(commit.date);
+    countByDate.set(dateKey, (countByDate.get(dateKey) ?? 0) + 1);
+  });
+
+  const maxCount = Math.max(1, ...countByDate.values());
+  const weeks: ActivityContributionWeek[] = [];
+  let cursor = new Date(range.startDay);
+
+  while (cursor <= range.endDay) {
+    const firstDay = getDateKey(cursor);
+    const contributionDays: ActivityContributionDay[] = [];
+
+    for (let dayIndex = 0; dayIndex < 7 && cursor <= range.endDay; dayIndex += 1) {
+      const dateKey = getDateKey(cursor);
+      const contributionCount = countByDate.get(dateKey) ?? 0;
+
+      contributionDays.push({
+        date: dateKey,
+        weekday: cursor.getUTCDay(),
+        contributionCount,
+        contributionLevel: getFallbackContributionLevel(contributionCount, maxCount),
+      });
+
+      cursor = addUtcDays(cursor, 1);
+    }
+
+    weeks.push({
+      firstDay,
+      contributionDays,
+    });
+  }
+
+  return {
+    source: "activity-feed",
+    startedAt: range.startedAt,
+    endedAt: range.endedAt,
+    totalContributions: commits.length,
+    weeks,
+    months: buildCalendarMonths(weeks),
+  };
 }
 
 function commitsFromEvent(event: GitHubEvent): ActivityCommit[] {
@@ -421,6 +698,7 @@ async function buildActivitySnapshot({ realtime = false }: { realtime?: boolean 
 
   const projects = mergeLiveProjectPulses(cachedProjects, publicCommits);
   const commits = sortCommits(dedupeCommits([...publicCommits, ...projectCommits])).slice(0, 24);
+  const calendar = (await getGitHubContributionCalendar({ generatedAt, realtime })) ?? buildFallbackContributionCalendar(commits, generatedAt);
   const todayKey = getLocalDateKey(generatedAt);
   const todayCommits = commits.filter((commit) => getLocalDateKey(commit.date) === todayKey);
   const tickerCommits = (todayCommits.length > 0 ? todayCommits : commits).slice(0, 10);
@@ -428,6 +706,7 @@ async function buildActivitySnapshot({ realtime = false }: { realtime?: boolean 
   return {
     generatedAt,
     timeZone: ACTIVITY_TIME_ZONE,
+    calendar,
     commits,
     todayCommits,
     tickerCommits,

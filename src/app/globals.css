@@ -1183,6 +1183,404 @@ textarea {
     0 16px 32px rgba(0, 0, 0, 0.28);
 }
 
+.activity-meta-strip {
+  display: grid;
+  gap: 0.72rem;
+  align-content: center;
+  justify-items: end;
+  min-width: 0;
+  animation: soft-reveal 0.82s cubic-bezier(0.22, 1, 0.36, 1) both;
+  animation-delay: 0.18s;
+}
+
+.activity-meta-lines {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: flex-end;
+  gap: 0.38rem 0.84rem;
+  min-width: 0;
+  color: var(--muted);
+  font-size: 0.82rem;
+  line-height: 1.2;
+}
+
+.activity-meta-lines span {
+  display: inline-flex;
+  align-items: baseline;
+  gap: 0.3rem;
+}
+
+.activity-meta-lines strong {
+  color: var(--text);
+  font-family: var(--font-ibm-mono), monospace;
+  font-size: 1.22rem;
+  font-weight: 600;
+  line-height: 1;
+}
+
+.activity-heatmap-shell {
+  position: relative;
+  display: grid;
+  gap: 0.88rem;
+  justify-self: center;
+  width: min(100vw - 2rem, 52rem);
+  min-width: 0;
+  padding: 0.96rem;
+  border: 1px solid color-mix(in srgb, var(--line) 84%, transparent);
+  border-radius: 1rem;
+  background:
+    linear-gradient(180deg, color-mix(in srgb, var(--surface-strong) 68%, transparent), transparent),
+    color-mix(in srgb, var(--surface) 78%, transparent);
+  box-shadow:
+    inset 0 1px 0 rgba(255, 255, 255, 0.52),
+    0 18px 58px rgba(0, 0, 0, 0.055);
+  backdrop-filter: blur(22px) saturate(1.16);
+  animation: soft-reveal 0.82s cubic-bezier(0.22, 1, 0.36, 1) both;
+  animation-delay: 0.24s;
+}
+
+:root[data-theme="dark"] .activity-heatmap-shell {
+  box-shadow:
+    inset 0 1px 0 rgba(255, 255, 255, 0.07),
+    0 20px 62px rgba(0, 0, 0, 0.34);
+}
+
+.activity-heatmap-top,
+.activity-heatmap-footer {
+  display: flex;
+  align-items: flex-start;
+  justify-content: space-between;
+  gap: 0.82rem;
+  min-width: 0;
+}
+
+.activity-heatmap-top > div:first-child {
+  display: grid;
+  gap: 0.14rem;
+  min-width: 0;
+}
+
+.activity-heatmap-title {
+  margin: 0;
+  color: var(--text);
+  font-size: 1.02rem;
+  font-weight: 650;
+  line-height: 1.16;
+  letter-spacing: 0;
+}
+
+.activity-heatmap-source {
+  display: grid;
+  gap: 0.18rem;
+  justify-items: end;
+  color: var(--subtle);
+  font-family: var(--font-ibm-mono), monospace;
+  font-size: 0.64rem;
+  font-weight: 600;
+  letter-spacing: 0.07em;
+  line-height: 1.2;
+  text-align: right;
+  text-transform: uppercase;
+  white-space: nowrap;
+}
+
+.activity-heatmap-scroll {
+  min-width: 0;
+  overflow-x: auto;
+  overflow-y: hidden;
+  padding: 0.16rem 0.06rem 0.48rem;
+  scrollbar-color: color-mix(in srgb, var(--line) 92%, transparent) transparent;
+  scrollbar-width: thin;
+}
+
+.activity-heatmap-scroll::-webkit-scrollbar {
+  height: 0.46rem;
+}
+
+.activity-heatmap-scroll::-webkit-scrollbar-track {
+  background: transparent;
+}
+
+.activity-heatmap-scroll::-webkit-scrollbar-thumb {
+  border-radius: 999px;
+  background: color-mix(in srgb, var(--line) 88%, transparent);
+}
+
+.activity-heatmap-board {
+  --activity-cell-size: 0.62rem;
+  --activity-cell-gap: 0.18rem;
+  display: grid;
+  grid-template-columns: 1.5rem max-content;
+  grid-template-rows: auto max-content;
+  gap: 0.34rem 0.46rem;
+  width: max-content;
+  min-width: 100%;
+}
+
+.activity-heatmap-months {
+  grid-column: 2;
+  display: grid;
+  grid-template-columns: repeat(var(--activity-week-count), var(--activity-cell-size));
+  gap: var(--activity-cell-gap);
+  min-height: 0.78rem;
+  color: var(--subtle);
+  font-size: 0.68rem;
+  line-height: 1;
+}
+
+.activity-heatmap-months span {
+  min-width: 2.2rem;
+  white-space: nowrap;
+}
+
+.activity-heatmap-weekdays {
+  grid-column: 1;
+  grid-row: 2;
+  display: grid;
+  grid-template-rows: repeat(7, var(--activity-cell-size));
+  gap: var(--activity-cell-gap);
+  color: var(--subtle);
+  font-size: 0.62rem;
+  line-height: var(--activity-cell-size);
+}
+
+.activity-heatmap-weeks {
+  grid-column: 2;
+  grid-row: 2;
+  display: grid;
+  grid-template-columns: repeat(var(--activity-week-count), var(--activity-cell-size));
+  gap: var(--activity-cell-gap);
+}
+
+.activity-heatmap-week {
+  display: grid;
+  grid-template-rows: repeat(7, var(--activity-cell-size));
+  gap: var(--activity-cell-gap);
+}
+
+.activity-heatmap-day,
+.activity-heatmap-legend-cell {
+  display: block;
+  width: var(--activity-cell-size);
+  height: var(--activity-cell-size);
+  padding: 0;
+  border: 1px solid rgba(27, 31, 36, 0.06);
+  border-radius: 2px;
+  background: #ebedf0;
+}
+
+.activity-heatmap-day {
+  cursor: pointer;
+  appearance: none;
+  transition:
+    border-color 0.16s ease,
+    box-shadow 0.16s ease,
+    transform 0.16s ease;
+}
+
+.activity-heatmap-day:hover,
+.activity-heatmap-day:focus-visible {
+  border-color: color-mix(in srgb, var(--text) 48%, transparent);
+  box-shadow: 0 0 0 0.16rem color-mix(in srgb, var(--accent) 16%, transparent);
+  outline: none;
+  transform: scale(1.18);
+}
+
+.activity-heatmap-day[data-level="1"],
+.activity-heatmap-legend-cell[data-level="1"] {
+  background: #9be9a8;
+}
+
+.activity-heatmap-day[data-level="2"],
+.activity-heatmap-legend-cell[data-level="2"] {
+  background: #40c463;
+}
+
+.activity-heatmap-day[data-level="3"],
+.activity-heatmap-legend-cell[data-level="3"] {
+  background: #30a14e;
+}
+
+.activity-heatmap-day[data-level="4"],
+.activity-heatmap-legend-cell[data-level="4"] {
+  background: #216e39;
+}
+
+:root[data-theme="dark"] .activity-heatmap-day,
+:root[data-theme="dark"] .activity-heatmap-legend-cell {
+  border-color: rgba(240, 246, 252, 0.05);
+  background: #161b22;
+}
+
+:root[data-theme="dark"] .activity-heatmap-day[data-level="1"],
+:root[data-theme="dark"] .activity-heatmap-legend-cell[data-level="1"] {
+  background: #0e4429;
+}
+
+:root[data-theme="dark"] .activity-heatmap-day[data-level="2"],
+:root[data-theme="dark"] .activity-heatmap-legend-cell[data-level="2"] {
+  background: #006d32;
+}
+
+:root[data-theme="dark"] .activity-heatmap-day[data-level="3"],
+:root[data-theme="dark"] .activity-heatmap-legend-cell[data-level="3"] {
+  background: #26a641;
+}
+
+:root[data-theme="dark"] .activity-heatmap-day[data-level="4"],
+:root[data-theme="dark"] .activity-heatmap-legend-cell[data-level="4"] {
+  background: #39d353;
+}
+
+.activity-heatmap-footer {
+  align-items: center;
+  color: var(--subtle);
+  font-size: 0.74rem;
+  line-height: 1.3;
+}
+
+.activity-heatmap-legend {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.28rem;
+  white-space: nowrap;
+}
+
+.activity-heatmap-legend-cell {
+  --activity-cell-size: 0.68rem;
+}
+
+.activity-day-tooltip {
+  position: fixed;
+  z-index: 90;
+  left: var(--activity-tooltip-x);
+  top: var(--activity-tooltip-y);
+  transform: translateY(var(--activity-tooltip-shift));
+  display: grid;
+  gap: 0.62rem;
+  max-height: min(26rem, calc(100vh - 1.4rem));
+  overflow: auto;
+  padding: 0.78rem;
+  border: 1px solid color-mix(in srgb, var(--line) 82%, transparent);
+  border-radius: 0.78rem;
+  background:
+    linear-gradient(180deg, color-mix(in srgb, var(--surface-strong) 88%, transparent), transparent),
+    color-mix(in srgb, var(--surface) 94%, transparent);
+  color: var(--text);
+  box-shadow:
+    inset 0 1px 0 rgba(255, 255, 255, 0.54),
+    0 20px 60px rgba(0, 0, 0, 0.18);
+  backdrop-filter: blur(26px) saturate(1.22);
+}
+
+:root[data-theme="dark"] .activity-day-tooltip {
+  box-shadow:
+    inset 0 1px 0 rgba(255, 255, 255, 0.08),
+    0 24px 72px rgba(0, 0, 0, 0.48);
+}
+
+.activity-day-tooltip-head {
+  display: flex;
+  align-items: baseline;
+  justify-content: space-between;
+  gap: 0.72rem;
+  min-width: 0;
+}
+
+.activity-day-tooltip-head span,
+.activity-day-tooltip-meta,
+.activity-day-tooltip-empty,
+.activity-day-tooltip-repos span,
+.activity-day-tooltip-link span span {
+  color: var(--subtle);
+  font-size: 0.72rem;
+  line-height: 1.3;
+}
+
+.activity-day-tooltip-head strong {
+  color: var(--text);
+  font-size: 0.86rem;
+  line-height: 1.2;
+  white-space: nowrap;
+}
+
+.activity-day-tooltip-meta,
+.activity-day-tooltip-repos {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.34rem;
+  min-width: 0;
+}
+
+.activity-day-tooltip-meta span,
+.activity-day-tooltip-repos span {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.28rem;
+  min-height: 1.42rem;
+  padding: 0.12rem 0.38rem;
+  border-radius: 999px;
+  background: color-mix(in srgb, var(--surface-strong) 74%, transparent);
+}
+
+.activity-day-tooltip-list {
+  display: grid;
+  gap: 0.36rem;
+  min-width: 0;
+}
+
+.activity-day-tooltip-link {
+  display: grid;
+  grid-template-columns: 1.42rem minmax(0, 1fr) auto;
+  gap: 0.44rem;
+  align-items: center;
+  min-width: 0;
+  padding: 0.44rem;
+  border-radius: 0.54rem;
+  color: var(--text);
+  background: color-mix(in srgb, var(--surface-strong) 58%, transparent);
+  transition:
+    background-color 0.18s ease,
+    transform 0.18s ease;
+}
+
+.activity-day-tooltip-link:hover {
+  background: var(--surface-strong);
+  transform: translateX(2px);
+}
+
+.activity-day-tooltip-link > span:nth-child(2) {
+  display: grid;
+  gap: 0.08rem;
+  min-width: 0;
+}
+
+.activity-day-tooltip-link strong {
+  min-width: 0;
+  color: var(--text);
+  font-size: 0.8rem;
+  font-weight: 650;
+  line-height: 1.24;
+  overflow-wrap: anywhere;
+}
+
+.activity-day-tooltip-link-icon {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  width: 1.42rem;
+  height: 1.42rem;
+  border: 1px solid color-mix(in srgb, var(--line) 82%, transparent);
+  border-radius: 0.42rem;
+  color: var(--accent);
+  background: color-mix(in srgb, var(--surface) 74%, transparent);
+}
+
+.activity-day-tooltip-empty {
+  margin: 0;
+  color: var(--muted);
+}
+
 .activity-command-center {
   position: relative;
   display: grid;
@@ -3614,6 +4012,15 @@ textarea {
     grid-template-columns: 1fr;
   }
 
+  .activity-meta-strip {
+    justify-items: start;
+    gap: 0.58rem;
+  }
+
+  .activity-meta-lines {
+    justify-content: flex-start;
+  }
+
   .activity-title {
     font-size: 1.42rem;
     line-height: 1.12;
@@ -3626,8 +4033,37 @@ textarea {
 
   .activity-command-center,
   .activity-focus-panel,
-  .activity-project-panel {
+  .activity-project-panel,
+  .activity-heatmap-shell {
     border-radius: 0.92rem;
+  }
+
+  .activity-heatmap-shell {
+    gap: 0.74rem;
+    padding: 0.72rem;
+    width: 100%;
+  }
+
+  .activity-heatmap-top,
+  .activity-heatmap-footer {
+    align-items: flex-start;
+    flex-direction: column;
+  }
+
+  .activity-heatmap-source {
+    justify-items: start;
+    text-align: left;
+    white-space: normal;
+  }
+
+  .activity-heatmap-board {
+    --activity-cell-size: 0.62rem;
+    --activity-cell-gap: 0.18rem;
+  }
+
+  .activity-day-tooltip {
+    max-height: min(24rem, calc(100vh - 1rem));
+    padding: 0.68rem;
   }
 
   .activity-wire {
