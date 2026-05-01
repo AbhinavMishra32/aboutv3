@@ -25,6 +25,7 @@ type ActivityPost = ActivitySnapshot["posts"][number];
 type TooltipStyle = CSSProperties & {
   "--activity-tooltip-x"?: string;
   "--activity-tooltip-y"?: string;
+  "--activity-tooltip-shift-x"?: string;
   "--activity-tooltip-shift"?: string;
 };
 type DayDetail = {
@@ -116,6 +117,12 @@ function getLiveStatusLabel(status: LiveStatus) {
   return "Live GitHub";
 }
 
+function getCalendarSourceLabel(source: ActivitySnapshot["calendar"]["source"]) {
+  if (source === "github-graphql") return "GitHub graph";
+  if (source === "github-profile") return "GitHub profile";
+  return "Live public feed";
+}
+
 function ActivityLink({
   href,
   external,
@@ -139,6 +146,30 @@ function ActivityLink({
     <Link href={href} className={className}>
       {children}
     </Link>
+  );
+}
+
+function TickerCommit({
+  commit,
+  hidden = false,
+}: {
+  commit: ActivityCommit;
+  hidden?: boolean;
+}) {
+  return (
+    <a
+      href={commit.url}
+      target="_blank"
+      rel="noreferrer"
+      className="activity-ticker-item"
+      aria-hidden={hidden}
+      tabIndex={hidden ? -1 : undefined}
+    >
+      <span className="activity-ticker-repo">{commit.repoName}</span>
+      <span className="activity-ticker-message">{commit.message}</span>
+      <span className="activity-ticker-meta">{commit.sha.slice(0, 7)}</span>
+      <ArrowUpRight size={13} aria-hidden="true" />
+    </a>
   );
 }
 
@@ -252,7 +283,7 @@ function ActivityDayTooltip({
       <div className="activity-day-tooltip-meta">
         <span>
           <CalendarDays size={13} aria-hidden="true" />
-          {source === "github-graphql" ? "GitHub graph" : "Live public feed"}
+          {getCalendarSourceLabel(source)}
         </span>
         {detail.repos.length > 0 ? (
           <span>
@@ -351,6 +382,7 @@ export function ActivityDeskClient({
   const [activeDay, setActiveDay] = useState<DayDetail | null>(null);
   const [tooltipStyle, setTooltipStyle] = useState<TooltipStyle>({});
   const closeTimer = useRef<number | null>(null);
+  const heatmapShellRef = useRef<HTMLDivElement | null>(null);
 
   const refreshSnapshot = useCallback(async () => {
     setStatus("syncing");
@@ -404,10 +436,14 @@ export function ActivityDeskClient({
       }) as CSSProperties,
     [weeks.length]
   );
-  const calendarSourceLabel = snapshot.calendar.source === "github-graphql" ? "GitHub contribution graph" : "Recent public events";
+  const calendarSourceLabel =
+    snapshot.calendar.source === "github-graphql" || snapshot.calendar.source === "github-profile"
+      ? "GitHub contribution graph"
+      : "Recent public events";
   const calendarRange = `${formatShortDate(snapshot.calendar.startedAt.slice(0, 10))} - ${formatShortDate(
     snapshot.calendar.endedAt.slice(0, 10)
   )}`;
+  const wireLabel = snapshot.todayCommits.length > 0 ? "Today's commit news" : "Latest commit news";
 
   const cancelClose = useCallback(() => {
     if (!closeTimer.current) return;
@@ -423,16 +459,39 @@ export function ActivityDeskClient({
   }, [cancelClose]);
 
   const positionTooltip = useCallback((target: HTMLElement) => {
+    const shell = heatmapShellRef.current;
+    if (!shell) return;
+
     const rect = target.getBoundingClientRect();
-    const tooltipWidth = Math.min(340, window.innerWidth - 24);
-    const x = Math.min(Math.max(12, rect.left + rect.width / 2 - tooltipWidth / 2), window.innerWidth - tooltipWidth - 12);
-    const placeAbove = rect.top > 330;
-    const y = placeAbove ? rect.top - 12 : rect.bottom + 12;
+    const shellRect = shell.getBoundingClientRect();
+    const tooltipWidth = Math.min(360, shellRect.width - 24, window.innerWidth - 24);
+    const isCompact = window.innerWidth < 720;
+
+    if (isCompact) {
+      setTooltipStyle({
+        "--activity-tooltip-x": "0.72rem",
+        "--activity-tooltip-y": `${rect.bottom - shellRect.top + 12}px`,
+        "--activity-tooltip-shift-x": "0",
+        "--activity-tooltip-shift": "0",
+        width: `calc(100% - 1.44rem)`,
+      });
+      return;
+    }
+
+    const rightX = rect.right - shellRect.left + 12;
+    const leftX = rect.left - shellRect.left - 12;
+    const spaceRight = shellRect.right - rect.right;
+    const spaceLeft = rect.left - shellRect.left;
+    const useLeft = spaceRight < tooltipWidth + 24 && spaceLeft > tooltipWidth + 24;
+    const useCenter = !useLeft && spaceRight < tooltipWidth + 24;
+    const x = useLeft ? leftX : useCenter ? rect.left - shellRect.left + rect.width / 2 : rightX;
+    const y = rect.top - shellRect.top + rect.height / 2;
 
     setTooltipStyle({
       "--activity-tooltip-x": `${x}px`,
       "--activity-tooltip-y": `${y}px`,
-      "--activity-tooltip-shift": placeAbove ? "-100%" : "0",
+      "--activity-tooltip-shift-x": useLeft ? "-100%" : useCenter ? "-50%" : "0",
+      "--activity-tooltip-shift": "-50%",
       width: `${tooltipWidth}px`,
     });
   }, []);
@@ -501,7 +560,23 @@ export function ActivityDeskClient({
         </div>
       </div>
 
-      <div className="activity-heatmap-shell">
+      <div className="activity-wire activity-newswire" aria-label={wireLabel}>
+        <div className="activity-wire-label">
+          <RadioTower size={15} aria-hidden="true" />
+          <span>{wireLabel}</span>
+        </div>
+        <div className="activity-marquee">
+          <div className="activity-marquee-track">
+            {[0, 1].map((copyIndex) =>
+              snapshot.tickerCommits.map((commit) => (
+                <TickerCommit key={`${copyIndex}-${commit.id}`} commit={commit} hidden={copyIndex === 1} />
+              ))
+            )}
+          </div>
+        </div>
+      </div>
+
+      <div className="activity-heatmap-shell" ref={heatmapShellRef}>
         <div className="activity-heatmap-top">
           <div>
             <p className="activity-panel-kicker">GitHub calendar</p>

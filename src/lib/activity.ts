@@ -8,8 +8,8 @@ export const ACTIVITY_TIME_ZONE = "Asia/Kolkata";
 const GITHUB_USERNAME = process.env.GITHUB_USERNAME ?? "AbhinavMishra32";
 const GITHUB_EVENTS_URL = `https://api.github.com/users/${GITHUB_USERNAME}/events/public?per_page=100`;
 const GITHUB_GRAPHQL_URL = "https://api.github.com/graphql";
+const GITHUB_COMMIT_SEARCH_URL = "https://api.github.com/search/commits";
 const GITHUB_ACTIVITY_REVALIDATE_SECONDS = 900;
-const CONTRIBUTION_CALENDAR_DAYS = 365;
 
 export type ActivityContributionLevel = 0 | 1 | 2 | 3 | 4;
 
@@ -34,7 +34,7 @@ export type ActivityContributionMonth = {
 };
 
 export type ActivityContributionCalendar = {
-  source: "github-graphql" | "activity-feed";
+  source: "github-graphql" | "github-profile" | "activity-feed";
   startedAt: string;
   endedAt: string;
   totalContributions: number;
@@ -54,7 +54,7 @@ export type ActivityCommit = {
   date: string;
   url: string;
   project?: string;
-  source: "github-event" | "project-cache";
+  source: "github-event" | "github-search" | "project-cache";
 };
 
 export type ActivityProjectPulse = {
@@ -142,6 +142,26 @@ type GitHubContributionCalendarPayload = {
   errors?: unknown;
 };
 
+type GitHubCommitSearchPayload = {
+  total_count?: number;
+  items?: {
+    sha?: string;
+    html_url?: string;
+    repository?: {
+      full_name?: string;
+    };
+    commit?: {
+      message?: string;
+      author?: {
+        date?: string;
+      };
+      committer?: {
+        date?: string;
+      };
+    };
+  }[];
+};
+
 const FOCUS_SIGNALS: ActivityFocusSignal[] = [
   {
     label: "Building",
@@ -214,6 +234,10 @@ function getLocalDateKey(value: string | Date) {
   return `${year}-${month}-${day}`;
 }
 
+function getLocalYear(value: string | Date) {
+  return getLocalDateKey(value).slice(0, 4);
+}
+
 function getGitHubToken() {
   return process.env.GITHUB_TOKEN ?? process.env.GH_TOKEN;
 }
@@ -239,11 +263,13 @@ function getDateKey(date: Date) {
 }
 
 function getCalendarRange(generatedAt: string) {
-  const endDay = startOfUtcDay(new Date(generatedAt));
-  const startDay = startOfSundayWeek(addUtcDays(endDay, -(CONTRIBUTION_CALENDAR_DAYS - 1)));
-  const endOfDay = new Date(Date.UTC(endDay.getUTCFullYear(), endDay.getUTCMonth(), endDay.getUTCDate(), 23, 59, 59));
+  const year = Number(getLocalYear(generatedAt));
+  const startDay = new Date(Date.UTC(year, 0, 1));
+  const endDay = new Date(Date.UTC(year, 11, 31));
+  const endOfDay = new Date(Date.UTC(year, 11, 31, 23, 59, 59));
 
   return {
+    year,
     startDay,
     endDay,
     startedAt: startDay.toISOString(),
@@ -288,6 +314,15 @@ function getGitHubHeaders() {
   return headers;
 }
 
+function decodeHtml(text: string) {
+  return text
+    .replace(/&amp;/g, "&")
+    .replace(/&quot;/g, "\"")
+    .replace(/&#39;/g, "'")
+    .replace(/&lt;/g, "<")
+    .replace(/&gt;/g, ">");
+}
+
 function getContributionLevel(level: string, count: number): ActivityContributionLevel {
   if (level === "FIRST_QUARTILE") return 1;
   if (level === "SECOND_QUARTILE") return 2;
@@ -325,6 +360,52 @@ function buildCalendarMonths(weeks: ActivityContributionWeek[]): ActivityContrib
   });
 
   return monthStarts;
+}
+
+function buildCalendarFromDays({
+  days,
+  generatedAt,
+  source,
+  totalContributions,
+}: {
+  days: ActivityContributionDay[];
+  generatedAt: string;
+  source: ActivityContributionCalendar["source"];
+  totalContributions?: number;
+}): ActivityContributionCalendar {
+  const range = getCalendarRange(generatedAt);
+  const weeksByFirstDay = new Map<string, ActivityContributionDay[]>();
+
+  days
+    .filter((day) => day.date >= `${range.year}-01-01` && day.date <= `${range.year}-12-31`)
+    .sort((a, b) => a.date.localeCompare(b.date))
+    .forEach((day) => {
+      const weekKey = getDateKey(startOfSundayWeek(new Date(`${day.date}T12:00:00.000Z`)));
+      const weekDays = weeksByFirstDay.get(weekKey) ?? [];
+      weekDays.push(day);
+      weeksByFirstDay.set(weekKey, weekDays);
+    });
+
+  const weeks = Array.from(weeksByFirstDay.entries()).map(([firstDay, contributionDays]) => ({
+    firstDay,
+    contributionDays: contributionDays.sort((a, b) => a.weekday - b.weekday),
+  }));
+
+  return {
+    source,
+    startedAt: range.startedAt,
+    endedAt: range.endedAt,
+    totalContributions: totalContributions ?? days.reduce((sum, day) => sum + day.contributionCount, 0),
+    weeks,
+    months: buildCalendarMonths(weeks),
+  };
+}
+
+function parseContributionCount(text: string) {
+  if (/no contributions/i.test(text)) return 0;
+
+  const match = text.match(/([\d,]+)\s+contributions?/i);
+  return match ? Number(match[1].replace(/,/g, "")) : 0;
 }
 
 async function getGitHubContributionCalendar({
@@ -423,6 +504,69 @@ async function getGitHubContributionCalendar({
   }
 }
 
+async function getGitHubProfileContributionCalendar({
+  generatedAt,
+  realtime = false,
+}: {
+  generatedAt: string;
+  realtime?: boolean;
+}): Promise<ActivityContributionCalendar | null> {
+  const range = getCalendarRange(generatedAt);
+  const url = `https://github.com/users/${GITHUB_USERNAME}/contributions?from=${range.year}-01-01&to=${range.year}-12-31`;
+  const requestOptions: RequestInit & { next?: { revalidate: number } } = {
+    headers: {
+      Accept: "text/html",
+      "User-Agent": "aboutv3-activity-feed",
+    },
+  };
+
+  if (realtime) {
+    requestOptions.cache = "no-store";
+  } else {
+    requestOptions.next = {
+      revalidate: GITHUB_ACTIVITY_REVALIDATE_SECONDS,
+    };
+  }
+
+  try {
+    const response = await fetch(url, requestOptions);
+    if (!response.ok) return null;
+
+    const html = await response.text();
+    const totalMatch = html.match(/<h2[^>]*>\s*([\d,]+)\s+contributions/i);
+    const totalContributions = totalMatch ? Number(totalMatch[1].replace(/,/g, "")) : undefined;
+    const cells = html.matchAll(
+      /(<td[^>]*ContributionCalendar-day[^>]*><\/td>)\s*<tool-tip[^>]*>([^<]*)<\/tool-tip>/g
+    );
+    const days = Array.from(cells)
+      .map((match) => {
+        const cell = match[1];
+        const date = cell.match(/data-date="([^"]+)"/)?.[1];
+        const level = Number(cell.match(/data-level="(\d+)"/)?.[1] ?? 0);
+        if (!date) return null;
+
+        return {
+          date,
+          weekday: new Date(`${date}T12:00:00.000Z`).getUTCDay(),
+          contributionCount: parseContributionCount(decodeHtml(match[2])),
+          contributionLevel: Math.min(4, Math.max(0, level)) as ActivityContributionLevel,
+        };
+      })
+      .filter(isPresent);
+
+    if (days.length === 0) return null;
+
+    return buildCalendarFromDays({
+      days,
+      generatedAt,
+      source: "github-profile",
+      totalContributions,
+    });
+  } catch {
+    return null;
+  }
+}
+
 function buildFallbackContributionCalendar(commits: ActivityCommit[], generatedAt: string): ActivityContributionCalendar {
   const range = getCalendarRange(generatedAt);
   const countByDate = new Map<string, number>();
@@ -433,41 +577,29 @@ function buildFallbackContributionCalendar(commits: ActivityCommit[], generatedA
   });
 
   const maxCount = Math.max(1, ...countByDate.values());
-  const weeks: ActivityContributionWeek[] = [];
+  const days: ActivityContributionDay[] = [];
   let cursor = new Date(range.startDay);
 
   while (cursor <= range.endDay) {
-    const firstDay = getDateKey(cursor);
-    const contributionDays: ActivityContributionDay[] = [];
+    const dateKey = getDateKey(cursor);
+    const contributionCount = countByDate.get(dateKey) ?? 0;
 
-    for (let dayIndex = 0; dayIndex < 7 && cursor <= range.endDay; dayIndex += 1) {
-      const dateKey = getDateKey(cursor);
-      const contributionCount = countByDate.get(dateKey) ?? 0;
-
-      contributionDays.push({
-        date: dateKey,
-        weekday: cursor.getUTCDay(),
-        contributionCount,
-        contributionLevel: getFallbackContributionLevel(contributionCount, maxCount),
-      });
-
-      cursor = addUtcDays(cursor, 1);
-    }
-
-    weeks.push({
-      firstDay,
-      contributionDays,
+    days.push({
+      date: dateKey,
+      weekday: cursor.getUTCDay(),
+      contributionCount,
+      contributionLevel: getFallbackContributionLevel(contributionCount, maxCount),
     });
+
+    cursor = addUtcDays(cursor, 1);
   }
 
-  return {
+  return buildCalendarFromDays({
+    days,
+    generatedAt,
     source: "activity-feed",
-    startedAt: range.startedAt,
-    endedAt: range.endedAt,
     totalContributions: commits.length,
-    weeks,
-    months: buildCalendarMonths(weeks),
-  };
+  });
 }
 
 function commitsFromEvent(event: GitHubEvent): ActivityCommit[] {
@@ -541,6 +673,73 @@ async function getPublicGitHubCommits({ realtime = false }: { realtime?: boolean
   } catch {
     return [];
   }
+}
+
+function commitFromSearchItem(item: NonNullable<GitHubCommitSearchPayload["items"]>[number], index: number): ActivityCommit | null {
+  const sha = item.sha;
+  const repo = item.repository?.full_name;
+  const message = item.commit?.message;
+  const date = item.commit?.committer?.date ?? item.commit?.author?.date;
+  const url = item.html_url;
+
+  if (!sha || !repo || !message || !date || !url) return null;
+
+  const { repoOwner, repoName } = splitRepo(repo);
+
+  return attachProjectName({
+    id: `search-${repo}-${sha}-${index}`,
+    repo,
+    repoName,
+    repoOwner,
+    repoUrl: `https://github.com/${repo}`,
+    sha,
+    message: cleanCommitMessage(message),
+    date,
+    url,
+    source: "github-search",
+  });
+}
+
+async function getGitHubSearchCommits({ generatedAt, realtime = false }: { generatedAt: string; realtime?: boolean }) {
+  const token = getGitHubToken();
+  const range = getCalendarRange(generatedAt);
+  const todayKey = getLocalDateKey(generatedAt);
+  const maxPages = token ? 5 : 2;
+  const commits: ActivityCommit[] = [];
+
+  for (let page = 1; page <= maxPages; page += 1) {
+    const url = new URL(GITHUB_COMMIT_SEARCH_URL);
+    url.searchParams.set("q", `author:${GITHUB_USERNAME} committer-date:${range.year}-01-01..${todayKey}`);
+    url.searchParams.set("sort", "committer-date");
+    url.searchParams.set("order", "desc");
+    url.searchParams.set("per_page", "100");
+    url.searchParams.set("page", String(page));
+
+    try {
+      const response = await fetch(url, {
+        headers: getGitHubHeaders(),
+        ...(realtime
+          ? { cache: "no-store" as const }
+          : {
+              next: {
+                revalidate: GITHUB_ACTIVITY_REVALIDATE_SECONDS,
+              },
+            }),
+      });
+
+      if (!response.ok) break;
+
+      const payload = (await response.json()) as GitHubCommitSearchPayload;
+      const items = payload.items ?? [];
+      commits.push(...items.map(commitFromSearchItem).filter(isPresent));
+
+      if (items.length < 100) break;
+    } catch {
+      break;
+    }
+  }
+
+  return commits;
 }
 
 function projectCommitFromDetail(project: Project, detail: RepoDetail, commit: RepoDetail["recentCommits"][number]): ActivityCommit {
@@ -690,18 +889,23 @@ function buildFeed(commits: ActivityCommit[], posts: BlogPostMeta[], projects: A
 
 async function buildActivitySnapshot({ realtime = false }: { realtime?: boolean } = {}): Promise<ActivitySnapshot> {
   const generatedAt = new Date().toISOString();
-  const [{ projects: cachedProjects, projectCommits }, publicCommits, posts] = await Promise.all([
+  const [{ projects: cachedProjects, projectCommits }, searchCommits, publicCommits, profileCalendar, posts] = await Promise.all([
     getProjectPulses(),
+    getGitHubSearchCommits({ generatedAt, realtime }),
     getPublicGitHubCommits({ realtime }),
+    getGitHubProfileContributionCalendar({ generatedAt, realtime }),
     getAllPosts(),
   ]);
 
   const projects = mergeLiveProjectPulses(cachedProjects, publicCommits);
-  const commits = sortCommits(dedupeCommits([...publicCommits, ...projectCommits])).slice(0, 24);
-  const calendar = (await getGitHubContributionCalendar({ generatedAt, realtime })) ?? buildFallbackContributionCalendar(commits, generatedAt);
+  const commits = sortCommits(dedupeCommits([...searchCommits, ...publicCommits, ...projectCommits])).slice(0, 240);
+  const calendar =
+    (await getGitHubContributionCalendar({ generatedAt, realtime })) ??
+    profileCalendar ??
+    buildFallbackContributionCalendar(commits, generatedAt);
   const todayKey = getLocalDateKey(generatedAt);
   const todayCommits = commits.filter((commit) => getLocalDateKey(commit.date) === todayKey);
-  const tickerCommits = (todayCommits.length > 0 ? todayCommits : commits).slice(0, 10);
+  const tickerCommits = (todayCommits.length > 0 ? todayCommits : commits).slice(0, 16);
 
   return {
     generatedAt,

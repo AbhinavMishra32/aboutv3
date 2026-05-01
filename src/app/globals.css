@@ -1451,11 +1451,11 @@ textarea {
 }
 
 .activity-day-tooltip {
-  position: fixed;
+  position: absolute;
   z-index: 90;
   left: var(--activity-tooltip-x);
   top: var(--activity-tooltip-y);
-  transform: translateY(var(--activity-tooltip-shift));
+  transform: translate(var(--activity-tooltip-shift-x), var(--activity-tooltip-shift));
   display: grid;
   gap: 0.62rem;
   max-height: min(26rem, calc(100vh - 1.4rem));
@@ -1579,6 +1579,12 @@ textarea {
 .activity-day-tooltip-empty {
   margin: 0;
   color: var(--muted);
+}
+
+.activity-newswire {
+  justify-self: center;
+  width: min(100vw - 2rem, 52rem);
+  animation-delay: 0.3s;
 }
 
 .activity-command-center {
@@ -4041,6 +4047,10 @@ textarea {
   .activity-heatmap-shell {
     gap: 0.74rem;
     padding: 0.72rem;
+    width: 100%;
+  }
+
+  .activity-newswire {
     width: 100%;
   }
 
