@@ -1,31 +1,50 @@
-export default function BlogIndexPage() {
+import Link from "next/link";
+import { ArrowRight, BookOpenText } from "lucide-react";
+import { getAllPosts } from "@/lib/blog";
+
+function formatBlogDate(value: string) {
+  return new Intl.DateTimeFormat("en-US", {
+    month: "long",
+    day: "numeric",
+    year: "numeric",
+  }).format(new Date(value));
+}
+
+export default async function BlogIndexPage() {
+  const posts = await getAllPosts();
+
   return (
-    <article className="blog-article blog-coming-soon">
+    <article className="blog-article">
       <p className="eyebrow">Blog</p>
-      <h1 className="blog-title">A proper engineering blog is dropping soon.</h1>
+      <h1 className="blog-title">Notes from the parts of software that make products hold together.</h1>
       <div className="blog-meta">
-        <span>No posts live yet</span>
-        <span>Backend systems + full-stack notes next</span>
+        <span>{posts.length} notes live</span>
+        <span>Backend systems, product judgment, AI workflows</span>
       </div>
       <p className="blog-body">
-        I&apos;m keeping the old placeholder posts off the site for now. The blog I&apos;m dropping next will be more
-        honest to how I actually work: backend-heavy product engineering, infra decisions, AI tooling, data flows, and
-        the full-stack judgment behind reliable software.
+        Short engineering essays on reliability, clarity, full-stack shipping, and the hidden decisions behind polished
+        product work.
       </p>
 
-      <div className="blog-soon-panel" aria-label="Upcoming blog topics">
-        <div>
-          <span className="blog-soon-label">01</span>
-          <p>Backend systems, APIs, databases, queues, and the ugly parts that make products dependable.</p>
-        </div>
-        <div>
-          <span className="blog-soon-label">02</span>
-          <p>Full-stack shipping notes from real product work, rollout safety, and production debugging.</p>
-        </div>
-        <div>
-          <span className="blog-soon-label">03</span>
-          <p>AI workflows and tooling with enough engineering depth to survive beyond a shiny demo.</p>
-        </div>
+      <div className="blog-post-grid">
+        {posts.map((post) => (
+          <Link key={post.slug} href={`/blog/${post.slug}`} className="blog-post-card">
+            <div className="article-link-copy">
+              <div className="blog-post-meta">
+                <span>{formatBlogDate(post.date)}</span>
+                {post.tags.slice(0, 3).map((tag) => (
+                  <span key={tag}>{tag}</span>
+                ))}
+              </div>
+              <div className="blog-post-title">{post.title}</div>
+              <div className="blog-post-desc">{post.summary}</div>
+            </div>
+            <div className="article-link-arrow" aria-hidden="true">
+              <BookOpenText size={15} strokeWidth={1.8} />
+              <ArrowRight size={16} strokeWidth={1.8} />
+            </div>
+          </Link>
+        ))}
       </div>
     </article>
   );

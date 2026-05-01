@@ -3855,736 +3855,742 @@
   },
   "xitecoin": {
     "slug": "xitecoin",
-    "totalCommits": 215,
-    "pushedAt": "2025-04-26T15:25:23+05:30",
-    "activeDays": 58,
+    "totalCommits": 216,
+    "pushedAt": "2026-04-30T19:55:23+05:30",
+    "activeDays": 59,
     "defaultBranch": "main",
     "createdAt": "2024-01-02T16:06:55+05:30",
     "firstCommitAt": "2024-01-02T16:06:55+05:30",
-    "commitSpanDays": 480,
+    "commitSpanDays": 849,
     "calendar": [
       {
-        "label": "2024-12-22",
+        "label": "2025-12-28",
         "days": [
           {
-            "date": "2024-12-22",
+            "date": "2025-12-28",
             "count": 0,
             "level": 0
           },
           {
-            "date": "2024-12-23",
+            "date": "2025-12-29",
             "count": 0,
             "level": 0
           },
           {
-            "date": "2024-12-24",
+            "date": "2025-12-30",
             "count": 0,
             "level": 0
           },
           {
-            "date": "2024-12-25",
-            "count": 3,
-            "level": 1
-          },
-          {
-            "date": "2024-12-26",
+            "date": "2025-12-31",
             "count": 0,
             "level": 0
           },
           {
-            "date": "2024-12-27",
+            "date": "2026-01-01",
             "count": 0,
             "level": 0
           },
           {
-            "date": "2024-12-28",
+            "date": "2026-01-02",
+            "count": 0,
+            "level": 0
+          },
+          {
+            "date": "2026-01-03",
             "count": 0,
             "level": 0
           }
         ]
       },
       {
-        "label": "2024-12-29",
+        "label": "2026-01-04",
         "days": [
           {
-            "date": "2024-12-29",
+            "date": "2026-01-04",
             "count": 0,
             "level": 0
           },
           {
-            "date": "2024-12-30",
+            "date": "2026-01-05",
+            "count": 0,
+            "level": 0
+          },
+          {
+            "date": "2026-01-06",
+            "count": 0,
+            "level": 0
+          },
+          {
+            "date": "2026-01-07",
+            "count": 0,
+            "level": 0
+          },
+          {
+            "date": "2026-01-08",
+            "count": 0,
+            "level": 0
+          },
+          {
+            "date": "2026-01-09",
+            "count": 0,
+            "level": 0
+          },
+          {
+            "date": "2026-01-10",
+            "count": 0,
+            "level": 0
+          }
+        ]
+      },
+      {
+        "label": "2026-01-11",
+        "days": [
+          {
+            "date": "2026-01-11",
+            "count": 0,
+            "level": 0
+          },
+          {
+            "date": "2026-01-12",
+            "count": 0,
+            "level": 0
+          },
+          {
+            "date": "2026-01-13",
+            "count": 0,
+            "level": 0
+          },
+          {
+            "date": "2026-01-14",
+            "count": 0,
+            "level": 0
+          },
+          {
+            "date": "2026-01-15",
+            "count": 0,
+            "level": 0
+          },
+          {
+            "date": "2026-01-16",
+            "count": 0,
+            "level": 0
+          },
+          {
+            "date": "2026-01-17",
+            "count": 0,
+            "level": 0
+          }
+        ]
+      },
+      {
+        "label": "2026-01-18",
+        "days": [
+          {
+            "date": "2026-01-18",
+            "count": 0,
+            "level": 0
+          },
+          {
+            "date": "2026-01-19",
+            "count": 0,
+            "level": 0
+          },
+          {
+            "date": "2026-01-20",
+            "count": 0,
+            "level": 0
+          },
+          {
+            "date": "2026-01-21",
+            "count": 0,
+            "level": 0
+          },
+          {
+            "date": "2026-01-22",
+            "count": 0,
+            "level": 0
+          },
+          {
+            "date": "2026-01-23",
+            "count": 0,
+            "level": 0
+          },
+          {
+            "date": "2026-01-24",
+            "count": 0,
+            "level": 0
+          }
+        ]
+      },
+      {
+        "label": "2026-01-25",
+        "days": [
+          {
+            "date": "2026-01-25",
+            "count": 0,
+            "level": 0
+          },
+          {
+            "date": "2026-01-26",
+            "count": 0,
+            "level": 0
+          },
+          {
+            "date": "2026-01-27",
+            "count": 0,
+            "level": 0
+          },
+          {
+            "date": "2026-01-28",
+            "count": 0,
+            "level": 0
+          },
+          {
+            "date": "2026-01-29",
+            "count": 0,
+            "level": 0
+          },
+          {
+            "date": "2026-01-30",
+            "count": 0,
+            "level": 0
+          },
+          {
+            "date": "2026-01-31",
+            "count": 0,
+            "level": 0
+          }
+        ]
+      },
+      {
+        "label": "2026-02-01",
+        "days": [
+          {
+            "date": "2026-02-01",
+            "count": 0,
+            "level": 0
+          },
+          {
+            "date": "2026-02-02",
+            "count": 0,
+            "level": 0
+          },
+          {
+            "date": "2026-02-03",
+            "count": 0,
+            "level": 0
+          },
+          {
+            "date": "2026-02-04",
+            "count": 0,
+            "level": 0
+          },
+          {
+            "date": "2026-02-05",
+            "count": 0,
+            "level": 0
+          },
+          {
+            "date": "2026-02-06",
+            "count": 0,
+            "level": 0
+          },
+          {
+            "date": "2026-02-07",
+            "count": 0,
+            "level": 0
+          }
+        ]
+      },
+      {
+        "label": "2026-02-08",
+        "days": [
+          {
+            "date": "2026-02-08",
+            "count": 0,
+            "level": 0
+          },
+          {
+            "date": "2026-02-09",
+            "count": 0,
+            "level": 0
+          },
+          {
+            "date": "2026-02-10",
+            "count": 0,
+            "level": 0
+          },
+          {
+            "date": "2026-02-11",
+            "count": 0,
+            "level": 0
+          },
+          {
+            "date": "2026-02-12",
+            "count": 0,
+            "level": 0
+          },
+          {
+            "date": "2026-02-13",
+            "count": 0,
+            "level": 0
+          },
+          {
+            "date": "2026-02-14",
+            "count": 0,
+            "level": 0
+          }
+        ]
+      },
+      {
+        "label": "2026-02-15",
+        "days": [
+          {
+            "date": "2026-02-15",
+            "count": 0,
+            "level": 0
+          },
+          {
+            "date": "2026-02-16",
+            "count": 0,
+            "level": 0
+          },
+          {
+            "date": "2026-02-17",
+            "count": 0,
+            "level": 0
+          },
+          {
+            "date": "2026-02-18",
+            "count": 0,
+            "level": 0
+          },
+          {
+            "date": "2026-02-19",
+            "count": 0,
+            "level": 0
+          },
+          {
+            "date": "2026-02-20",
+            "count": 0,
+            "level": 0
+          },
+          {
+            "date": "2026-02-21",
+            "count": 0,
+            "level": 0
+          }
+        ]
+      },
+      {
+        "label": "2026-02-22",
+        "days": [
+          {
+            "date": "2026-02-22",
+            "count": 0,
+            "level": 0
+          },
+          {
+            "date": "2026-02-23",
+            "count": 0,
+            "level": 0
+          },
+          {
+            "date": "2026-02-24",
+            "count": 0,
+            "level": 0
+          },
+          {
+            "date": "2026-02-25",
+            "count": 0,
+            "level": 0
+          },
+          {
+            "date": "2026-02-26",
+            "count": 0,
+            "level": 0
+          },
+          {
+            "date": "2026-02-27",
+            "count": 0,
+            "level": 0
+          },
+          {
+            "date": "2026-02-28",
+            "count": 0,
+            "level": 0
+          }
+        ]
+      },
+      {
+        "label": "2026-03-01",
+        "days": [
+          {
+            "date": "2026-03-01",
+            "count": 0,
+            "level": 0
+          },
+          {
+            "date": "2026-03-02",
+            "count": 0,
+            "level": 0
+          },
+          {
+            "date": "2026-03-03",
+            "count": 0,
+            "level": 0
+          },
+          {
+            "date": "2026-03-04",
+            "count": 0,
+            "level": 0
+          },
+          {
+            "date": "2026-03-05",
+            "count": 0,
+            "level": 0
+          },
+          {
+            "date": "2026-03-06",
+            "count": 0,
+            "level": 0
+          },
+          {
+            "date": "2026-03-07",
+            "count": 0,
+            "level": 0
+          }
+        ]
+      },
+      {
+        "label": "2026-03-08",
+        "days": [
+          {
+            "date": "2026-03-08",
+            "count": 0,
+            "level": 0
+          },
+          {
+            "date": "2026-03-09",
+            "count": 0,
+            "level": 0
+          },
+          {
+            "date": "2026-03-10",
+            "count": 0,
+            "level": 0
+          },
+          {
+            "date": "2026-03-11",
+            "count": 0,
+            "level": 0
+          },
+          {
+            "date": "2026-03-12",
+            "count": 0,
+            "level": 0
+          },
+          {
+            "date": "2026-03-13",
+            "count": 0,
+            "level": 0
+          },
+          {
+            "date": "2026-03-14",
+            "count": 0,
+            "level": 0
+          }
+        ]
+      },
+      {
+        "label": "2026-03-15",
+        "days": [
+          {
+            "date": "2026-03-15",
+            "count": 0,
+            "level": 0
+          },
+          {
+            "date": "2026-03-16",
+            "count": 0,
+            "level": 0
+          },
+          {
+            "date": "2026-03-17",
+            "count": 0,
+            "level": 0
+          },
+          {
+            "date": "2026-03-18",
+            "count": 0,
+            "level": 0
+          },
+          {
+            "date": "2026-03-19",
+            "count": 0,
+            "level": 0
+          },
+          {
+            "date": "2026-03-20",
+            "count": 0,
+            "level": 0
+          },
+          {
+            "date": "2026-03-21",
+            "count": 0,
+            "level": 0
+          }
+        ]
+      },
+      {
+        "label": "2026-03-22",
+        "days": [
+          {
+            "date": "2026-03-22",
+            "count": 0,
+            "level": 0
+          },
+          {
+            "date": "2026-03-23",
+            "count": 0,
+            "level": 0
+          },
+          {
+            "date": "2026-03-24",
+            "count": 0,
+            "level": 0
+          },
+          {
+            "date": "2026-03-25",
+            "count": 0,
+            "level": 0
+          },
+          {
+            "date": "2026-03-26",
+            "count": 0,
+            "level": 0
+          },
+          {
+            "date": "2026-03-27",
+            "count": 0,
+            "level": 0
+          },
+          {
+            "date": "2026-03-28",
+            "count": 0,
+            "level": 0
+          }
+        ]
+      },
+      {
+        "label": "2026-03-29",
+        "days": [
+          {
+            "date": "2026-03-29",
+            "count": 0,
+            "level": 0
+          },
+          {
+            "date": "2026-03-30",
+            "count": 0,
+            "level": 0
+          },
+          {
+            "date": "2026-03-31",
+            "count": 0,
+            "level": 0
+          },
+          {
+            "date": "2026-04-01",
+            "count": 0,
+            "level": 0
+          },
+          {
+            "date": "2026-04-02",
+            "count": 0,
+            "level": 0
+          },
+          {
+            "date": "2026-04-03",
+            "count": 0,
+            "level": 0
+          },
+          {
+            "date": "2026-04-04",
+            "count": 0,
+            "level": 0
+          }
+        ]
+      },
+      {
+        "label": "2026-04-05",
+        "days": [
+          {
+            "date": "2026-04-05",
+            "count": 0,
+            "level": 0
+          },
+          {
+            "date": "2026-04-06",
+            "count": 0,
+            "level": 0
+          },
+          {
+            "date": "2026-04-07",
+            "count": 0,
+            "level": 0
+          },
+          {
+            "date": "2026-04-08",
+            "count": 0,
+            "level": 0
+          },
+          {
+            "date": "2026-04-09",
+            "count": 0,
+            "level": 0
+          },
+          {
+            "date": "2026-04-10",
+            "count": 0,
+            "level": 0
+          },
+          {
+            "date": "2026-04-11",
+            "count": 0,
+            "level": 0
+          }
+        ]
+      },
+      {
+        "label": "2026-04-12",
+        "days": [
+          {
+            "date": "2026-04-12",
+            "count": 0,
+            "level": 0
+          },
+          {
+            "date": "2026-04-13",
+            "count": 0,
+            "level": 0
+          },
+          {
+            "date": "2026-04-14",
+            "count": 0,
+            "level": 0
+          },
+          {
+            "date": "2026-04-15",
+            "count": 0,
+            "level": 0
+          },
+          {
+            "date": "2026-04-16",
+            "count": 0,
+            "level": 0
+          },
+          {
+            "date": "2026-04-17",
+            "count": 0,
+            "level": 0
+          },
+          {
+            "date": "2026-04-18",
+            "count": 0,
+            "level": 0
+          }
+        ]
+      },
+      {
+        "label": "2026-04-19",
+        "days": [
+          {
+            "date": "2026-04-19",
+            "count": 0,
+            "level": 0
+          },
+          {
+            "date": "2026-04-20",
+            "count": 0,
+            "level": 0
+          },
+          {
+            "date": "2026-04-21",
+            "count": 0,
+            "level": 0
+          },
+          {
+            "date": "2026-04-22",
+            "count": 0,
+            "level": 0
+          },
+          {
+            "date": "2026-04-23",
+            "count": 0,
+            "level": 0
+          },
+          {
+            "date": "2026-04-24",
+            "count": 0,
+            "level": 0
+          },
+          {
+            "date": "2026-04-25",
+            "count": 0,
+            "level": 0
+          }
+        ]
+      },
+      {
+        "label": "2026-04-26",
+        "days": [
+          {
+            "date": "2026-04-26",
+            "count": 0,
+            "level": 0
+          },
+          {
+            "date": "2026-04-27",
+            "count": 0,
+            "level": 0
+          },
+          {
+            "date": "2026-04-28",
+            "count": 0,
+            "level": 0
+          },
+          {
+            "date": "2026-04-29",
+            "count": 0,
+            "level": 0
+          },
+          {
+            "date": "2026-04-30",
             "count": 1,
             "level": 1
           },
           {
-            "date": "2024-12-31",
+            "date": "2026-05-01",
             "count": 0,
             "level": 0
           },
           {
-            "date": "2025-01-01",
+            "date": "2026-05-02",
             "count": 0,
             "level": 0
-          },
-          {
-            "date": "2025-01-02",
-            "count": 0,
-            "level": 0
-          },
-          {
-            "date": "2025-01-03",
-            "count": 0,
-            "level": 0
-          },
-          {
-            "date": "2025-01-04",
-            "count": 0,
-            "level": 0
-          }
-        ]
-      },
-      {
-        "label": "2025-01-05",
-        "days": [
-          {
-            "date": "2025-01-05",
-            "count": 0,
-            "level": 0
-          },
-          {
-            "date": "2025-01-06",
-            "count": 0,
-            "level": 0
-          },
-          {
-            "date": "2025-01-07",
-            "count": 0,
-            "level": 0
-          },
-          {
-            "date": "2025-01-08",
-            "count": 0,
-            "level": 0
-          },
-          {
-            "date": "2025-01-09",
-            "count": 0,
-            "level": 0
-          },
-          {
-            "date": "2025-01-10",
-            "count": 0,
-            "level": 0
-          },
-          {
-            "date": "2025-01-11",
-            "count": 0,
-            "level": 0
-          }
-        ]
-      },
-      {
-        "label": "2025-01-12",
-        "days": [
-          {
-            "date": "2025-01-12",
-            "count": 0,
-            "level": 0
-          },
-          {
-            "date": "2025-01-13",
-            "count": 0,
-            "level": 0
-          },
-          {
-            "date": "2025-01-14",
-            "count": 0,
-            "level": 0
-          },
-          {
-            "date": "2025-01-15",
-            "count": 0,
-            "level": 0
-          },
-          {
-            "date": "2025-01-16",
-            "count": 0,
-            "level": 0
-          },
-          {
-            "date": "2025-01-17",
-            "count": 0,
-            "level": 0
-          },
-          {
-            "date": "2025-01-18",
-            "count": 0,
-            "level": 0
-          }
-        ]
-      },
-      {
-        "label": "2025-01-19",
-        "days": [
-          {
-            "date": "2025-01-19",
-            "count": 0,
-            "level": 0
-          },
-          {
-            "date": "2025-01-20",
-            "count": 0,
-            "level": 0
-          },
-          {
-            "date": "2025-01-21",
-            "count": 0,
-            "level": 0
-          },
-          {
-            "date": "2025-01-22",
-            "count": 0,
-            "level": 0
-          },
-          {
-            "date": "2025-01-23",
-            "count": 0,
-            "level": 0
-          },
-          {
-            "date": "2025-01-24",
-            "count": 0,
-            "level": 0
-          },
-          {
-            "date": "2025-01-25",
-            "count": 0,
-            "level": 0
-          }
-        ]
-      },
-      {
-        "label": "2025-01-26",
-        "days": [
-          {
-            "date": "2025-01-26",
-            "count": 0,
-            "level": 0
-          },
-          {
-            "date": "2025-01-27",
-            "count": 0,
-            "level": 0
-          },
-          {
-            "date": "2025-01-28",
-            "count": 0,
-            "level": 0
-          },
-          {
-            "date": "2025-01-29",
-            "count": 0,
-            "level": 0
-          },
-          {
-            "date": "2025-01-30",
-            "count": 0,
-            "level": 0
-          },
-          {
-            "date": "2025-01-31",
-            "count": 0,
-            "level": 0
-          },
-          {
-            "date": "2025-02-01",
-            "count": 0,
-            "level": 0
-          }
-        ]
-      },
-      {
-        "label": "2025-02-02",
-        "days": [
-          {
-            "date": "2025-02-02",
-            "count": 0,
-            "level": 0
-          },
-          {
-            "date": "2025-02-03",
-            "count": 0,
-            "level": 0
-          },
-          {
-            "date": "2025-02-04",
-            "count": 0,
-            "level": 0
-          },
-          {
-            "date": "2025-02-05",
-            "count": 0,
-            "level": 0
-          },
-          {
-            "date": "2025-02-06",
-            "count": 0,
-            "level": 0
-          },
-          {
-            "date": "2025-02-07",
-            "count": 0,
-            "level": 0
-          },
-          {
-            "date": "2025-02-08",
-            "count": 0,
-            "level": 0
-          }
-        ]
-      },
-      {
-        "label": "2025-02-09",
-        "days": [
-          {
-            "date": "2025-02-09",
-            "count": 0,
-            "level": 0
-          },
-          {
-            "date": "2025-02-10",
-            "count": 0,
-            "level": 0
-          },
-          {
-            "date": "2025-02-11",
-            "count": 0,
-            "level": 0
-          },
-          {
-            "date": "2025-02-12",
-            "count": 0,
-            "level": 0
-          },
-          {
-            "date": "2025-02-13",
-            "count": 0,
-            "level": 0
-          },
-          {
-            "date": "2025-02-14",
-            "count": 0,
-            "level": 0
-          },
-          {
-            "date": "2025-02-15",
-            "count": 0,
-            "level": 0
-          }
-        ]
-      },
-      {
-        "label": "2025-02-16",
-        "days": [
-          {
-            "date": "2025-02-16",
-            "count": 0,
-            "level": 0
-          },
-          {
-            "date": "2025-02-17",
-            "count": 0,
-            "level": 0
-          },
-          {
-            "date": "2025-02-18",
-            "count": 0,
-            "level": 0
-          },
-          {
-            "date": "2025-02-19",
-            "count": 0,
-            "level": 0
-          },
-          {
-            "date": "2025-02-20",
-            "count": 0,
-            "level": 0
-          },
-          {
-            "date": "2025-02-21",
-            "count": 0,
-            "level": 0
-          },
-          {
-            "date": "2025-02-22",
-            "count": 0,
-            "level": 0
-          }
-        ]
-      },
-      {
-        "label": "2025-02-23",
-        "days": [
-          {
-            "date": "2025-02-23",
-            "count": 0,
-            "level": 0
-          },
-          {
-            "date": "2025-02-24",
-            "count": 0,
-            "level": 0
-          },
-          {
-            "date": "2025-02-25",
-            "count": 0,
-            "level": 0
-          },
-          {
-            "date": "2025-02-26",
-            "count": 0,
-            "level": 0
-          },
-          {
-            "date": "2025-02-27",
-            "count": 0,
-            "level": 0
-          },
-          {
-            "date": "2025-02-28",
-            "count": 0,
-            "level": 0
-          },
-          {
-            "date": "2025-03-01",
-            "count": 0,
-            "level": 0
-          }
-        ]
-      },
-      {
-        "label": "2025-03-02",
-        "days": [
-          {
-            "date": "2025-03-02",
-            "count": 0,
-            "level": 0
-          },
-          {
-            "date": "2025-03-03",
-            "count": 0,
-            "level": 0
-          },
-          {
-            "date": "2025-03-04",
-            "count": 0,
-            "level": 0
-          },
-          {
-            "date": "2025-03-05",
-            "count": 0,
-            "level": 0
-          },
-          {
-            "date": "2025-03-06",
-            "count": 0,
-            "level": 0
-          },
-          {
-            "date": "2025-03-07",
-            "count": 0,
-            "level": 0
-          },
-          {
-            "date": "2025-03-08",
-            "count": 0,
-            "level": 0
-          }
-        ]
-      },
-      {
-        "label": "2025-03-09",
-        "days": [
-          {
-            "date": "2025-03-09",
-            "count": 0,
-            "level": 0
-          },
-          {
-            "date": "2025-03-10",
-            "count": 0,
-            "level": 0
-          },
-          {
-            "date": "2025-03-11",
-            "count": 0,
-            "level": 0
-          },
-          {
-            "date": "2025-03-12",
-            "count": 0,
-            "level": 0
-          },
-          {
-            "date": "2025-03-13",
-            "count": 0,
-            "level": 0
-          },
-          {
-            "date": "2025-03-14",
-            "count": 0,
-            "level": 0
-          },
-          {
-            "date": "2025-03-15",
-            "count": 0,
-            "level": 0
-          }
-        ]
-      },
-      {
-        "label": "2025-03-16",
-        "days": [
-          {
-            "date": "2025-03-16",
-            "count": 0,
-            "level": 0
-          },
-          {
-            "date": "2025-03-17",
-            "count": 0,
-            "level": 0
-          },
-          {
-            "date": "2025-03-18",
-            "count": 0,
-            "level": 0
-          },
-          {
-            "date": "2025-03-19",
-            "count": 0,
-            "level": 0
-          },
-          {
-            "date": "2025-03-20",
-            "count": 0,
-            "level": 0
-          },
-          {
-            "date": "2025-03-21",
-            "count": 0,
-            "level": 0
-          },
-          {
-            "date": "2025-03-22",
-            "count": 0,
-            "level": 0
-          }
-        ]
-      },
-      {
-        "label": "2025-03-23",
-        "days": [
-          {
-            "date": "2025-03-23",
-            "count": 0,
-            "level": 0
-          },
-          {
-            "date": "2025-03-24",
-            "count": 0,
-            "level": 0
-          },
-          {
-            "date": "2025-03-25",
-            "count": 0,
-            "level": 0
-          },
-          {
-            "date": "2025-03-26",
-            "count": 0,
-            "level": 0
-          },
-          {
-            "date": "2025-03-27",
-            "count": 0,
-            "level": 0
-          },
-          {
-            "date": "2025-03-28",
-            "count": 0,
-            "level": 0
-          },
-          {
-            "date": "2025-03-29",
-            "count": 0,
-            "level": 0
-          }
-        ]
-      },
-      {
-        "label": "2025-03-30",
-        "days": [
-          {
-            "date": "2025-03-30",
-            "count": 0,
-            "level": 0
-          },
-          {
-            "date": "2025-03-31",
-            "count": 0,
-            "level": 0
-          },
-          {
-            "date": "2025-04-01",
-            "count": 0,
-            "level": 0
-          },
-          {
-            "date": "2025-04-02",
-            "count": 0,
-            "level": 0
-          },
-          {
-            "date": "2025-04-03",
-            "count": 0,
-            "level": 0
-          },
-          {
-            "date": "2025-04-04",
-            "count": 0,
-            "level": 0
-          },
-          {
-            "date": "2025-04-05",
-            "count": 0,
-            "level": 0
-          }
-        ]
-      },
-      {
-        "label": "2025-04-06",
-        "days": [
-          {
-            "date": "2025-04-06",
-            "count": 0,
-            "level": 0
-          },
-          {
-            "date": "2025-04-07",
-            "count": 0,
-            "level": 0
-          },
-          {
-            "date": "2025-04-08",
-            "count": 0,
-            "level": 0
-          },
-          {
-            "date": "2025-04-09",
-            "count": 0,
-            "level": 0
-          },
-          {
-            "date": "2025-04-10",
-            "count": 0,
-            "level": 0
-          },
-          {
-            "date": "2025-04-11",
-            "count": 0,
-            "level": 0
-          },
-          {
-            "date": "2025-04-12",
-            "count": 0,
-            "level": 0
-          }
-        ]
-      },
-      {
-        "label": "2025-04-13",
-        "days": [
-          {
-            "date": "2025-04-13",
-            "count": 0,
-            "level": 0
-          },
-          {
-            "date": "2025-04-14",
-            "count": 0,
-            "level": 0
-          },
-          {
-            "date": "2025-04-15",
-            "count": 0,
-            "level": 0
-          },
-          {
-            "date": "2025-04-16",
-            "count": 0,
-            "level": 0
-          },
-          {
-            "date": "2025-04-17",
-            "count": 0,
-            "level": 0
-          },
-          {
-            "date": "2025-04-18",
-            "count": 0,
-            "level": 0
-          },
-          {
-            "date": "2025-04-19",
-            "count": 0,
-            "level": 0
-          }
-        ]
-      },
-      {
-        "label": "2025-04-20",
-        "days": [
-          {
-            "date": "2025-04-20",
-            "count": 0,
-            "level": 0
-          },
-          {
-            "date": "2025-04-21",
-            "count": 0,
-            "level": 0
-          },
-          {
-            "date": "2025-04-22",
-            "count": 0,
-            "level": 0
-          },
-          {
-            "date": "2025-04-23",
-            "count": 0,
-            "level": 0
-          },
-          {
-            "date": "2025-04-24",
-            "count": 0,
-            "level": 0
-          },
-          {
-            "date": "2025-04-25",
-            "count": 0,
-            "level": 0
-          },
-          {
-            "date": "2025-04-26",
-            "count": 2,
-            "level": 1
           }
         ]
       }
     ],
     "recentCommits": [
+      {
+        "sha": "dc7a627139cf87d3b0b3662d2977f0f7a1a7226b",
+        "date": "2026-04-30T19:55:23+05:30",
+        "message": "Support default Python client runtime",
+        "url": "https://github.com/AbhinavMishra32/xitecoin/commit/dc7a627139cf87d3b0b3662d2977f0f7a1a7226b"
+      },
       {
         "sha": "e1c5d0aecb89bcc940decbf2c57b6a0890165088",
         "date": "2025-04-26T15:25:23+05:30",
@@ -4650,15 +4656,15 @@
         "date": "2024-06-07T18:40:43+05:30",
         "message": "Update readme.md",
         "url": "https://github.com/AbhinavMishra32/xitecoin/commit/1adab3952172bd4639f6d79668a906ff35cfd47f"
-      },
-      {
-        "sha": "228bcdcc088312a51e2035e3438ab867124e5e05",
-        "date": "2024-06-02T12:50:12+05:30",
-        "message": "Create LICENSE",
-        "url": "https://github.com/AbhinavMishra32/xitecoin/commit/228bcdcc088312a51e2035e3438ab867124e5e05"
       }
     ],
     "allCommits": [
+      {
+        "sha": "dc7a627139cf87d3b0b3662d2977f0f7a1a7226b",
+        "date": "2026-04-30T19:55:23+05:30",
+        "message": "Support default Python client runtime",
+        "url": "https://github.com/AbhinavMishra32/xitecoin/commit/dc7a627139cf87d3b0b3662d2977f0f7a1a7226b"
+      },
       {
         "sha": "e1c5d0aecb89bcc940decbf2c57b6a0890165088",
         "date": "2025-04-26T15:25:23+05:30",

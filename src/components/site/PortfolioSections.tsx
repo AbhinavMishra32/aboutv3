@@ -1,6 +1,7 @@
 import Image from "next/image";
 import Link from "next/link";
 import { ArrowRight } from "lucide-react";
+import { getAllPosts } from "@/lib/blog";
 import { getRepoDetail } from "@/lib/github";
 import { PROJECTS, STORY_BEATS, WORK_ITEMS } from "@/lib/portfolio";
 import { HeroSignal } from "@/components/site/HeroSignal";
@@ -43,6 +44,14 @@ const BROWSE_ITEMS = [
     imageAlt: "Illustration of Mentor Map with roadmap and collaboration panels.",
   },
 ];
+
+function formatWritingDate(value: string) {
+  return new Intl.DateTimeFormat("en-US", {
+    month: "short",
+    day: "numeric",
+    year: "numeric",
+  }).format(new Date(value));
+}
 
 export function HeroSection() {
   return (
@@ -232,28 +241,37 @@ export async function ProjectsSection({ page = false }: { page?: boolean }) {
   );
 }
 
-export function WritingPreviewSection() {
+export async function WritingPreviewSection() {
+  const posts = await getAllPosts();
+
   return (
     <section className="section-block">
       <div className="section-head">
         <h2 className="section-title">Writing</h2>
         <Link href="/blog" className="section-action">
-          Blog soon
+          See all writing
         </Link>
       </div>
 
-      <Link href="/blog" className="writing-soon-link">
-        <div className="article-link-copy">
-          <div className="article-link-title">A proper engineering blog is dropping soon.</div>
-          <div className="article-link-summary">
-            I&apos;m lining up notes on backend systems, full-stack product work, AI tooling, and the parts of shipping
-            software that usually happen below the polished screen.
-          </div>
-        </div>
-        <div className="article-link-arrow" aria-hidden="true">
-          <ArrowRight size={16} strokeWidth={1.8} />
-        </div>
-      </Link>
+      <div className="article-list">
+        {posts.slice(0, 3).map((post) => (
+          <Link key={post.slug} href={`/blog/${post.slug}`} className="blog-post-card">
+            <div className="article-link-copy">
+              <div className="blog-post-meta">
+                <span>{formatWritingDate(post.date)}</span>
+                {post.tags.slice(0, 2).map((tag) => (
+                  <span key={tag}>{tag}</span>
+                ))}
+              </div>
+              <div className="blog-post-title">{post.title}</div>
+              <div className="blog-post-desc">{post.summary}</div>
+            </div>
+            <div className="article-link-arrow" aria-hidden="true">
+              <ArrowRight size={16} strokeWidth={1.8} />
+            </div>
+          </Link>
+        ))}
+      </div>
     </section>
   );
 }
