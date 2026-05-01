@@ -5,17 +5,22 @@ import type { CSSProperties, ReactNode } from "react";
 import { useCallback, useEffect, useMemo, useRef, useState } from "react";
 import {
   ArrowUpRight,
+  BookOpenText,
   Boxes,
+  Brain,
   CalendarDays,
   GitCommitHorizontal,
   Github,
   RadioTower,
+  Rocket,
   Sparkles,
 } from "lucide-react";
+import type { LucideIcon } from "lucide-react";
 import type {
   ActivityCommit,
   ActivityContributionDay,
   ActivityContributionWeek,
+  ActivityFocusSignal,
   ActivityProjectPulse,
   ActivitySnapshot,
 } from "@/lib/activity";
@@ -370,6 +375,23 @@ function ActivityDayTooltip({
   );
 }
 
+const SIGNAL_ICONS: LucideIcon[] = [Rocket, Brain, Sparkles];
+
+function NowSignalRow({ signal, icon: Icon }: { signal: ActivityFocusSignal; icon: LucideIcon }) {
+  return (
+    <div className="activity-signal-row">
+      <span className="activity-signal-icon" aria-hidden="true">
+        <Icon size={15} />
+      </span>
+      <span className="activity-signal-copy">
+        <span>{signal.label}</span>
+        <strong>{signal.title}</strong>
+        <small>{signal.detail}</small>
+      </span>
+    </div>
+  );
+}
+
 export function ActivityDeskClient({
   initialSnapshot,
   page = false,
@@ -444,6 +466,8 @@ export function ActivityDeskClient({
     snapshot.calendar.endedAt.slice(0, 10)
   )}`;
   const wireLabel = snapshot.todayCommits.length > 0 ? "Today's commit news" : "Latest commit news";
+  const latestPost = snapshot.posts[0];
+  const featuredProjects = snapshot.projects.slice(0, 3);
 
   const cancelClose = useCallback(() => {
     if (!closeTimer.current) return;
@@ -560,97 +584,140 @@ export function ActivityDeskClient({
         </div>
       </div>
 
-      <div className="activity-wire activity-newswire" aria-label={wireLabel}>
-        <div className="activity-wire-label">
-          <RadioTower size={15} aria-hidden="true" />
-          <span>{wireLabel}</span>
-        </div>
-        <div className="activity-marquee">
-          <div className="activity-marquee-track">
-            {[0, 1].map((copyIndex) =>
-              snapshot.tickerCommits.map((commit) => (
-                <TickerCommit key={`${copyIndex}-${commit.id}`} commit={commit} hidden={copyIndex === 1} />
-              ))
-            )}
-          </div>
-        </div>
-      </div>
-
-      <div className="activity-heatmap-shell" ref={heatmapShellRef}>
-        <div className="activity-heatmap-top">
-          <div>
-            <p className="activity-panel-kicker">GitHub calendar</p>
-            <h3 className="activity-heatmap-title">{getContributionCopy(snapshot.calendar.totalContributions)}</h3>
-          </div>
-          <div className="activity-heatmap-source">
-            <span>{calendarSourceLabel}</span>
-            <span>{calendarRange}</span>
-          </div>
-        </div>
-
-        <div className="activity-heatmap-scroll">
-          <div className="activity-heatmap-board" style={heatmapStyle}>
-            <div className="activity-heatmap-months" aria-hidden="true">
-              {monthMarkers.map((marker) => (
-                <span key={marker.id} style={{ gridColumn: marker.column }}>
-                  {marker.label}
-                </span>
-              ))}
+      <div className="activity-main-lane">
+        <div className="activity-heatmap-shell" ref={heatmapShellRef}>
+          <div className="activity-heatmap-top">
+            <div>
+              <p className="activity-panel-kicker">GitHub calendar</p>
+              <h3 className="activity-heatmap-title">{getContributionCopy(snapshot.calendar.totalContributions)}</h3>
             </div>
-
-            <div className="activity-heatmap-weekdays" aria-hidden="true">
-              {WEEKDAY_LABELS.map((label, index) => (
-                <span key={`${label}-${index}`}>{label}</span>
-              ))}
-            </div>
-
-            <div className="activity-heatmap-weeks">
-              {weeks.map((week) => (
-                <div key={week.firstDay} className="activity-heatmap-week">
-                  {week.contributionDays.map((day) => (
-                    <button
-                      key={day.date}
-                      type="button"
-                      className="activity-heatmap-day"
-                      data-level={day.contributionLevel}
-                      aria-label={`${formatCalendarDate(day.date)}: ${getContributionCopy(day.contributionCount)}`}
-                      style={{ gridRow: getCalendarRow(day) }}
-                      onPointerEnter={(event) => openDay(day, event.currentTarget)}
-                      onPointerMove={(event) => positionTooltip(event.currentTarget)}
-                      onPointerLeave={queueClose}
-                      onFocus={(event) => openDay(day, event.currentTarget)}
-                      onBlur={queueClose}
-                    />
-                  ))}
-                </div>
-              ))}
+            <div className="activity-heatmap-source">
+              <span>{calendarSourceLabel}</span>
+              <span>{calendarRange}</span>
             </div>
           </div>
+
+          <div className="activity-heatmap-scroll">
+            <div className="activity-heatmap-board" style={heatmapStyle}>
+              <div className="activity-heatmap-months" aria-hidden="true">
+                {monthMarkers.map((marker) => (
+                  <span key={marker.id} style={{ gridColumn: marker.column }}>
+                    {marker.label}
+                  </span>
+                ))}
+              </div>
+
+              <div className="activity-heatmap-weekdays" aria-hidden="true">
+                {WEEKDAY_LABELS.map((label, index) => (
+                  <span key={`${label}-${index}`}>{label}</span>
+                ))}
+              </div>
+
+              <div className="activity-heatmap-weeks">
+                {weeks.map((week) => (
+                  <div key={week.firstDay} className="activity-heatmap-week">
+                    {week.contributionDays.map((day) => (
+                      <button
+                        key={day.date}
+                        type="button"
+                        className="activity-heatmap-day"
+                        data-level={day.contributionLevel}
+                        aria-label={`${formatCalendarDate(day.date)}: ${getContributionCopy(day.contributionCount)}`}
+                        style={{ gridRow: getCalendarRow(day) }}
+                        onPointerEnter={(event) => openDay(day, event.currentTarget)}
+                        onPointerMove={(event) => positionTooltip(event.currentTarget)}
+                        onPointerLeave={queueClose}
+                        onFocus={(event) => openDay(day, event.currentTarget)}
+                        onBlur={queueClose}
+                      />
+                    ))}
+                  </div>
+                ))}
+              </div>
+            </div>
+          </div>
+
+          <div className="activity-heatmap-footer">
+            <span>
+              {snapshot.metrics.activeProjects} tracked projects / {snapshot.metrics.posts} notes live
+            </span>
+            <span className="activity-heatmap-legend" aria-label="Contribution intensity legend">
+              <span>Less</span>
+              {[0, 1, 2, 3, 4].map((level) => (
+                <span key={level} className="activity-heatmap-legend-cell" data-level={level} aria-hidden="true" />
+              ))}
+              <span>More</span>
+            </span>
+          </div>
+
+          {activeDay ? (
+            <ActivityDayTooltip
+              detail={activeDay}
+              style={tooltipStyle}
+              timeZone={snapshot.timeZone}
+              source={snapshot.calendar.source}
+              onPointerEnter={cancelClose}
+              onPointerLeave={queueClose}
+            />
+          ) : null}
         </div>
 
-        <div className="activity-heatmap-footer">
-          <span>
-            {snapshot.metrics.activeProjects} tracked projects / {snapshot.metrics.posts} notes live
-          </span>
-          <span className="activity-heatmap-legend" aria-label="Contribution intensity legend">
-            <span>Less</span>
-            {[0, 1, 2, 3, 4].map((level) => (
-              <span key={level} className="activity-heatmap-legend-cell" data-level={level} aria-hidden="true" />
+        <div className="activity-wire activity-newswire" aria-label={wireLabel}>
+          <div className="activity-wire-label">
+            <RadioTower size={15} aria-hidden="true" />
+            <span>{wireLabel}</span>
+          </div>
+          <div className="activity-marquee">
+            <div className="activity-marquee-track">
+              {[0, 1].map((copyIndex) =>
+                snapshot.tickerCommits.map((commit) => (
+                  <TickerCommit key={`${copyIndex}-${commit.id}`} commit={commit} hidden={copyIndex === 1} />
+                ))
+              )}
+            </div>
+          </div>
+        </div>
+
+        <aside className="activity-context-panel" aria-label="Beyond GitHub">
+          <div className="activity-context-head">
+            <span className="activity-panel-kicker">Beyond GitHub</span>
+            <h3>What else is moving</h3>
+          </div>
+
+          <div className="activity-signal-list">
+            {snapshot.focusSignals.map((signal, index) => (
+              <NowSignalRow key={signal.label} signal={signal} icon={SIGNAL_ICONS[index % SIGNAL_ICONS.length]} />
             ))}
-            <span>More</span>
-          </span>
-        </div>
+          </div>
 
-        {activeDay ? (
-          <ActivityDayTooltip
-            detail={activeDay}
-            style={tooltipStyle}
-            timeZone={snapshot.timeZone}
-            source={snapshot.calendar.source}
-            onPointerEnter={cancelClose}
-            onPointerLeave={queueClose}
-          />
-        ) : null}
+          {latestPost ? (
+            <Link href={`/blog/${latestPost.slug}`} className="activity-writing-callout">
+              <span>
+                <BookOpenText size={15} aria-hidden="true" />
+                Latest note
+              </span>
+              <strong>{latestPost.title}</strong>
+              <small>{latestPost.tags.slice(0, 3).join(" / ") || "Writing"}</small>
+            </Link>
+          ) : null}
+
+          {featuredProjects.length > 0 ? (
+            <div className="activity-project-strip" aria-label="Active project snapshots">
+              {featuredProjects.map((project) => (
+                <ActivityLink
+                  key={project.slug}
+                  href={project.href}
+                  external={project.href.startsWith("http")}
+                  className="activity-project-mini"
+                >
+                  <strong>{project.name}</strong>
+                  <span>{project.focus}</span>
+                  <small>{project.status}</small>
+                </ActivityLink>
+              ))}
+            </div>
+          ) : null}
+        </aside>
       </div>
     </section>
   );

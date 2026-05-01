@@ -1091,17 +1091,17 @@ textarea {
 
 .activity-section {
   display: grid;
-  gap: 1rem;
+  gap: 1.05rem;
 }
 
 .activity-page-section {
-  padding-top: 0.15rem;
+  padding-top: 0;
 }
 
 .activity-stage {
   display: grid;
-  grid-template-columns: minmax(0, 1.08fr) minmax(16rem, 0.92fr);
-  gap: 1rem;
+  grid-template-columns: minmax(0, 1fr) auto;
+  gap: 1.1rem;
   align-items: stretch;
 }
 
@@ -1116,7 +1116,7 @@ textarea {
 
 .activity-title {
   margin: 0;
-  max-width: 34rem;
+  max-width: 30rem;
   font-size: 1.72rem;
   line-height: 1.08;
   font-weight: 650;
@@ -1125,7 +1125,7 @@ textarea {
 
 .activity-lede {
   margin: 0;
-  max-width: 32rem;
+  max-width: 34rem;
   color: var(--muted);
   font-size: 0.98rem;
   line-height: 1.58;
@@ -1187,7 +1187,9 @@ textarea {
   display: grid;
   gap: 0.72rem;
   align-content: center;
+  justify-self: end;
   justify-items: end;
+  max-width: 19rem;
   min-width: 0;
   animation: soft-reveal 0.82s cubic-bezier(0.22, 1, 0.36, 1) both;
   animation-delay: 0.18s;
@@ -1222,8 +1224,7 @@ textarea {
   position: relative;
   display: grid;
   gap: 0.88rem;
-  justify-self: center;
-  width: min(100vw - 2rem, 52rem);
+  width: 100%;
   min-width: 0;
   padding: 0.96rem;
   border: 1px solid color-mix(in srgb, var(--line) 84%, transparent);
@@ -1243,6 +1244,152 @@ textarea {
   box-shadow:
     inset 0 1px 0 rgba(255, 255, 255, 0.07),
     0 20px 62px rgba(0, 0, 0, 0.34);
+}
+
+.activity-main-lane {
+  display: grid;
+  gap: 0.9rem;
+  align-items: stretch;
+  min-width: 0;
+  animation: soft-reveal 0.82s cubic-bezier(0.22, 1, 0.36, 1) both;
+  animation-delay: 0.24s;
+}
+
+.activity-context-panel {
+  display: grid;
+  gap: 0.72rem;
+  align-content: start;
+  min-width: 0;
+  padding: 0.78rem;
+  border: 1px solid color-mix(in srgb, var(--line) 82%, transparent);
+  border-radius: 1rem;
+  background:
+    linear-gradient(180deg, color-mix(in srgb, var(--surface-strong) 66%, transparent), transparent),
+    color-mix(in srgb, var(--surface) 76%, transparent);
+  box-shadow:
+    inset 0 1px 0 rgba(255, 255, 255, 0.48),
+    0 18px 54px rgba(0, 0, 0, 0.05);
+  backdrop-filter: blur(22px) saturate(1.16);
+}
+
+:root[data-theme="dark"] .activity-context-panel {
+  box-shadow:
+    inset 0 1px 0 rgba(255, 255, 255, 0.07),
+    0 20px 60px rgba(0, 0, 0, 0.34);
+}
+
+.activity-context-head {
+  display: grid;
+  gap: 0.16rem;
+}
+
+.activity-context-head h3 {
+  margin: 0;
+  color: var(--text);
+  font-size: 1rem;
+  font-weight: 650;
+  line-height: 1.18;
+  letter-spacing: 0;
+}
+
+.activity-signal-list,
+.activity-project-strip {
+  display: grid;
+  min-width: 0;
+}
+
+.activity-signal-list {
+  gap: 0.5rem;
+}
+
+.activity-project-strip {
+  grid-template-columns: repeat(3, minmax(0, 1fr));
+  gap: 0.52rem;
+}
+
+.activity-signal-row {
+  display: grid;
+  grid-template-columns: 1.72rem minmax(0, 1fr);
+  gap: 0.52rem;
+  align-items: start;
+  min-width: 0;
+  padding-block: 0.1rem;
+}
+
+.activity-signal-icon {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  width: 1.72rem;
+  height: 1.72rem;
+  border: 1px solid color-mix(in srgb, var(--line) 82%, transparent);
+  border-radius: 0.56rem;
+  color: var(--accent);
+  background: color-mix(in srgb, var(--surface-strong) 72%, transparent);
+}
+
+.activity-signal-copy {
+  display: grid;
+  gap: 0.1rem;
+  min-width: 0;
+}
+
+.activity-signal-copy span,
+.activity-writing-callout span,
+.activity-project-mini small {
+  color: var(--subtle);
+  font-family: var(--font-ibm-mono), monospace;
+  font-size: 0.62rem;
+  font-weight: 600;
+  letter-spacing: 0.08em;
+  line-height: 1.2;
+  text-transform: uppercase;
+}
+
+.activity-signal-copy strong,
+.activity-writing-callout strong,
+.activity-project-mini strong {
+  color: var(--text);
+  font-size: 0.8rem;
+  font-weight: 650;
+  line-height: 1.25;
+  letter-spacing: 0;
+}
+
+.activity-signal-copy small,
+.activity-writing-callout small,
+.activity-project-mini span {
+  color: var(--muted);
+  font-size: 0.72rem;
+  line-height: 1.35;
+}
+
+.activity-writing-callout,
+.activity-project-mini {
+  display: grid;
+  gap: 0.18rem;
+  min-width: 0;
+  padding: 0.58rem;
+  border: 1px solid color-mix(in srgb, var(--line) 78%, transparent);
+  border-radius: 0.74rem;
+  background: color-mix(in srgb, var(--surface-strong) 58%, transparent);
+  transition:
+    background-color 0.18s ease,
+    border-color 0.18s ease,
+    transform 0.18s ease;
+}
+
+.activity-writing-callout:hover,
+.activity-project-mini:hover {
+  border-color: color-mix(in srgb, var(--accent) 24%, var(--line));
+  background: var(--surface-strong);
+  transform: translateY(-1px);
+}
+
+.activity-writing-callout span {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.32rem;
 }
 
 .activity-heatmap-top,
@@ -1582,8 +1729,7 @@ textarea {
 }
 
 .activity-newswire {
-  justify-self: center;
-  width: min(100vw - 2rem, 52rem);
+  width: 100%;
   animation-delay: 0.3s;
 }
 
@@ -4014,13 +4160,20 @@ textarea {
 
   .activity-stage,
   .activity-grid,
-  .activity-wire {
+  .activity-wire,
+  .activity-main-lane {
     grid-template-columns: 1fr;
   }
 
+  .activity-stage {
+    width: 100%;
+  }
+
   .activity-meta-strip {
+    justify-self: start;
     justify-items: start;
     gap: 0.58rem;
+    max-width: none;
   }
 
   .activity-meta-lines {
@@ -4040,7 +4193,8 @@ textarea {
   .activity-command-center,
   .activity-focus-panel,
   .activity-project-panel,
-  .activity-heatmap-shell {
+  .activity-heatmap-shell,
+  .activity-context-panel {
     border-radius: 0.92rem;
   }
 
@@ -4052,6 +4206,14 @@ textarea {
 
   .activity-newswire {
     width: 100%;
+  }
+
+  .activity-context-panel {
+    padding: 0.72rem;
+  }
+
+  .activity-project-strip {
+    grid-template-columns: 1fr;
   }
 
   .activity-heatmap-top,
