@@ -4,8 +4,10 @@ import { ArrowRight } from "lucide-react";
 import { getAllPosts } from "@/lib/blog";
 import { getRepoDetail } from "@/lib/github";
 import { PROJECTS, STORY_BEATS, WORK_ITEMS } from "@/lib/portfolio";
+import { getSystemsTimelineBase } from "@/lib/systems";
 import { HeroSignal } from "@/components/site/HeroSignal";
 import { ProjectsExperience } from "@/components/site/ProjectsExperience";
+import { SystemsTimeline } from "@/components/site/SystemsTimeline";
 
 const BROWSE_ITEMS = [
   {
@@ -210,6 +212,7 @@ export async function ProjectsSection({ page = false }: { page?: boolean }) {
   const repoDetails = await Promise.all(
     PROJECTS.filter((project) => project.repo).map(async (project) => [project.slug, await getRepoDetail(project.slug, project.repo!)] as const)
   );
+  const systemsEntries = page ? await getSystemsTimelineBase() : [];
   const details = Object.fromEntries(repoDetails);
   const summaries = Object.fromEntries(
     repoDetails.map(([slug, detail]) => [
@@ -236,6 +239,8 @@ export async function ProjectsSection({ page = false }: { page?: boolean }) {
       </div>
 
       <ProjectsExperience projects={PROJECTS} summaries={summaries} details={details} />
+
+      {page ? <SystemsTimeline initialEntries={systemsEntries} /> : null}
     </section>
   );
 }
