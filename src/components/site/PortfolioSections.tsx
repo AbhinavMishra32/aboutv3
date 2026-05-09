@@ -84,9 +84,6 @@ export function HeroSection() {
           product-facing software in TypeScript, with NestJS and occasional Go on the backend.
         </p>
       </div>
-      <div className="hero-flow" aria-label="Portfolio sections continue below">
-        <span>Selected work, projects, and writing</span>
-      </div>
     </section>
   );
 }
