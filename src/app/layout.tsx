@@ -1,6 +1,6 @@
 import type { Metadata } from "next";
 import Script from "next/script";
-import { IBM_Plex_Mono, Instrument_Sans, Instrument_Serif } from "next/font/google";
+import { IBM_Plex_Mono, Instrument_Sans, Instrument_Serif, Noto_Sans_KR } from "next/font/google";
 import "./globals.css";
 
 const instrumentSans = Instrument_Sans({
@@ -20,6 +20,12 @@ const ibmPlexMono = IBM_Plex_Mono({
   variable: "--font-ibm-mono",
   subsets: ["latin"],
   weight: ["400", "500", "600"],
+});
+
+const notoSansKr = Noto_Sans_KR({
+  variable: "--font-korean",
+  subsets: ["latin"],
+  weight: ["400", "500", "600", "700"],
 });
 
 const themeScript = `
@@ -49,7 +55,7 @@ export default function RootLayout({
   return (
     <html lang="en" suppressHydrationWarning>
       <body
-        className={`${instrumentSans.variable} ${instrumentSerif.variable} ${ibmPlexMono.variable} antialiased`}
+        className={`${instrumentSans.variable} ${instrumentSerif.variable} ${ibmPlexMono.variable} ${notoSansKr.variable} antialiased`}
       >
         <Script id="theme-init" strategy="beforeInteractive">
           {themeScript}
