@@ -12,6 +12,7 @@ const BROWSE_ITEMS = [
   {
     href: "/story",
     label: "Story",
+    koreanLabel: "서사",
     title: "How I learned to build with high agency.",
     summary:
       "The solo builds, internship work, and debugging moments that shaped the way I approach full-stack engineering.",
@@ -21,6 +22,7 @@ const BROWSE_ITEMS = [
   {
     href: "/work",
     label: "Work",
+    koreanLabel: "실전",
     title: "Engineering work across real teams.",
     summary:
       "A clearer look at Lunacal, Studybank, and the way I handle backend-heavy systems, rollout safety, and polish.",
@@ -30,6 +32,7 @@ const BROWSE_ITEMS = [
   {
     href: "/projects",
     label: "Projects",
+    koreanLabel: "프로젝트",
     title: "Products, experiments, and systems I have built.",
     summary: "A closer look at Decipath, Construct, Mentor Map, XiteCoin, and the engineering behind each one.",
     image: "/project-decipath-light.svg",
@@ -38,12 +41,35 @@ const BROWSE_ITEMS = [
   {
     href: "/blog",
     label: "Blog",
+    koreanLabel: "기록",
     title: "Notes on shipping software that holds up.",
     summary: "Writing on systems, infrastructure, AI tooling, and the product choices behind reliable software.",
     image: "/project-mentormap.svg",
     imageAlt: "Illustration of Mentor Map with roadmap and collaboration panels.",
   },
 ];
+
+const HERO_SIGNAL_TAGS = [
+  ["정밀함", "Precision"],
+  ["시스템 감각", "Systems Taste"],
+  ["배포 준비", "Ship Ready"],
+  ["조용한 UI", "Quiet UI"],
+];
+
+const FACT_LABELS = [
+  ["거점", "Based in Ghaziabad, India"],
+  ["스택", "TypeScript products and NestJS backend systems"],
+  ["방향", "ML tooling direction, backend depth, and low-level curiosity"],
+];
+
+const SECTION_LABELS: Record<string, string> = {
+  Browse: "탐색",
+  Work: "실전",
+  Projects: "빌드",
+  Writing: "기록",
+};
+
+const WORK_LABELS = ["라이브", "제품", "AI도구"];
 
 function formatWritingDate(value: string) {
   return new Intl.DateTimeFormat("en-US", {
@@ -60,11 +86,10 @@ export function HeroSection() {
         <HeroSignal />
       </div>
       <div className="hero-copy">
-        <div className="metro-language-strip" aria-label="Portfolio signal labels">
-          <KoreanHoverText korean="서울 메트로" english="Seoul Metro" />
-          <KoreanHoverText korean="신뢰성" english="Reliability" />
-          <KoreanHoverText korean="제품 감각" english="Product Taste" />
-          <KoreanHoverText korean="배포 준비" english="Ship Ready" />
+        <div className="language-signal-strip" aria-label="Portfolio signal labels">
+          {HERO_SIGNAL_TAGS.map(([korean, english]) => (
+            <KoreanHoverText key={english} korean={korean} english={english} />
+          ))}
         </div>
         <p className="hero-paragraph">
           I&apos;m a <span className="hero-emphasis">full-stack engineer</span> building TypeScript products and backend
@@ -80,11 +105,21 @@ export function HeroSection() {
         </p>
       </div>
       <div className="facts">
-        <span>Based in Ghaziabad, India</span>
-        <span>TypeScript products and NestJS backend systems</span>
-        <span>ML tooling direction, backend depth, and low-level curiosity</span>
+        {FACT_LABELS.map(([korean, english]) => (
+          <span key={english}>
+            <KoreanHoverText korean={korean} english={english} />
+          </span>
+        ))}
       </div>
     </section>
+  );
+}
+
+function SectionTitle({ children }: { children: keyof typeof SECTION_LABELS }) {
+  return (
+    <h2 className="section-title language-section-title">
+      <KoreanHoverText korean={SECTION_LABELS[children]} english={children} />
+    </h2>
   );
 }
 
@@ -92,7 +127,7 @@ export function BrowseSection() {
   return (
     <section className="section-block">
       <div className="section-head">
-        <h2 className="section-title">Browse</h2>
+        <SectionTitle>Browse</SectionTitle>
         <p className="section-note">A quick path through the work, projects, writing, and story.</p>
       </div>
 
@@ -103,7 +138,9 @@ export function BrowseSection() {
               <Image src={item.image} alt={item.imageAlt} className="browse-card-image" width={640} height={448} />
             </div>
             <div className="browse-card-copy">
-              <div className="browse-card-label">{item.label}</div>
+              <div className="browse-card-label">
+                <KoreanHoverText korean={item.koreanLabel} english={item.label} />
+              </div>
               <h3 className="browse-card-title">{item.title}</h3>
               <p className="browse-card-summary">{item.summary}</p>
             </div>
@@ -178,7 +215,7 @@ export function WorkSection({ page = false }: { page?: boolean }) {
   return (
     <section className={page ? "work-page-section" : "section-block"}>
       <div className="section-head">
-        <h2 className="section-title">Work</h2>
+        <SectionTitle>Work</SectionTitle>
         {!page ? (
           <Link href="/work" className="section-action">
             See full work
@@ -189,10 +226,13 @@ export function WorkSection({ page = false }: { page?: boolean }) {
       </div>
 
       <div className="work-list">
-        {WORK_ITEMS.map((item) => (
+        {WORK_ITEMS.map((item, index) => (
           <article key={item.title} className="work-row">
             <div className="work-head">
               <div>
+                <div className="work-language-label">
+                  <KoreanHoverText korean={WORK_LABELS[index] ?? "실행"} english={`case ${String(index + 1).padStart(2, "0")}`} />
+                </div>
                 <h3 className="work-title">{item.title}</h3>
                 <div className="work-subtitle">{item.subtitle}</div>
               </div>
@@ -225,7 +265,7 @@ export async function ProjectsSection({ page = false }: { page?: boolean }) {
   return (
     <section className={page ? "projects-page-section" : "section-block"}>
       <div className="section-head">
-        <h2 className="section-title">Projects</h2>
+        <SectionTitle>Projects</SectionTitle>
         {!page ? (
           <Link href="/projects" className="section-action">
             See all projects
@@ -246,7 +286,7 @@ export async function WritingPreviewSection() {
   return (
     <section className="section-block">
       <div className="section-head">
-        <h2 className="section-title">Writing</h2>
+        <SectionTitle>Writing</SectionTitle>
         <Link href="/blog" className="section-action">
           See all writing
         </Link>
@@ -257,6 +297,9 @@ export async function WritingPreviewSection() {
           <Link key={post.slug} href={`/blog/${post.slug}`} className="blog-post-card">
             <div className="article-link-copy">
               <div className="blog-post-meta">
+                <span>
+                  <KoreanHoverText korean="노트" english="note" />
+                </span>
                 <span>{formatWritingDate(post.date)}</span>
                 {post.tags.slice(0, 2).map((tag) => (
                   <span key={tag}>{tag}</span>
