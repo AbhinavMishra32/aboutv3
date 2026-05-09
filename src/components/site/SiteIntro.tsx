@@ -1,13 +1,14 @@
 "use client";
 
 import { useEffect, useState } from "react";
+import { KoreanHoverText, LanguageShiftText } from "@/components/site/LanguageShiftText";
 
 const STORAGE_KEY = "aboutv3-intro-seen";
 
 const INTRO_ROWS = [
-  ["01", "systems signal", "APIs, data, automations"],
-  ["02", "product taste", "quiet UI, sharp edges"],
-  ["03", "ship mode", "reliable, fast, owned"],
+  ["01", "백엔드 신호", "backend signal", "APIs, queues, data, architecture"],
+  ["02", "스택 깊이", "stack depth", "TypeScript, NestJS, Go, low-level curiosity"],
+  ["03", "출시 모드", "ship mode", "reliable, fast, owned"],
 ];
 
 export function SiteIntro() {
@@ -72,18 +73,35 @@ export function SiteIntro() {
       </div>
 
       <div className="site-intro-core">
-        <div className="site-intro-kicker">portfolio boot</div>
-        <div className="site-intro-name" aria-hidden="true">
-          <span>Abhinav</span>
-          <span>Mishra</span>
+        <div className="site-intro-kicker">
+          <LanguageShiftText
+            finalText="portfolio boot"
+            frames={["포트폴리오 부팅", "ポートフォリオ起動", "portfolio boot"]}
+          />
         </div>
-        <p className="site-intro-role">Full-stack TypeScript engineering / AI systems / Rust + TypeScript tools</p>
+        <div className="site-intro-name" aria-hidden="true">
+          <LanguageShiftText finalText="Abhinav" frames={["아비나브", "अभिनव", "Abhinav"]} />
+          <LanguageShiftText finalText="Mishra" frames={["미슈라", "मिश्रा", "Mishra"]} delay={120} />
+        </div>
+        <p className="site-intro-role">
+          <LanguageShiftText
+            finalText="TypeScript products / NestJS backend / ML tooling direction"
+            frames={[
+              "타입스크립트 제품 / NestJS 백엔드 / ML 툴링 방향",
+              "TypeScript 제품 / NestJS systems / ML tooling",
+              "TypeScript products / NestJS backend / ML tooling direction",
+            ]}
+            delay={240}
+          />
+        </p>
 
         <div className="site-intro-console">
-          {INTRO_ROWS.map(([index, label, value]) => (
-            <div key={label} className="site-intro-row">
+          {INTRO_ROWS.map(([index, korean, english, value]) => (
+            <div key={english} className="site-intro-row">
               <span>{index}</span>
-              <strong>{label}</strong>
+              <strong>
+                <KoreanHoverText korean={korean} english={english} />
+              </strong>
               <em>{value}</em>
             </div>
           ))}

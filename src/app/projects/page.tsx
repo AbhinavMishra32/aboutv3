@@ -5,7 +5,7 @@ export default function ProjectsPage() {
   return (
     <PortfolioShell
       active="projects"
-      tagline="Products, experiments, and systems I have built."
+      tagline="Products, experiments, and backend-heavy builds I have shipped."
     >
       <ProjectsSection page />
     </PortfolioShell>

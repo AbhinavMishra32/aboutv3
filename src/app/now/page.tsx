@@ -6,7 +6,7 @@ export const revalidate = 900;
 
 export const metadata: Metadata = {
   title: "Now | Abhinav Mishra",
-  description: "A live desk for what Abhinav Mishra is building, learning, writing, and shipping.",
+  description: "A live desk for what Abhinav Mishra is building, learning, and shipping right now.",
 };
 
 export default function NowPage() {

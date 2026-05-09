@@ -1,15 +1,22 @@
 "use client";
 
 import { useEffect, useId, useState } from "react";
+import { KoreanHoverText, LanguageShiftText } from "@/components/site/LanguageShiftText";
 
 const SIGNAL_ROWS = [
-  ["profile.signal", "full-stack product engineer with backend-systems instincts"],
-  ["ship.mode", "ambiguous brief -> dependable product surface"],
-  ["debug.depth", "APIs, data, edge cases, rollout paths, UI seams"],
-  ["taste.layer", "quiet interfaces over loud dashboards"],
+  ["프로필.신호", "profile.signal", "full-stack engineer with backend depth and product taste"],
+  ["스택.초점", "stack.focus", "TypeScript products, NestJS systems, ML tooling direction"],
+  ["디버그.깊이", "debug.depth", "APIs, data, edge cases, rollout paths, infra seams"],
+  ["취향.레이어", "taste.layer", "quiet interfaces over loud dashboards"],
 ];
 
-const SIGNAL_CHIPS = ["ownership", "systems", "reliability", "AI workflows", "polish"];
+const SIGNAL_CHIPS = [
+  ["네스트", "nestjs"],
+  ["시스템", "systems"],
+  ["제품감", "product"],
+  ["저수준", "low-level"],
+  ["ML도구", "ml"],
+];
 
 export function HeroSignal() {
   const [isOpen, setIsOpen] = useState(false);
@@ -41,16 +48,27 @@ export function HeroSignal() {
           aria-controls={panelId}
           onClick={() => setIsOpen((current) => !current)}
         >
-          <span className="hero-name-text">Abhinav Mishra</span>
+          <LanguageShiftText
+            finalText="Abhinav Mishra"
+            frames={["아비나브 미슈라", "अभिनव मिश्रा", "Abhinav Mishra"]}
+            className="hero-name-text"
+            delay={360}
+          />
           <span className="hero-name-cursor" aria-hidden="true">
             _
           </span>
           <span className="hero-name-hint" aria-hidden="true">
-            inspect
+            탐색
           </span>
         </button>
       </h1>
-      <p className="hero-role">Software Engineer</p>
+      <p className="hero-role">
+        <LanguageShiftText
+          finalText="Full-Stack Engineer"
+          frames={["풀스택 엔지니어", "フルスタックエンジニア", "Full-Stack Engineer"]}
+          delay={660}
+        />
+      </p>
 
       <div id={panelId} className="hero-signal-panel" aria-hidden={!isOpen}>
         <div
@@ -69,16 +87,18 @@ export function HeroSignal() {
             <span>inspect --signal</span>
           </div>
           <div className="hero-signal-output">
-            {SIGNAL_ROWS.map(([label, value]) => (
-              <div key={label} className="hero-signal-row">
-                <span>{label}</span>
+            {SIGNAL_ROWS.map(([korean, english, value]) => (
+              <div key={english} className="hero-signal-row">
+                <span>
+                  <KoreanHoverText korean={korean} english={english} />
+                </span>
                 <strong>{value}</strong>
               </div>
             ))}
           </div>
           <div className="hero-signal-chips" aria-label="Engineering signal keywords">
-            {SIGNAL_CHIPS.map((chip) => (
-              <span key={chip}>{chip}</span>
+            {SIGNAL_CHIPS.map(([korean, english]) => (
+              <KoreanHoverText key={english} korean={korean} english={english} />
             ))}
           </div>
         </div>

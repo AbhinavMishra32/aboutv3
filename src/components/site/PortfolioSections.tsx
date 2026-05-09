@@ -4,10 +4,9 @@ import { ArrowRight } from "lucide-react";
 import { getAllPosts } from "@/lib/blog";
 import { getRepoDetail } from "@/lib/github";
 import { PROJECTS, STORY_BEATS, WORK_ITEMS } from "@/lib/portfolio";
-import { getSystemsTimelineBase } from "@/lib/systems";
 import { HeroSignal } from "@/components/site/HeroSignal";
+import { KoreanHoverText } from "@/components/site/LanguageShiftText";
 import { ProjectsExperience } from "@/components/site/ProjectsExperience";
-import { SystemsTimeline } from "@/components/site/SystemsTimeline";
 
 const BROWSE_ITEMS = [
   {
@@ -61,23 +60,29 @@ export function HeroSection() {
         <HeroSignal />
       </div>
       <div className="hero-copy">
+        <div className="metro-language-strip" aria-label="Portfolio signal labels">
+          <KoreanHoverText korean="서울 메트로" english="Seoul Metro" />
+          <KoreanHoverText korean="신뢰성" english="Reliability" />
+          <KoreanHoverText korean="제품 감각" english="Product Taste" />
+          <KoreanHoverText korean="배포 준비" english="Ship Ready" />
+        </div>
         <p className="hero-paragraph">
-          I&apos;m a <span className="hero-emphasis">full-stack TypeScript engineer</span> building production AI and
-          automation systems.
+          I&apos;m a <span className="hero-emphasis">full-stack engineer</span> building TypeScript products and backend
+          systems with a bias for depth.
         </p>
         <p className="hero-paragraph">
-          I&apos;ve worked on scheduling infrastructure, SMS pipelines, feature rollouts, CI and testing systems, AI
-          workflows, and observability for real products.
+          My strongest backend work is in <span className="hero-emphasis">NestJS</span>. I care about architecture,
+          reliability, and understanding what sits below the framework layer instead of stopping at abstractions.
         </p>
         <p className="hero-paragraph">
-          Currently I&apos;m building <span className="hero-emphasis">Rust and TypeScript systems tools by hand</span>,
-          while shipping production work across backend systems, automation, and product infrastructure.
+          Right now I&apos;m building toward lower-level machine learning tooling while continuing to ship
+          product-facing software in TypeScript, with NestJS and occasional Go on the backend.
         </p>
       </div>
       <div className="facts">
         <span>Based in Ghaziabad, India</span>
-        <span>Full-stack TypeScript engineering</span>
-        <span>AI systems, automations, observability, and Rust plus TypeScript tools</span>
+        <span>TypeScript products and NestJS backend systems</span>
+        <span>ML tooling direction, backend depth, and low-level curiosity</span>
       </div>
     </section>
   );
@@ -179,7 +184,7 @@ export function WorkSection({ page = false }: { page?: boolean }) {
             See full work
           </Link>
         ) : (
-          <p className="section-note">Backend systems, rollout safety, automation, and product ownership.</p>
+          <p className="section-note">Backend systems, product engineering, and the layers underneath them.</p>
         )}
       </div>
 
@@ -205,7 +210,6 @@ export async function ProjectsSection({ page = false }: { page?: boolean }) {
   const repoDetails = await Promise.all(
     PROJECTS.filter((project) => project.repo).map(async (project) => [project.slug, await getRepoDetail(project.slug, project.repo!)] as const)
   );
-  const systemsEntries = page ? await getSystemsTimelineBase() : [];
   const details = Object.fromEntries(repoDetails);
   const summaries = Object.fromEntries(
     repoDetails.map(([slug, detail]) => [
@@ -227,13 +231,11 @@ export async function ProjectsSection({ page = false }: { page?: boolean }) {
             See all projects
           </Link>
         ) : (
-          <p className="section-note">Products, experiments, and systems with the details that made them work.</p>
+          <p className="section-note">Products, experiments, and backend-heavy builds shaped by how they work underneath.</p>
         )}
       </div>
 
       <ProjectsExperience projects={PROJECTS} summaries={summaries} details={details} />
-
-      {page ? <SystemsTimeline initialEntries={systemsEntries} /> : null}
     </section>
   );
 }

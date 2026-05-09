@@ -19,11 +19,11 @@ export default async function BlogIndexPage() {
       <h1 className="blog-title">Notes from the parts of software that make products hold together.</h1>
       <div className="blog-meta">
         <span>{posts.length} notes live</span>
-        <span>Backend systems, product judgment, AI workflows</span>
+        <span>Backend systems, product judgment, and technical depth</span>
       </div>
       <p className="blog-body">
-        Short engineering essays on reliability, clarity, full-stack shipping, and the hidden decisions behind polished
-        product work.
+        Short engineering essays on reliability, backend architecture, product clarity, and the decisions underneath
+        software that feels sharp and stable.
       </p>
 
       <div className="blog-post-grid">
