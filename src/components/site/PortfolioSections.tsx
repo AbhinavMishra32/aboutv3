@@ -50,9 +50,9 @@ const BROWSE_ITEMS = [
 ];
 
 const FACT_LABELS = [
-  ["거점", "Based in Ghaziabad, India"],
-  ["스택", "TypeScript products and NestJS backend systems"],
-  ["방향", "ML tooling direction, backend depth, and low-level curiosity"],
+  "Based in Ghaziabad, India",
+  "TypeScript products and NestJS backend systems",
+  "ML tooling direction, backend depth, and low-level curiosity",
 ];
 
 const SECTION_LABELS: Record<string, string> = {
@@ -91,10 +91,8 @@ export function HeroSection() {
         </p>
       </div>
       <div className="facts">
-        {FACT_LABELS.map(([korean, english]) => (
-          <span key={english}>
-            <KoreanHoverText korean={korean} english={english} />
-          </span>
+        {FACT_LABELS.map((fact) => (
+          <span key={fact}>{fact}</span>
         ))}
       </div>
     </section>

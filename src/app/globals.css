@@ -1091,10 +1091,10 @@ textarea {
 }
 
 .facts {
-  display: flex;
-  flex-wrap: wrap;
-  gap: 0.42rem 0.95rem;
-  font-size: 0.84rem;
+  display: grid;
+  gap: 0.48rem;
+  width: min(100%, 33rem);
+  font-size: 0.86rem;
   color: var(--subtle);
   animation: soft-reveal 0.82s cubic-bezier(0.22, 1, 0.36, 1) both;
   animation-delay: 0.28s;
@@ -1103,27 +1103,47 @@ textarea {
 .facts span {
   position: relative;
   display: inline-flex;
-  gap: 0.28rem;
-  align-items: baseline;
+  gap: 0.5rem;
+  align-items: center;
+  width: fit-content;
+  min-height: 2rem;
+  padding: 0.22rem 0.72rem;
+  border: 1px solid color-mix(in srgb, var(--line) 76%, transparent);
+  border-radius: 999px;
+  background: color-mix(in srgb, var(--surface-strong) 62%, transparent);
+  box-shadow:
+    inset 0 1px 0 rgba(255, 255, 255, 0.58),
+    0 10px 26px rgba(0, 0, 0, 0.035);
+  backdrop-filter: blur(16px) saturate(1.08);
   transition:
     color 0.2s ease,
+    border-color 0.2s ease,
+    background-color 0.2s ease,
     transform 0.2s ease;
 }
 
 .facts span::before {
-  content: "//";
-  width: 0.32rem;
-  height: 0.32rem;
-  color: var(--accent);
-  font-family: var(--font-ibm-mono), monospace;
-  font-size: 0.72em;
-  opacity: 0.52;
-  transform: translateY(-0.02em);
+  content: "";
+  flex: 0 0 auto;
+  width: 0.34rem;
+  height: 0.34rem;
+  border-radius: 999px;
+  background: color-mix(in srgb, var(--accent) 54%, var(--line));
+  opacity: 0.44;
+  box-shadow: 0 0 0.8rem color-mix(in srgb, var(--accent) 18%, transparent);
 }
 
 .facts span:hover {
   color: var(--text);
+  border-color: color-mix(in srgb, var(--accent) 18%, var(--line));
+  background: color-mix(in srgb, var(--surface-strong) 86%, transparent);
   transform: translateY(-1px);
+}
+
+:root[data-theme="dark"] .facts span {
+  box-shadow:
+    inset 0 1px 0 rgba(255, 255, 255, 0.07),
+    0 12px 28px rgba(0, 0, 0, 0.2);
 }
 
 .intro-links {
