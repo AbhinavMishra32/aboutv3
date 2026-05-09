@@ -59,11 +59,11 @@ export function KoreanHoverText({
   className?: string;
 }) {
   return (
-    <span className={`korean-hover ${className ?? ""}`} tabIndex={0}>
+    <span className={`korean-hover ${className ?? ""}`} tabIndex={0} aria-label={english}>
+      <span className="korean-hover-english">{english}</span>
       <span className="korean-hover-native" aria-hidden="true">
         {korean}
       </span>
-      <span className="korean-hover-english">{english}</span>
     </span>
   );
 }

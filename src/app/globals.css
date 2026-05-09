@@ -283,7 +283,7 @@ textarea {
   display: inline-grid;
   align-items: baseline;
   min-width: max-content;
-  font-family: var(--font-korean), var(--font-ibm-mono), sans-serif;
+  font-family: inherit;
   cursor: default;
 }
 
@@ -297,27 +297,32 @@ textarea {
 }
 
 .korean-hover-native {
-  opacity: 1;
-  transform: translateY(0);
+  opacity: 0;
+  color: var(--accent);
+  font-family: var(--font-korean), var(--font-ibm-mono), sans-serif;
+  letter-spacing: 0.03em;
+  transform: translateY(0.62em) scale(0.96);
+  filter: blur(6px);
+  pointer-events: none;
 }
 
 .korean-hover-english {
-  opacity: 0;
-  transform: translateY(0.45em);
-  filter: blur(5px);
+  opacity: 1;
+  transform: translateY(0);
+  filter: blur(0);
 }
 
 .korean-hover:hover .korean-hover-native,
 .korean-hover:focus-visible .korean-hover-native {
-  opacity: 0;
-  transform: translateY(-0.42em);
-  filter: blur(5px);
+  opacity: 0.64;
+  transform: translateY(-0.82em) scale(0.92);
+  filter: blur(0);
 }
 
 .korean-hover:hover .korean-hover-english,
 .korean-hover:focus-visible .korean-hover-english {
   opacity: 1;
-  transform: translateY(0);
+  transform: translateY(0.03em);
   filter: blur(0);
 }
 
