@@ -49,13 +49,6 @@ const BROWSE_ITEMS = [
   },
 ];
 
-const HERO_SIGNAL_TAGS = [
-  ["정밀함", "Precision"],
-  ["시스템 감각", "Systems Taste"],
-  ["배포 준비", "Ship Ready"],
-  ["조용한 UI", "Quiet UI"],
-];
-
 const FACT_LABELS = [
   ["거점", "Based in Ghaziabad, India"],
   ["스택", "TypeScript products and NestJS backend systems"],
@@ -68,8 +61,6 @@ const SECTION_LABELS: Record<string, string> = {
   Projects: "빌드",
   Writing: "기록",
 };
-
-const WORK_LABELS = ["라이브", "제품", "AI도구"];
 
 function formatWritingDate(value: string) {
   return new Intl.DateTimeFormat("en-US", {
@@ -86,11 +77,6 @@ export function HeroSection() {
         <HeroSignal />
       </div>
       <div className="hero-copy">
-        <div className="language-signal-strip" aria-label="Portfolio signal labels">
-          {HERO_SIGNAL_TAGS.map(([korean, english]) => (
-            <KoreanHoverText key={english} korean={korean} english={english} />
-          ))}
-        </div>
         <p className="hero-paragraph">
           I&apos;m a <span className="hero-emphasis">full-stack engineer</span> building TypeScript products and backend
           systems with a bias for depth.
@@ -226,13 +212,10 @@ export function WorkSection({ page = false }: { page?: boolean }) {
       </div>
 
       <div className="work-list">
-        {WORK_ITEMS.map((item, index) => (
+        {WORK_ITEMS.map((item) => (
           <article key={item.title} className="work-row">
             <div className="work-head">
               <div>
-                <div className="work-language-label">
-                  <KoreanHoverText korean={WORK_LABELS[index] ?? "실행"} english={`case ${String(index + 1).padStart(2, "0")}`} />
-                </div>
                 <h3 className="work-title">{item.title}</h3>
                 <div className="work-subtitle">{item.subtitle}</div>
               </div>
