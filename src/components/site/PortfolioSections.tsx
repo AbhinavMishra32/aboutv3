@@ -49,12 +49,6 @@ const BROWSE_ITEMS = [
   },
 ];
 
-const FACT_LABELS = [
-  "Based in Ghaziabad, India",
-  "TypeScript products and NestJS backend systems",
-  "ML tooling direction, backend depth, and low-level curiosity",
-];
-
 const SECTION_LABELS: Record<string, string> = {
   Browse: "탐색",
   Work: "실전",
@@ -90,10 +84,8 @@ export function HeroSection() {
           product-facing software in TypeScript, with NestJS and occasional Go on the backend.
         </p>
       </div>
-      <div className="facts">
-        {FACT_LABELS.map((fact) => (
-          <span key={fact}>{fact}</span>
-        ))}
+      <div className="hero-flow" aria-label="Portfolio sections continue below">
+        <span>Selected work, projects, and writing</span>
       </div>
     </section>
   );
