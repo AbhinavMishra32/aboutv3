@@ -1,6 +1,5 @@
 import { PortfolioShell } from "@/components/site/PortfolioShell";
 import {
-  BlobStudioPreviewSection,
   HeroSection,
   ProjectsSection,
   WorkSection,
@@ -13,7 +12,6 @@ export default function HomePage() {
       <HeroSection />
       <WorkSection />
       <ProjectsSection />
-      <BlobStudioPreviewSection />
       <WritingPreviewSection />
     </PortfolioShell>
   );

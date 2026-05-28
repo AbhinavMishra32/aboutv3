@@ -2,7 +2,7 @@ import Link from "next/link";
 import { SiteThemeToggle } from "@/components/SiteThemeToggle";
 import { HeaderTagline } from "@/components/site/HeaderTagline";
 
-type NavKey = "overview" | "now" | "story" | "work" | "projects" | "blog" | "studio";
+type NavKey = "overview" | "now" | "story" | "work" | "projects" | "blog";
 
 const NAV_ITEMS: Array<{ key: NavKey; label: string; href: string }> = [
   { key: "overview", label: "Overview", href: "/" },
@@ -11,7 +11,6 @@ const NAV_ITEMS: Array<{ key: NavKey; label: string; href: string }> = [
   { key: "work", label: "Work", href: "/work" },
   { key: "projects", label: "Projects", href: "/projects" },
   { key: "blog", label: "Blog", href: "/blog" },
-  { key: "studio", label: "Studio", href: "/studio" },
 ];
 
 export function SiteHeader({
