@@ -1,8 +1,10 @@
 import type { Metadata } from "next";
-import { notFound } from "next/navigation";
 import { BlogStudioClient } from "@/components/studio/BlogStudioClient";
 import { PortfolioShell } from "@/components/site/PortfolioShell";
+import { requireAdmin } from "@/lib/admin-auth";
 import { STUDIO_SEED_POSTS } from "@/lib/blog-studio";
+
+export const dynamic = "force-dynamic";
 
 export const metadata: Metadata = {
   title: "Blog Studio | Abhinav Mishra",
@@ -13,10 +15,8 @@ export const metadata: Metadata = {
   },
 };
 
-export default function StudioPage() {
-  if (process.env.NODE_ENV === "production" && process.env.ENABLE_BLOG_STUDIO !== "true") {
-    notFound();
-  }
+export default async function StudioPage() {
+  await requireAdmin("/studio");
 
   return (
     <PortfolioShell active="overview" tagline="Private writing workspace.">

@@ -1,4 +1,5 @@
 import Link from "next/link";
+import { LockKeyhole } from "lucide-react";
 import { SiteThemeToggle } from "@/components/SiteThemeToggle";
 import { HeaderTagline } from "@/components/site/HeaderTagline";
 
@@ -41,6 +42,9 @@ export function SiteHeader({
             </Link>
           ))}
         </nav>
+        <Link href="/admin" className="admin-header-link" aria-label="Admin login" title="Admin">
+          <LockKeyhole size={15} strokeWidth={2} />
+        </Link>
         <SiteThemeToggle variant="compact" />
       </div>
     </header>
