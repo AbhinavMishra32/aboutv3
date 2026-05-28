@@ -556,6 +556,7 @@ textarea {
 
 .studio-search,
 .studio-primary-button,
+.studio-save-button,
 .studio-icon-button,
 .studio-panel-tabs button,
 .studio-field input,
@@ -592,6 +593,7 @@ textarea {
 }
 
 .studio-primary-button,
+.studio-save-button,
 .studio-danger-row button,
 .studio-tag-entry button {
   display: inline-flex;
@@ -601,6 +603,14 @@ textarea {
   min-height: 2.3rem;
   border-radius: 0.5rem;
   font: inherit;
+}
+
+.studio-save-button {
+  padding: 0 0.68rem;
+}
+
+.studio-file-input {
+  display: none;
 }
 
 .studio-post-list {
@@ -771,6 +781,17 @@ textarea {
   min-height: 18rem;
   border: 0;
   border-radius: 0.5rem;
+}
+
+.studio-editor-surface img,
+.studio-preview-prose img {
+  display: block;
+  max-width: 100%;
+  height: auto;
+  margin: 1rem 0;
+  border: 1px solid color-mix(in srgb, var(--line) 78%, transparent);
+  border-radius: 0.6rem;
+  background: color-mix(in srgb, var(--surface-strong) 72%, transparent);
 }
 
 .studio-field,
@@ -4331,6 +4352,40 @@ textarea {
 .blog-markdown pre code {
   padding: 0;
   background: transparent;
+}
+
+.blog-markdown img,
+.blog-markdown iframe {
+  display: block;
+  width: 100%;
+  margin: 1.35rem 0;
+  border: 1px solid var(--line);
+  border-radius: 1rem;
+  background: color-mix(in srgb, var(--surface) 78%, transparent);
+}
+
+.blog-markdown img {
+  height: auto;
+}
+
+.blog-markdown iframe {
+  min-height: 22rem;
+}
+
+.blog-markdown ul[data-type="taskList"] {
+  padding-left: 0;
+  list-style: none;
+}
+
+.blog-markdown li[data-type="taskItem"] {
+  display: grid;
+  grid-template-columns: auto minmax(0, 1fr);
+  gap: 0.55rem;
+  align-items: start;
+}
+
+.blog-markdown li[data-type="taskItem"] label {
+  margin-top: 0.22rem;
 }
 
 @media (prefers-reduced-motion: reduce) {

@@ -13,8 +13,6 @@ export type BlogPostDraft = {
   contentHtml: string;
 };
 
-export const BLOG_STUDIO_STORAGE_KEY = "portfolio-blog-studio-v1";
-
 export const STUDIO_SEED_POSTS: BlogPostDraft[] = [
   {
     id: "signal-notes",

@@ -5,6 +5,7 @@ import { marked } from "marked";
 import TurndownService from "turndown";
 import { EditorContent, useEditor } from "@tiptap/react";
 import StarterKit from "@tiptap/starter-kit";
+import Image from "@tiptap/extension-image";
 import LinkExtension from "@tiptap/extension-link";
 import Placeholder from "@tiptap/extension-placeholder";
 import Highlight from "@tiptap/extension-highlight";
@@ -23,6 +24,7 @@ import {
   Eye,
   Heading2,
   Highlighter,
+  ImageIcon,
   Italic,
   LinkIcon,
   List,
@@ -37,7 +39,7 @@ import {
   Video,
 } from "lucide-react";
 import type { BlogPostDraft, BlogPostStatus } from "@/lib/blog-studio";
-import { BLOG_STUDIO_STORAGE_KEY } from "@/lib/blog-studio";
+import { deletePostAction, savePostAction, uploadBlogImageAction } from "@/app/studio/actions";
 
 const turndownService = new TurndownService({
   bulletListMarker: "-",
@@ -115,7 +117,13 @@ function IconButton({ action }: { action: ToolbarAction }) {
   );
 }
 
-export function BlogStudioClient({ initialPosts }: { initialPosts: BlogPostDraft[] }) {
+export function BlogStudioClient({
+  initialPosts,
+  hasDatabase,
+}: {
+  initialPosts: BlogPostDraft[];
+  hasDatabase: boolean;
+}) {
   const [posts, setPosts] = useState(initialPosts);
   const [selectedId, setSelectedId] = useState(initialPosts[0]?.id ?? "");
   const [search, setSearch] = useState("");
@@ -123,9 +131,11 @@ export function BlogStudioClient({ initialPosts }: { initialPosts: BlogPostDraft
   const [markdownDraft, setMarkdownDraft] = useState("");
   const [rightPanel, setRightPanel] = useState<"settings" | "preview" | "markdown">("settings");
   const [toast, setToast] = useState("");
+  const [saveState, setSaveState] = useState<"saved" | "unsaved" | "saving" | "error">("saved");
   const [isPending, startTransition] = useTransition();
   const deferredSearch = useDeferredValue(search);
   const toastTimerRef = useRef<number | null>(null);
+  const imageInputRef = useRef<HTMLInputElement | null>(null);
 
   const selectedPost = posts.find((post) => post.id === selectedId) ?? posts[0] ?? null;
   const filteredPosts = posts.filter((post) => {
@@ -143,6 +153,7 @@ export function BlogStudioClient({ initialPosts }: { initialPosts: BlogPostDraft
   }
 
   function updateSelectedPost(updater: (post: BlogPostDraft) => BlogPostDraft) {
+    setSaveState("unsaved");
     setPosts((current) =>
       current.map((post) => {
         if (post.id !== selectedId) return post;
@@ -158,6 +169,12 @@ export function BlogStudioClient({ initialPosts }: { initialPosts: BlogPostDraft
     immediatelyRender: false,
     extensions: [
       StarterKit,
+      Image.configure({
+        allowBase64: false,
+        HTMLAttributes: {
+          loading: "lazy",
+        },
+      }),
       Underline,
       Highlight,
       TaskList,
@@ -240,27 +257,12 @@ export function BlogStudioClient({ initialPosts }: { initialPosts: BlogPostDraft
         editor?.chain().focus().setYoutubeVideo({ src: url.trim(), width: 900, height: 506 }).run();
       },
     },
+    {
+      label: "Image",
+      icon: ImageIcon,
+      onClick: () => imageInputRef.current?.click(),
+    },
   ];
-
-  useEffect(() => {
-    const raw = window.localStorage.getItem(BLOG_STUDIO_STORAGE_KEY);
-    if (!raw) return;
-
-    try {
-      const parsed = JSON.parse(raw) as BlogPostDraft[];
-      if (parsed.length) {
-        setPosts(parsed);
-        setSelectedId(parsed[0].id);
-      }
-    } catch {
-      window.localStorage.removeItem(BLOG_STUDIO_STORAGE_KEY);
-    }
-  }, []);
-
-  useEffect(() => {
-    if (!posts.length) return;
-    window.localStorage.setItem(BLOG_STUDIO_STORAGE_KEY, JSON.stringify(posts));
-  }, [posts]);
 
   useEffect(() => {
     if (!selectedPost || !editor) return;
@@ -277,6 +279,72 @@ export function BlogStudioClient({ initialPosts }: { initialPosts: BlogPostDraft
       }
     };
   }, []);
+
+  useEffect(() => {
+    if (!hasDatabase || !selectedPost || saveState !== "unsaved") return;
+    const postToSave = selectedPost;
+
+    const timer = window.setTimeout(() => {
+      async function autosave() {
+        try {
+          setSaveState("saving");
+          await savePostAction(postToSave);
+          setSaveState("saved");
+        } catch {
+          setSaveState("error");
+          showToast("Autosave failed");
+        }
+      }
+
+      void autosave();
+    }, 1400);
+
+    return () => window.clearTimeout(timer);
+  }, [hasDatabase, saveState, selectedPost]);
+
+  async function saveSelectedPost(showSavedToast = true) {
+    if (!selectedPost || !hasDatabase) {
+      setSaveState("error");
+      showToast("Connect POSTGRES_URL to save");
+      return;
+    }
+
+    try {
+      setSaveState("saving");
+      await savePostAction(selectedPost);
+      setSaveState("saved");
+      if (showSavedToast) showToast("Saved to Postgres");
+    } catch (error) {
+      setSaveState("error");
+      showToast(error instanceof Error ? error.message : "Save failed");
+    }
+  }
+
+  async function uploadImage(file: File) {
+    if (!editor || !hasDatabase) {
+      showToast("Connect POSTGRES_URL to upload images");
+      return;
+    }
+
+    const dataUrl = await new Promise<string>((resolve, reject) => {
+      const reader = new FileReader();
+      reader.addEventListener("load", () => resolve(String(reader.result)));
+      reader.addEventListener("error", () => reject(reader.error));
+      reader.readAsDataURL(file);
+    });
+
+    try {
+      const src = await uploadBlogImageAction({
+        dataUrl,
+        fileName: file.name,
+      });
+
+      editor.chain().focus().setImage({ src, alt: file.name }).run();
+      showToast("Image uploaded");
+    } catch (error) {
+      showToast(error instanceof Error ? error.message : "Image upload failed");
+    }
+  }
 
   async function importMarkdown() {
     if (!editor || !selectedPost || !markdownDraft.trim()) return;
@@ -304,6 +372,7 @@ export function BlogStudioClient({ initialPosts }: { initialPosts: BlogPostDraft
       const created = createBlankPost(posts.length + 1);
       setPosts((current) => [created, ...current]);
       setSelectedId(created.id);
+      setSaveState("unsaved");
       showToast("Post created");
     });
   }
@@ -325,6 +394,7 @@ export function BlogStudioClient({ initialPosts }: { initialPosts: BlogPostDraft
 
       setPosts((current) => [duplicate, ...current]);
       setSelectedId(duplicate.id);
+      setSaveState("unsaved");
       showToast("Post duplicated");
     });
   }
@@ -333,9 +403,20 @@ export function BlogStudioClient({ initialPosts }: { initialPosts: BlogPostDraft
     if (!selectedPost || posts.length === 1) return;
 
     const nextPosts = posts.filter((post) => post.id !== selectedPost.id);
-    setPosts(nextPosts);
-    setSelectedId(nextPosts[0].id);
-    showToast("Post deleted");
+    startTransition(async () => {
+      try {
+        if (hasDatabase) {
+          await deletePostAction(selectedPost.id, selectedPost.slug);
+        }
+        setPosts(nextPosts);
+        setSelectedId(nextPosts[0].id);
+        setSaveState("saved");
+        showToast("Post deleted");
+      } catch (error) {
+        setSaveState("error");
+        showToast(error instanceof Error ? error.message : "Delete failed");
+      }
+    });
   }
 
   function addTag() {
@@ -364,8 +445,13 @@ export function BlogStudioClient({ initialPosts }: { initialPosts: BlogPostDraft
           <strong>{selectedPost.title}</strong>
         </div>
         <div className="studio-status-strip">
+          <button type="button" className="studio-save-button" onClick={() => void saveSelectedPost(true)}>
+            <Save size={15} strokeWidth={2} />
+            <span>Save</span>
+          </button>
           <span>{wordCount} words</span>
-          <span>{isPending ? "Saving" : "Saved"}</span>
+          <span>{isPending || saveState === "saving" ? "Saving" : saveState === "unsaved" ? "Unsaved" : saveState === "error" ? "Save issue" : "Saved"}</span>
+          <span>{hasDatabase ? "Postgres" : "No Postgres"}</span>
           <span>{formatDate(selectedPost.updatedAt)}</span>
         </div>
       </header>
@@ -446,6 +532,17 @@ export function BlogStudioClient({ initialPosts }: { initialPosts: BlogPostDraft
             {toolbarActions.map((action) => (
               <IconButton key={action.label} action={action} />
             ))}
+            <input
+              ref={imageInputRef}
+              type="file"
+              accept="image/png,image/jpeg,image/webp,image/gif"
+              className="studio-file-input"
+              onChange={(event) => {
+                const file = event.target.files?.[0];
+                event.currentTarget.value = "";
+                if (file) void uploadImage(file);
+              }}
+            />
           </div>
 
           <EditorContent editor={editor} />
