@@ -2,6 +2,7 @@ import Image from "next/image";
 import Link from "next/link";
 import { ArrowRight } from "lucide-react";
 import { getAllPosts } from "@/lib/blog";
+import { getBlobStudioSnapshot, STUDIO_SEED_BLOBS } from "@/lib/blob-studio";
 import { getRepoDetail } from "@/lib/github";
 import { PROJECTS, STORY_BEATS, WORK_ITEMS } from "@/lib/portfolio";
 import { HeroSignal } from "@/components/site/HeroSignal";
@@ -39,6 +40,16 @@ const BROWSE_ITEMS = [
     imageAlt: "Illustration of Decipath with a roadmap graph and prompt panel.",
   },
   {
+    href: "/studio",
+    label: "Studio",
+    koreanLabel: "스튜디오",
+    title: "Create portfolio blobs directly on the site.",
+    summary:
+      "A full content workbench with rich editing, markdown exchange, embeds, links, and a live system-updated signal.",
+    image: "/project-construct-light.svg",
+    imageAlt: "Illustration of a content studio with toolbar, preview, and metadata panels.",
+  },
+  {
     href: "/blog",
     label: "Blog",
     koreanLabel: "기록",
@@ -53,6 +64,7 @@ const SECTION_LABELS: Record<string, string> = {
   Browse: "탐색",
   Work: "실전",
   Projects: "빌드",
+  Studio: "제작실",
   Writing: "기록",
 };
 
@@ -283,6 +295,54 @@ export async function WritingPreviewSection() {
             </div>
           </Link>
         ))}
+      </div>
+    </section>
+  );
+}
+
+export function BlobStudioPreviewSection() {
+  const snapshot = getBlobStudioSnapshot(STUDIO_SEED_BLOBS);
+  const freshestBlob = [...STUDIO_SEED_BLOBS].sort(
+    (left, right) => new Date(right.updatedAt).getTime() - new Date(left.updatedAt).getTime()
+  )[0];
+
+  return (
+    <section className="section-block">
+      <div className="section-head">
+        <SectionTitle>Studio</SectionTitle>
+        <Link href="/studio" className="section-action">
+          Open blob studio
+        </Link>
+      </div>
+
+      <div className="blob-preview-launchpad">
+        <article className="blob-preview-launch-card">
+          <p className="eyebrow">Website UI Editing</p>
+          <h3 className="blob-preview-launch-title">Create new blobs without leaving the portfolio.</h3>
+          <p className="blob-preview-launch-copy">
+            The new studio turns the site into a live content system: Tiptap writing, markdown import and export,
+            attached links, embedded media, and a visible last-updated state across the whole deck.
+          </p>
+          <div className="blob-preview-launch-metrics">
+            <span>{snapshot.total} blobs</span>
+            <span>{snapshot.links} links attached</span>
+            <span>{snapshot.embeds} embeds docked</span>
+          </div>
+        </article>
+
+        <article className="blob-preview-latest-card">
+          <div className="blob-preview-latest-top">
+            <span className={`blob-status-pill is-${freshestBlob.status}`}>{freshestBlob.status}</span>
+            <span>Last updated {formatWritingDate(freshestBlob.updatedAt)}</span>
+          </div>
+          <h3 className="blob-preview-launch-title">{freshestBlob.title}</h3>
+          <p className="blob-preview-launch-copy">{freshestBlob.excerpt}</p>
+          <div className="blob-preview-tags">
+            {freshestBlob.tags.map((tag) => (
+              <span key={tag}>{tag}</span>
+            ))}
+          </div>
+        </article>
       </div>
     </section>
   );

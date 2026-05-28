@@ -2051,254 +2051,14 @@
   },
   "construct": {
     "slug": "construct",
-    "totalCommits": 166,
-    "pushedAt": "2026-04-14T18:51:51+05:30",
-    "activeDays": 13,
+    "totalCommits": 170,
+    "pushedAt": "2026-05-26T18:05:00+05:30",
+    "activeDays": 15,
     "defaultBranch": "main",
     "createdAt": "2026-03-15T00:42:19+05:30",
     "firstCommitAt": "2026-03-15T00:42:19+05:30",
-    "commitSpanDays": 31,
+    "commitSpanDays": 73,
     "calendar": [
-      {
-        "label": "2025-12-14",
-        "days": [
-          {
-            "date": "2025-12-14",
-            "count": 0,
-            "level": 0
-          },
-          {
-            "date": "2025-12-15",
-            "count": 0,
-            "level": 0
-          },
-          {
-            "date": "2025-12-16",
-            "count": 0,
-            "level": 0
-          },
-          {
-            "date": "2025-12-17",
-            "count": 0,
-            "level": 0
-          },
-          {
-            "date": "2025-12-18",
-            "count": 0,
-            "level": 0
-          },
-          {
-            "date": "2025-12-19",
-            "count": 0,
-            "level": 0
-          },
-          {
-            "date": "2025-12-20",
-            "count": 0,
-            "level": 0
-          }
-        ]
-      },
-      {
-        "label": "2025-12-21",
-        "days": [
-          {
-            "date": "2025-12-21",
-            "count": 0,
-            "level": 0
-          },
-          {
-            "date": "2025-12-22",
-            "count": 0,
-            "level": 0
-          },
-          {
-            "date": "2025-12-23",
-            "count": 0,
-            "level": 0
-          },
-          {
-            "date": "2025-12-24",
-            "count": 0,
-            "level": 0
-          },
-          {
-            "date": "2025-12-25",
-            "count": 0,
-            "level": 0
-          },
-          {
-            "date": "2025-12-26",
-            "count": 0,
-            "level": 0
-          },
-          {
-            "date": "2025-12-27",
-            "count": 0,
-            "level": 0
-          }
-        ]
-      },
-      {
-        "label": "2025-12-28",
-        "days": [
-          {
-            "date": "2025-12-28",
-            "count": 0,
-            "level": 0
-          },
-          {
-            "date": "2025-12-29",
-            "count": 0,
-            "level": 0
-          },
-          {
-            "date": "2025-12-30",
-            "count": 0,
-            "level": 0
-          },
-          {
-            "date": "2025-12-31",
-            "count": 0,
-            "level": 0
-          },
-          {
-            "date": "2026-01-01",
-            "count": 0,
-            "level": 0
-          },
-          {
-            "date": "2026-01-02",
-            "count": 0,
-            "level": 0
-          },
-          {
-            "date": "2026-01-03",
-            "count": 0,
-            "level": 0
-          }
-        ]
-      },
-      {
-        "label": "2026-01-04",
-        "days": [
-          {
-            "date": "2026-01-04",
-            "count": 0,
-            "level": 0
-          },
-          {
-            "date": "2026-01-05",
-            "count": 0,
-            "level": 0
-          },
-          {
-            "date": "2026-01-06",
-            "count": 0,
-            "level": 0
-          },
-          {
-            "date": "2026-01-07",
-            "count": 0,
-            "level": 0
-          },
-          {
-            "date": "2026-01-08",
-            "count": 0,
-            "level": 0
-          },
-          {
-            "date": "2026-01-09",
-            "count": 0,
-            "level": 0
-          },
-          {
-            "date": "2026-01-10",
-            "count": 0,
-            "level": 0
-          }
-        ]
-      },
-      {
-        "label": "2026-01-11",
-        "days": [
-          {
-            "date": "2026-01-11",
-            "count": 0,
-            "level": 0
-          },
-          {
-            "date": "2026-01-12",
-            "count": 0,
-            "level": 0
-          },
-          {
-            "date": "2026-01-13",
-            "count": 0,
-            "level": 0
-          },
-          {
-            "date": "2026-01-14",
-            "count": 0,
-            "level": 0
-          },
-          {
-            "date": "2026-01-15",
-            "count": 0,
-            "level": 0
-          },
-          {
-            "date": "2026-01-16",
-            "count": 0,
-            "level": 0
-          },
-          {
-            "date": "2026-01-17",
-            "count": 0,
-            "level": 0
-          }
-        ]
-      },
-      {
-        "label": "2026-01-18",
-        "days": [
-          {
-            "date": "2026-01-18",
-            "count": 0,
-            "level": 0
-          },
-          {
-            "date": "2026-01-19",
-            "count": 0,
-            "level": 0
-          },
-          {
-            "date": "2026-01-20",
-            "count": 0,
-            "level": 0
-          },
-          {
-            "date": "2026-01-21",
-            "count": 0,
-            "level": 0
-          },
-          {
-            "date": "2026-01-22",
-            "count": 0,
-            "level": 0
-          },
-          {
-            "date": "2026-01-23",
-            "count": 0,
-            "level": 0
-          },
-          {
-            "date": "2026-01-24",
-            "count": 0,
-            "level": 0
-          }
-        ]
-      },
       {
         "label": "2026-01-25",
         "days": [
@@ -2778,9 +2538,273 @@
             "level": 0
           }
         ]
+      },
+      {
+        "label": "2026-04-19",
+        "days": [
+          {
+            "date": "2026-04-19",
+            "count": 0,
+            "level": 0
+          },
+          {
+            "date": "2026-04-20",
+            "count": 0,
+            "level": 0
+          },
+          {
+            "date": "2026-04-21",
+            "count": 0,
+            "level": 0
+          },
+          {
+            "date": "2026-04-22",
+            "count": 0,
+            "level": 0
+          },
+          {
+            "date": "2026-04-23",
+            "count": 0,
+            "level": 0
+          },
+          {
+            "date": "2026-04-24",
+            "count": 0,
+            "level": 0
+          },
+          {
+            "date": "2026-04-25",
+            "count": 0,
+            "level": 0
+          }
+        ]
+      },
+      {
+        "label": "2026-04-26",
+        "days": [
+          {
+            "date": "2026-04-26",
+            "count": 0,
+            "level": 0
+          },
+          {
+            "date": "2026-04-27",
+            "count": 0,
+            "level": 0
+          },
+          {
+            "date": "2026-04-28",
+            "count": 0,
+            "level": 0
+          },
+          {
+            "date": "2026-04-29",
+            "count": 0,
+            "level": 0
+          },
+          {
+            "date": "2026-04-30",
+            "count": 0,
+            "level": 0
+          },
+          {
+            "date": "2026-05-01",
+            "count": 0,
+            "level": 0
+          },
+          {
+            "date": "2026-05-02",
+            "count": 0,
+            "level": 0
+          }
+        ]
+      },
+      {
+        "label": "2026-05-03",
+        "days": [
+          {
+            "date": "2026-05-03",
+            "count": 0,
+            "level": 0
+          },
+          {
+            "date": "2026-05-04",
+            "count": 0,
+            "level": 0
+          },
+          {
+            "date": "2026-05-05",
+            "count": 0,
+            "level": 0
+          },
+          {
+            "date": "2026-05-06",
+            "count": 2,
+            "level": 1
+          },
+          {
+            "date": "2026-05-07",
+            "count": 0,
+            "level": 0
+          },
+          {
+            "date": "2026-05-08",
+            "count": 0,
+            "level": 0
+          },
+          {
+            "date": "2026-05-09",
+            "count": 0,
+            "level": 0
+          }
+        ]
+      },
+      {
+        "label": "2026-05-10",
+        "days": [
+          {
+            "date": "2026-05-10",
+            "count": 0,
+            "level": 0
+          },
+          {
+            "date": "2026-05-11",
+            "count": 0,
+            "level": 0
+          },
+          {
+            "date": "2026-05-12",
+            "count": 0,
+            "level": 0
+          },
+          {
+            "date": "2026-05-13",
+            "count": 0,
+            "level": 0
+          },
+          {
+            "date": "2026-05-14",
+            "count": 0,
+            "level": 0
+          },
+          {
+            "date": "2026-05-15",
+            "count": 0,
+            "level": 0
+          },
+          {
+            "date": "2026-05-16",
+            "count": 0,
+            "level": 0
+          }
+        ]
+      },
+      {
+        "label": "2026-05-17",
+        "days": [
+          {
+            "date": "2026-05-17",
+            "count": 0,
+            "level": 0
+          },
+          {
+            "date": "2026-05-18",
+            "count": 0,
+            "level": 0
+          },
+          {
+            "date": "2026-05-19",
+            "count": 0,
+            "level": 0
+          },
+          {
+            "date": "2026-05-20",
+            "count": 0,
+            "level": 0
+          },
+          {
+            "date": "2026-05-21",
+            "count": 0,
+            "level": 0
+          },
+          {
+            "date": "2026-05-22",
+            "count": 0,
+            "level": 0
+          },
+          {
+            "date": "2026-05-23",
+            "count": 0,
+            "level": 0
+          }
+        ]
+      },
+      {
+        "label": "2026-05-24",
+        "days": [
+          {
+            "date": "2026-05-24",
+            "count": 0,
+            "level": 0
+          },
+          {
+            "date": "2026-05-25",
+            "count": 0,
+            "level": 0
+          },
+          {
+            "date": "2026-05-26",
+            "count": 2,
+            "level": 1
+          },
+          {
+            "date": "2026-05-27",
+            "count": 0,
+            "level": 0
+          },
+          {
+            "date": "2026-05-28",
+            "count": 0,
+            "level": 0
+          },
+          {
+            "date": "2026-05-29",
+            "count": 0,
+            "level": 0
+          },
+          {
+            "date": "2026-05-30",
+            "count": 0,
+            "level": 0
+          }
+        ]
       }
     ],
     "recentCommits": [
+      {
+        "sha": "46788219fae4090d6dbd6e57b7eb01bb83a33317",
+        "date": "2026-05-26T18:05:00+05:30",
+        "message": "Thread artifact lock through live creation flow",
+        "url": "https://github.com/AbhinavMishra32/Construct-IDE/commit/46788219fae4090d6dbd6e57b7eb01bb83a33317"
+      },
+      {
+        "sha": "6d0fca9cfa2d22c16d6eb76fd0dfddec691efb3b",
+        "date": "2026-05-26T17:43:07+05:30",
+        "message": "Add artifact-first creation v2 skeleton",
+        "url": "https://github.com/AbhinavMishra32/Construct-IDE/commit/6d0fca9cfa2d22c16d6eb76fd0dfddec691efb3b"
+      },
+      {
+        "sha": "85f64ba12b82938c43cb5bee81560fbfe5d883dd",
+        "date": "2026-05-06T12:28:40+05:30",
+        "message": "Keep from-scratch plans faithful to the requested artifact",
+        "url": "https://github.com/AbhinavMishra32/Construct-IDE/commit/85f64ba12b82938c43cb5bee81560fbfe5d883dd"
+      },
+      {
+        "sha": "7ad626a183176fd977924f83a3f4bb0bef017e1a",
+        "date": "2026-05-06T12:13:31+05:30",
+        "message": "Fix todo blueprint task-gap detection",
+        "url": "https://github.com/AbhinavMishra32/Construct-IDE/commit/7ad626a183176fd977924f83a3f4bb0bef017e1a"
+      },
       {
         "sha": "9abc0038399f94d6f292424b6c20e96467723f53",
         "date": "2026-04-14T18:51:51+05:30",
@@ -2828,33 +2852,33 @@
         "date": "2026-04-06T14:56:08+05:30",
         "message": "style(app): clean up auth shell layout",
         "url": "https://github.com/AbhinavMishra32/Construct-IDE/commit/72b1ca0299cf93b2a63efed8457e988f55da6ba1"
-      },
-      {
-        "sha": "610cc1179745b40e79436eff92f9badcec767587",
-        "date": "2026-03-31T23:00:27+05:30",
-        "message": "feat(app): animate incoming architect steps",
-        "url": "https://github.com/AbhinavMishra32/Construct-IDE/commit/610cc1179745b40e79436eff92f9badcec767587"
-      },
-      {
-        "sha": "2ac58af1ffe47afd8328949125790427c3043a0d",
-        "date": "2026-03-31T22:37:42+05:30",
-        "message": "fix(agent): restore learner gaps during blueprint repair",
-        "url": "https://github.com/AbhinavMishra32/Construct-IDE/commit/2ac58af1ffe47afd8328949125790427c3043a0d"
-      },
-      {
-        "sha": "7b9c7c24c874d2968b23577afc241c91f913eab6",
-        "date": "2026-03-31T22:20:53+05:30",
-        "message": "fix(agent): narrow oversized beginner task surfaces",
-        "url": "https://github.com/AbhinavMishra32/Construct-IDE/commit/7b9c7c24c874d2968b23577afc241c91f913eab6"
-      },
-      {
-        "sha": "e70e9bbfa60888a630be3ee7734b8660808fe49e",
-        "date": "2026-03-31T22:01:32+05:30",
-        "message": "fix(agent): repair oversized beginner drafts inline",
-        "url": "https://github.com/AbhinavMishra32/Construct-IDE/commit/e70e9bbfa60888a630be3ee7734b8660808fe49e"
       }
     ],
     "allCommits": [
+      {
+        "sha": "46788219fae4090d6dbd6e57b7eb01bb83a33317",
+        "date": "2026-05-26T18:05:00+05:30",
+        "message": "Thread artifact lock through live creation flow",
+        "url": "https://github.com/AbhinavMishra32/Construct-IDE/commit/46788219fae4090d6dbd6e57b7eb01bb83a33317"
+      },
+      {
+        "sha": "6d0fca9cfa2d22c16d6eb76fd0dfddec691efb3b",
+        "date": "2026-05-26T17:43:07+05:30",
+        "message": "Add artifact-first creation v2 skeleton",
+        "url": "https://github.com/AbhinavMishra32/Construct-IDE/commit/6d0fca9cfa2d22c16d6eb76fd0dfddec691efb3b"
+      },
+      {
+        "sha": "85f64ba12b82938c43cb5bee81560fbfe5d883dd",
+        "date": "2026-05-06T12:28:40+05:30",
+        "message": "Keep from-scratch plans faithful to the requested artifact",
+        "url": "https://github.com/AbhinavMishra32/Construct-IDE/commit/85f64ba12b82938c43cb5bee81560fbfe5d883dd"
+      },
+      {
+        "sha": "7ad626a183176fd977924f83a3f4bb0bef017e1a",
+        "date": "2026-05-06T12:13:31+05:30",
+        "message": "Fix todo blueprint task-gap detection",
+        "url": "https://github.com/AbhinavMishra32/Construct-IDE/commit/7ad626a183176fd977924f83a3f4bb0bef017e1a"
+      },
       {
         "sha": "9abc0038399f94d6f292424b6c20e96467723f53",
         "date": "2026-04-14T18:51:51+05:30",

@@ -1,5 +1,11 @@
 import { PortfolioShell } from "@/components/site/PortfolioShell";
-import { HeroSection, ProjectsSection, WorkSection, WritingPreviewSection } from "@/components/site/PortfolioSections";
+import {
+  BlobStudioPreviewSection,
+  HeroSection,
+  ProjectsSection,
+  WorkSection,
+  WritingPreviewSection,
+} from "@/components/site/PortfolioSections";
 
 export default function HomePage() {
   return (
@@ -7,6 +13,7 @@ export default function HomePage() {
       <HeroSection />
       <WorkSection />
       <ProjectsSection />
+      <BlobStudioPreviewSection />
       <WritingPreviewSection />
     </PortfolioShell>
   );
