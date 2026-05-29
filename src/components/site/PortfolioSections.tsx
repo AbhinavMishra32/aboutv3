@@ -131,7 +131,7 @@ export function StorySection() {
   return (
     <article className="story-page-section">
       <p className="eyebrow">Story</p>
-      <h1 className="blog-title">How I learned to build with high agency, patience, and first-principles thinking.</h1>
+      <h1 className="blog-title">How I build.</h1>
       <p className="story-lead story-lead-page">
         Most of my experience came from building on my own. Solo projects taught me how to turn rough ideas into
         working products, while internship and hackathon work taught me how to bring that same ownership into real

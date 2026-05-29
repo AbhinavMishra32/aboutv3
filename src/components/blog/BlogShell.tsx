@@ -3,7 +3,7 @@ import { PortfolioShell } from "@/components/site/PortfolioShell";
 
 export function BlogShell({ children }: { children: ReactNode }) {
   return (
-    <PortfolioShell active="blog" article tagline="Notes on systems, reliability, product engineering, and AI workflows.">
+    <PortfolioShell active="blog" article tagline="Notes on building software that holds up.">
       {children}
     </PortfolioShell>
   );

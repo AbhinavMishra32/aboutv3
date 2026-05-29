@@ -15,7 +15,7 @@ export function PortfolioShell({
   article?: boolean;
 }) {
   return (
-    <div className="blog-page">
+    <div className={`blog-page page-${active} ${article ? "page-article" : ""}`}>
       <div className="site-shell">
         <SiteHeader active={active} tagline={tagline} />
 

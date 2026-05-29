@@ -16,14 +16,14 @@ export default async function BlogIndexPage() {
   return (
     <article className="blog-article">
       <p className="eyebrow">Blog</p>
-      <h1 className="blog-title">Notes from the parts of software that make products hold together.</h1>
+      <h1 className="blog-title">Writing</h1>
       <div className="blog-meta">
         <span>{posts.length} notes live</span>
         <span>Backend systems, product judgment, and technical depth</span>
       </div>
       <p className="blog-body">
-        Short engineering essays on reliability, backend architecture, product clarity, and the decisions underneath
-        software that feels sharp and stable.
+        Notes on reliability, backend architecture, product clarity, and the decisions underneath software that feels
+        sharp and stable.
       </p>
 
       <div className="blog-post-grid">

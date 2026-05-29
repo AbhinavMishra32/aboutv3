@@ -6,7 +6,7 @@ export default function StoryPage() {
     <PortfolioShell
       active="story"
       article
-      tagline="The solo builds, debugging moments, and product decisions that shaped how I work."
+      tagline="The builds and debugging moments that shaped how I work."
     >
       <StorySection />
     </PortfolioShell>
