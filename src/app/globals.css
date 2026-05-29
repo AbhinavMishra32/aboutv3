@@ -307,6 +307,7 @@ textarea {
 
 .site-shell {
   position: relative;
+  z-index: 1;
   width: min(100% - 1.75rem, 43rem);
   margin: 0 auto;
   padding: 1.06rem 0 3rem;
@@ -1132,6 +1133,11 @@ textarea {
 }
 
 @media (max-width: 980px) {
+  .blog-page::before,
+  .blog-page::after {
+    opacity: 0.2;
+  }
+
   .studio-grid {
     grid-template-columns: 1fr;
   }
@@ -3133,39 +3139,7 @@ textarea {
   padding: 1.05rem 0;
   border-bottom: 1px solid var(--line);
   animation: soft-reveal 0.76s cubic-bezier(0.22, 1, 0.36, 1) both;
-  transition:
-    transform 0.2s ease,
-    border-color 0.2s ease,
-    background-color 0.2s ease,
-    padding-left 0.2s ease;
-}
-
-.work-row::before {
-  content: "";
-  position: absolute;
-  left: -0.05rem;
-  top: 1.2rem;
-  width: 0.28rem;
-  height: 0.28rem;
-  border-radius: 999px;
-  background: var(--accent);
-  opacity: 0;
-  transform: scale(0.7);
-  transition:
-    opacity 0.2s ease,
-    transform 0.2s ease;
-}
-
-.work-row:hover {
-  padding-left: 0.35rem;
-  transform: translateX(0.18rem);
-  background: linear-gradient(90deg, color-mix(in srgb, var(--surface) 64%, transparent), transparent 56%);
-  border-bottom-color: color-mix(in srgb, var(--accent) 18%, var(--line));
-}
-
-.work-row:hover::before {
-  opacity: 0.55;
-  transform: scale(1);
+  transition: border-color 0.18s ease;
 }
 
 .work-row:nth-child(1) {
@@ -4537,7 +4511,53 @@ textarea {
 }
 
 .blog-page {
+  position: relative;
   min-height: 100vh;
+  overflow-x: clip;
+}
+
+.blog-page::before,
+.blog-page::after {
+  content: "";
+  position: fixed;
+  top: 4.5rem;
+  z-index: 0;
+  width: min(32vw, 27rem);
+  height: min(82vh, 44rem);
+  background-image: url("/ambient-github-skyline.svg");
+  background-position: center top;
+  background-repeat: no-repeat;
+  background-size: contain;
+  opacity: 0.42;
+  filter: saturate(0.82);
+  pointer-events: none;
+  -webkit-mask-image: linear-gradient(90deg, transparent, #000 24%, #000 72%, transparent), linear-gradient(180deg, transparent, #000 12%, #000 78%, transparent);
+  mask-image: linear-gradient(90deg, transparent, #000 24%, #000 72%, transparent), linear-gradient(180deg, transparent, #000 12%, #000 78%, transparent);
+  -webkit-mask-composite: source-in;
+  mask-composite: intersect;
+}
+
+.blog-page::before {
+  left: max(1rem, calc(50vw - 43rem));
+}
+
+.blog-page::after {
+  right: max(1rem, calc(50vw - 43rem));
+  transform: scaleX(-1);
+  opacity: 0.34;
+}
+
+:root[data-theme="dark"] .blog-page::before,
+:root[data-theme="dark"] .blog-page::after {
+  opacity: 0.16;
+  filter: invert(1) saturate(0.72);
+}
+
+.studio-page::before,
+.studio-page::after,
+.admin-page::before,
+.admin-page::after {
+  content: none;
 }
 
 .blog-article {
@@ -4731,6 +4751,11 @@ textarea {
 }
 
 @media (max-width: 720px) {
+  .blog-page::before,
+  .blog-page::after {
+    content: none;
+  }
+
   .site-shell {
     width: min(100% - 1.35rem, 43rem);
     padding: 0.85rem 0 2.4rem;
