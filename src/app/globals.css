@@ -814,7 +814,7 @@ textarea {
 
 .studio-main {
   min-width: 0;
-  background: color-mix(in srgb, var(--background) 64%, var(--surface));
+  background: color-mix(in srgb, var(--bg) 64%, var(--surface));
 }
 
 .studio-docbar {
@@ -858,7 +858,7 @@ textarea {
   min-height: calc(100vh - 12rem);
   background:
     radial-gradient(circle at 50% 0%, color-mix(in srgb, var(--accent) 5%, transparent), transparent 18rem),
-    color-mix(in srgb, var(--background) 72%, var(--surface));
+    color-mix(in srgb, var(--bg) 72%, var(--surface));
 }
 
 .studio-bubble-menu {
@@ -1178,7 +1178,7 @@ textarea {
   padding: 0.65rem 0.8rem;
   border-radius: 0.5rem;
   background: color-mix(in srgb, var(--text) 92%, transparent);
-  color: var(--background);
+  color: var(--bg);
   box-shadow: 0 14px 32px rgba(9, 15, 28, 0.16);
 }
 
@@ -1188,7 +1188,7 @@ textarea {
   place-items: center;
   padding: 1rem;
   background:
-    linear-gradient(180deg, color-mix(in srgb, var(--background) 94%, transparent), var(--background)),
+    linear-gradient(180deg, color-mix(in srgb, var(--bg) 94%, transparent), var(--bg)),
     color-mix(in srgb, var(--surface) 82%, transparent);
 }
 
@@ -1279,7 +1279,7 @@ textarea {
 
 .admin-submit {
   background: color-mix(in srgb, var(--text) 92%, transparent);
-  color: var(--background);
+  color: var(--bg);
 }
 
 .admin-secondary {
