@@ -4,6 +4,7 @@ import { useDeferredValue, useEffect, useRef, useState, useTransition } from "re
 import { marked } from "marked";
 import TurndownService from "turndown";
 import { EditorContent, useEditor } from "@tiptap/react";
+import { BubbleMenu, FloatingMenu } from "@tiptap/react/menus";
 import StarterKit from "@tiptap/starter-kit";
 import Image from "@tiptap/extension-image";
 import LinkExtension from "@tiptap/extension-link";
@@ -15,8 +16,6 @@ import TaskItem from "@tiptap/extension-task-item";
 import TextAlign from "@tiptap/extension-text-align";
 import Youtube from "@tiptap/extension-youtube";
 import {
-  AlignCenter,
-  AlignLeft,
   Bold,
   CheckSquare,
   Code2,
@@ -29,12 +28,16 @@ import {
   LinkIcon,
   List,
   ListOrdered,
+  Minus,
   PanelRight,
+  Pilcrow,
   Plus,
   Quote,
   Save,
   Search,
+  Sparkles,
   Trash2,
+  Type,
   UnderlineIcon,
   Video,
 } from "lucide-react";
@@ -54,6 +57,13 @@ type ToolbarAction = {
   onClick: () => void;
 };
 
+type InsertAction = {
+  label: string;
+  description: string;
+  icon: React.ComponentType<{ size?: number; strokeWidth?: number }>;
+  onClick: () => void;
+};
+
 function createBlankPost(index: number): BlogPostDraft {
   const now = new Date().toISOString();
 
@@ -67,7 +77,7 @@ function createBlankPost(index: number): BlogPostDraft {
     tags: ["draft"],
     createdAt: now,
     updatedAt: now,
-    contentHtml: "<h2>Untitled Post</h2><p>Start writing.</p>",
+    contentHtml: "<h2>Untitled Post</h2><p></p>",
   };
 }
 
@@ -101,18 +111,34 @@ function deriveExcerpt(text: string, fallback: string) {
   return text.length > 150 ? `${text.slice(0, 147).trim()}...` : text;
 }
 
-function IconButton({ action }: { action: ToolbarAction }) {
+function BubbleButton({ action }: { action: ToolbarAction }) {
   const Icon = action.icon;
 
   return (
     <button
       type="button"
-      className={`studio-icon-button ${action.active ? "is-active" : ""}`}
+      className={`studio-bubble-button ${action.active ? "is-active" : ""}`}
       onClick={action.onClick}
       title={action.label}
       aria-label={action.label}
     >
-      <Icon size={16} strokeWidth={2} />
+      <Icon size={15} strokeWidth={2} />
+    </button>
+  );
+}
+
+function InsertButton({ action }: { action: InsertAction }) {
+  const Icon = action.icon;
+
+  return (
+    <button type="button" className="studio-insert-button" onClick={action.onClick}>
+      <span className="studio-insert-icon">
+        <Icon size={16} strokeWidth={2} />
+      </span>
+      <span>
+        <strong>{action.label}</strong>
+        <small>{action.description}</small>
+      </span>
     </button>
   );
 }
@@ -180,7 +206,7 @@ export function BlogStudioClient({
       TaskList,
       TaskItem.configure({ nested: true }),
       Placeholder.configure({
-        placeholder: "Write the post here. Paste links, format sections, add tasks, or insert a video from the toolbar.",
+        placeholder: "Write freely. Select text to format it, or open a fresh line for the insert menu.",
       }),
       TextAlign.configure({
         types: ["heading", "paragraph"],
@@ -218,51 +244,86 @@ export function BlogStudioClient({
   const wordCount = editor?.getText().split(/\s+/).filter(Boolean).length ?? 0;
   const markdownExport = selectedPost ? turndownService.turndown(selectedPost.contentHtml) : "";
 
-  const toolbarActions: ToolbarAction[] = [
+  const markActions: ToolbarAction[] = [
     { label: "Bold", icon: Bold, active: editor?.isActive("bold"), onClick: () => editor?.chain().focus().toggleBold().run() },
     { label: "Italic", icon: Italic, active: editor?.isActive("italic"), onClick: () => editor?.chain().focus().toggleItalic().run() },
     { label: "Underline", icon: UnderlineIcon, active: editor?.isActive("underline"), onClick: () => editor?.chain().focus().toggleUnderline().run() },
     { label: "Highlight", icon: Highlighter, active: editor?.isActive("highlight"), onClick: () => editor?.chain().focus().toggleHighlight().run() },
-    { label: "Heading", icon: Heading2, active: editor?.isActive("heading", { level: 2 }), onClick: () => editor?.chain().focus().toggleHeading({ level: 2 }).run() },
-    { label: "Quote", icon: Quote, active: editor?.isActive("blockquote"), onClick: () => editor?.chain().focus().toggleBlockquote().run() },
-    { label: "Bullet list", icon: List, active: editor?.isActive("bulletList"), onClick: () => editor?.chain().focus().toggleBulletList().run() },
-    { label: "Numbered list", icon: ListOrdered, active: editor?.isActive("orderedList"), onClick: () => editor?.chain().focus().toggleOrderedList().run() },
-    { label: "Task list", icon: CheckSquare, active: editor?.isActive("taskList"), onClick: () => editor?.chain().focus().toggleTaskList().run() },
-    { label: "Code block", icon: Code2, active: editor?.isActive("codeBlock"), onClick: () => editor?.chain().focus().toggleCodeBlock().run() },
-    { label: "Align left", icon: AlignLeft, onClick: () => editor?.chain().focus().setTextAlign("left").run() },
-    { label: "Align center", icon: AlignCenter, onClick: () => editor?.chain().focus().setTextAlign("center").run() },
+    { label: "Link", icon: LinkIcon, active: editor?.isActive("link"), onClick: addLink },
+  ];
+
+  const blockActions: InsertAction[] = [
+    { label: "Text", description: "Plain paragraph", icon: Pilcrow, onClick: () => editor?.chain().focus().setParagraph().run() },
+    { label: "Heading", description: "Section title", icon: Heading2, onClick: () => editor?.chain().focus().toggleHeading({ level: 2 }).run() },
     {
-      label: "Link",
-      icon: LinkIcon,
-      active: editor?.isActive("link"),
-      onClick: () => {
-        const previousUrl = editor?.getAttributes("link").href as string | undefined;
-        const url = window.prompt("URL", previousUrl ?? "");
+      label: "Quote",
+      description: "Pull out an idea",
+      icon: Quote,
+      onClick: () => editor?.chain().focus().toggleBlockquote().run(),
+    },
+    { label: "Bullets", description: "Fast scannable points", icon: List, onClick: () => editor?.chain().focus().toggleBulletList().run() },
+    { label: "Numbers", description: "Ordered sequence", icon: ListOrdered, onClick: () => editor?.chain().focus().toggleOrderedList().run() },
+    { label: "Tasks", description: "Checklist block", icon: CheckSquare, onClick: () => editor?.chain().focus().toggleTaskList().run() },
+    { label: "Code", description: "Technical block", icon: Code2, onClick: () => editor?.chain().focus().toggleCodeBlock().run() },
+    { label: "Divider", description: "Section break", icon: Minus, onClick: () => editor?.chain().focus().setHorizontalRule().run() },
+    { label: "Image", description: "Upload into Postgres", icon: ImageIcon, onClick: () => imageInputRef.current?.click() },
+    { label: "YouTube", description: "Embed a video", icon: Video, onClick: addVideo },
+  ];
 
-        if (url === null) return;
-        if (!url.trim()) {
-          editor?.chain().focus().extendMarkRange("link").unsetLink().run();
-          return;
-        }
-
-        editor?.chain().focus().extendMarkRange("link").setLink({ href: url.trim() }).run();
-      },
+  const templateActions: InsertAction[] = [
+    {
+      label: "Launch note",
+      description: "Context, decision, next step",
+      icon: Sparkles,
+      onClick: () =>
+        editor
+          ?.chain()
+          .focus()
+          .insertContent("<h2>Launch note</h2><p><strong>Context:</strong> </p><p><strong>Decision:</strong> </p><p><strong>Next:</strong> </p>")
+          .run(),
     },
     {
-      label: "Video embed",
-      icon: Video,
-      onClick: () => {
-        const url = window.prompt("YouTube URL");
-        if (!url?.trim()) return;
-        editor?.chain().focus().setYoutubeVideo({ src: url.trim(), width: 900, height: 506 }).run();
-      },
+      label: "Build log",
+      description: "What changed and why",
+      icon: Type,
+      onClick: () =>
+        editor
+          ?.chain()
+          .focus()
+          .insertContent("<h2>Build log</h2><ul><li>Shipped: </li><li>Learned: </li><li>Open edge: </li></ul>")
+          .run(),
     },
     {
-      label: "Image",
-      icon: ImageIcon,
-      onClick: () => imageInputRef.current?.click(),
+      label: "Research card",
+      description: "Question, evidence, direction",
+      icon: Highlighter,
+      onClick: () =>
+        editor
+          ?.chain()
+          .focus()
+          .insertContent("<h2>Research card</h2><blockquote><p>Question: </p></blockquote><p><strong>Evidence:</strong> </p><p><strong>Direction:</strong> </p>")
+          .run(),
     },
   ];
+
+  function addLink() {
+    const previousUrl = editor?.getAttributes("link").href as string | undefined;
+    const url = window.prompt("URL", previousUrl ?? "");
+
+    if (url === null) return;
+    if (!url.trim()) {
+      editor?.chain().focus().extendMarkRange("link").unsetLink().run();
+      return;
+    }
+
+    editor?.chain().focus().extendMarkRange("link").setLink({ href: url.trim() }).run();
+  }
+
+  function addVideo() {
+    const url = window.prompt("YouTube URL");
+    if (!url?.trim()) return;
+    editor?.chain().focus().setYoutubeVideo({ src: url.trim(), width: 900, height: 506 }).run();
+  }
 
   useEffect(() => {
     if (!selectedPost || !editor) return;
@@ -528,10 +589,41 @@ export function BlogStudioClient({
             </div>
           </div>
 
-          <div className="studio-toolbar">
-            {toolbarActions.map((action) => (
-              <IconButton key={action.label} action={action} />
-            ))}
+          <div className="studio-editor-frame">
+            {editor ? (
+              <>
+                <BubbleMenu editor={editor} options={{ placement: "top", offset: 8 }}>
+                  <div className="studio-bubble-menu">
+                    {markActions.map((action) => (
+                      <BubbleButton key={action.label} action={action} />
+                    ))}
+                  </div>
+                </BubbleMenu>
+                <FloatingMenu editor={editor} options={{ placement: "left-start", offset: 12 }}>
+                  <div className="studio-floating-menu">
+                    <span className="studio-floating-plus">
+                      <Plus size={15} strokeWidth={2} />
+                    </span>
+                    <div className="studio-floating-panel">
+                      <div className="studio-floating-head">
+                        <strong>Add a block</strong>
+                        <span>Choose a block or drop in a reusable writing template.</span>
+                      </div>
+                      <div className="studio-insert-grid">
+                        {blockActions.map((action) => (
+                          <InsertButton key={action.label} action={action} />
+                        ))}
+                      </div>
+                      <div className="studio-template-row">
+                        {templateActions.map((action) => (
+                          <InsertButton key={action.label} action={action} />
+                        ))}
+                      </div>
+                    </div>
+                  </div>
+                </FloatingMenu>
+              </>
+            ) : null}
             <input
               ref={imageInputRef}
               type="file"
@@ -543,14 +635,17 @@ export function BlogStudioClient({
                 if (file) void uploadImage(file);
               }}
             />
+            <EditorContent editor={editor} />
           </div>
-
-          <EditorContent editor={editor} />
         </main>
 
         <aside className="studio-inspector">
           {rightPanel === "settings" ? (
-            <>
+            <div className="studio-inspector-card">
+              <div className="studio-inspector-head">
+                <strong>Publish settings</strong>
+                <span>Metadata for the public blog.</span>
+              </div>
               <label className="studio-field">
                 <span>Slug</span>
                 <input
@@ -641,11 +736,11 @@ export function BlogStudioClient({
                   <span>Delete</span>
                 </button>
               </div>
-            </>
+            </div>
           ) : null}
 
           {rightPanel === "preview" ? (
-            <article className="studio-preview">
+            <article className="studio-preview studio-inspector-card">
               <div className="studio-preview-meta">
                 <span>{selectedPost.status}</span>
                 <span>{selectedPost.category}</span>
@@ -657,7 +752,11 @@ export function BlogStudioClient({
           ) : null}
 
           {rightPanel === "markdown" ? (
-            <div className="studio-markdown-panel">
+            <div className="studio-markdown-panel studio-inspector-card">
+              <div className="studio-inspector-head">
+                <strong>Markdown deck</strong>
+                <span>Round-trip the post when you need source control.</span>
+              </div>
               <textarea value={markdownDraft} onChange={(event) => setMarkdownDraft(event.target.value)} />
               <div className="studio-danger-row">
                 <button type="button" onClick={() => void importMarkdown()}>

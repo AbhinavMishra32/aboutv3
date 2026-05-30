@@ -700,6 +700,8 @@ textarea {
 .studio-primary-button,
 .studio-save-button,
 .studio-icon-button,
+.studio-bubble-button,
+.studio-insert-button,
 .studio-panel-tabs button,
 .studio-field input,
 .studio-field select,
@@ -736,6 +738,7 @@ textarea {
 
 .studio-primary-button,
 .studio-save-button,
+.studio-bubble-button,
 .studio-danger-row button,
 .studio-tag-entry button {
   display: inline-flex;
@@ -814,8 +817,7 @@ textarea {
   background: color-mix(in srgb, var(--background) 64%, var(--surface));
 }
 
-.studio-docbar,
-.studio-toolbar {
+.studio-docbar {
   display: flex;
   align-items: center;
   gap: 0.45rem;
@@ -845,18 +847,167 @@ textarea {
 }
 
 .studio-icon-button.is-active,
+.studio-bubble-button.is-active,
 .studio-panel-tabs button.is-active {
   border-color: color-mix(in srgb, var(--accent) 42%, var(--line));
   background: color-mix(in srgb, var(--accent) 12%, var(--surface-strong));
 }
 
-.studio-toolbar {
-  flex-wrap: wrap;
+.studio-editor-frame {
+  position: relative;
+  min-height: calc(100vh - 12rem);
+  background:
+    radial-gradient(circle at 50% 0%, color-mix(in srgb, var(--accent) 5%, transparent), transparent 18rem),
+    color-mix(in srgb, var(--background) 72%, var(--surface));
+}
+
+.studio-bubble-menu {
+  display: inline-flex;
+  gap: 0.22rem;
+  padding: 0.26rem;
+  border: 1px solid color-mix(in srgb, var(--line) 82%, transparent);
+  border-radius: 0.72rem;
+  background: color-mix(in srgb, var(--surface-strong) 94%, transparent);
+  box-shadow:
+    inset 0 1px 0 rgba(255, 255, 255, 0.62),
+    0 18px 44px rgba(0, 0, 0, 0.14);
+  backdrop-filter: blur(22px) saturate(1.35);
+  animation: card-rise 0.22s cubic-bezier(0.22, 1, 0.36, 1) both;
+}
+
+:root[data-theme="dark"] .studio-bubble-menu {
+  box-shadow:
+    inset 0 1px 0 rgba(255, 255, 255, 0.08),
+    0 18px 44px rgba(0, 0, 0, 0.36);
+}
+
+.studio-bubble-button {
+  width: 2rem;
+  height: 2rem;
+  min-height: 2rem;
+  border-radius: 0.54rem;
+}
+
+.studio-floating-menu {
+  display: grid;
+  grid-template-columns: auto minmax(0, 18rem);
+  gap: 0.54rem;
+  align-items: start;
+  animation: soft-reveal 0.24s cubic-bezier(0.22, 1, 0.36, 1) both;
+}
+
+.studio-floating-plus {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  width: 1.92rem;
+  height: 1.92rem;
+  border: 1px solid color-mix(in srgb, var(--line) 82%, transparent);
+  border-radius: 0.58rem;
+  background: color-mix(in srgb, var(--surface-strong) 86%, transparent);
+  color: var(--muted);
+  box-shadow:
+    inset 0 1px 0 rgba(255, 255, 255, 0.58),
+    0 10px 26px rgba(0, 0, 0, 0.08);
+}
+
+.studio-floating-panel {
+  display: grid;
+  gap: 0.48rem;
+  padding: 0.54rem;
+  border: 1px solid color-mix(in srgb, var(--line) 82%, transparent);
+  border-radius: 0.86rem;
+  background: color-mix(in srgb, var(--surface-strong) 94%, transparent);
+  box-shadow:
+    inset 0 1px 0 rgba(255, 255, 255, 0.62),
+    0 22px 52px rgba(0, 0, 0, 0.14);
+  backdrop-filter: blur(24px) saturate(1.32);
+}
+
+.studio-floating-head,
+.studio-inspector-head {
+  display: grid;
+  gap: 0.12rem;
+}
+
+.studio-floating-head strong,
+.studio-inspector-head strong {
+  font-size: 0.88rem;
+  line-height: 1.1;
+}
+
+.studio-floating-head span,
+.studio-inspector-head span {
+  color: var(--muted);
+  font-size: 0.72rem;
+  line-height: 1.42;
+}
+
+.studio-insert-grid,
+.studio-template-row {
+  display: grid;
+  gap: 0.32rem;
+}
+
+.studio-insert-grid {
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+}
+
+.studio-insert-button {
+  justify-content: flex-start;
+  gap: 0.48rem;
+  min-height: 3rem;
+  padding: 0.42rem;
+  border-radius: 0.62rem;
+  text-align: left;
+  transition:
+    border-color 0.18s ease,
+    background-color 0.18s ease,
+    transform 0.18s ease;
+}
+
+.studio-insert-button:hover {
+  border-color: color-mix(in srgb, var(--accent) 28%, var(--line));
+  background: color-mix(in srgb, var(--accent) 8%, var(--surface-strong));
+  transform: translateY(-1px);
+}
+
+.studio-insert-icon {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  width: 1.62rem;
+  height: 1.62rem;
+  flex: 0 0 auto;
+  border-radius: 0.46rem;
+  background: color-mix(in srgb, var(--surface) 74%, transparent);
+  color: var(--accent);
+}
+
+.studio-insert-button span:last-child {
+  display: grid;
+  min-width: 0;
+}
+
+.studio-insert-button strong {
+  font-size: 0.78rem;
+  line-height: 1.15;
+}
+
+.studio-insert-button small {
+  overflow: hidden;
+  color: var(--muted);
+  font-size: 0.68rem;
+  line-height: 1.2;
+  text-overflow: ellipsis;
+  white-space: nowrap;
 }
 
 .studio-editor-surface {
   min-height: calc(100vh - 16.8rem);
-  padding: 1.45rem clamp(1.5rem, 4vw, 4rem) 3rem;
+  max-width: 48rem;
+  margin: 0 auto;
+  padding: 2.25rem clamp(1.5rem, 4vw, 4rem) 4rem;
   outline: none;
   color: var(--text);
   font-size: 1rem;
@@ -940,6 +1091,17 @@ textarea {
 .studio-markdown-panel {
   display: grid;
   gap: 0.35rem;
+}
+
+.studio-inspector-card {
+  display: grid;
+  gap: 0.72rem;
+  padding: 0.72rem;
+  border: 1px solid color-mix(in srgb, var(--line) 78%, transparent);
+  border-radius: 0.72rem;
+  background:
+    linear-gradient(180deg, color-mix(in srgb, var(--surface-strong) 48%, transparent), transparent),
+    color-mix(in srgb, var(--surface) 72%, transparent);
 }
 
 .studio-field input,
@@ -4561,8 +4723,22 @@ textarea {
 }
 
 .blog-article {
+  position: relative;
   display: grid;
   gap: 1rem;
+}
+
+.page-blog .blog-article::before {
+  content: "";
+  position: absolute;
+  left: -1.1rem;
+  top: 0.18rem;
+  width: 1px;
+  height: min(100%, 22rem);
+  background: linear-gradient(180deg, color-mix(in srgb, var(--accent) 38%, transparent), transparent);
+  opacity: 0.42;
+  transform-origin: top;
+  animation: activity-level-rise 0.72s cubic-bezier(0.22, 1, 0.36, 1) both;
 }
 
 .blog-back {
@@ -4621,6 +4797,8 @@ textarea {
   display: grid;
   gap: 0.35rem;
   border-top: 1px solid var(--line);
+  animation: soft-reveal 0.7s cubic-bezier(0.22, 1, 0.36, 1) both;
+  animation-delay: 0.18s;
 }
 
 .blog-post-desc {
@@ -4632,6 +4810,26 @@ textarea {
 
 .blog-markdown > *:first-child {
   margin-top: 0;
+}
+
+.blog-markdown > * {
+  animation: soft-reveal 0.68s cubic-bezier(0.22, 1, 0.36, 1) both;
+}
+
+.blog-markdown > *:nth-child(1) {
+  animation-delay: 0.06s;
+}
+
+.blog-markdown > *:nth-child(2) {
+  animation-delay: 0.1s;
+}
+
+.blog-markdown > *:nth-child(3) {
+  animation-delay: 0.14s;
+}
+
+.blog-markdown > *:nth-child(n + 4) {
+  animation-delay: 0.18s;
 }
 
 .blog-markdown p,
@@ -4713,6 +4911,22 @@ textarea {
   border: 1px solid var(--line);
   border-radius: 1rem;
   background: color-mix(in srgb, var(--surface) 78%, transparent);
+  box-shadow:
+    inset 0 1px 0 rgba(255, 255, 255, 0.5),
+    0 18px 44px rgba(0, 0, 0, 0.055);
+  transition:
+    border-color 0.22s ease,
+    box-shadow 0.22s ease,
+    transform 0.22s ease;
+}
+
+.blog-markdown img:hover,
+.blog-markdown iframe:hover {
+  border-color: color-mix(in srgb, var(--accent) 22%, var(--line));
+  box-shadow:
+    inset 0 1px 0 rgba(255, 255, 255, 0.56),
+    0 24px 60px rgba(0, 0, 0, 0.08);
+  transform: translateY(-2px);
 }
 
 .blog-markdown img {
