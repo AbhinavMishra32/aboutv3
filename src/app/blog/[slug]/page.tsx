@@ -2,7 +2,7 @@ import type { Metadata } from "next";
 import Link from "next/link";
 import { notFound } from "next/navigation";
 import { getPostViews } from "@/lib/blog-db";
-import { getAllPosts, getPostBySlug } from "@/lib/blog";
+import { getAllPosts, getPostBySlug, type BlogPost } from "@/lib/blog";
 import { ViewCounter } from "@/components/blog/ViewCounter";
 
 type BlogPostPageProps = {
@@ -17,6 +17,22 @@ function formatBlogDate(value: string) {
     day: "numeric",
     year: "numeric",
   }).format(new Date(value));
+}
+
+function getBlogOgImageUrl(post: BlogPost) {
+  const params = new URLSearchParams({
+    eyebrow: "Writing",
+    title: post.title,
+    summary: post.summary,
+    date: post.date,
+    v: "2",
+  });
+
+  for (const tag of post.tags.slice(0, 3)) {
+    params.append("tag", tag);
+  }
+
+  return `/api/og/blog?${params.toString()}`;
 }
 
 export async function generateStaticParams() {
@@ -36,6 +52,8 @@ export async function generateMetadata({ params }: BlogPostPageProps): Promise<M
     };
   }
 
+  const ogImage = getBlogOgImageUrl(post);
+
   return {
     title: `${post.title} | Abhinav Mishra`,
     description: post.summary,
@@ -48,7 +66,7 @@ export async function generateMetadata({ params }: BlogPostPageProps): Promise<M
       tags: post.tags,
       images: [
         {
-          url: `/blog/${post.slug}/opengraph-image`,
+          url: ogImage,
           width: 1200,
           height: 630,
           alt: `${post.title} by Abhinav Mishra`,
@@ -59,7 +77,7 @@ export async function generateMetadata({ params }: BlogPostPageProps): Promise<M
       card: "summary_large_image",
       title: `${post.title} | Abhinav Mishra`,
       description: post.summary,
-      images: [`/blog/${post.slug}/opengraph-image`],
+      images: [ogImage],
     },
   };
 }

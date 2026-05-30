@@ -43,7 +43,7 @@ const themeScript = `
 `;
 
 export const metadata: Metadata = {
-  metadataBase: new URL(process.env.NEXT_PUBLIC_SITE_URL ?? "https://abhinavmishra.in"),
+  metadataBase: new URL(process.env.NEXT_PUBLIC_SITE_URL ?? "https://www.abhinavmishra.in"),
   title: "Abhinav Mishra",
   description: "Software developer building thoughtful products, modern interfaces, and reliable systems.",
 };

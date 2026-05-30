@@ -3,19 +3,22 @@ import type { Metadata } from "next";
 import { ArrowRight, BookOpenText } from "lucide-react";
 import { getAllPosts } from "@/lib/blog";
 
+const blogDescription =
+  "Notes on reliability, backend architecture, product clarity, and the decisions underneath software that feels sharp and stable.";
+const blogOgImage =
+  "/api/og/blog?variant=index&eyebrow=Blog&title=Writing&summary=Notes+on+reliability%2C+backend+architecture%2C+product+clarity%2C+and+the+decisions+underneath+software+that+feels+sharp+and+stable.&tag=Writing&tag=Systems&tag=Product&v=2";
+
 export const metadata: Metadata = {
   title: "Writing | Abhinav Mishra",
-  description:
-    "Notes on reliability, backend architecture, product clarity, and the decisions underneath software that feels sharp and stable.",
+  description: blogDescription,
   openGraph: {
     title: "Writing | Abhinav Mishra",
-    description:
-      "Notes on reliability, backend architecture, product clarity, and the decisions underneath software that feels sharp and stable.",
+    description: blogDescription,
     type: "website",
     url: "/blog",
     images: [
       {
-        url: "/blog/opengraph-image",
+        url: blogOgImage,
         width: 1200,
         height: 630,
         alt: "Abhinav Mishra blog",
@@ -25,9 +28,8 @@ export const metadata: Metadata = {
   twitter: {
     card: "summary_large_image",
     title: "Writing | Abhinav Mishra",
-    description:
-      "Notes on reliability, backend architecture, product clarity, and the decisions underneath software that feels sharp and stable.",
-    images: ["/blog/opengraph-image"],
+    description: blogDescription,
+    images: [blogOgImage],
   },
 };
 
