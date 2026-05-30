@@ -39,6 +39,28 @@ export async function generateMetadata({ params }: BlogPostPageProps): Promise<M
   return {
     title: `${post.title} | Abhinav Mishra`,
     description: post.summary,
+    openGraph: {
+      title: `${post.title} | Abhinav Mishra`,
+      description: post.summary,
+      type: "article",
+      url: `/blog/${post.slug}`,
+      publishedTime: post.date,
+      tags: post.tags,
+      images: [
+        {
+          url: `/blog/${post.slug}/opengraph-image`,
+          width: 1200,
+          height: 630,
+          alt: `${post.title} by Abhinav Mishra`,
+        },
+      ],
+    },
+    twitter: {
+      card: "summary_large_image",
+      title: `${post.title} | Abhinav Mishra`,
+      description: post.summary,
+      images: [`/blog/${post.slug}/opengraph-image`],
+    },
   };
 }
 
