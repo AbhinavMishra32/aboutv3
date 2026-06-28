@@ -20,10 +20,16 @@ function formatBlogDate(value: string) {
 }
 
 function getBlogOgImageUrl(post: BlogPost) {
+  // Clean newlines and carriage returns from the summary for URL safety
+  const cleanSummary = post.summary
+    .replace(/[\r\n]+/g, " ")
+    .replace(/\s+/g, " ")
+    .trim();
+
   const params = new URLSearchParams({
     eyebrow: "Writing",
     title: post.title,
-    summary: post.summary,
+    summary: cleanSummary,
     date: post.date,
     v: "2",
   });
