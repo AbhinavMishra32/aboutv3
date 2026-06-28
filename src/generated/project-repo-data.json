@@ -2051,174 +2051,14 @@
   },
   "construct": {
     "slug": "construct",
-    "totalCommits": 170,
-    "pushedAt": "2026-05-26T18:05:00+05:30",
-    "activeDays": 15,
+    "totalCommits": 438,
+    "pushedAt": "2026-06-26T14:55:46+05:30",
+    "activeDays": 38,
     "defaultBranch": "main",
     "createdAt": "2026-03-15T00:42:19+05:30",
     "firstCommitAt": "2026-03-15T00:42:19+05:30",
-    "commitSpanDays": 73,
+    "commitSpanDays": 104,
     "calendar": [
-      {
-        "label": "2026-01-25",
-        "days": [
-          {
-            "date": "2026-01-25",
-            "count": 0,
-            "level": 0
-          },
-          {
-            "date": "2026-01-26",
-            "count": 0,
-            "level": 0
-          },
-          {
-            "date": "2026-01-27",
-            "count": 0,
-            "level": 0
-          },
-          {
-            "date": "2026-01-28",
-            "count": 0,
-            "level": 0
-          },
-          {
-            "date": "2026-01-29",
-            "count": 0,
-            "level": 0
-          },
-          {
-            "date": "2026-01-30",
-            "count": 0,
-            "level": 0
-          },
-          {
-            "date": "2026-01-31",
-            "count": 0,
-            "level": 0
-          }
-        ]
-      },
-      {
-        "label": "2026-02-01",
-        "days": [
-          {
-            "date": "2026-02-01",
-            "count": 0,
-            "level": 0
-          },
-          {
-            "date": "2026-02-02",
-            "count": 0,
-            "level": 0
-          },
-          {
-            "date": "2026-02-03",
-            "count": 0,
-            "level": 0
-          },
-          {
-            "date": "2026-02-04",
-            "count": 0,
-            "level": 0
-          },
-          {
-            "date": "2026-02-05",
-            "count": 0,
-            "level": 0
-          },
-          {
-            "date": "2026-02-06",
-            "count": 0,
-            "level": 0
-          },
-          {
-            "date": "2026-02-07",
-            "count": 0,
-            "level": 0
-          }
-        ]
-      },
-      {
-        "label": "2026-02-08",
-        "days": [
-          {
-            "date": "2026-02-08",
-            "count": 0,
-            "level": 0
-          },
-          {
-            "date": "2026-02-09",
-            "count": 0,
-            "level": 0
-          },
-          {
-            "date": "2026-02-10",
-            "count": 0,
-            "level": 0
-          },
-          {
-            "date": "2026-02-11",
-            "count": 0,
-            "level": 0
-          },
-          {
-            "date": "2026-02-12",
-            "count": 0,
-            "level": 0
-          },
-          {
-            "date": "2026-02-13",
-            "count": 0,
-            "level": 0
-          },
-          {
-            "date": "2026-02-14",
-            "count": 0,
-            "level": 0
-          }
-        ]
-      },
-      {
-        "label": "2026-02-15",
-        "days": [
-          {
-            "date": "2026-02-15",
-            "count": 0,
-            "level": 0
-          },
-          {
-            "date": "2026-02-16",
-            "count": 0,
-            "level": 0
-          },
-          {
-            "date": "2026-02-17",
-            "count": 0,
-            "level": 0
-          },
-          {
-            "date": "2026-02-18",
-            "count": 0,
-            "level": 0
-          },
-          {
-            "date": "2026-02-19",
-            "count": 0,
-            "level": 0
-          },
-          {
-            "date": "2026-02-20",
-            "count": 0,
-            "level": 0
-          },
-          {
-            "date": "2026-02-21",
-            "count": 0,
-            "level": 0
-          }
-        ]
-      },
       {
         "label": "2026-02-22",
         "days": [
@@ -2754,7 +2594,7 @@
           },
           {
             "date": "2026-05-26",
-            "count": 2,
+            "count": 3,
             "level": 1
           },
           {
@@ -2774,6 +2614,166 @@
           },
           {
             "date": "2026-05-30",
+            "count": 1,
+            "level": 1
+          }
+        ]
+      },
+      {
+        "label": "2026-05-31",
+        "days": [
+          {
+            "date": "2026-05-31",
+            "count": 3,
+            "level": 1
+          },
+          {
+            "date": "2026-06-01",
+            "count": 0,
+            "level": 0
+          },
+          {
+            "date": "2026-06-02",
+            "count": 2,
+            "level": 1
+          },
+          {
+            "date": "2026-06-03",
+            "count": 1,
+            "level": 1
+          },
+          {
+            "date": "2026-06-04",
+            "count": 0,
+            "level": 0
+          },
+          {
+            "date": "2026-06-05",
+            "count": 0,
+            "level": 0
+          },
+          {
+            "date": "2026-06-06",
+            "count": 13,
+            "level": 2
+          }
+        ]
+      },
+      {
+        "label": "2026-06-07",
+        "days": [
+          {
+            "date": "2026-06-07",
+            "count": 17,
+            "level": 3
+          },
+          {
+            "date": "2026-06-08",
+            "count": 0,
+            "level": 0
+          },
+          {
+            "date": "2026-06-09",
+            "count": 17,
+            "level": 3
+          },
+          {
+            "date": "2026-06-10",
+            "count": 11,
+            "level": 2
+          },
+          {
+            "date": "2026-06-11",
+            "count": 13,
+            "level": 2
+          },
+          {
+            "date": "2026-06-12",
+            "count": 16,
+            "level": 2
+          },
+          {
+            "date": "2026-06-13",
+            "count": 14,
+            "level": 2
+          }
+        ]
+      },
+      {
+        "label": "2026-06-14",
+        "days": [
+          {
+            "date": "2026-06-14",
+            "count": 23,
+            "level": 3
+          },
+          {
+            "date": "2026-06-15",
+            "count": 10,
+            "level": 2
+          },
+          {
+            "date": "2026-06-16",
+            "count": 1,
+            "level": 1
+          },
+          {
+            "date": "2026-06-17",
+            "count": 28,
+            "level": 4
+          },
+          {
+            "date": "2026-06-18",
+            "count": 15,
+            "level": 2
+          },
+          {
+            "date": "2026-06-19",
+            "count": 0,
+            "level": 0
+          },
+          {
+            "date": "2026-06-20",
+            "count": 11,
+            "level": 2
+          }
+        ]
+      },
+      {
+        "label": "2026-06-21",
+        "days": [
+          {
+            "date": "2026-06-21",
+            "count": 22,
+            "level": 3
+          },
+          {
+            "date": "2026-06-22",
+            "count": 19,
+            "level": 3
+          },
+          {
+            "date": "2026-06-23",
+            "count": 2,
+            "level": 1
+          },
+          {
+            "date": "2026-06-24",
+            "count": 14,
+            "level": 2
+          },
+          {
+            "date": "2026-06-25",
+            "count": 8,
+            "level": 1
+          },
+          {
+            "date": "2026-06-26",
+            "count": 6,
+            "level": 1
+          },
+          {
+            "date": "2026-06-27",
             "count": 0,
             "level": 0
           }
@@ -2782,79 +2782,1687 @@
     ],
     "recentCommits": [
       {
-        "sha": "46788219fae4090d6dbd6e57b7eb01bb83a33317",
-        "date": "2026-05-26T18:05:00+05:30",
-        "message": "Thread artifact lock through live creation flow",
-        "url": "https://github.com/AbhinavMishra32/Construct-IDE/commit/46788219fae4090d6dbd6e57b7eb01bb83a33317"
+        "sha": "d73e5fb0b53b4ddf8ef14e70e7d6477c4a194b90",
+        "date": "2026-06-26T14:55:46+05:30",
+        "message": "Move Construct domain state into SQLite rows",
+        "url": "https://github.com/AbhinavMishra32/Construct-IDE/commit/d73e5fb0b53b4ddf8ef14e70e7d6477c4a194b90"
       },
       {
-        "sha": "6d0fca9cfa2d22c16d6eb76fd0dfddec691efb3b",
-        "date": "2026-05-26T17:43:07+05:30",
-        "message": "Add artifact-first creation v2 skeleton",
-        "url": "https://github.com/AbhinavMishra32/Construct-IDE/commit/6d0fca9cfa2d22c16d6eb76fd0dfddec691efb3b"
+        "sha": "c459a0d7f375aca7d334a675dfdc703109c16e99",
+        "date": "2026-06-26T14:27:57+05:30",
+        "message": "Polish concepts and workspace navigation",
+        "url": "https://github.com/AbhinavMishra32/Construct-IDE/commit/c459a0d7f375aca7d334a675dfdc703109c16e99"
       },
       {
-        "sha": "85f64ba12b82938c43cb5bee81560fbfe5d883dd",
-        "date": "2026-05-06T12:28:40+05:30",
-        "message": "Keep from-scratch plans faithful to the requested artifact",
-        "url": "https://github.com/AbhinavMishra32/Construct-IDE/commit/85f64ba12b82938c43cb5bee81560fbfe5d883dd"
+        "sha": "39cb17029308429e364902ed8948efbde7aba619",
+        "date": "2026-06-26T14:27:50+05:30",
+        "message": "Refine Flow composer task context",
+        "url": "https://github.com/AbhinavMishra32/Construct-IDE/commit/39cb17029308429e364902ed8948efbde7aba619"
       },
       {
-        "sha": "7ad626a183176fd977924f83a3f4bb0bef017e1a",
-        "date": "2026-05-06T12:13:31+05:30",
-        "message": "Fix todo blueprint task-gap detection",
-        "url": "https://github.com/AbhinavMishra32/Construct-IDE/commit/7ad626a183176fd977924f83a3f4bb0bef017e1a"
+        "sha": "81e14c1907a71e3c15aea339df5d8592bd702815",
+        "date": "2026-06-26T14:27:20+05:30",
+        "message": "Tighten Flow concept firewall reviews",
+        "url": "https://github.com/AbhinavMishra32/Construct-IDE/commit/81e14c1907a71e3c15aea339df5d8592bd702815"
       },
       {
-        "sha": "9abc0038399f94d6f292424b6c20e96467723f53",
-        "date": "2026-04-14T18:51:51+05:30",
-        "message": "style(app): remove redundant workspace nav chrome",
-        "url": "https://github.com/AbhinavMishra32/Construct-IDE/commit/9abc0038399f94d6f292424b6c20e96467723f53"
+        "sha": "4a8b673e604eac8e0a67fa470dad2026bf490f75",
+        "date": "2026-06-26T14:27:14+05:30",
+        "message": "Refine hosted compute account settings",
+        "url": "https://github.com/AbhinavMishra32/Construct-IDE/commit/4a8b673e604eac8e0a67fa470dad2026bf490f75"
       },
       {
-        "sha": "e45bff654fd05fc6bc64da14f8a60fbd02f43987",
-        "date": "2026-04-06T15:43:17+05:30",
-        "message": "fix(runner): stop duplicating generated project dependencies",
-        "url": "https://github.com/AbhinavMishra32/Construct-IDE/commit/e45bff654fd05fc6bc64da14f8a60fbd02f43987"
+        "sha": "6eba07d6371f4ce8b85a4845593bcf6bc5cde5d8",
+        "date": "2026-06-26T14:27:05+05:30",
+        "message": "Harden release preflight",
+        "url": "https://github.com/AbhinavMishra32/Construct-IDE/commit/6eba07d6371f4ce8b85a4845593bcf6bc5cde5d8"
       },
       {
-        "sha": "e842acbe7a7c026e963b288c9d8585337f71566c",
-        "date": "2026-04-06T15:20:59+05:30",
-        "message": "style(app): remove redundant workspace navigation chrome",
-        "url": "https://github.com/AbhinavMishra32/Construct-IDE/commit/e842acbe7a7c026e963b288c9d8585337f71566c"
+        "sha": "b1c110e8a283501f6f48a7577737dd83027fde17",
+        "date": "2026-06-25T22:49:44+05:30",
+        "message": "Optimize Flow storage and agent update responsiveness",
+        "url": "https://github.com/AbhinavMishra32/Construct-IDE/commit/b1c110e8a283501f6f48a7577737dd83027fde17"
       },
       {
-        "sha": "6bc669bf1e2ddb1b1da3e562e2c32f9deca2dee5",
-        "date": "2026-04-06T15:14:27+05:30",
-        "message": "style(app): uncollapse sidebar recents rows",
-        "url": "https://github.com/AbhinavMishra32/Construct-IDE/commit/6bc669bf1e2ddb1b1da3e562e2c32f9deca2dee5"
+        "sha": "5d6b93426c188c055b1c717016de98088c6deb0d",
+        "date": "2026-06-25T11:28:15+05:30",
+        "message": "Smooth panel resize and chat scroll state",
+        "url": "https://github.com/AbhinavMishra32/Construct-IDE/commit/5d6b93426c188c055b1c717016de98088c6deb0d"
       },
       {
-        "sha": "1f0bef44a3c6ecbee9475c626e1ebae12b15b16b",
-        "date": "2026-04-06T15:07:17+05:30",
-        "message": "style(app): fix sidebar recents readability",
-        "url": "https://github.com/AbhinavMishra32/Construct-IDE/commit/1f0bef44a3c6ecbee9475c626e1ebae12b15b16b"
+        "sha": "621f91dd6e8a0c30f343e6395d44e97f94f3aec4",
+        "date": "2026-06-25T11:26:21+05:30",
+        "message": "Add Construct performance profiler",
+        "url": "https://github.com/AbhinavMishra32/Construct-IDE/commit/621f91dd6e8a0c30f343e6395d44e97f94f3aec4"
       },
       {
-        "sha": "baf1dd887d0edd6c6298402ae9e078e4c6651a42",
-        "date": "2026-04-06T15:02:41+05:30",
-        "message": "style(app): remove auth screen filler copy",
-        "url": "https://github.com/AbhinavMishra32/Construct-IDE/commit/baf1dd887d0edd6c6298402ae9e078e4c6651a42"
+        "sha": "6779d0ce67f922effeb8ffdd1d331bda3610f481",
+        "date": "2026-06-25T11:16:49+05:30",
+        "message": "Restore Flow workspace UI state",
+        "url": "https://github.com/AbhinavMishra32/Construct-IDE/commit/6779d0ce67f922effeb8ffdd1d331bda3610f481"
       },
       {
-        "sha": "7ab4db1ababd7eceb37aad3092697336979bb5d4",
-        "date": "2026-04-06T14:57:47+05:30",
-        "message": "style(app): simplify auth screen",
-        "url": "https://github.com/AbhinavMishra32/Construct-IDE/commit/7ab4db1ababd7eceb37aad3092697336979bb5d4"
+        "sha": "5a071bc70ee181a704b7d34c83588fe5844503e5",
+        "date": "2026-06-25T11:13:27+05:30",
+        "message": "Restore Construct shell layout state",
+        "url": "https://github.com/AbhinavMishra32/Construct-IDE/commit/5a071bc70ee181a704b7d34c83588fe5844503e5"
       },
       {
-        "sha": "72b1ca0299cf93b2a63efed8457e988f55da6ba1",
-        "date": "2026-04-06T14:56:08+05:30",
-        "message": "style(app): clean up auth shell layout",
-        "url": "https://github.com/AbhinavMishra32/Construct-IDE/commit/72b1ca0299cf93b2a63efed8457e988f55da6ba1"
+        "sha": "04993d21945628ea4de75f57584de9f3c5704fbb",
+        "date": "2026-06-25T11:10:36+05:30",
+        "message": "Persist streamed Interact snapshots",
+        "url": "https://github.com/AbhinavMishra32/Construct-IDE/commit/04993d21945628ea4de75f57584de9f3c5704fbb"
       }
     ],
     "allCommits": [
+      {
+        "sha": "d73e5fb0b53b4ddf8ef14e70e7d6477c4a194b90",
+        "date": "2026-06-26T14:55:46+05:30",
+        "message": "Move Construct domain state into SQLite rows",
+        "url": "https://github.com/AbhinavMishra32/Construct-IDE/commit/d73e5fb0b53b4ddf8ef14e70e7d6477c4a194b90"
+      },
+      {
+        "sha": "c459a0d7f375aca7d334a675dfdc703109c16e99",
+        "date": "2026-06-26T14:27:57+05:30",
+        "message": "Polish concepts and workspace navigation",
+        "url": "https://github.com/AbhinavMishra32/Construct-IDE/commit/c459a0d7f375aca7d334a675dfdc703109c16e99"
+      },
+      {
+        "sha": "39cb17029308429e364902ed8948efbde7aba619",
+        "date": "2026-06-26T14:27:50+05:30",
+        "message": "Refine Flow composer task context",
+        "url": "https://github.com/AbhinavMishra32/Construct-IDE/commit/39cb17029308429e364902ed8948efbde7aba619"
+      },
+      {
+        "sha": "81e14c1907a71e3c15aea339df5d8592bd702815",
+        "date": "2026-06-26T14:27:20+05:30",
+        "message": "Tighten Flow concept firewall reviews",
+        "url": "https://github.com/AbhinavMishra32/Construct-IDE/commit/81e14c1907a71e3c15aea339df5d8592bd702815"
+      },
+      {
+        "sha": "4a8b673e604eac8e0a67fa470dad2026bf490f75",
+        "date": "2026-06-26T14:27:14+05:30",
+        "message": "Refine hosted compute account settings",
+        "url": "https://github.com/AbhinavMishra32/Construct-IDE/commit/4a8b673e604eac8e0a67fa470dad2026bf490f75"
+      },
+      {
+        "sha": "6eba07d6371f4ce8b85a4845593bcf6bc5cde5d8",
+        "date": "2026-06-26T14:27:05+05:30",
+        "message": "Harden release preflight",
+        "url": "https://github.com/AbhinavMishra32/Construct-IDE/commit/6eba07d6371f4ce8b85a4845593bcf6bc5cde5d8"
+      },
+      {
+        "sha": "b1c110e8a283501f6f48a7577737dd83027fde17",
+        "date": "2026-06-25T22:49:44+05:30",
+        "message": "Optimize Flow storage and agent update responsiveness",
+        "url": "https://github.com/AbhinavMishra32/Construct-IDE/commit/b1c110e8a283501f6f48a7577737dd83027fde17"
+      },
+      {
+        "sha": "5d6b93426c188c055b1c717016de98088c6deb0d",
+        "date": "2026-06-25T11:28:15+05:30",
+        "message": "Smooth panel resize and chat scroll state",
+        "url": "https://github.com/AbhinavMishra32/Construct-IDE/commit/5d6b93426c188c055b1c717016de98088c6deb0d"
+      },
+      {
+        "sha": "621f91dd6e8a0c30f343e6395d44e97f94f3aec4",
+        "date": "2026-06-25T11:26:21+05:30",
+        "message": "Add Construct performance profiler",
+        "url": "https://github.com/AbhinavMishra32/Construct-IDE/commit/621f91dd6e8a0c30f343e6395d44e97f94f3aec4"
+      },
+      {
+        "sha": "6779d0ce67f922effeb8ffdd1d331bda3610f481",
+        "date": "2026-06-25T11:16:49+05:30",
+        "message": "Restore Flow workspace UI state",
+        "url": "https://github.com/AbhinavMishra32/Construct-IDE/commit/6779d0ce67f922effeb8ffdd1d331bda3610f481"
+      },
+      {
+        "sha": "5a071bc70ee181a704b7d34c83588fe5844503e5",
+        "date": "2026-06-25T11:13:27+05:30",
+        "message": "Restore Construct shell layout state",
+        "url": "https://github.com/AbhinavMishra32/Construct-IDE/commit/5a071bc70ee181a704b7d34c83588fe5844503e5"
+      },
+      {
+        "sha": "04993d21945628ea4de75f57584de9f3c5704fbb",
+        "date": "2026-06-25T11:10:36+05:30",
+        "message": "Persist streamed Interact snapshots",
+        "url": "https://github.com/AbhinavMishra32/Construct-IDE/commit/04993d21945628ea4de75f57584de9f3c5704fbb"
+      },
+      {
+        "sha": "e127b39f8932fa7593bc3887e07b5e0d83b98134",
+        "date": "2026-06-25T11:10:30+05:30",
+        "message": "Persist Construct app data in SQLite",
+        "url": "https://github.com/AbhinavMishra32/Construct-IDE/commit/e127b39f8932fa7593bc3887e07b5e0d83b98134"
+      },
+      {
+        "sha": "45b62577e4c1cd14100b22537ea8c29e432b25e0",
+        "date": "2026-06-25T11:10:21+05:30",
+        "message": "Build SQLite storage service",
+        "url": "https://github.com/AbhinavMishra32/Construct-IDE/commit/45b62577e4c1cd14100b22537ea8c29e432b25e0"
+      },
+      {
+        "sha": "89980631b2cd54cd6fda1b67b4d5b67b17741c02",
+        "date": "2026-06-24T23:33:31+05:30",
+        "message": "Settle completed Flow thinking traces",
+        "url": "https://github.com/AbhinavMishra32/Construct-IDE/commit/89980631b2cd54cd6fda1b67b4d5b67b17741c02"
+      },
+      {
+        "sha": "da33b342836adea5257eb736d85b17b3af9189ff",
+        "date": "2026-06-24T23:11:25+05:30",
+        "message": "Persist live Flow question progress",
+        "url": "https://github.com/AbhinavMishra32/Construct-IDE/commit/da33b342836adea5257eb736d85b17b3af9189ff"
+      },
+      {
+        "sha": "1af50da032a8a7ac1138ff19ef23e7e40219c5a4",
+        "date": "2026-06-24T12:19:01+05:30",
+        "message": "Run Flow IPC regressions in app tests",
+        "url": "https://github.com/AbhinavMishra32/Construct-IDE/commit/1af50da032a8a7ac1138ff19ef23e7e40219c5a4"
+      },
+      {
+        "sha": "826d593c7640b627007fb0145ad1be337cb3bd70",
+        "date": "2026-06-24T12:03:06+05:30",
+        "message": "Cover Flow persistence and firewall retries",
+        "url": "https://github.com/AbhinavMishra32/Construct-IDE/commit/826d593c7640b627007fb0145ad1be337cb3bd70"
+      },
+      {
+        "sha": "af90383a1d0e561bb60804995631ba5b211231c6",
+        "date": "2026-06-24T11:04:09+05:30",
+        "message": "Add one-shot concept firewall reviews",
+        "url": "https://github.com/AbhinavMishra32/Construct-IDE/commit/af90383a1d0e561bb60804995631ba5b211231c6"
+      },
+      {
+        "sha": "1edcb2123b854bda9aadeb374103f8422ccb62f7",
+        "date": "2026-06-24T10:51:22+05:30",
+        "message": "Render inline Flow citation pills",
+        "url": "https://github.com/AbhinavMishra32/Construct-IDE/commit/1edcb2123b854bda9aadeb374103f8422ccb62f7"
+      },
+      {
+        "sha": "ff288faa9c5d5693ee1e4e0dfb764926e798b1be",
+        "date": "2026-06-24T10:51:02+05:30",
+        "message": "Ground Flow runs with web citations",
+        "url": "https://github.com/AbhinavMishra32/Construct-IDE/commit/ff288faa9c5d5693ee1e4e0dfb764926e798b1be"
+      },
+      {
+        "sha": "18cf804994bfe3e46f9136ea93f07f1b8a6dd7bf",
+        "date": "2026-06-24T10:50:36+05:30",
+        "message": "Persist source-grounded Flow settings",
+        "url": "https://github.com/AbhinavMishra32/Construct-IDE/commit/18cf804994bfe3e46f9136ea93f07f1b8a6dd7bf"
+      },
+      {
+        "sha": "e407e5856ccbba793e1c94db01a16b4e6d346d03",
+        "date": "2026-06-24T10:50:19+05:30",
+        "message": "Refine Flow layout behavior",
+        "url": "https://github.com/AbhinavMishra32/Construct-IDE/commit/e407e5856ccbba793e1c94db01a16b4e6d346d03"
+      },
+      {
+        "sha": "318b7a3feb9f362b0a4ad8eb819213af95e088c0",
+        "date": "2026-06-24T09:59:09+05:30",
+        "message": "Document Flow memory and concept settings",
+        "url": "https://github.com/AbhinavMishra32/Construct-IDE/commit/318b7a3feb9f362b0a4ad8eb819213af95e088c0"
+      },
+      {
+        "sha": "531503b22b9a9afce6534e0e035bbe03c84342f5",
+        "date": "2026-06-24T09:58:47+05:30",
+        "message": "Surface structured agent tool logs",
+        "url": "https://github.com/AbhinavMishra32/Construct-IDE/commit/531503b22b9a9afce6534e0e035bbe03c84342f5"
+      },
+      {
+        "sha": "fe5163da0f6e81fd09ac5d055f8bdf0dcb602414",
+        "date": "2026-06-24T09:58:28+05:30",
+        "message": "Refine Flow chat and concept surfaces",
+        "url": "https://github.com/AbhinavMishra32/Construct-IDE/commit/fe5163da0f6e81fd09ac5d055f8bdf0dcb602414"
+      },
+      {
+        "sha": "95d5087a6e01b9b3004785c010aa2d47f1c11d4b",
+        "date": "2026-06-24T09:58:09+05:30",
+        "message": "Enforce Flow concept policy at runtime",
+        "url": "https://github.com/AbhinavMishra32/Construct-IDE/commit/95d5087a6e01b9b3004785c010aa2d47f1c11d4b"
+      },
+      {
+        "sha": "ca1682e3dcf6f9d8016d358918db52b5ff7958ea",
+        "date": "2026-06-24T09:57:50+05:30",
+        "message": "Add project-local concept policy state",
+        "url": "https://github.com/AbhinavMishra32/Construct-IDE/commit/ca1682e3dcf6f9d8016d358918db52b5ff7958ea"
+      },
+      {
+        "sha": "ebfb2d767a2300a3670aca806f29be9558b7c39c",
+        "date": "2026-06-23T16:14:20+05:30",
+        "message": "Merge pull request #8 from AbhinavMishra32/mastery-system",
+        "url": "https://github.com/AbhinavMishra32/Construct-IDE/commit/ebfb2d767a2300a3670aca806f29be9558b7c39c"
+      },
+      {
+        "sha": "7e2dcec1c8cb53400b52c708cc5b722fc41d1112",
+        "date": "2026-06-23T16:10:12+05:30",
+        "message": "Concept Exercise UI",
+        "url": "https://github.com/AbhinavMishra32/Construct-IDE/commit/7e2dcec1c8cb53400b52c708cc5b722fc41d1112"
+      },
+      {
+        "sha": "cc8f0937cc887de8a728f0f7ac2aad448543eb85",
+        "date": "2026-06-22T22:52:41+05:30",
+        "message": "Preserve Flow continuation state",
+        "url": "https://github.com/AbhinavMishra32/Construct-IDE/commit/cc8f0937cc887de8a728f0f7ac2aad448543eb85"
+      },
+      {
+        "sha": "7016e2952a58ac99fc1bccce8eef47a32070dd02",
+        "date": "2026-06-22T21:26:06+05:30",
+        "message": "Document Flow mastery rules",
+        "url": "https://github.com/AbhinavMishra32/Construct-IDE/commit/7016e2952a58ac99fc1bccce8eef47a32070dd02"
+      },
+      {
+        "sha": "3128acfc32275bb1ea412950f0378cce354f2659",
+        "date": "2026-06-22T21:25:47+05:30",
+        "message": "Show mastery on Flow concept cards",
+        "url": "https://github.com/AbhinavMishra32/Construct-IDE/commit/3128acfc32275bb1ea412950f0378cce354f2659"
+      },
+      {
+        "sha": "b5cc93aff695f514fa9a4a8c917a03daf3d7cd89",
+        "date": "2026-06-22T21:24:58+05:30",
+        "message": "Add Flow mastery sidebar view",
+        "url": "https://github.com/AbhinavMishra32/Construct-IDE/commit/b5cc93aff695f514fa9a4a8c917a03daf3d7cd89"
+      },
+      {
+        "sha": "84e5ca902cab64cb402725bbc15e441cb270373a",
+        "date": "2026-06-22T21:19:59+05:30",
+        "message": "Test Flow mastery exercises and gates",
+        "url": "https://github.com/AbhinavMishra32/Construct-IDE/commit/84e5ca902cab64cb402725bbc15e441cb270373a"
+      },
+      {
+        "sha": "475197a01b5dfe8aed043c9e4cde95c776549fa2",
+        "date": "2026-06-22T21:18:08+05:30",
+        "message": "Gate Flow tasks on concept mastery",
+        "url": "https://github.com/AbhinavMishra32/Construct-IDE/commit/475197a01b5dfe8aed043c9e4cde95c776549fa2"
+      },
+      {
+        "sha": "5a7bec6e767f7f2ea35503b0d12c5e7904de58bb",
+        "date": "2026-06-22T21:11:02+05:30",
+        "message": "Add Flow concept mastery contract",
+        "url": "https://github.com/AbhinavMishra32/Construct-IDE/commit/5a7bec6e767f7f2ea35503b0d12c5e7904de58bb"
+      },
+      {
+        "sha": "566313e27538bf49f7bb10925bde0b7b7ed78322",
+        "date": "2026-06-22T01:53:48+05:30",
+        "message": "Merge pull request #7 from AbhinavMishra32/account-cloud-infra",
+        "url": "https://github.com/AbhinavMishra32/Construct-IDE/commit/566313e27538bf49f7bb10925bde0b7b7ed78322"
+      },
+      {
+        "sha": "82d3f4831e0396e83f4a1466bb0c4c871a53b33b",
+        "date": "2026-06-22T01:45:50+05:30",
+        "message": "Document cloud plan administration",
+        "url": "https://github.com/AbhinavMishra32/Construct-IDE/commit/82d3f4831e0396e83f4a1466bb0c4c871a53b33b"
+      },
+      {
+        "sha": "6417aeb0532d2deeb6c69635d69b8223e76f5aef",
+        "date": "2026-06-22T01:43:10+05:30",
+        "message": "Cover Construct Cloud settings wiring",
+        "url": "https://github.com/AbhinavMishra32/Construct-IDE/commit/6417aeb0532d2deeb6c69635d69b8223e76f5aef"
+      },
+      {
+        "sha": "9ebe14aa509cdc82df29fef10b09d2341938e509",
+        "date": "2026-06-22T01:40:59+05:30",
+        "message": "Add Construct Cloud AI settings",
+        "url": "https://github.com/AbhinavMishra32/Construct-IDE/commit/9ebe14aa509cdc82df29fef10b09d2341938e509"
+      },
+      {
+        "sha": "cc9457ae7e657d235b5f4ee67fa5101ea0b0df7d",
+        "date": "2026-06-22T01:34:35+05:30",
+        "message": "Add Better Auth UI components",
+        "url": "https://github.com/AbhinavMishra32/Construct-IDE/commit/cc9457ae7e657d235b5f4ee67fa5101ea0b0df7d"
+      },
+      {
+        "sha": "8533004ca440e439b6d42a6bff14538ddbf6bbe0",
+        "date": "2026-06-22T01:30:08+05:30",
+        "message": "Wire private Construct Cloud backend",
+        "url": "https://github.com/AbhinavMishra32/Construct-IDE/commit/8533004ca440e439b6d42a6bff14538ddbf6bbe0"
+      },
+      {
+        "sha": "76acd79cdfa74cf2c2ca92a4003ab29c062b056c",
+        "date": "2026-06-22T01:26:59+05:30",
+        "message": "Cover Flow review command failure behavior",
+        "url": "https://github.com/AbhinavMishra32/Construct-IDE/commit/76acd79cdfa74cf2c2ca92a4003ab29c062b056c"
+      },
+      {
+        "sha": "81643692fe4e7d519c2311178baf3bd8fcbaab71",
+        "date": "2026-06-22T01:26:54+05:30",
+        "message": "Make Flow review mode explicit to the agent",
+        "url": "https://github.com/AbhinavMishra32/Construct-IDE/commit/81643692fe4e7d519c2311178baf3bd8fcbaab71"
+      },
+      {
+        "sha": "05de411fd05bdc74f3cd8039f0e64f5ade99fe0d",
+        "date": "2026-06-22T01:26:42+05:30",
+        "message": "Add Flow task-review tool policy",
+        "url": "https://github.com/AbhinavMishra32/Construct-IDE/commit/05de411fd05bdc74f3cd8039f0e64f5ade99fe0d"
+      },
+      {
+        "sha": "29044896a02a7065493b56b38f1a9ccefd20faa1",
+        "date": "2026-06-22T01:25:44+05:30",
+        "message": "Add validation-only terminal command policy",
+        "url": "https://github.com/AbhinavMishra32/Construct-IDE/commit/29044896a02a7065493b56b38f1a9ccefd20faa1"
+      },
+      {
+        "sha": "f6c500dbdd096b53e295b8b3cef044fdd929cc91",
+        "date": "2026-06-22T01:25:31+05:30",
+        "message": "Track terminal tool failures without aborting",
+        "url": "https://github.com/AbhinavMishra32/Construct-IDE/commit/f6c500dbdd096b53e295b8b3cef044fdd929cc91"
+      },
+      {
+        "sha": "4c51f8065eaadd152e762a8d8421d577613c0971",
+        "date": "2026-06-22T01:23:27+05:30",
+        "message": "Persist app chrome preferences",
+        "url": "https://github.com/AbhinavMishra32/Construct-IDE/commit/4c51f8065eaadd152e762a8d8421d577613c0971"
+      },
+      {
+        "sha": "35c38c246a22dcdbad27a2eb367f34662133d773",
+        "date": "2026-06-21T23:01:32+05:30",
+        "message": "Remove stale Flow history summarizer",
+        "url": "https://github.com/AbhinavMishra32/Construct-IDE/commit/35c38c246a22dcdbad27a2eb367f34662133d773"
+      },
+      {
+        "sha": "ab37ceb6cfd206b47b7e17e6fcf00a22296c9224",
+        "date": "2026-06-21T23:00:07+05:30",
+        "message": "Preserve Flow compaction raw ids",
+        "url": "https://github.com/AbhinavMishra32/Construct-IDE/commit/ab37ceb6cfd206b47b7e17e6fcf00a22296c9224"
+      },
+      {
+        "sha": "4d1a9324ba0102bdd150f928561c221693899fb5",
+        "date": "2026-06-21T22:58:00+05:30",
+        "message": "Expose Flow transcript context accounting",
+        "url": "https://github.com/AbhinavMishra32/Construct-IDE/commit/4d1a9324ba0102bdd150f928561c221693899fb5"
+      },
+      {
+        "sha": "5622ac9d283e03ec66057c086cb49ee9b4ec1703",
+        "date": "2026-06-21T22:56:19+05:30",
+        "message": "Cover Flow visible transcript replay",
+        "url": "https://github.com/AbhinavMishra32/Construct-IDE/commit/5622ac9d283e03ec66057c086cb49ee9b4ec1703"
+      },
+      {
+        "sha": "f2ba79e205a78d2afd92166c3b1097d3740feb72",
+        "date": "2026-06-21T22:55:09+05:30",
+        "message": "Keep tracked question answers in Flow context",
+        "url": "https://github.com/AbhinavMishra32/Construct-IDE/commit/f2ba79e205a78d2afd92166c3b1097d3740feb72"
+      },
+      {
+        "sha": "0f415ed865554ffa2b0f09a25e86167f571b7f39",
+        "date": "2026-06-21T22:53:47+05:30",
+        "message": "Replay Flow timeline in model transcript",
+        "url": "https://github.com/AbhinavMishra32/Construct-IDE/commit/0f415ed865554ffa2b0f09a25e86167f571b7f39"
+      },
+      {
+        "sha": "ed06f9c129828b047b02f7d037f21ddabf616c48",
+        "date": "2026-06-21T22:44:11+05:30",
+        "message": "Harden Flow context retention and compaction",
+        "url": "https://github.com/AbhinavMishra32/Construct-IDE/commit/ed06f9c129828b047b02f7d037f21ddabf616c48"
+      },
+      {
+        "sha": "b08439b1e72555401d9b40bdbe813bfdd0498aba",
+        "date": "2026-06-21T19:45:54+05:30",
+        "message": "docs: update README to focus on Construct and clean up legacy references",
+        "url": "https://github.com/AbhinavMishra32/Construct-IDE/commit/b08439b1e72555401d9b40bdbe813bfdd0498aba"
+      },
+      {
+        "sha": "b3b0be2ee019c92b2dd19a71d49bc31514cd799c",
+        "date": "2026-06-21T18:05:03+05:30",
+        "message": "Merge branch 'codex/flow-teaching-gating'",
+        "url": "https://github.com/AbhinavMishra32/Construct-IDE/commit/b3b0be2ee019c92b2dd19a71d49bc31514cd799c"
+      },
+      {
+        "sha": "2bf94af3b8e77a682cf0c8dbb21cea913d84d0f3",
+        "date": "2026-06-21T18:04:09+05:30",
+        "message": "Merge branch 'codex/flow-concept-history'",
+        "url": "https://github.com/AbhinavMishra32/Construct-IDE/commit/2bf94af3b8e77a682cf0c8dbb21cea913d84d0f3"
+      },
+      {
+        "sha": "b6840782a85ca85d12678c88b64ab3bfc6a8f564",
+        "date": "2026-06-21T18:03:53+05:30",
+        "message": "Merge branch 'codex/flow-research-handoff'",
+        "url": "https://github.com/AbhinavMishra32/Construct-IDE/commit/b6840782a85ca85d12678c88b64ab3bfc6a8f564"
+      },
+      {
+        "sha": "d68c2489492d905183aa3a2e5085365a032a7e0d",
+        "date": "2026-06-21T18:03:47+05:30",
+        "message": "Merge branch 'codex/flow-task-tripwire'",
+        "url": "https://github.com/AbhinavMishra32/Construct-IDE/commit/d68c2489492d905183aa3a2e5085365a032a7e0d"
+      },
+      {
+        "sha": "8800995fe85a1fc9bef47574f48287f5af679183",
+        "date": "2026-06-21T18:02:48+05:30",
+        "message": "Cover flow tripwire task lifecycle",
+        "url": "https://github.com/AbhinavMishra32/Construct-IDE/commit/8800995fe85a1fc9bef47574f48287f5af679183"
+      },
+      {
+        "sha": "35bfe1b5976bf9054cc870a1ad2c22de34fe8ea5",
+        "date": "2026-06-21T18:02:40+05:30",
+        "message": "Show failed flow task drafts",
+        "url": "https://github.com/AbhinavMishra32/Construct-IDE/commit/35bfe1b5976bf9054cc870a1ad2c22de34fe8ea5"
+      },
+      {
+        "sha": "f7ff821b3dd9672a5ae203ab6ca2bf1a4a35f992",
+        "date": "2026-06-21T18:02:32+05:30",
+        "message": "Cover Flow teaching gate regressions",
+        "url": "https://github.com/AbhinavMishra32/Construct-IDE/commit/f7ff821b3dd9672a5ae203ab6ca2bf1a4a35f992"
+      },
+      {
+        "sha": "b5d8c115e541791cb0cebe7e8c65e742355bceee",
+        "date": "2026-06-21T18:02:32+05:30",
+        "message": "Finalize dangling flow tool streams",
+        "url": "https://github.com/AbhinavMishra32/Construct-IDE/commit/b5d8c115e541791cb0cebe7e8c65e742355bceee"
+      },
+      {
+        "sha": "0cd494e94f1c95f85d3e4692ed18fa26e4421c55",
+        "date": "2026-06-21T18:02:27+05:30",
+        "message": "Harden Flow practice task gating",
+        "url": "https://github.com/AbhinavMishra32/Construct-IDE/commit/0cd494e94f1c95f85d3e4692ed18fa26e4421c55"
+      },
+      {
+        "sha": "ecf1c51f5bd6d008c53d17bdf94690d68a732850",
+        "date": "2026-06-21T18:01:15+05:30",
+        "message": "Add Flow concept history inspection controls",
+        "url": "https://github.com/AbhinavMishra32/Construct-IDE/commit/ecf1c51f5bd6d008c53d17bdf94690d68a732850"
+      },
+      {
+        "sha": "11ba4abe2e431173bff5c94e38b99d3654ae6b8a",
+        "date": "2026-06-21T18:01:13+05:30",
+        "message": "Test Flow research handoff writes",
+        "url": "https://github.com/AbhinavMishra32/Construct-IDE/commit/11ba4abe2e431173bff5c94e38b99d3654ae6b8a"
+      },
+      {
+        "sha": "4f703979ea346e1de6f10d5bb85d98a8c4992074",
+        "date": "2026-06-21T18:01:09+05:30",
+        "message": "Fix Flow research memory handoff",
+        "url": "https://github.com/AbhinavMishra32/Construct-IDE/commit/4f703979ea346e1de6f10d5bb85d98a8c4992074"
+      },
+      {
+        "sha": "d2c47d0ec6d564ad560eb40fa290f32c0497b876",
+        "date": "2026-06-21T18:01:06+05:30",
+        "message": "Record Flow concept audit history",
+        "url": "https://github.com/AbhinavMishra32/Construct-IDE/commit/d2c47d0ec6d564ad560eb40fa290f32c0497b876"
+      },
+      {
+        "sha": "ac2281868b34278cfdb926df3252bfa10bc1a020",
+        "date": "2026-06-21T13:54:07+05:30",
+        "message": "Implement 3-option chat tabs toggle, reorder layout modes, and support full-screen transition width",
+        "url": "https://github.com/AbhinavMishra32/Construct-IDE/commit/ac2281868b34278cfdb926df3252bfa10bc1a020"
+      },
+      {
+        "sha": "4a6adeb1171500919bcc8f271fe4a1fa4c38a0bf",
+        "date": "2026-06-20T17:23:11+05:30",
+        "message": "Polish Construct shell project flows",
+        "url": "https://github.com/AbhinavMishra32/Construct-IDE/commit/4a6adeb1171500919bcc8f271fe4a1fa4c38a0bf"
+      },
+      {
+        "sha": "b66f372af3b1daf824c8461a3ec3ee4b46a7ffed",
+        "date": "2026-06-20T16:39:11+05:30",
+        "message": "Refresh Flow knowledge surfaces",
+        "url": "https://github.com/AbhinavMishra32/Construct-IDE/commit/b66f372af3b1daf824c8461a3ec3ee4b46a7ffed"
+      },
+      {
+        "sha": "eef3ed3a6cdec751ddaab5bdb6ed75b7be208e13",
+        "date": "2026-06-20T15:54:11+05:30",
+        "message": "Harden Flow mentor lifecycle",
+        "url": "https://github.com/AbhinavMishra32/Construct-IDE/commit/eef3ed3a6cdec751ddaab5bdb6ed75b7be208e13"
+      },
+      {
+        "sha": "7a82ee2056df158ddfccdd562742af2ddd0d31a9",
+        "date": "2026-06-20T15:10:11+05:30",
+        "message": "Extend Flow project IPC contracts",
+        "url": "https://github.com/AbhinavMishra32/Construct-IDE/commit/7a82ee2056df158ddfccdd562742af2ddd0d31a9"
+      },
+      {
+        "sha": "677a24c390af8aa691fe3c0ed7815e4d5df577d6",
+        "date": "2026-06-20T14:25:11+05:30",
+        "message": "Add AI runtime controls",
+        "url": "https://github.com/AbhinavMishra32/Construct-IDE/commit/677a24c390af8aa691fe3c0ed7815e4d5df577d6"
+      },
+      {
+        "sha": "ff6647a645e5f39716c90d68d7c9f7c0ab7948de",
+        "date": "2026-06-20T13:41:11+05:30",
+        "message": "Add sanitized Construct env sample",
+        "url": "https://github.com/AbhinavMishra32/Construct-IDE/commit/ff6647a645e5f39716c90d68d7c9f7c0ab7948de"
+      },
+      {
+        "sha": "1d471fb753fb14e4a31873036d4a08e63f2fab7a",
+        "date": "2026-06-20T12:56:11+05:30",
+        "message": "Fix agent stream timeline identity",
+        "url": "https://github.com/AbhinavMishra32/Construct-IDE/commit/1d471fb753fb14e4a31873036d4a08e63f2fab7a"
+      },
+      {
+        "sha": "bf1668c6a075c612fba721a6204210943c607b67",
+        "date": "2026-06-20T12:40:28+05:30",
+        "message": "Stop reusing provider text ids for agent output",
+        "url": "https://github.com/AbhinavMishra32/Construct-IDE/commit/bf1668c6a075c612fba721a6204210943c607b67"
+      },
+      {
+        "sha": "6e176489410493d9c33413e214a65b579464408a",
+        "date": "2026-06-20T12:34:25+05:30",
+        "message": "Refine Flow tasks UI and effort controls",
+        "url": "https://github.com/AbhinavMishra32/Construct-IDE/commit/6e176489410493d9c33413e214a65b579464408a"
+      },
+      {
+        "sha": "e710728351279d15e8c9dc169f4ae209969d3e9e",
+        "date": "2026-06-20T12:34:18+05:30",
+        "message": "Add Flow task guidance and subtask review",
+        "url": "https://github.com/AbhinavMishra32/Construct-IDE/commit/e710728351279d15e8c9dc169f4ae209969d3e9e"
+      },
+      {
+        "sha": "d84af8414f7504bd6ea96b73423d59b9a0d3b9ea",
+        "date": "2026-06-20T12:34:09+05:30",
+        "message": "Fix agent stream segments and effort settings",
+        "url": "https://github.com/AbhinavMishra32/Construct-IDE/commit/d84af8414f7504bd6ea96b73423d59b9a0d3b9ea"
+      },
+      {
+        "sha": "53f0bef5b74d78b87748ad06c5deb0de72975aa3",
+        "date": "2026-06-18T10:18:12+05:30",
+        "message": "Update Opaline agent trace primitives",
+        "url": "https://github.com/AbhinavMishra32/Construct-IDE/commit/53f0bef5b74d78b87748ad06c5deb0de72975aa3"
+      },
+      {
+        "sha": "f9237431817a610b627540c407bb40b1cbd872a3",
+        "date": "2026-06-18T09:43:12+05:30",
+        "message": "Guard Flow timeline regressions",
+        "url": "https://github.com/AbhinavMishra32/Construct-IDE/commit/f9237431817a610b627540c407bb40b1cbd872a3"
+      },
+      {
+        "sha": "81c3a67de5f10b112c524da8876b79ba861a3553",
+        "date": "2026-06-18T09:08:12+05:30",
+        "message": "Polish Flow chat surfaces",
+        "url": "https://github.com/AbhinavMishra32/Construct-IDE/commit/81c3a67de5f10b112c524da8876b79ba861a3553"
+      },
+      {
+        "sha": "63f051a36c6bbac8d309b6c13e502b3537bb82b7",
+        "date": "2026-06-18T08:33:12+05:30",
+        "message": "Render Flow runs as ordered timelines",
+        "url": "https://github.com/AbhinavMishra32/Construct-IDE/commit/63f051a36c6bbac8d309b6c13e502b3537bb82b7"
+      },
+      {
+        "sha": "fbf4f892c8cf930359b01b70e9fb87b4063b4cf8",
+        "date": "2026-06-18T07:58:12+05:30",
+        "message": "Stabilize document and inline references",
+        "url": "https://github.com/AbhinavMishra32/Construct-IDE/commit/fbf4f892c8cf930359b01b70e9fb87b4063b4cf8"
+      },
+      {
+        "sha": "39987a54c73f4ed25f667c28b2add18e4a0c3062",
+        "date": "2026-06-18T07:23:12+05:30",
+        "message": "Add Flow agent timeline contract",
+        "url": "https://github.com/AbhinavMishra32/Construct-IDE/commit/39987a54c73f4ed25f667c28b2add18e4a0c3062"
+      },
+      {
+        "sha": "7ed9cddb1e1dc2ce935a339202cfb3c5851f7786",
+        "date": "2026-06-18T06:13:12+05:30",
+        "message": "Point Construct to Opaline Flow UI updates",
+        "url": "https://github.com/AbhinavMishra32/Construct-IDE/commit/7ed9cddb1e1dc2ce935a339202cfb3c5851f7786"
+      },
+      {
+        "sha": "4cbbd7373bafc96fac7f6a3db543d46e85a174de",
+        "date": "2026-06-18T05:27:12+05:30",
+        "message": "Cover Flow UI and tool regressions",
+        "url": "https://github.com/AbhinavMishra32/Construct-IDE/commit/4cbbd7373bafc96fac7f6a3db543d46e85a174de"
+      },
+      {
+        "sha": "5bec002a31ad515a6958e24c1451901cb49fdc28",
+        "date": "2026-06-18T04:42:12+05:30",
+        "message": "Document Flow path architecture",
+        "url": "https://github.com/AbhinavMishra32/Construct-IDE/commit/5bec002a31ad515a6958e24c1451901cb49fdc28"
+      },
+      {
+        "sha": "24402aa84b53495aa65b89837657cb949f1bc33b",
+        "date": "2026-06-18T03:58:12+05:30",
+        "message": "Refine Construct shell overlays",
+        "url": "https://github.com/AbhinavMishra32/Construct-IDE/commit/24402aa84b53495aa65b89837657cb949f1bc33b"
+      },
+      {
+        "sha": "bc8c223cc203252b998381fe29f12012f85d3461",
+        "date": "2026-06-18T03:12:12+05:30",
+        "message": "Polish Construct file visuals",
+        "url": "https://github.com/AbhinavMishra32/Construct-IDE/commit/bc8c223cc203252b998381fe29f12012f85d3461"
+      },
+      {
+        "sha": "aa93c2eab1ff00d5e0535936fe638b5270e5e1d2",
+        "date": "2026-06-18T02:27:12+05:30",
+        "message": "Remake Flow chat and project UI",
+        "url": "https://github.com/AbhinavMishra32/Construct-IDE/commit/aa93c2eab1ff00d5e0535936fe638b5270e5e1d2"
+      },
+      {
+        "sha": "d3bf1c41dbc6bf52c8a1069023296138fbf06e08",
+        "date": "2026-06-18T01:41:12+05:30",
+        "message": "Implement Flow path runtime",
+        "url": "https://github.com/AbhinavMishra32/Construct-IDE/commit/d3bf1c41dbc6bf52c8a1069023296138fbf06e08"
+      },
+      {
+        "sha": "d2004e7061c9b99f1a04f0d0e1f7625f2814a294",
+        "date": "2026-06-18T00:56:12+05:30",
+        "message": "Expand Flow protocol tools",
+        "url": "https://github.com/AbhinavMishra32/Construct-IDE/commit/d2004e7061c9b99f1a04f0d0e1f7625f2814a294"
+      },
+      {
+        "sha": "85a88d42eb7b7108f41530662fc4f386dbc5874d",
+        "date": "2026-06-18T00:11:12+05:30",
+        "message": "Add Flow path data contracts",
+        "url": "https://github.com/AbhinavMishra32/Construct-IDE/commit/85a88d42eb7b7108f41530662fc4f386dbc5874d"
+      },
+      {
+        "sha": "2ad911610d3763ec564e5986cdac7356904bfc94",
+        "date": "2026-06-17T23:26:12+05:30",
+        "message": "Merge pull request #5 from AbhinavMishra32/flow-agent-improvements",
+        "url": "https://github.com/AbhinavMishra32/Construct-IDE/commit/2ad911610d3763ec564e5986cdac7356904bfc94"
+      },
+      {
+        "sha": "a1eea97b64b1b85aeed78d6e7b45ddbc3e403ee3",
+        "date": "2026-06-17T23:14:38+05:30",
+        "message": "Point to polished Opaline agent UI",
+        "url": "https://github.com/AbhinavMishra32/Construct-IDE/commit/a1eea97b64b1b85aeed78d6e7b45ddbc3e403ee3"
+      },
+      {
+        "sha": "8275642c41103598d16349eba9e4632eed6a9d3e",
+        "date": "2026-06-17T23:14:29+05:30",
+        "message": "Refine Flow agent question UI",
+        "url": "https://github.com/AbhinavMishra32/Construct-IDE/commit/8275642c41103598d16349eba9e4632eed6a9d3e"
+      },
+      {
+        "sha": "239ec9b7e67c3555c035d9526e184b694ebbcc79",
+        "date": "2026-06-17T23:14:21+05:30",
+        "message": "Add tracked Flow runtime contracts",
+        "url": "https://github.com/AbhinavMishra32/Construct-IDE/commit/239ec9b7e67c3555c035d9526e184b694ebbcc79"
+      },
+      {
+        "sha": "0fa02c7a16b46aa769b14afda614728a4dbddbb2",
+        "date": "2026-06-17T23:14:11+05:30",
+        "message": "Add Flow research settings and clean toasts",
+        "url": "https://github.com/AbhinavMishra32/Construct-IDE/commit/0fa02c7a16b46aa769b14afda614728a4dbddbb2"
+      },
+      {
+        "sha": "2091de1bae922841fa748b78ff8140e10c70bb9d",
+        "date": "2026-06-17T20:02:09+05:30",
+        "message": "fix(ci): setup turbo cache and fix duplicate release assets",
+        "url": "https://github.com/AbhinavMishra32/Construct-IDE/commit/2091de1bae922841fa748b78ff8140e10c70bb9d"
+      },
+      {
+        "sha": "a4f7d3b581c0cb1f44c1208e5549e00aeb4f73b1",
+        "date": "2026-06-17T18:58:19+05:30",
+        "message": "fix(ci): deduplicate release assets to prevent 422 errors",
+        "url": "https://github.com/AbhinavMishra32/Construct-IDE/commit/a4f7d3b581c0cb1f44c1208e5549e00aeb4f73b1"
+      },
+      {
+        "sha": "f5d3c220ba34569d24e7615172af14a1124f35fb",
+        "date": "2026-06-17T18:31:59+05:30",
+        "message": "chore: release 0.3.0",
+        "url": "https://github.com/AbhinavMishra32/Construct-IDE/commit/f5d3c220ba34569d24e7615172af14a1124f35fb"
+      },
+      {
+        "sha": "9dbdb2fbbe718316315ebce78f6eb8f7eab48751",
+        "date": "2026-06-17T18:27:22+05:30",
+        "message": "style: constrain sidecar container heights to enable scroll bounds, update opaline UI module pointer",
+        "url": "https://github.com/AbhinavMishra32/Construct-IDE/commit/9dbdb2fbbe718316315ebce78f6eb8f7eab48751"
+      },
+      {
+        "sha": "f4a82781922cc399913631b9ae01ec781660c040",
+        "date": "2026-06-17T17:35:35+05:30",
+        "message": "feat: polish construct shell interactions",
+        "url": "https://github.com/AbhinavMishra32/Construct-IDE/commit/f4a82781922cc399913631b9ae01ec781660c040"
+      },
+      {
+        "sha": "099a05c585cd06c43542859fa80da28546c02a16",
+        "date": "2026-06-17T17:13:48+05:30",
+        "message": "feat: restore flow tabs and align shell ui",
+        "url": "https://github.com/AbhinavMishra32/Construct-IDE/commit/099a05c585cd06c43542859fa80da28546c02a16"
+      },
+      {
+        "sha": "106ec1f2f48675b2096956c9f6f85c8c094ff64b",
+        "date": "2026-06-17T16:36:05+05:30",
+        "message": "feat: extend flow mentor memory tools",
+        "url": "https://github.com/AbhinavMishra32/Construct-IDE/commit/106ec1f2f48675b2096956c9f6f85c8c094ff64b"
+      },
+      {
+        "sha": "38655f7c32e5cda2280d811b9ec334b99ca51287",
+        "date": "2026-06-17T12:50:31+05:30",
+        "message": "Merge pull request #4 from AbhinavMishra32/flow-projects",
+        "url": "https://github.com/AbhinavMishra32/Construct-IDE/commit/38655f7c32e5cda2280d811b9ec334b99ca51287"
+      },
+      {
+        "sha": "be2637fad3761bdaf50a153324b57ba0f3ba655e",
+        "date": "2026-06-17T12:43:35+05:30",
+        "message": "test: cover ordered agent trace behavior",
+        "url": "https://github.com/AbhinavMishra32/Construct-IDE/commit/be2637fad3761bdaf50a153324b57ba0f3ba655e"
+      },
+      {
+        "sha": "b0e9c5834cd3e82b4494a5b4e986a437c88fa0e1",
+        "date": "2026-06-17T12:43:16+05:30",
+        "message": "feat: render reasoning inside agent traces",
+        "url": "https://github.com/AbhinavMishra32/Construct-IDE/commit/b0e9c5834cd3e82b4494a5b4e986a437c88fa0e1"
+      },
+      {
+        "sha": "236c496e826e0659d08bad79ffd432e9423e9a88",
+        "date": "2026-06-17T12:42:58+05:30",
+        "message": "refactor: loosen interact agent orchestration",
+        "url": "https://github.com/AbhinavMishra32/Construct-IDE/commit/236c496e826e0659d08bad79ffd432e9423e9a88"
+      },
+      {
+        "sha": "eebd90e91ebdbde043160f0882c3c5116d5ee9b8",
+        "date": "2026-06-17T12:42:43+05:30",
+        "message": "feat: stream ordered agent reasoning events",
+        "url": "https://github.com/AbhinavMishra32/Construct-IDE/commit/eebd90e91ebdbde043160f0882c3c5116d5ee9b8"
+      },
+      {
+        "sha": "851f581c4a10014f30e447ab46b849e6933c0e4c",
+        "date": "2026-06-17T12:42:28+05:30",
+        "message": "feat: share construct protocol tools",
+        "url": "https://github.com/AbhinavMishra32/Construct-IDE/commit/851f581c4a10014f30e447ab46b849e6933c0e4c"
+      },
+      {
+        "sha": "a2f3fd941c5dfc4bd86bb2ac376f285b886f56fa",
+        "date": "2026-06-17T12:42:00+05:30",
+        "message": "feat: render flow workspace sessions",
+        "url": "https://github.com/AbhinavMishra32/Construct-IDE/commit/a2f3fd941c5dfc4bd86bb2ac376f285b886f56fa"
+      },
+      {
+        "sha": "8492edaad024bbcbc48ca8e1406ae8a2b34795bf",
+        "date": "2026-06-17T12:41:43+05:30",
+        "message": "feat: add flow agent service and IPC",
+        "url": "https://github.com/AbhinavMishra32/Construct-IDE/commit/8492edaad024bbcbc48ca8e1406ae8a2b34795bf"
+      },
+      {
+        "sha": "f3494c7e677f3066f1576fadef1e933b22356508",
+        "date": "2026-06-17T12:41:27+05:30",
+        "message": "feat: create and list flow projects",
+        "url": "https://github.com/AbhinavMishra32/Construct-IDE/commit/f3494c7e677f3066f1576fadef1e933b22356508"
+      },
+      {
+        "sha": "c1aa56fa2a97f5336ff5eb4a9928051a8a2bc78c",
+        "date": "2026-06-17T12:41:06+05:30",
+        "message": "feat: add flow project data types",
+        "url": "https://github.com/AbhinavMishra32/Construct-IDE/commit/c1aa56fa2a97f5336ff5eb4a9928051a8a2bc78c"
+      },
+      {
+        "sha": "5f3a12fe7022ca6f37596e963ca8759f6ddd6858",
+        "date": "2026-06-17T12:40:46+05:30",
+        "message": "docs: capture flow agent rebuild brief",
+        "url": "https://github.com/AbhinavMishra32/Construct-IDE/commit/5f3a12fe7022ca6f37596e963ca8759f6ddd6858"
+      },
+      {
+        "sha": "f17e3dbb519bbc90ff5d078a50da2597d9ffef87",
+        "date": "2026-06-17T11:27:50+05:30",
+        "message": "fix: enhance prompt for JSON output in opencode-zen models",
+        "url": "https://github.com/AbhinavMishra32/Construct-IDE/commit/f17e3dbb519bbc90ff5d078a50da2597d9ffef87"
+      },
+      {
+        "sha": "d5857716ab3eaa8e59365dc25173cdb4d0b31508",
+        "date": "2026-06-17T11:20:40+05:30",
+        "message": "feat: add provider-level logging and fix structured output validation",
+        "url": "https://github.com/AbhinavMishra32/Construct-IDE/commit/d5857716ab3eaa8e59365dc25173cdb4d0b31508"
+      },
+      {
+        "sha": "6c33d7f6fd6bb1d75f8f4ee2bcb7262f21447934",
+        "date": "2026-06-17T11:03:48+05:30",
+        "message": "feat: restructure output panel with AI provider groups and fix opencode-zen structured output",
+        "url": "https://github.com/AbhinavMishra32/Construct-IDE/commit/6c33d7f6fd6bb1d75f8f4ee2bcb7262f21447934"
+      },
+      {
+        "sha": "e95ab4004ab301536f2f83c2a87d05c1b59551d8",
+        "date": "2026-06-17T10:38:07+05:30",
+        "message": "feat: replace opencode provider with opencode-zen and redesign AI settings",
+        "url": "https://github.com/AbhinavMishra32/Construct-IDE/commit/e95ab4004ab301536f2f83c2a87d05c1b59551d8"
+      },
+      {
+        "sha": "641d8559edeff56d3e6a8ae64b80dbb46b5a0312",
+        "date": "2026-06-17T10:23:57+05:30",
+        "message": "feat: add managed LiteLLM proxy server with Start/Stop in settings",
+        "url": "https://github.com/AbhinavMishra32/Construct-IDE/commit/641d8559edeff56d3e6a8ae64b80dbb46b5a0312"
+      },
+      {
+        "sha": "baf379f91f8d239f0f82995d71ffb505a26491d8",
+        "date": "2026-06-16T22:25:20+05:30",
+        "message": "update construct settings",
+        "url": "https://github.com/AbhinavMishra32/Construct-IDE/commit/baf379f91f8d239f0f82995d71ffb505a26491d8"
+      },
+      {
+        "sha": "d7f419ece2b19c2d50466b08ab525edb5a307769",
+        "date": "2026-06-15T23:11:35+05:30",
+        "message": "feat: add compact VSCode-like status bar at bottom edge",
+        "url": "https://github.com/AbhinavMishra32/Construct-IDE/commit/d7f419ece2b19c2d50466b08ab525edb5a307769"
+      },
+      {
+        "sha": "47ded2d1464054e847b5feb4201a9f42e0580c93",
+        "date": "2026-06-15T14:28:07+05:30",
+        "message": "fix(release): resolve directory asset upload failure by searching for files recursively",
+        "url": "https://github.com/AbhinavMishra32/Construct-IDE/commit/47ded2d1464054e847b5feb4201a9f42e0580c93"
+      },
+      {
+        "sha": "9569f09b7a6012a0820354823f59163b551d22e0",
+        "date": "2026-06-15T14:12:34+05:30",
+        "message": "fix(release): add electron-builder as devDependency to app package and use pnpm exec to avoid Windows MAX_PATH issue",
+        "url": "https://github.com/AbhinavMishra32/Construct-IDE/commit/9569f09b7a6012a0820354823f59163b551d22e0"
+      },
+      {
+        "sha": "5a8798b826e03abb1ba43cafb5fcf283dd53af6c",
+        "date": "2026-06-15T14:11:51+05:30",
+        "message": "fix(release): add author email and project homepage to app/package.json for linux deb packaging",
+        "url": "https://github.com/AbhinavMishra32/Construct-IDE/commit/5a8798b826e03abb1ba43cafb5fcf283dd53af6c"
+      },
+      {
+        "sha": "4c75c93b42a5829b9ebe2eec0865c212fadb20c9",
+        "date": "2026-06-15T13:51:05+05:30",
+        "message": "fix(types): unify @types/react and @types/react-dom versions to resolve duplicate type mismatch in spinner",
+        "url": "https://github.com/AbhinavMishra32/Construct-IDE/commit/4c75c93b42a5829b9ebe2eec0865c212fadb20c9"
+      },
+      {
+        "sha": "91ba0f1781839a925b060ef5366a689ecc74ac48",
+        "date": "2026-06-15T13:45:57+05:30",
+        "message": "fix(release): fix Windows path resolution and skip icon generation on non-macOS platforms",
+        "url": "https://github.com/AbhinavMishra32/Construct-IDE/commit/91ba0f1781839a925b060ef5366a689ecc74ac48"
+      },
+      {
+        "sha": "652abf3de0c81263d02cd18b7866b24609e11ff4",
+        "date": "2026-06-15T13:33:51+05:30",
+        "message": "feat(ci): add automated canary pre-releases for manual triggers",
+        "url": "https://github.com/AbhinavMishra32/Construct-IDE/commit/652abf3de0c81263d02cd18b7866b24609e11ff4"
+      },
+      {
+        "sha": "df9a4fd96a6613f3a93d61e59b3c940dd68ce9e5",
+        "date": "2026-06-15T13:27:38+05:30",
+        "message": "fix(ci): checkout submodules for typechecking and builds",
+        "url": "https://github.com/AbhinavMishra32/Construct-IDE/commit/df9a4fd96a6613f3a93d61e59b3c940dd68ce9e5"
+      },
+      {
+        "sha": "e2e456356d49dadacd0aa11dac2ccd066d9a4e55",
+        "date": "2026-06-15T12:27:11+05:30",
+        "message": "feat: release Construct 0.2.1",
+        "url": "https://github.com/AbhinavMishra32/Construct-IDE/commit/e2e456356d49dadacd0aa11dac2ccd066d9a4e55"
+      },
+      {
+        "sha": "ef8de9e8dba6e2f4314149d26d11f1e753126306",
+        "date": "2026-06-15T00:54:56+05:30",
+        "message": "feat: release Construct 0.2.0",
+        "url": "https://github.com/AbhinavMishra32/Construct-IDE/commit/ef8de9e8dba6e2f4314149d26d11f1e753126306"
+      },
+      {
+        "sha": "669972d0210c8503875fed6a39933f49c00dbef0",
+        "date": "2026-06-14T21:12:42+05:30",
+        "message": "Merge pull request #3 from AbhinavMishra32/exp/opaline-v2",
+        "url": "https://github.com/AbhinavMishra32/Construct-IDE/commit/669972d0210c8503875fed6a39933f49c00dbef0"
+      },
+      {
+        "sha": "e328355d66cec3940082d0eec8eeddc066925bd5",
+        "date": "2026-06-14T19:22:25+05:30",
+        "message": "feat: compose observable construct main process",
+        "url": "https://github.com/AbhinavMishra32/Construct-IDE/commit/e328355d66cec3940082d0eec8eeddc066925bd5"
+      },
+      {
+        "sha": "32efa6553bb0ccaa449f43e35bf18dec279ed987",
+        "date": "2026-06-14T18:52:25+05:30",
+        "message": "refactor: isolate construct app shell effects",
+        "url": "https://github.com/AbhinavMishra32/Construct-IDE/commit/32efa6553bb0ccaa449f43e35bf18dec279ed987"
+      },
+      {
+        "sha": "f5d5ed59a8915078c508935cf52b6a96893afa16",
+        "date": "2026-06-14T18:22:25+05:30",
+        "message": "refactor: split construct settings panels",
+        "url": "https://github.com/AbhinavMishra32/Construct-IDE/commit/f5d5ed59a8915078c508935cf52b6a96893afa16"
+      },
+      {
+        "sha": "265f067b78981fd12e5513c482fcbaef4a7ad655",
+        "date": "2026-06-14T17:52:25+05:30",
+        "message": "refactor: move construct interact session ui",
+        "url": "https://github.com/AbhinavMishra32/Construct-IDE/commit/265f067b78981fd12e5513c482fcbaef4a7ad655"
+      },
+      {
+        "sha": "e2d4f637ce87b5f23c5346214faf9693a1d439f2",
+        "date": "2026-06-14T17:22:25+05:30",
+        "message": "refactor: split construct workspace helpers",
+        "url": "https://github.com/AbhinavMishra32/Construct-IDE/commit/e2d4f637ce87b5f23c5346214faf9693a1d439f2"
+      },
+      {
+        "sha": "c437f1b05fe2f8d0946b770fd5226e85a9d153af",
+        "date": "2026-06-14T16:52:25+05:30",
+        "message": "feat: accept tape 0.4.1 in parsers",
+        "url": "https://github.com/AbhinavMishra32/Construct-IDE/commit/c437f1b05fe2f8d0946b770fd5226e85a9d153af"
+      },
+      {
+        "sha": "b3361257ccef4d4de0c7850ab3eaec3177a9edc1",
+        "date": "2026-06-14T16:22:25+05:30",
+        "message": "feat: gate dynamic interact steps on tape 0.4.1",
+        "url": "https://github.com/AbhinavMishra32/Construct-IDE/commit/b3361257ccef4d4de0c7850ab3eaec3177a9edc1"
+      },
+      {
+        "sha": "d0f27d144d491084b096fc82b23e15eba0a2a780",
+        "date": "2026-06-14T15:52:25+05:30",
+        "message": "feat: move construct agents into services",
+        "url": "https://github.com/AbhinavMishra32/Construct-IDE/commit/d0f27d144d491084b096fc82b23e15eba0a2a780"
+      },
+      {
+        "sha": "a67e31e9177bbed7b91792539017d6139a34d5d9",
+        "date": "2026-06-14T15:22:25+05:30",
+        "message": "feat: add swappable construct agent runtime seam",
+        "url": "https://github.com/AbhinavMishra32/Construct-IDE/commit/a67e31e9177bbed7b91792539017d6139a34d5d9"
+      },
+      {
+        "sha": "3e47b05e6105074977862c4f39602f5ab2312b9a",
+        "date": "2026-06-14T14:52:25+05:30",
+        "message": "feat: split construct ipc controllers",
+        "url": "https://github.com/AbhinavMishra32/Construct-IDE/commit/3e47b05e6105074977862c4f39602f5ab2312b9a"
+      },
+      {
+        "sha": "34cba79c5db50c5270f7a895804cff6988485a5c",
+        "date": "2026-06-14T14:22:25+05:30",
+        "message": "feat: isolate lsp and terminal subsystems",
+        "url": "https://github.com/AbhinavMishra32/Construct-IDE/commit/34cba79c5db50c5270f7a895804cff6988485a5c"
+      },
+      {
+        "sha": "5d225376e85c72330d636ae4c1dfa00619fae629",
+        "date": "2026-06-14T13:52:25+05:30",
+        "message": "feat: extract construct project services",
+        "url": "https://github.com/AbhinavMishra32/Construct-IDE/commit/5d225376e85c72330d636ae4c1dfa00619fae629"
+      },
+      {
+        "sha": "e0fa4c8d9f31beb438ce02d4f464ba2def456a32",
+        "date": "2026-06-14T13:22:25+05:30",
+        "message": "feat: extract main app infrastructure",
+        "url": "https://github.com/AbhinavMishra32/Construct-IDE/commit/e0fa4c8d9f31beb438ce02d4f464ba2def456a32"
+      },
+      {
+        "sha": "6add8c25d04f82cea71fbd680a2e738c43c48093",
+        "date": "2026-06-14T12:52:25+05:30",
+        "message": "feat: move construct settings into os config",
+        "url": "https://github.com/AbhinavMishra32/Construct-IDE/commit/6add8c25d04f82cea71fbd680a2e738c43c48093"
+      },
+      {
+        "sha": "c228d55fb6f890f41d0a895b2cc2a780ffedfdc9",
+        "date": "2026-06-14T12:22:25+05:30",
+        "message": "docs: record construct reengineering plan",
+        "url": "https://github.com/AbhinavMishra32/Construct-IDE/commit/c228d55fb6f890f41d0a895b2cc2a780ffedfdc9"
+      },
+      {
+        "sha": "5bdde890277e9c3b73dbd9498a58b50aa2e2e8c0",
+        "date": "2026-06-14T11:52:25+05:30",
+        "message": "chore: update opaline submodule reference",
+        "url": "https://github.com/AbhinavMishra32/Construct-IDE/commit/5bdde890277e9c3b73dbd9498a58b50aa2e2e8c0"
+      },
+      {
+        "sha": "1766deb5912592e60f4e77cbe889fce7b4b06c07",
+        "date": "2026-06-14T10:29:47+05:30",
+        "message": "feat: migrate all imports from @opaline/ui/v2 to @opaline/ui",
+        "url": "https://github.com/AbhinavMishra32/Construct-IDE/commit/1766deb5912592e60f4e77cbe889fce7b4b06c07"
+      },
+      {
+        "sha": "f61d4743ba3540485062a59d1266aeed13861799",
+        "date": "2026-06-14T10:07:53+05:30",
+        "message": "feat: upgrade to tailwind v4 for shadcn/ui compatibility",
+        "url": "https://github.com/AbhinavMishra32/Construct-IDE/commit/f61d4743ba3540485062a59d1266aeed13861799"
+      },
+      {
+        "sha": "32a3d7483bd7cfde5dddda585895a9cc3d26b621",
+        "date": "2026-06-14T09:46:28+05:30",
+        "message": "feat: migrate construct to opaline v2 with shadcn/ui",
+        "url": "https://github.com/AbhinavMishra32/Construct-IDE/commit/32a3d7483bd7cfde5dddda585895a9cc3d26b621"
+      },
+      {
+        "sha": "43de138a69f4fa36cb22eab8829315d5e4718221",
+        "date": "2026-06-14T08:01:31+05:30",
+        "message": "fix: polish native construct workspace shell",
+        "url": "https://github.com/AbhinavMishra32/Construct-IDE/commit/43de138a69f4fa36cb22eab8829315d5e4718221"
+      },
+      {
+        "sha": "a586f1473712da0ae8b152672ab72c9e3879431b",
+        "date": "2026-06-14T07:56:44+05:30",
+        "message": "feat: migrate construct surfaces to shadcn",
+        "url": "https://github.com/AbhinavMishra32/Construct-IDE/commit/a586f1473712da0ae8b152672ab72c9e3879431b"
+      },
+      {
+        "sha": "bc343b5e92a28c3516ec711764ebb0e547d39042",
+        "date": "2026-06-14T07:56:11+05:30",
+        "message": "chore: wire construct to opaline v2",
+        "url": "https://github.com/AbhinavMishra32/Construct-IDE/commit/bc343b5e92a28c3516ec711764ebb0e547d39042"
+      },
+      {
+        "sha": "daf658488dfd84da342eac449a17d83b3861ce4c",
+        "date": "2026-06-13T16:21:16+05:30",
+        "message": "Add better logging and introduce AgentSession based Construct Interact",
+        "url": "https://github.com/AbhinavMishra32/Construct-IDE/commit/daf658488dfd84da342eac449a17d83b3861ce4c"
+      },
+      {
+        "sha": "eeadd9653d6c2a631620abdaac11b9fc68a4ff7d",
+        "date": "2026-06-13T14:04:01+05:30",
+        "message": "Fix project open render loop",
+        "url": "https://github.com/AbhinavMishra32/Construct-IDE/commit/eeadd9653d6c2a631620abdaac11b9fc68a4ff7d"
+      },
+      {
+        "sha": "3db70bf1a81a7e4ce82e5d2b94262201737cf945",
+        "date": "2026-06-13T10:40:04+05:30",
+        "message": "Complete storage service type scaffold",
+        "url": "https://github.com/AbhinavMishra32/Construct-IDE/commit/3db70bf1a81a7e4ce82e5d2b94262201737cf945"
+      },
+      {
+        "sha": "e4c87d96ab03eb11d903075ba1c238f29c9d65e3",
+        "date": "2026-06-13T10:39:09+05:30",
+        "message": "Cover adaptive live step behavior",
+        "url": "https://github.com/AbhinavMishra32/Construct-IDE/commit/e4c87d96ab03eb11d903075ba1c238f29c9d65e3"
+      },
+      {
+        "sha": "cb1466668f4c7dd16996580b7d125955f35e071d",
+        "date": "2026-06-13T10:37:11+05:30",
+        "message": "Tighten live step integration types",
+        "url": "https://github.com/AbhinavMishra32/Construct-IDE/commit/cb1466668f4c7dd16996580b7d125955f35e071d"
+      },
+      {
+        "sha": "5528b4a75bd0acd803632453e973942c98b59224",
+        "date": "2026-06-13T10:36:17+05:30",
+        "message": "Render adaptive live steps in Construct",
+        "url": "https://github.com/AbhinavMishra32/Construct-IDE/commit/5528b4a75bd0acd803632453e973942c98b59224"
+      },
+      {
+        "sha": "7cbc6b6d1534b67252610b5e34965c0cb54802a9",
+        "date": "2026-06-13T10:30:25+05:30",
+        "message": "Wire Interact tools and live step persistence",
+        "url": "https://github.com/AbhinavMishra32/Construct-IDE/commit/7cbc6b6d1534b67252610b5e34965c0cb54802a9"
+      },
+      {
+        "sha": "ced1b2496141172ba92bbeade39d14303d40502f",
+        "date": "2026-06-13T10:28:39+05:30",
+        "message": "Extend Interact output for actions and live steps",
+        "url": "https://github.com/AbhinavMishra32/Construct-IDE/commit/ced1b2496141172ba92bbeade39d14303d40502f"
+      },
+      {
+        "sha": "0990249e71c3a31a8f7a756ea1864945220890ad",
+        "date": "2026-06-13T10:27:57+05:30",
+        "message": "Validate generated live step drafts",
+        "url": "https://github.com/AbhinavMishra32/Construct-IDE/commit/0990249e71c3a31a8f7a756ea1864945220890ad"
+      },
+      {
+        "sha": "5b4e7d27accbfce3e442a226565120f6ba937978",
+        "date": "2026-06-13T10:27:07+05:30",
+        "message": "Add generated live step learning model",
+        "url": "https://github.com/AbhinavMishra32/Construct-IDE/commit/5b4e7d27accbfce3e442a226565120f6ba937978"
+      },
+      {
+        "sha": "1018b2d081d2d9963fc688537a7a7f1d186fc9ce",
+        "date": "2026-06-13T09:24:21+05:30",
+        "message": "Split agent logs into nested output selectors",
+        "url": "https://github.com/AbhinavMishra32/Construct-IDE/commit/1018b2d081d2d9963fc688537a7a7f1d186fc9ce"
+      },
+      {
+        "sha": "882aa27ec5df92d6ea26f975f4bdde378f3051b3",
+        "date": "2026-06-13T09:23:51+05:30",
+        "message": "Log full construct agent payloads in main process",
+        "url": "https://github.com/AbhinavMishra32/Construct-IDE/commit/882aa27ec5df92d6ea26f975f4bdde378f3051b3"
+      },
+      {
+        "sha": "4fd74369c6030124a582c30a4ecef26a397b3e1a",
+        "date": "2026-06-13T09:23:29+05:30",
+        "message": "Add detailed construct agent trace hooks",
+        "url": "https://github.com/AbhinavMishra32/Construct-IDE/commit/4fd74369c6030124a582c30a4ecef26a397b3e1a"
+      },
+      {
+        "sha": "c307473537e83a3f57545362986a819b58daf3f4",
+        "date": "2026-06-13T01:49:12+05:30",
+        "message": "Add agent log channels to output panel dropdown",
+        "url": "https://github.com/AbhinavMishra32/Construct-IDE/commit/c307473537e83a3f57545362986a819b58daf3f4"
+      },
+      {
+        "sha": "5f8a23915a85459cb87bb99a20e6bac712423424",
+        "date": "2026-06-12T22:44:22+05:30",
+        "message": "Update Opaline bottom slot layout",
+        "url": "https://github.com/AbhinavMishra32/Construct-IDE/commit/5f8a23915a85459cb87bb99a20e6bac712423424"
+      },
+      {
+        "sha": "a61b936bbc0277776be9880b3be7a3a4af09d63e",
+        "date": "2026-06-12T19:55:39+05:30",
+        "message": "docs: add IDE screenshot to README",
+        "url": "https://github.com/AbhinavMishra32/Construct-IDE/commit/a61b936bbc0277776be9880b3be7a3a4af09d63e"
+      },
+      {
+        "sha": "0bb1271ceadc784778f320d2afc124e5752715ac",
+        "date": "2026-06-12T19:38:43+05:30",
+        "message": "Refactor sidebar into dashboard project sections",
+        "url": "https://github.com/AbhinavMishra32/Construct-IDE/commit/0bb1271ceadc784778f320d2afc124e5752715ac"
+      },
+      {
+        "sha": "bf31a2f568aeda1d5b2732a0c735f525f9053a2d",
+        "date": "2026-06-12T19:29:07+05:30",
+        "message": "Refactor shell navigation controls",
+        "url": "https://github.com/AbhinavMishra32/Construct-IDE/commit/bf31a2f568aeda1d5b2732a0c735f525f9053a2d"
+      },
+      {
+        "sha": "7b5160e222e144eca0d340b37220da98a3524c0f",
+        "date": "2026-06-12T18:56:19+05:30",
+        "message": "Fix inline AI help and terminal shell polish",
+        "url": "https://github.com/AbhinavMishra32/Construct-IDE/commit/7b5160e222e144eca0d340b37220da98a3524c0f"
+      },
+      {
+        "sha": "8027c7c77822f42df9f6bd2fed08b62d419c8298",
+        "date": "2026-06-12T17:30:51+05:30",
+        "message": "Make AI settings safe for node tests",
+        "url": "https://github.com/AbhinavMishra32/Construct-IDE/commit/8027c7c77822f42df9f6bd2fed08b62d419c8298"
+      },
+      {
+        "sha": "fb01b406f95cb55ebf900fb2283ee79903763df9",
+        "date": "2026-06-12T17:27:47+05:30",
+        "message": "Prepare 0.1.0 release metadata",
+        "url": "https://github.com/AbhinavMishra32/Construct-IDE/commit/fb01b406f95cb55ebf900fb2283ee79903763df9"
+      },
+      {
+        "sha": "6a7c8cbed07bd9b70131bd595680ecb1e5307bc3",
+        "date": "2026-06-12T17:27:28+05:30",
+        "message": "Tune terminal rendering feel",
+        "url": "https://github.com/AbhinavMishra32/Construct-IDE/commit/6a7c8cbed07bd9b70131bd595680ecb1e5307bc3"
+      },
+      {
+        "sha": "e1c94ac76235a35497b79fa43e64dac12325543f",
+        "date": "2026-06-12T17:27:09+05:30",
+        "message": "Redesign dashboard around project state",
+        "url": "https://github.com/AbhinavMishra32/Construct-IDE/commit/e1c94ac76235a35497b79fa43e64dac12325543f"
+      },
+      {
+        "sha": "763c502f8c93df88cf7b5d8965d7fb9cc7f80289",
+        "date": "2026-06-12T17:26:47+05:30",
+        "message": "Update Opaline shell primitives",
+        "url": "https://github.com/AbhinavMishra32/Construct-IDE/commit/763c502f8c93df88cf7b5d8965d7fb9cc7f80289"
+      },
+      {
+        "sha": "7c6ba07f9feeb3d817ffa530ef5b98f990cd018a",
+        "date": "2026-06-12T17:01:49+05:30",
+        "message": "Add feature-based AI settings",
+        "url": "https://github.com/AbhinavMishra32/Construct-IDE/commit/7c6ba07f9feeb3d817ffa530ef5b98f990cd018a"
+      },
+      {
+        "sha": "751f703bc6edc68471215c8e17808e5c74d486e4",
+        "date": "2026-06-12T16:43:02+05:30",
+        "message": "Automate desktop release CI",
+        "url": "https://github.com/AbhinavMishra32/Construct-IDE/commit/751f703bc6edc68471215c8e17808e5c74d486e4"
+      },
+      {
+        "sha": "3ae5aaaf939e5eeb4702dbfcac99768fc6e55891",
+        "date": "2026-06-12T12:17:06+05:30",
+        "message": "Harden release publishing flow",
+        "url": "https://github.com/AbhinavMishra32/Construct-IDE/commit/3ae5aaaf939e5eeb4702dbfcac99768fc6e55891"
+      },
+      {
+        "sha": "311b299f4a1f9ba2d8077a84f933429de54927d2",
+        "date": "2026-06-12T12:13:18+05:30",
+        "message": "Update Construct app icon assets",
+        "url": "https://github.com/AbhinavMishra32/Construct-IDE/commit/311b299f4a1f9ba2d8077a84f933429de54927d2"
+      },
+      {
+        "sha": "c774139094a97e36590626622db367d559060a49",
+        "date": "2026-06-12T01:09:26+05:30",
+        "message": "Prepare Construct 0.0.3 desktop release",
+        "url": "https://github.com/AbhinavMishra32/Construct-IDE/commit/c774139094a97e36590626622db367d559060a49"
+      },
+      {
+        "sha": "3346b90db38136b7541014baab246702cf890715",
+        "date": "2026-06-12T00:00:20+05:30",
+        "message": "Improve editor runtime and tape compatibility",
+        "url": "https://github.com/AbhinavMishra32/Construct-IDE/commit/3346b90db38136b7541014baab246702cf890715"
+      },
+      {
+        "sha": "1b7932f1d73e45dcfb1d8e2fa669aae0fed54345",
+        "date": "2026-06-11T21:56:40+05:30",
+        "message": "Remove obsolete code and simplify project structure",
+        "url": "https://github.com/AbhinavMishra32/Construct-IDE/commit/1b7932f1d73e45dcfb1d8e2fa669aae0fed54345"
+      },
+      {
+        "sha": "8aae94e2f8923ad78b38cb65b60767d80edb9adb",
+        "date": "2026-06-11T11:28:10+05:30",
+        "message": "refactor(construct): centralize agent model policy",
+        "url": "https://github.com/AbhinavMishra32/Construct-IDE/commit/8aae94e2f8923ad78b38cb65b60767d80edb9adb"
+      },
+      {
+        "sha": "0b6a94ee0a61f259aecb7c844f1437fe89357b10",
+        "date": "2026-06-11T11:27:55+05:30",
+        "message": "feat(construct): preserve concept guidance in knowledge views",
+        "url": "https://github.com/AbhinavMishra32/Construct-IDE/commit/0b6a94ee0a61f259aecb7c844f1437fe89357b10"
+      },
+      {
+        "sha": "7b4f793df75a2b3ce3e245d7802b583de2885d89",
+        "date": "2026-06-11T11:27:41+05:30",
+        "message": "feat(construct): enforce guide authoring contracts",
+        "url": "https://github.com/AbhinavMishra32/Construct-IDE/commit/7b4f793df75a2b3ce3e245d7802b583de2885d89"
+      },
+      {
+        "sha": "35674960ba7128059f48470eba538378087390a4",
+        "date": "2026-06-11T11:20:55+05:30",
+        "message": "fix(construct): quiet editor hover surfaces",
+        "url": "https://github.com/AbhinavMishra32/Construct-IDE/commit/35674960ba7128059f48470eba538378087390a4"
+      },
+      {
+        "sha": "b544f4200b62ef797d85ae5fb1a81535de6e06b8",
+        "date": "2026-06-11T11:20:43+05:30",
+        "message": "feat(construct): connect guide references to the editor",
+        "url": "https://github.com/AbhinavMishra32/Construct-IDE/commit/b544f4200b62ef797d85ae5fb1a81535de6e06b8"
+      },
+      {
+        "sha": "636d360ff592477e9e6dc657efe7b35cafc29836",
+        "date": "2026-06-11T11:18:47+05:30",
+        "message": "feat(construct): complete contextual project runtime",
+        "url": "https://github.com/AbhinavMishra32/Construct-IDE/commit/636d360ff592477e9e6dc657efe7b35cafc29836"
+      },
+      {
+        "sha": "0dd2de9b485cb3808fea7afbf15a7721ac3cb11f",
+        "date": "2026-06-11T11:02:25+05:30",
+        "message": "feat(construct): define namespaced guide grammar",
+        "url": "https://github.com/AbhinavMishra32/Construct-IDE/commit/0dd2de9b485cb3808fea7afbf15a7721ac3cb11f"
+      },
+      {
+        "sha": "6db3760aed368f5e0c8b3711e3d99649ed5f64cc",
+        "date": "2026-06-11T11:02:02+05:30",
+        "message": "fix(construct): keep context cards movable and contained",
+        "url": "https://github.com/AbhinavMishra32/Construct-IDE/commit/6db3760aed368f5e0c8b3711e3d99649ed5f64cc"
+      },
+      {
+        "sha": "e3325956025b1738f423bb4b2559d442d7bf3337",
+        "date": "2026-06-11T10:56:25+05:30",
+        "message": "feat(construct): dock learning context cards",
+        "url": "https://github.com/AbhinavMishra32/Construct-IDE/commit/e3325956025b1738f423bb4b2559d442d7bf3337"
+      },
+      {
+        "sha": "2afdce8c1bb210c1e84585af4b441d40c9218a77",
+        "date": "2026-06-11T10:37:30+05:30",
+        "message": "feat(construct): close bottom slot without ending tools",
+        "url": "https://github.com/AbhinavMishra32/Construct-IDE/commit/2afdce8c1bb210c1e84585af4b441d40c9218a77"
+      },
+      {
+        "sha": "4aaaa726844b53459b6746059864250f81b250f9",
+        "date": "2026-06-11T10:35:55+05:30",
+        "message": "fix(construct): keep one stable editor session",
+        "url": "https://github.com/AbhinavMishra32/Construct-IDE/commit/4aaaa726844b53459b6746059864250f81b250f9"
+      },
+      {
+        "sha": "712cf03efc3e6cf6e534e29a83ad48d512b08083",
+        "date": "2026-06-11T10:24:34+05:30",
+        "message": "refactor(construct): model document navigation state",
+        "url": "https://github.com/AbhinavMishra32/Construct-IDE/commit/712cf03efc3e6cf6e534e29a83ad48d512b08083"
+      },
+      {
+        "sha": "a467fa5fe71fcfd9cc746fb0eda25977f31b3efd",
+        "date": "2026-06-10T20:36:38+05:30",
+        "message": "feat(construct): add selection research agent",
+        "url": "https://github.com/AbhinavMishra32/Construct-IDE/commit/a467fa5fe71fcfd9cc746fb0eda25977f31b3efd"
+      },
+      {
+        "sha": "b796238ae6775fc1f55158fabd88321d8842970e",
+        "date": "2026-06-10T20:32:28+05:30",
+        "message": "feat(construct): capture explainable selections",
+        "url": "https://github.com/AbhinavMishra32/Construct-IDE/commit/b796238ae6775fc1f55158fabd88321d8842970e"
+      },
+      {
+        "sha": "b43bb449c1e86de9c49bbc7e4eef6f19cc14d4b8",
+        "date": "2026-06-10T19:59:01+05:30",
+        "message": "chore: ignore Finder metadata",
+        "url": "https://github.com/AbhinavMishra32/Construct-IDE/commit/b43bb449c1e86de9c49bbc7e4eef6f19cc14d4b8"
+      },
+      {
+        "sha": "2437a01c13590a13338de4b72e98806334935ce3",
+        "date": "2026-06-10T19:56:02+05:30",
+        "message": "fix(construct): improve language and output panel lifecycle",
+        "url": "https://github.com/AbhinavMishra32/Construct-IDE/commit/2437a01c13590a13338de4b72e98806334935ce3"
+      },
+      {
+        "sha": "eee43b6b8cbb13029a01e8bb0bcb6a1ef12fce0b",
+        "date": "2026-06-10T19:55:41+05:30",
+        "message": "feat(construct): add progressive project knowledge slot",
+        "url": "https://github.com/AbhinavMishra32/Construct-IDE/commit/eee43b6b8cbb13029a01e8bb0bcb6a1ef12fce0b"
+      },
+      {
+        "sha": "82a3a898627f332a63308ce78a8d2d24bb14043c",
+        "date": "2026-06-10T19:55:22+05:30",
+        "message": "feat(construct): streamline tape validation activity",
+        "url": "https://github.com/AbhinavMishra32/Construct-IDE/commit/82a3a898627f332a63308ce78a8d2d24bb14043c"
+      },
+      {
+        "sha": "2b16031e94d719f89eec0a797f50f6c456e0b324",
+        "date": "2026-06-10T19:54:31+05:30",
+        "message": "feat(construct): persist repairs and authoring review context",
+        "url": "https://github.com/AbhinavMishra32/Construct-IDE/commit/2b16031e94d719f89eec0a797f50f6c456e0b324"
+      },
+      {
+        "sha": "b127864b4e856511fd76a142113bc181d41cd6d3",
+        "date": "2026-06-10T19:54:01+05:30",
+        "message": "feat(construct): add tolerant tape compiler and repairs",
+        "url": "https://github.com/AbhinavMishra32/Construct-IDE/commit/b127864b4e856511fd76a142113bc181d41cd6d3"
+      },
+      {
+        "sha": "13b8ca4523c77ad393a661df21407815556681e0",
+        "date": "2026-06-10T00:29:54+05:30",
+        "message": "Tighten workspace paths and LSP logs",
+        "url": "https://github.com/AbhinavMishra32/Construct-IDE/commit/13b8ca4523c77ad393a661df21407815556681e0"
+      },
+      {
+        "sha": "743786db0cf6282d20b134091d18f733e4229ecb",
+        "date": "2026-06-10T00:23:56+05:30",
+        "message": "Anchor editor hover widgets",
+        "url": "https://github.com/AbhinavMishra32/Construct-IDE/commit/743786db0cf6282d20b134091d18f733e4229ecb"
+      },
+      {
+        "sha": "1b326052dee0413baab3e5166004dcef169dc8e7",
+        "date": "2026-06-10T00:16:50+05:30",
+        "message": "Advance concept-aware Construct workspace",
+        "url": "https://github.com/AbhinavMishra32/Construct-IDE/commit/1b326052dee0413baab3e5166004dcef169dc8e7"
+      },
+      {
+        "sha": "266257c97f6f995e04dc6d301b646bed75dacd7a",
+        "date": "2026-06-09T20:26:03+05:30",
+        "message": "Merge pull request #1 from AbhinavMishra32/opaline-ui-workspace",
+        "url": "https://github.com/AbhinavMishra32/Construct-IDE/commit/266257c97f6f995e04dc6d301b646bed75dacd7a"
+      },
+      {
+        "sha": "e8522d8ffffd56c9c280a05213c6ec513e53685d",
+        "date": "2026-06-09T20:04:16+05:30",
+        "message": "Update Opaline workspace reference",
+        "url": "https://github.com/AbhinavMishra32/Construct-IDE/commit/e8522d8ffffd56c9c280a05213c6ec513e53685d"
+      },
+      {
+        "sha": "e21f6f659c8651e57f7c47a9ed58cc4b24852c97",
+        "date": "2026-06-09T19:44:36+05:30",
+        "message": "Align Opaline workspace integration",
+        "url": "https://github.com/AbhinavMishra32/Construct-IDE/commit/e21f6f659c8651e57f7c47a9ed58cc4b24852c97"
+      },
+      {
+        "sha": "2c626dae375db0e541d1e24fd3cd3b063f8917f3",
+        "date": "2026-06-09T19:36:09+05:30",
+        "message": "Integrate Opaline UI workspace package",
+        "url": "https://github.com/AbhinavMishra32/Construct-IDE/commit/2c626dae375db0e541d1e24fd3cd3b063f8917f3"
+      },
+      {
+        "sha": "81614a1aa8d081261c05fa75aedbfab57edc9a4f",
+        "date": "2026-06-09T19:07:16+05:30",
+        "message": "Throttle terminal fit during panel resize",
+        "url": "https://github.com/AbhinavMishra32/Construct-IDE/commit/81614a1aa8d081261c05fa75aedbfab57edc9a4f"
+      },
+      {
+        "sha": "666846a21c7836188e6e6412c453e4fc836cbc3b",
+        "date": "2026-06-09T15:42:16+05:30",
+        "message": "Propagate bottom panel height CSS variable to app-shell container and disable transitions during resize dragging",
+        "url": "https://github.com/AbhinavMishra32/Construct-IDE/commit/666846a21c7836188e6e6412c453e4fc836cbc3b"
+      },
+      {
+        "sha": "d83e139b50c58b094a2a17ece51db4d77babbd6a",
+        "date": "2026-06-09T15:41:03+05:30",
+        "message": "Use global window pointermove and pointerup listeners for BottomPanel resizing",
+        "url": "https://github.com/AbhinavMishra32/Construct-IDE/commit/d83e139b50c58b094a2a17ece51db4d77babbd6a"
+      },
+      {
+        "sha": "958732fbf18a3f99594996384366505f80d5b9db",
+        "date": "2026-06-09T15:38:47+05:30",
+        "message": "Refine bottom panel resizing, xterm fit layout, and true shortcut toggling",
+        "url": "https://github.com/AbhinavMishra32/Construct-IDE/commit/958732fbf18a3f99594996384366505f80d5b9db"
+      },
+      {
+        "sha": "bc2ebe0acb343b0f6dc5fc55951d8ba7d0b36cbc",
+        "date": "2026-06-09T15:31:22+05:30",
+        "message": "style: adapt LogsPanel to use native open-shell CSS variables and design system tokens",
+        "url": "https://github.com/AbhinavMishra32/Construct-IDE/commit/bc2ebe0acb343b0f6dc5fc55951d8ba7d0b36cbc"
+      },
+      {
+        "sha": "137d18ab99c4e25fc5a0cbb468aa3b3c06587497",
+        "date": "2026-06-09T15:29:24+05:30",
+        "message": "feat: implement real-time log subscriptions (Output channels) and settings-enabled LSP installer",
+        "url": "https://github.com/AbhinavMishra32/Construct-IDE/commit/137d18ab99c4e25fc5a0cbb468aa3b3c06587497"
+      },
+      {
+        "sha": "961bca8748345f297367ed2e10658d2f650846e7",
+        "date": "2026-06-09T15:13:55+05:30",
+        "message": "Enhance read-only protection for files inside node_modules",
+        "url": "https://github.com/AbhinavMishra32/Construct-IDE/commit/961bca8748345f297367ed2e10658d2f650846e7"
+      },
+      {
+        "sha": "902ea35510bbe43a814b148441edd2819dee2691",
+        "date": "2026-06-09T12:07:26+05:30",
+        "message": "Integrate TS LSP Client, handle cross-file navigation, and enable real-time diagnostics",
+        "url": "https://github.com/AbhinavMishra32/Construct-IDE/commit/902ea35510bbe43a814b148441edd2819dee2691"
+      },
+      {
+        "sha": "50303bd719952cf3761af0314d34fa6a0d311ea1",
+        "date": "2026-06-09T12:01:59+05:30",
+        "message": "Implement TypeScript LSP backend bridge and client",
+        "url": "https://github.com/AbhinavMishra32/Construct-IDE/commit/50303bd719952cf3761af0314d34fa6a0d311ea1"
+      },
+      {
+        "sha": "24b63857471689ec9c012f0fc0a93f36e43b262f",
+        "date": "2026-06-09T11:57:33+05:30",
+        "message": "feat(editor): revert custom references dialog, restore native Monaco references UI, fix double shadow/border nesting glitch, hide external docs redirects",
+        "url": "https://github.com/AbhinavMishra32/Construct-IDE/commit/24b63857471689ec9c012f0fc0a93f36e43b262f"
+      },
+      {
+        "sha": "3ba19ec02a9b00e93330ba1126cdc260f76a995f",
+        "date": "2026-06-09T10:12:25+05:30",
+        "message": "feat(editor): implement side-opening Go to... submenu and style Monaco hovers/popovers with open-shell glassmorphism theme",
+        "url": "https://github.com/AbhinavMishra32/Construct-IDE/commit/3ba19ec02a9b00e93330ba1126cdc260f76a995f"
+      },
+      {
+        "sha": "17e657680989d9d3873ac3a9b43bd6eea539273c",
+        "date": "2026-06-09T10:09:52+05:30",
+        "message": "feat(editor): replace monaco context menu with custom open-shell ContextMenu mapping Go to Definition, Peek, References, Rename, Format, and Command Palette",
+        "url": "https://github.com/AbhinavMishra32/Construct-IDE/commit/17e657680989d9d3873ac3a9b43bd6eea539273c"
+      },
+      {
+        "sha": "682c2057b6db76d3ec60e480e255affc766bd339",
+        "date": "2026-06-09T10:06:26+05:30",
+        "message": "feat(filetree): implement inline rename and creation with pixel-perfect indentation guides and sleek transparent input styling",
+        "url": "https://github.com/AbhinavMishra32/Construct-IDE/commit/682c2057b6db76d3ec60e480e255affc766bd339"
+      },
+      {
+        "sha": "89ad2ad34c293566cf06be5669046523516468eb",
+        "date": "2026-06-07T22:51:03+05:30",
+        "message": "feat(app): add tape 0.2 recall verification runtime",
+        "url": "https://github.com/AbhinavMishra32/Construct-IDE/commit/89ad2ad34c293566cf06be5669046523516468eb"
+      },
+      {
+        "sha": "ba63b8c843a30d09f986d51b597efdb123500d17",
+        "date": "2026-06-07T22:17:26+05:30",
+        "message": "fix: normalize topbar icon sizes to 20px across all buttons",
+        "url": "https://github.com/AbhinavMishra32/Construct-IDE/commit/ba63b8c843a30d09f986d51b597efdb123500d17"
+      },
+      {
+        "sha": "bb3dd6dbcba4fe4d2eaba0eddbfbd18e7c6a026c",
+        "date": "2026-06-07T21:33:47+05:30",
+        "message": "feat: match keycap text colors to button text color (not fully black) and add hover transition",
+        "url": "https://github.com/AbhinavMishra32/Construct-IDE/commit/bb3dd6dbcba4fe4d2eaba0eddbfbd18e7c6a026c"
+      },
+      {
+        "sha": "5f8770107dd8ffe4681d31fcabab4f6890387562",
+        "date": "2026-06-07T21:33:16+05:30",
+        "message": "feat: increase keycap size to 16px and font size to 12px for maximum symbol readability",
+        "url": "https://github.com/AbhinavMishra32/Construct-IDE/commit/5f8770107dd8ffe4681d31fcabab4f6890387562"
+      },
+      {
+        "sha": "609df421d46a3f5b6dcd9c34f815df5cba9b1453",
+        "date": "2026-06-07T21:32:41+05:30",
+        "message": "feat: increase header button icon sizes to 24px and remove padding for maximum readability",
+        "url": "https://github.com/AbhinavMishra32/Construct-IDE/commit/609df421d46a3f5b6dcd9c34f815df5cba9b1453"
+      },
+      {
+        "sha": "9da34e522be230a747a8defc3ff64fea97e14cc9",
+        "date": "2026-06-07T21:31:15+05:30",
+        "message": "feat: remove action and OS icons from Skip Line button, keeping only legible text and shortcut keycaps",
+        "url": "https://github.com/AbhinavMishra32/Construct-IDE/commit/9da34e522be230a747a8defc3ff64fea97e14cc9"
+      },
+      {
+        "sha": "d22a3d7b214fc079c3375cae15ebc65ae11b8517",
+        "date": "2026-06-07T21:30:15+05:30",
+        "message": "feat: improve shortcut key legibility with higher contrast, bolder font and OS icons",
+        "url": "https://github.com/AbhinavMishra32/Construct-IDE/commit/d22a3d7b214fc079c3375cae15ebc65ae11b8517"
+      },
+      {
+        "sha": "58e67dbae16e0602e43f00f374d56bc7e3559e61",
+        "date": "2026-06-07T21:28:39+05:30",
+        "message": "feat: remove Tab key from skip line shortcuts and update visual indicator to Alt+Enter",
+        "url": "https://github.com/AbhinavMishra32/Construct-IDE/commit/58e67dbae16e0602e43f00f374d56bc7e3559e61"
+      },
+      {
+        "sha": "ebb99ddba07da1f85f158a670b6eebb071cb9553",
+        "date": "2026-06-07T21:26:55+05:30",
+        "message": "feat: only show skip button and allow shortcuts when caret is on the active ghost text line",
+        "url": "https://github.com/AbhinavMishra32/Construct-IDE/commit/ebb99ddba07da1f85f158a670b6eebb071cb9553"
+      },
+      {
+        "sha": "2a8ed5654f83fb53ec7ab65a359085221b807543",
+        "date": "2026-06-07T21:26:01+05:30",
+        "message": "feat: implement visual skip line button and keyboard shortcuts",
+        "url": "https://github.com/AbhinavMishra32/Construct-IDE/commit/2a8ed5654f83fb53ec7ab65a359085221b807543"
+      },
+      {
+        "sha": "6b47faf1a62995b2c1fda9f523b2c7d73b019d17",
+        "date": "2026-06-07T21:17:58+05:30",
+        "message": "feat(ui): match top-right icon sizes to 20px for symmetry",
+        "url": "https://github.com/AbhinavMishra32/Construct-IDE/commit/6b47faf1a62995b2c1fda9f523b2c7d73b019d17"
+      },
+      {
+        "sha": "ff020524ba122b5d5958b7214e56e25aa7f405c6",
+        "date": "2026-06-07T21:14:59+05:30",
+        "message": "feat(ui): polish sidebar toolbar layout, transitions, and custom outlined SVGs",
+        "url": "https://github.com/AbhinavMishra32/Construct-IDE/commit/ff020524ba122b5d5958b7214e56e25aa7f405c6"
+      },
+      {
+        "sha": "08fbb7d18d957e25a5209ff24c8e17f4d5fd52bd",
+        "date": "2026-06-07T13:22:35+05:30",
+        "message": "feat(ui): integrate shell history and modular project surfaces",
+        "url": "https://github.com/AbhinavMishra32/Construct-IDE/commit/08fbb7d18d957e25a5209ff24c8e17f4d5fd52bd"
+      },
+      {
+        "sha": "ca0afe624fc569b96f56ef457adaadd5906722c7",
+        "date": "2026-06-07T00:55:03+05:30",
+        "message": "fix(app): show only file backed construct projects",
+        "url": "https://github.com/AbhinavMishra32/Construct-IDE/commit/ca0afe624fc569b96f56ef457adaadd5906722c7"
+      },
+      {
+        "sha": "47269b8ce2e584ccec5b28471616288a03fc9fa8",
+        "date": "2026-06-07T00:47:10+05:30",
+        "message": "feat(app): polish project sidebar timeline and settings",
+        "url": "https://github.com/AbhinavMishra32/Construct-IDE/commit/47269b8ce2e584ccec5b28471616288a03fc9fa8"
+      },
+      {
+        "sha": "39a60af2b14fad6145c4775486130b2b1c19474c",
+        "date": "2026-06-07T00:40:41+05:30",
+        "message": "feat(app): import construct projects into chosen workspaces",
+        "url": "https://github.com/AbhinavMishra32/Construct-IDE/commit/39a60af2b14fad6145c4775486130b2b1c19474c"
+      },
+      {
+        "sha": "de10422f712e0c2754941c8310c41338a6f6f594",
+        "date": "2026-06-07T00:32:07+05:30",
+        "message": "fix(app): stabilize shell sidebar and terminal surfaces",
+        "url": "https://github.com/AbhinavMishra32/Construct-IDE/commit/de10422f712e0c2754941c8310c41338a6f6f594"
+      },
+      {
+        "sha": "a582329c4077ee3d68ac6f7c1ad4844495d6ca71",
+        "date": "2026-06-06T18:33:46+05:30",
+        "message": "fix: stabilize project open flow",
+        "url": "https://github.com/AbhinavMishra32/Construct-IDE/commit/a582329c4077ee3d68ac6f7c1ad4844495d6ca71"
+      },
+      {
+        "sha": "f1bedf3d920235879d39e29e510a570699b253b3",
+        "date": "2026-06-06T18:30:42+05:30",
+        "message": "fix: match open-shell electron example",
+        "url": "https://github.com/AbhinavMishra32/Construct-IDE/commit/f1bedf3d920235879d39e29e510a570699b253b3"
+      },
+      {
+        "sha": "7a0776bec6c1ebd2311a962d3915b7bc6da9b1b9",
+        "date": "2026-06-06T18:14:47+05:30",
+        "message": "refactor: run construct through open-shell",
+        "url": "https://github.com/AbhinavMishra32/Construct-IDE/commit/7a0776bec6c1ebd2311a962d3915b7bc6da9b1b9"
+      },
+      {
+        "sha": "9fa79eab90c753c212d32bb7530d4b8321d4bbc1",
+        "date": "2026-06-06T17:12:04+05:30",
+        "message": "docs(v2): define construct runtime boundary",
+        "url": "https://github.com/AbhinavMishra32/Construct-IDE/commit/9fa79eab90c753c212d32bb7530d4b8321d4bbc1"
+      },
+      {
+        "sha": "8943debe63f6b1e29f75e87d576d97e40164bfbb",
+        "date": "2026-06-06T17:11:34+05:30",
+        "message": "fix(v2): open guided create files safely",
+        "url": "https://github.com/AbhinavMishra32/Construct-IDE/commit/8943debe63f6b1e29f75e87d576d97e40164bfbb"
+      },
+      {
+        "sha": "376540d5df1e6390439606e633fff7937e2a3124",
+        "date": "2026-06-06T17:10:55+05:30",
+        "message": "fix(v2): queue terminal run commands",
+        "url": "https://github.com/AbhinavMishra32/Construct-IDE/commit/376540d5df1e6390439606e633fff7937e2a3124"
+      },
+      {
+        "sha": "a683cf39119d593e64fece9dc6de1cb1eb8edd29",
+        "date": "2026-06-06T17:10:07+05:30",
+        "message": "test(v2): cover construct parser runtime",
+        "url": "https://github.com/AbhinavMishra32/Construct-IDE/commit/a683cf39119d593e64fece9dc6de1cb1eb8edd29"
+      },
+      {
+        "sha": "0f2e7a02fd0b1ff9ea0449dab7c4b908c44ad9da",
+        "date": "2026-06-06T17:09:14+05:30",
+        "message": "feat(v2): store sample as construct source",
+        "url": "https://github.com/AbhinavMishra32/Construct-IDE/commit/0f2e7a02fd0b1ff9ea0449dab7c4b908c44ad9da"
+      },
+      {
+        "sha": "2ff676be248187fc092d4f6f89ce2e3622803589",
+        "date": "2026-06-06T17:06:48+05:30",
+        "message": "feat(v2): build open-shell project workbench",
+        "url": "https://github.com/AbhinavMishra32/Construct-IDE/commit/2ff676be248187fc092d4f6f89ce2e3622803589"
+      },
+      {
+        "sha": "2d6da53aa4cefe730ef74a4ffa8d15ed23a11df4",
+        "date": "2026-06-06T16:57:27+05:30",
+        "message": "feat(v2): add project dashboard store",
+        "url": "https://github.com/AbhinavMishra32/Construct-IDE/commit/2d6da53aa4cefe730ef74a4ffa8d15ed23a11df4"
+      },
+      {
+        "sha": "5ad3d5f4e898e94b540beef46d0cc1d67452a03a",
+        "date": "2026-06-06T16:56:28+05:30",
+        "message": "feat(v2): add local workspace and terminal bridge",
+        "url": "https://github.com/AbhinavMishra32/Construct-IDE/commit/5ad3d5f4e898e94b540beef46d0cc1d67452a03a"
+      },
+      {
+        "sha": "58b5f2fe41b967e185212204d308e0178a70f22c",
+        "date": "2026-06-06T16:54:35+05:30",
+        "message": "feat(v2): add construct project protocol parser",
+        "url": "https://github.com/AbhinavMishra32/Construct-IDE/commit/58b5f2fe41b967e185212204d308e0178a70f22c"
+      },
+      {
+        "sha": "0a0ecf26d1cbc62c009f7dc5049722de598c3ed2",
+        "date": "2026-06-06T16:52:40+05:30",
+        "message": "feat: add openrouter provider support",
+        "url": "https://github.com/AbhinavMishra32/Construct-IDE/commit/0a0ecf26d1cbc62c009f7dc5049722de598c3ed2"
+      },
+      {
+        "sha": "e921fbb865a177bb89f3bf6840d8a604e2d8f1a0",
+        "date": "2026-06-03T00:02:18+05:30",
+        "message": "Disable adaptive project mutation",
+        "url": "https://github.com/AbhinavMishra32/Construct-IDE/commit/e921fbb865a177bb89f3bf6840d8a604e2d8f1a0"
+      },
+      {
+        "sha": "ab5f3fc4af1912dc2189374df7eaf87cc38dd23f",
+        "date": "2026-06-02T23:05:03+05:30",
+        "message": "Replace creation graphs with agent tools",
+        "url": "https://github.com/AbhinavMishra32/Construct-IDE/commit/ab5f3fc4af1912dc2189374df7eaf87cc38dd23f"
+      },
+      {
+        "sha": "8b7858d3f5a75f33c1cb698a2ee3737cf648374f",
+        "date": "2026-06-02T22:07:16+05:30",
+        "message": "Introduce Mastra creation agent",
+        "url": "https://github.com/AbhinavMishra32/Construct-IDE/commit/8b7858d3f5a75f33c1cb698a2ee3737cf648374f"
+      },
+      {
+        "sha": "32c3a0b07e48e4f7754575f0ad37b56dd70859ce",
+        "date": "2026-05-31T10:49:11+05:30",
+        "message": "Centralize course creation policy",
+        "url": "https://github.com/AbhinavMishra32/Construct-IDE/commit/32c3a0b07e48e4f7754575f0ad37b56dd70859ce"
+      },
+      {
+        "sha": "769a0a253b3ec61fccb3b956b8d063e0e8d6bf5a",
+        "date": "2026-05-31T10:38:01+05:30",
+        "message": "Make creation start algorithms naive-first",
+        "url": "https://github.com/AbhinavMishra32/Construct-IDE/commit/769a0a253b3ec61fccb3b956b8d063e0e8d6bf5a"
+      },
+      {
+        "sha": "1312cd186aab695c212b75e9555dc8578ec6425d",
+        "date": "2026-05-31T10:28:29+05:30",
+        "message": "Disable answer-driven creation path mutation",
+        "url": "https://github.com/AbhinavMishra32/Construct-IDE/commit/1312cd186aab695c212b75e9555dc8578ec6425d"
+      },
+      {
+        "sha": "de085be464daf3215d7ba91df43c526d3cf8db39",
+        "date": "2026-05-30T22:23:53+05:30",
+        "message": "Introduce deterministic creation kernel",
+        "url": "https://github.com/AbhinavMishra32/Construct-IDE/commit/de085be464daf3215d7ba91df43c526d3cf8db39"
+      },
+      {
+        "sha": "8ab02154299b120f045fd07ea190e2cb0bb4dc48",
+        "date": "2026-05-26T22:14:49+05:30",
+        "message": "Adapt intro step budget for cohesive algorithm tasks",
+        "url": "https://github.com/AbhinavMishra32/Construct-IDE/commit/8ab02154299b120f045fd07ea190e2cb0bb4dc48"
+      },
       {
         "sha": "46788219fae4090d6dbd6e57b7eb01bb83a33317",
         "date": "2026-05-26T18:05:00+05:30",

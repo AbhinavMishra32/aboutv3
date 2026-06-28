@@ -4725,7 +4725,14 @@ textarea {
 .blog-article {
   position: relative;
   display: grid;
+  grid-template-columns: minmax(0, 1fr);
   gap: 1rem;
+}
+
+.blog-markdown {
+  min-width: 0;
+  overflow-wrap: break-word;
+  word-wrap: break-word;
 }
 
 .page-blog .blog-article::before {
