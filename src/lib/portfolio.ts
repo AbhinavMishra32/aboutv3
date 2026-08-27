@@ -1,47 +1,51 @@
+export type ProjectCategory = "AI" | "Product" | "Systems";
+
 export type Project = {
   slug: string;
   name: string;
   focus: string;
+  /** One-line pitch used on cards. */
   summary: string;
+  /** Longer paragraph used in detail views. */
   detail: string;
-  techLogos: Array<
-    | {
-        name: string;
-        src: string;
-      }
-    | {
-        name: string;
-        icon: "ai" | "bootstrap" | "pow";
-      }
-  >;
+  category: ProjectCategory[];
+  year: string;
+  status: "live" | "in-progress" | "archived";
+  /** Plain stack labels rendered as chips on the card. */
+  stack: string[];
+  /** Engineering bullets revealed by "show engineering details". */
+  bullets: string[];
   buildTags: string[];
+  featured?: boolean;
   iconUrl?: string;
   iconLabel?: string;
-  iconTone?: "rose" | "violet" | "amber" | "slate";
   live?: string;
   source?: string;
-  previewImage: string;
-  previewDarkImage: string;
+  /** Real product screenshot, shown as the floating corner panel. */
+  shot?: string;
+  previewImage?: string;
+  previewDarkImage?: string;
   previewAlt: string;
   repo?: {
     owner: string;
     name: string;
     branch?: string;
   };
-  featureHighlights: string[];
-  buildArc: Array<{
-    label: string;
-    title: string;
-    detail: string;
-  }>;
   repoNote?: string;
 };
 
 export type WorkItem = {
+  company: string;
+  companyNote: string;
+  url?: string;
   title: string;
-  subtitle: string;
+  employment: string;
+  location: string;
   period: string;
-  detail: string;
+  summary: string;
+  highlights: string[];
+  stack: string[];
+  current?: boolean;
 };
 
 export type StoryBeat = {
@@ -57,18 +61,80 @@ export type StoryBeat = {
 
 export const PROJECTS: Project[] = [
   {
+    slug: "construct",
+    name: "Construct IDE",
+    focus: "AI-native desktop IDE",
+    summary:
+      "An AI-native desktop IDE whose agents read your repo, run your tests, and teach from what you actually got wrong.",
+    detail:
+      "Construct is built around learner-owned coding. Mastra agents inspect the repository, execute tests, review diffs, and generate targeted practice, while a persistent learner memory keeps continuity across sessions. Per-feature model routing and Phoenix tracing keep runs cost-aware and debuggable.",
+    category: ["AI", "Product"],
+    year: "2026",
+    status: "in-progress",
+    featured: true,
+    stack: ["Electron", "TypeScript", "Mastra", "Prisma", "PostgreSQL", "Turborepo"],
+    bullets: [
+      "Mastra research + mentor agents that inspect repositories, execute tests, and review diffs before teaching anything",
+      "Persistent learner memory so personalization survives across projects instead of resetting each session",
+      "Per-feature model routing with Phoenix tracing, keeping agent runs cost-aware and actually debuggable",
+      "Turborepo monorepo spanning the Electron shell, agent runtime, and Prisma/Postgres persistence layer",
+    ],
+    buildTags: ["Hand-built core", "0.1 in progress"],
+    iconLabel: "C",
+    source: "https://github.com/AbhinavMishra32/Construct-IDE",
+    previewImage: "/project-construct-light.svg",
+    previewDarkImage: "/project-construct-dark.svg",
+    shot: "/project-images/construct.png",
+    previewAlt:
+      "Preview illustration of Construct showing a goal prompt, lessons, code editor, and knowledge graph.",
+    repo: {
+      owner: "AbhinavMishra32",
+      name: "Construct-IDE",
+      branch: "main",
+    },
+  },
+  {
+    slug: "spar",
+    name: "Spar",
+    focus: "Adaptive coding gym",
+    summary:
+      "An adaptive coding gym that turns your attempt history into the next challenge you should face.",
+    detail:
+      "Spar keeps a ledger of every attempt and converts it into targeted next challenges across three languages. Sandboxed runners execute submissions in isolation and persistent sessions mean practice picks up exactly where it left off.",
+    category: ["AI", "Systems"],
+    year: "2026",
+    status: "in-progress",
+    featured: true,
+    stack: ["TypeScript", "Mastra", "PostgreSQL", "Sandboxed runners"],
+    bullets: [
+      "Ability Ledger converts attempt history into personalized next challenges instead of a fixed problem list",
+      "Isolated sandboxed runners execute untrusted submissions across three languages",
+      "Persistent sessions so a practice run survives reloads and resumes mid-problem",
+    ],
+    buildTags: ["Hand-built core", "Active build"],
+    iconLabel: "S",
+    source: "https://github.com/AbhinavMishra32",
+    previewImage: "/project-decipath-light.svg",
+    previewDarkImage: "/project-decipath-dark.svg",
+    previewAlt: "Preview illustration of an adaptive coding practice interface.",
+  },
+  {
     slug: "decipath-ai",
     name: "Decipath AI",
     focus: "AI roadmap product",
     summary:
-      "An AI roadmap builder that turns broad goals into structured learning paths with practical milestones.",
+      "An AI roadmap builder that turns a fuzzy goal into an execution map with milestones and dependencies.",
     detail:
-      "Decipath takes a fuzzy goal, runs structured research and planning, and turns it into an execution map with milestones, tasks, and branching next steps.",
-    techLogos: [
-      { name: "Next.js", src: "https://cdn.simpleicons.org/nextdotjs/141413/e9e6dc?viewbox=auto" },
-      { name: "TypeScript", src: "https://cdn.simpleicons.org/typescript?viewbox=auto" },
-      { name: "OpenAI", icon: "ai" },
-      { name: "React", src: "https://cdn.simpleicons.org/react?viewbox=auto" },
+      "Decipath takes a rough goal, runs structured research and planning, and turns it into an execution map with milestones, tasks, and branching next steps — wrapped in the plan, auth, and billing layers that make it feel like a product rather than a demo.",
+    category: ["AI", "Product"],
+    year: "2025",
+    status: "live",
+    featured: true,
+    stack: ["Next.js", "TypeScript", "React Flow", "OpenAI", "Prisma"],
+    bullets: [
+      "Goal intake that turns rough intent into a structured, guided roadmap request",
+      "React Flow execution canvas with nodes, dependencies, time estimates, and detail panels",
+      "Plans, auth, billing, and loading-state polish that push it from demo energy to product",
     ],
     buildTags: ["Hand-built core", "AI-assisted UI polish"],
     iconUrl: "https://decipath.abhinavmishra.in/favicon.ico",
@@ -76,212 +142,162 @@ export const PROJECTS: Project[] = [
     source: "https://github.com/AbhinavMishra32/DecipathAI",
     previewImage: "/project-decipath-light.svg",
     previewDarkImage: "/project-decipath-dark.svg",
-    previewAlt: "Preview illustration of Decipath showing a landing hero and roadmap canvas.",
+    shot: "/project-images/decipath-ai.png",
+    previewAlt:
+      "Preview illustration of Decipath showing a landing hero and roadmap canvas.",
     repo: {
       owner: "AbhinavMishra32",
       name: "DecipathAI",
       branch: "main",
     },
-    featureHighlights: [
-      "Goal intake that turns rough intent into a structured roadmap request",
-      "React Flow execution canvas with nodes, dependencies, and next-step detail",
-      "Tiered product polish around plans, auth, billing, and agent activity",
-    ],
-    buildArc: [
-      {
-        label: "Foundation",
-        title: "Turn the prompt into a real planning input.",
-        detail:
-          "The first shape of the product was the goal intake: current state, desired outcome, and enough structured context for roadmap generation to feel guided instead of random.",
-      },
-      {
-        label: "Graph layer",
-        title: "Make the roadmap feel alive, not static.",
-        detail:
-          "The core interaction became the visual map itself, with readable nodes, branching structure, time estimates, and detail panels that make the plan feel actionable.",
-      },
-      {
-        label: "Productization",
-        title: "Add the systems that make it feel like a product.",
-        detail:
-          "From pricing and plans to loading states and theme-aware polish, the later work pushed Decipath from demo energy toward a clearer user-facing product.",
-      },
-    ],
-  },
-  {
-    slug: "mentor-map",
-    name: "Mentor Map",
-    focus: "Hackathon winner",
-    summary:
-      "A career guidance platform built for Smart India Hackathon with adaptive roadmaps and collaborative planning.",
-    detail:
-      "Mentor Map combined AI roadmaps, counselling flows, and progress tracking into a hackathon product that felt guided and usable under serious time pressure.",
-    techLogos: [
-      { name: "React", src: "https://cdn.simpleicons.org/react?viewbox=auto" },
-      { name: "Node.js", src: "https://cdn.simpleicons.org/nodedotjs?viewbox=auto" },
-      { name: "PostgreSQL", src: "https://cdn.simpleicons.org/postgresql?viewbox=auto" },
-    ],
-    buildTags: ["Hand-built core", "AI-assisted UI polish"],
-    iconLabel: "M",
-    iconTone: "violet",
-    live: "https://mentormap.abhinavmishra.in",
-    previewImage: "/project-mentormap-light.svg",
-    previewDarkImage: "/project-mentormap-dark.svg",
-    previewAlt: "Preview illustration of Mentor Map showing the landing page and learner dashboard.",
-    featureHighlights: [
-      "Friendly landing page that frames counselling, AI roadmap, and interview support",
-      "Student dashboard with lesson progress, skill progress, and course tracking",
-      "Product ownership across the app during the Smart India Hackathon sprint",
-    ],
-    buildArc: [
-      {
-        label: "Landing",
-        title: "Sell the idea clearly before the user clicks deeper.",
-        detail:
-          "The first product job was making the system understandable fast: career guidance, AI roadmap generation, and interview prep all needed to read clearly from the homepage.",
-      },
-      {
-        label: "Dashboard",
-        title: "Turn the promise into a usable student product.",
-        detail:
-          "The next layer was the signed-in experience: progress cards, lesson tracking, and guided navigation so the platform felt like a real system, not just a hackathon pitch.",
-      },
-      {
-        label: "Sprint pressure",
-        title: "Keep the UI coherent while the scope keeps moving.",
-        detail:
-          "Because it was built under hackathon pressure, a big part of the work was making shifting ideas still feel like one product and shipping a polished interface fast enough to win.",
-      },
-    ],
-    repoNote:
-      "This project was built in a fast team setting and the public repository is not linked here, so the modal focuses on the shipped interface and product slices instead of GitHub telemetry.",
-  },
-  {
-    slug: "construct",
-    name: "Construct",
-    focus: "AI teaching IDE",
-    summary:
-      "An AI teaching IDE that turns a software goal into a personalized course, workspace, and guided build path.",
-    detail:
-      "Construct is built around learner-owned coding: it tailors a project path, writes lessons and checks, opens a real workspace, and keeps teaching as the learner builds.",
-    techLogos: [
-      { name: "Next.js", src: "https://cdn.simpleicons.org/nextdotjs/141413/e9e6dc?viewbox=auto" },
-      { name: "TypeScript", src: "https://cdn.simpleicons.org/typescript?viewbox=auto" },
-      { name: "PostgreSQL", src: "https://cdn.simpleicons.org/postgresql?viewbox=auto" },
-      { name: "Vercel", src: "https://cdn.simpleicons.org/vercel/141413/e9e6dc?viewbox=auto" },
-    ],
-    buildTags: ["Hand-built core", "0.1 in progress"],
-    iconLabel: "C",
-    iconTone: "amber",
-    source: "https://github.com/AbhinavMishra32/Construct-IDE",
-    previewImage: "/project-construct-light.svg",
-    previewDarkImage: "/project-construct-dark.svg",
-    previewAlt: "Preview illustration of Construct showing a goal prompt, lessons, code editor, and knowledge graph.",
-    repo: {
-      owner: "AbhinavMishra32",
-      name: "Construct-IDE",
-      branch: "main",
-    },
-    featureHighlights: [
-      "Goal-driven course generation for projects like compilers, CLIs, and bundlers",
-      "Docs-style lessons, concept checks, hidden tests, and learner-owned exercises",
-      "Persistent knowledge graph and in-editor tutoring inside one workspace",
-    ],
-    buildArc: [
-      {
-        label: "Learning loop",
-        title: "Start from the idea that the learner should write the code.",
-        detail:
-          "Construct is shaped around a strict loop: tailor the learner, teach the concept, check understanding, then let the learner implement the project themselves.",
-      },
-      {
-        label: "Workspace",
-        title: "Put lessons, code, validation, and tutoring in one IDE.",
-        detail:
-          "The product became much stronger once the learning path stopped feeling separate from the coding environment and started behaving like one continuous workspace.",
-      },
-      {
-        label: "Memory",
-        title: "Make personalization survive across projects.",
-        detail:
-          "A key layer is the knowledge graph, where the system tracks concept evidence over time so future projects can adapt to what the learner already knows.",
-      },
-    ],
   },
   {
     slug: "xitecoin",
     name: "XiteCoin",
-    focus: "First-principles blockchain build",
+    focus: "Blockchain from scratch",
     summary:
-      "A Python blockchain experiment with custom proof-of-work, gossip-based networking, and JSON-RPC nodes.",
+      "Five blockchain layers written from scratch in pure Python, with zero external dependencies.",
     detail:
-      "XiteCoin explores blockchain mechanics from scratch with a bootstrap server, mining, synced chains, and transaction flow that prioritizes understanding the protocol deeply.",
-    techLogos: [
-      { name: "Python", src: "https://cdn.simpleicons.org/python?viewbox=auto" },
-      { name: "Bootstrap network", icon: "bootstrap" },
-      { name: "Proof of work", icon: "pow" },
+      "XiteCoin exists because I wanted to stop treating blockchain as magic. Every layer is written by hand with no libraries: proof-of-work mining, gossip-based peer discovery, Merkle validation, transaction processing, and a JSON-RPC node that keeps peers converged on the longest valid chain.",
+    category: ["Systems"],
+    year: "2024",
+    status: "archived",
+    stack: ["Python", "Proof of Work", "Gossip P2P", "JSON-RPC", "Merkle trees"],
+    bullets: [
+      "Proof-of-work mining and Merkle validation written from first principles, zero dependencies",
+      "Gossip-based P2P networking with a bootstrap server keeping peers on the longest chain",
+      "JSON-RPC node interface plus tamper detection and chain-recovery paths for bad state",
     ],
     buildTags: ["Fully hand-coded", "No AI in the build"],
     iconLabel: "X",
-    iconTone: "slate",
     source: "https://github.com/AbhinavMishra32/xitecoin",
     previewImage: "/project-xitecoin-light.svg",
     previewDarkImage: "/project-xitecoin-dark.svg",
-    previewAlt: "Preview illustration of XiteCoin showing a bootstrap server, network nodes, and chained blocks.",
+    previewAlt:
+      "Preview illustration of XiteCoin showing a bootstrap server, network nodes, and chained blocks.",
     repo: {
       owner: "AbhinavMishra32",
       name: "xitecoin",
       branch: "main",
     },
-    featureHighlights: [
-      "Bootstrap server architecture that keeps peers aligned on the longest chain",
-      "Mining and transaction flow wired into a CLI-first blockchain experience",
-      "JSON-style blockchain records, sync logic, and chain recovery experiments",
+  },
+  {
+    slug: "mentor-map",
+    name: "Mentor Map",
+    focus: "Smart India Hackathon 2024 winner",
+    summary:
+      "The AI career-guidance platform that won Smart India Hackathon 2024 against 80,000+ teams.",
+    detail:
+      "Mentor Map combined AI roadmaps, counselling flows, and progress tracking into a hackathon product that stayed coherent while scope moved daily. It won SIH 2024 nationally and earned recognition from C-DAC Mohali.",
+    category: ["AI", "Product"],
+    year: "2024",
+    status: "live",
+    stack: ["React", "Node.js", "PostgreSQL", "OpenAI"],
+    bullets: [
+      "Landing experience that makes counselling, AI roadmaps, and interview prep legible in one screen",
+      "Student dashboard with lesson progress, skill tracking, and guided navigation",
+      "Owned the product experience end to end under hackathon pressure, and won nationally",
     ],
-    buildArc: [
-      {
-        label: "Protocol",
-        title: "Figure out the basic blockchain machinery first.",
-        detail:
-          "The early shape of XiteCoin was getting blocks, hashes, transactions, and proof-of-work to behave consistently instead of treating blockchain as magic.",
-      },
-      {
-        label: "Networking",
-        title: "Keep peers in sync without losing the global chain.",
-        detail:
-          "The next step was coordinating clients through a bootstrap server so users could join, transact, mine, and still converge on the same longest valid chain.",
-      },
-      {
-        label: "Hard edges",
-        title: "Keep debugging the ugly protocol cases.",
-        detail:
-          "A lot of the real work was in recovery paths, tampering checks, and getting clients to repair bad state, which is what made the project such a strong learning experience.",
-      },
+    buildTags: ["Hackathon winner", "Product ownership"],
+    iconLabel: "M",
+    live: "https://mentormap.abhinavmishra.in",
+    previewImage: "/project-mentormap-light.svg",
+    previewDarkImage: "/project-mentormap-dark.svg",
+    shot: "/project-images/mentor-map.png",
+    previewAlt:
+      "Preview illustration of Mentor Map showing the landing page and learner dashboard.",
+    repoNote:
+      "Built in a fast team setting, so the public repository is not linked here.",
+  },
+  {
+    slug: "payevenly",
+    name: "PayEvenly",
+    focus: "Splitwise for India",
+    summary:
+      "A React Native group-settlement app with UPI checks, voice input, and OCR receipt parsing.",
+    detail:
+      "PayEvenly was owned end to end: the React Native client, a FastAPI + SQLite backend, and Expo Cloud CI/CD. The interesting work was reducing friction — voice input and receipt parsing replaced most of the manual entry that makes split apps annoying.",
+    category: ["Product"],
+    year: "2025",
+    status: "archived",
+    stack: ["React Native", "Expo", "FastAPI", "SQLite", "UPI"],
+    bullets: [
+      "Owned the full stack: RN client, FastAPI + SQLite backend, and Expo Cloud CI/CD",
+      "AI voice input and OCR receipt parsing cut split creation time by about 45%",
+      "Payment verification checks around UPI settlement flows",
     ],
+    buildTags: ["Shipped for Ludotronics", "Owned end to end"],
+    iconLabel: "P",
+    previewImage: "/project-payevenly.svg",
+    previewDarkImage: "/project-payevenly.svg",
+    previewAlt: "Preview illustration of the PayEvenly group settlement app.",
   },
 ];
 
 export const WORK_ITEMS: WorkItem[] = [
   {
-    title: "Lunacal.ai",
-    subtitle: "Software Developer Intern · product infrastructure and rollout systems",
-    period: "Sep 2025 - Present",
-    detail:
-      "Working across the core scheduling stack on release safety, communication infrastructure, and operational tooling. A lot of my work has gone into rollout controls, testing and CI foundations, SMS workflows, AI meeting orchestration, and automation around custom domain provisioning.",
+    company: "Lunacal.ai",
+    companyNote: "AI scheduling SaaS · highly successful AppSumo launch",
+    url: "https://lunacal.ai",
+    title: "Software Developer Intern",
+    employment: "Full time",
+    location: "Bangalore, KA",
+    period: "Sep 2025 — Present",
+    current: true,
+    summary:
+      "I own BRAINER end to end, plus the CI, rollout, and communication infrastructure the product ships on.",
+    highlights: [
+      "Own BRAINER end to end — Codex, OpenCode, and Claude Code orchestrated in isolated Kubernetes sandboxes to automate six company functions.",
+      "Designed the agent-delivery pipeline: browser-capable cloud QA, Jenkins + Azure Container Registry, release emails, blog publishing, outreach.",
+      "Built the CI and rollout platform for a Next.js + NestJS + tRPC stack — percentage releases, kill switches, rollback in seconds.",
+      "Shipped AI calling and SMS on QStash + Redis with credit accounting and retry-aware webhooks; added Elasticsearch tracing.",
+      "Automated Azure custom-domain provisioning across DNS, SSL, App Service, and Front Door — days down to ~30 minutes.",
+      "Consolidated billing audits, image processing, and scheduled jobs into retry-aware pipelines with central failure visibility.",
+    ],
+    stack: [
+      "NestJS",
+      "Next.js",
+      "tRPC",
+      "Kubernetes",
+      "Azure",
+      "QStash",
+      "Redis",
+      "Jenkins",
+      "Elasticsearch",
+    ],
   },
   {
-    title: "Ludotronics",
-    subtitle: "Software Developer · PayEvenly",
-    period: "Jun 2025 - Sep 2025",
-    detail:
-      "Built PayEvenly, a Splitwise-style React Native app for India focused on faster group settlements. The app combined UPI payments, AI voice input, and OCR receipt parsing, with a FastAPI + SQLite backend and Expo-based mobile delivery.",
+    company: "Ludotronics",
+    companyNote: "Founded by IIT Bhubaneswar alumni",
+    url: "https://ludotronics.io",
+    title: "Software Developer",
+    employment: "Part time",
+    location: "Bhubaneswar, OD",
+    period: "Jun 2025 — Sep 2025",
+    summary:
+      "Owned PayEvenly end to end — client, backend, and CI/CD.",
+    highlights: [
+      "Owned PayEvenly end to end: React Native client, FastAPI + SQLite backend, Expo Cloud CI/CD.",
+      "Added payment checks, AI voice input, and receipt parsing — split creation ~45% faster.",
+    ],
+    stack: ["React Native", "Expo", "FastAPI", "SQLite"],
   },
   {
-    title: "Expert Buddy",
-    subtitle: "Software Developer Intern · StudyBank and AI student tools",
-    period: "Apr 2025 - Sep 2025",
-    detail:
-      "Built StudyBank in Next.js across auth-aware pages, data flows, and student-facing product surfaces. I also worked on AI-powered support features, including document analysis and chat-style student help tools, while debugging data, auth, and interface issues across the product.",
+    company: "Expert Buddy",
+    companyNote: "Ed-tech platform used by 200,000+ students",
+    url: "https://expertbuddy.com",
+    title: "Next.js Frontend Developer Intern",
+    employment: "Full time",
+    location: "Jaipur, RJ",
+    period: "Apr 2025 — Sep 2025",
+    summary:
+      "Rebuilt StudyBank's auth architecture and shipped the AI document pipeline behind ExpertBuddy AI.",
+    highlights: [
+      "Moved StudyBank auth from client state to cookie-based SSR with caching — Lighthouse ~45 to 85+, redundant calls down ~30%.",
+      "Built ExpertBuddy AI and a Vercel AI SDK pipeline handling 100+ page PDFs in under 5s.",
+      "Shipped real-time chat and notifications, moved critical pages server-side — bounce down 17%, organic traffic up 23%.",
+    ],
+    stack: ["Next.js", "React", "Vercel AI SDK", "SSR", "Caching"],
   },
 ];
 
@@ -302,10 +318,10 @@ export const STORY_BEATS: StoryBeat[] = [
   {
     step: "02",
     label: "Shipping in a real product",
-    title: "Studybank taught me how to own a feature and improve it at the same time.",
+    title: "StudyBank taught me to own a feature and improve it at the same time.",
     paragraphs: [
-      "During my internship at Expert Buddy, I worked on a major feature called StudyBank, where students could upload notes and other students could search, preview, and download them. I built the Next.js product surface from Figma, wired the experience around auth-aware data flows, handled debugging on my own, and used docs, search, and AI to understand why bugs were happening instead of just patching symptoms.",
-      "While building the upload flow, I realized the long metadata form created too much friction. I proposed an AI-assisted autofill option, built a proof of concept in two days, and showed the CEO and design team how it could make uploads faster while keeping manual control. Once everyone aligned on the flow, I helped shape the final interface and shipped the production version.",
+      "During my internship at Expert Buddy I worked on StudyBank, where students upload notes and other students search, preview, and download them. I re-architected authentication from client-side state to cookie-based SSR, cached the auth, wallet, and notification data, and pushed Lighthouse from around 45 to 85+ while cutting redundant calls by roughly a third.",
+      "While building the upload flow I realized the long metadata form created too much friction. I proposed AI-assisted autofill, built a proof of concept in two days, and showed the CEO and design team how it could make uploads faster while keeping manual control. Once everyone aligned on the flow, I shaped the final interface and shipped the production version.",
     ],
     image: "/story-studybank-ai.svg",
     imageAlt: "Minimal illustration of a file upload interface with AI-assisted autofill.",
@@ -313,21 +329,22 @@ export const STORY_BEATS: StoryBeat[] = [
   {
     step: "03",
     label: "High-agency environments",
-    title: "Hackathons and solo projects made me comfortable carrying the whole product.",
+    title: "Hackathons and agent infrastructure made me comfortable carrying the whole thing.",
     paragraphs: [
-      "During Smart India Hackathon, I took ownership of the product experience for Mentor Map and helped turn the idea into something usable under real time pressure. Building the core flow in that environment taught me how to move quickly, make product calls, and stay calm while the scope kept shifting.",
-      "That same habit shows up across my side projects as well. I like working independently, debugging the hard edges myself, and understanding how something behaves before I reach for shortcuts. Whether it is AI tooling, backend systems, or a first-principles side project, I usually learn the fastest when I am close to the problem.",
+      "At Smart India Hackathon 2024 I took ownership of the product experience for Mentor Map and turned the idea into something usable under real time pressure. It won nationally against 80,000+ teams. Building the core flow in that environment taught me how to move quickly, make product calls, and stay calm while the scope kept shifting.",
+      "That same habit shows up in the work I do now. At Lunacal I own BRAINER end to end — orchestrating coding agents in isolated Kubernetes sandboxes, wiring the delivery pipeline around them, and making sure failures are traceable rather than mysterious. Whether it is agent infrastructure, rollout tooling, or a blockchain written from scratch in pure Python, I learn fastest when I am close to the problem.",
     ],
     image: "/story-high-agency.svg",
-    imageAlt: "Minimal illustration of interface design boards and a product flow under construction.",
+    imageAlt:
+      "Minimal illustration of interface design boards and a product flow under construction.",
     linkLabel: "See selected projects",
     linkHref: "/projects",
   },
 ];
 
 export const CONTACT_LINKS: Array<{ label: string; href: string; icon: string }> = [
-  { label: "X", href: "https://x.com/do_anything_guy", icon: "ri:twitter-x-fill" },
   { label: "GitHub", href: "https://github.com/AbhinavMishra32", icon: "mdi:github" },
   { label: "LinkedIn", href: "https://linkedin.com/in/im-abhinavmishra", icon: "mdi:linkedin" },
-  { label: "Website", href: "https://abhinavmishra.in", icon: "mdi:web" },
+  { label: "X", href: "https://x.com/do_anything_guy", icon: "ri:twitter-x-fill" },
+  { label: "Mail", href: "mailto:abhinavmishra3322@gmail.com", icon: "mdi:email-outline" },
 ];

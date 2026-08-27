@@ -69,3 +69,13 @@ export const getRepoDetail = cache(async function getRepoDetail(slug: string, _r
 
   return detail;
 });
+
+/**
+ * Same as getRepoDetail but returns null instead of throwing when a project's
+ * repo has not been synced into the build-time cache yet.
+ */
+export const getRepoDetailSafe = cache(async function getRepoDetailSafe(
+  slug: string
+): Promise<RepoDetail | null> {
+  return typedRepoData[slug] ?? null;
+});
