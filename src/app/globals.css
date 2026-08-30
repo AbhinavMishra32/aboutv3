@@ -321,9 +321,22 @@ a {
   text-decoration-color: var(--fg);
 }
 
+/* Tailwind's preflight removes list markers, so restore them explicitly. */
 .prose-note ul,
 .prose-note ol {
-  padding-left: 1.15rem;
+  padding-left: 1.3rem;
+}
+
+.prose-note ul {
+  list-style: disc;
+}
+
+.prose-note ol {
+  list-style: decimal;
+}
+
+.prose-note li {
+  padding-left: 0.2rem;
 }
 
 .prose-note li + li {
@@ -331,7 +344,8 @@ a {
 }
 
 .prose-note li::marker {
-  color: var(--faint);
+  color: var(--soft);
+  font-variant-numeric: tabular-nums;
 }
 
 .prose-note blockquote {
@@ -344,7 +358,8 @@ a {
 
 .prose-note code {
   font-family: var(--font-jetbrains), ui-monospace, monospace;
-  font-size: 0.86em;
+  font-size: 0.85em;
+  white-space: nowrap;
   background: var(--code-bg);
   border: 1px solid var(--line);
   border-radius: 5px;
@@ -355,14 +370,21 @@ a {
 .prose-note pre {
   background: var(--card);
   border: 1px solid var(--line);
-  border-radius: 12px;
-  padding: 1.1rem 1.15rem;
+  border-radius: 10px;
+  padding: 1rem 1.1rem;
+  margin-top: 1.5em;
+  margin-bottom: 1.5em;
+  max-width: 100%;
   overflow-x: auto;
-  font-size: 13px;
-  line-height: 1.7;
+  font-size: 12.5px;
+  line-height: 1.75;
+  tab-size: 2;
 }
 
 .prose-note pre code {
+  display: block;
+  white-space: pre;
+  color: var(--muted);
   background: none;
   border: 0;
   padding: 0;

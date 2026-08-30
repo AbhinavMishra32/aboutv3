@@ -2,6 +2,7 @@
 
 import { useDeferredValue, useEffect, useRef, useState, useTransition } from "react";
 import { marked } from "marked";
+import { normalizeNestedFences } from "@/lib/markdown";
 import TurndownService from "turndown";
 import { EditorContent, useEditor } from "@tiptap/react";
 import { BubbleMenu, FloatingMenu } from "@tiptap/react/menus";
@@ -410,7 +411,7 @@ export function BlogStudioClient({
   async function importMarkdown() {
     if (!editor || !selectedPost || !markdownDraft.trim()) return;
 
-    const parsed = await marked.parse(markdownDraft);
+    const parsed = await marked.parse(normalizeNestedFences(markdownDraft));
     const html = typeof parsed === "string" ? parsed : "";
 
     editor.commands.setContent(html, { emitUpdate: false });

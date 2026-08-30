@@ -4,6 +4,7 @@ import matter from "gray-matter";
 import { remark } from "remark";
 import html from "remark-html";
 import { getPublishedDbPostBySlug, getPublishedDbPosts } from "@/lib/blog-db";
+import { normalizeNestedFences } from "@/lib/markdown";
 
 const BLOG_DIR = path.join(process.cwd(), "content", "blog");
 
@@ -37,7 +38,7 @@ async function getMarkdownPosts(): Promise<BlogPost[]> {
         const fullPath = path.join(BLOG_DIR, file);
         const fileContents = await fs.readFile(fullPath, "utf8");
         const { data, content } = matter(fileContents);
-        const processed = await remark().use(html).process(content);
+        const processed = await remark().use(html).process(normalizeNestedFences(content));
 
         return {
           slug,
@@ -85,7 +86,7 @@ export async function getPostBySlug(slug: string): Promise<BlogPost | null> {
   try {
     const fileContents = await fs.readFile(fullPath, "utf8");
     const { data, content } = matter(fileContents);
-    const processed = await remark().use(html).process(content);
+    const processed = await remark().use(html).process(normalizeNestedFences(content));
 
     return {
       slug,
