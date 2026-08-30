@@ -20,7 +20,15 @@ export type BlogPost = BlogPostMeta & {
 };
 
 async function getMarkdownPosts(): Promise<BlogPost[]> {
-  const files = await fs.readdir(BLOG_DIR);
+  // Posts now live in the database; the markdown directory is optional and may
+  // not exist at all.
+  let files: string[];
+  try {
+    files = await fs.readdir(BLOG_DIR);
+  } catch {
+    return [];
+  }
+
   const posts = await Promise.all(
     files
       .filter((file) => file.endsWith(".md"))

@@ -19,7 +19,7 @@ export default function ProjectsPage() {
       <PageIntro
         eyebrow="Projects"
         title="Things I built to find out how they work."
-        lead="Products, experiments, and systems shaped by what happens underneath the interface. Each card opens into the engineering decisions that actually mattered."
+        lead="Products, experiments, and systems shaped by what happens underneath the interface."
         meta={
           <>
             <span>{PROJECTS.length} projects</span>
@@ -30,7 +30,7 @@ export default function ProjectsPage() {
           </>
         }
       />
-      <ProjectsSection />
+      <ProjectsSection detailed />
     </SiteShell>
   );
 }

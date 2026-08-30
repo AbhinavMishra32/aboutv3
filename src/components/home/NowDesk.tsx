@@ -28,29 +28,10 @@ export async function NowDesk() {
     );
   }
 
-  const { metrics, focusSignals, projects, feed, generatedAt } = snapshot;
-
-  const tiles = [
-    { value: metrics.todayCommits, label: "Commits today" },
-    { value: metrics.recentRepos, label: "Repos touched" },
-    { value: metrics.activeProjects, label: "Active projects" },
-    { value: metrics.posts, label: "Notes published" },
-  ];
+  const { focusSignals, projects, feed, generatedAt } = snapshot;
 
   return (
     <div className="col px-6 py-6 sm:px-8">
-      {/* Metric tiles */}
-      <div className="grid grid-cols-2 gap-px overflow-hidden rounded-xl border border-[var(--line)] bg-[var(--line)] sm:grid-cols-4">
-        {tiles.map((tile) => (
-          <div key={tile.label} className="bg-[var(--card)] px-4 py-4">
-            <div className="serif text-[26px] leading-none text-[var(--fg)]">{tile.value}</div>
-            <div className="mono mt-2 text-[9.5px] uppercase leading-[1.4] tracking-[0.12em] text-[var(--soft)]">
-              {tile.label}
-            </div>
-          </div>
-        ))}
-      </div>
-
       {/* Focus signals */}
       {focusSignals.length ? (
         <div className="mt-4 grid gap-4 sm:grid-cols-2">

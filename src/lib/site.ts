@@ -27,6 +27,7 @@ export const NAV_ITEMS: Array<{ key: NavKey; label: string; href: string }> = [
   { key: "work", label: "Experience", href: "/work" },
   { key: "story", label: "Story", href: "/story" },
   { key: "blog", label: "Writing", href: "/blog" },
+  { key: "now", label: "Now", href: "/now" },
 ];
 
 export const HOME_INDEX: Array<{ id: string; label: string }> = [
@@ -124,3 +125,23 @@ export const TECH_STACK: Array<{ name: string; group: StackGroup; slug?: string 
   { name: "Elasticsearch", group: "Tooling", slug: "elasticsearch" },
   { name: "Turborepo", group: "Tooling", slug: "turborepo" },
 ];
+
+/** Extra icon slugs for technologies that appear on projects but not in the stack list. */
+const EXTRA_ICON_SLUGS: Record<string, string> = {
+  Expo: "expo",
+  SQLite: "sqlite",
+  Supabase: "supabase",
+  Python: "python",
+};
+
+const ICON_SLUGS: Record<string, string> = {
+  ...Object.fromEntries(
+    TECH_STACK.filter((tech) => tech.slug).map((tech) => [tech.name, tech.slug!])
+  ),
+  ...EXTRA_ICON_SLUGS,
+};
+
+/** Icon slug for a technology label, or null when there is no sensible mark. */
+export function techIconSlug(name: string): string | null {
+  return ICON_SLUGS[name] ?? null;
+}

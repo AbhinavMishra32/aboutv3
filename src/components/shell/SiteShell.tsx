@@ -1,5 +1,4 @@
 import type { ReactNode } from "react";
-import Link from "next/link";
 import { Icon } from "@iconify/react";
 import { CONTACT_LINKS, PROJECTS } from "@/lib/portfolio";
 import { NAV_ITEMS, PROFILE, type NavKey } from "@/lib/site";
@@ -107,15 +106,6 @@ export async function SiteShell({
         <div className="mono mt-8 flex flex-wrap items-center justify-between gap-x-4 gap-y-2 border-t border-dashed border-[var(--line)] pt-4 text-[10.5px] uppercase tracking-[0.12em] text-[var(--soft)]">
           <span>
             © {year} {PROFILE.name}
-          </span>
-          <span className="flex items-center gap-3">
-            <Link href="/now" className="transition-colors hover:text-[var(--fg)]">
-              Now
-            </Link>
-            <span className="text-[var(--faint)]">·</span>
-            <span>Built with Next.js</span>
-            <span className="text-[var(--faint)]">·</span>
-            <span>Open to work</span>
           </span>
         </div>
       </Band>
