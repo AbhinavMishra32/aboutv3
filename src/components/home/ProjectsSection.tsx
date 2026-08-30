@@ -1,9 +1,9 @@
 import { PROJECTS } from "@/lib/portfolio";
 import { getRepoDetailSafe } from "@/lib/github";
 import { ProjectsList } from "@/components/home/ProjectsList";
-import type { ProjectRepoStat } from "@/components/home/ProjectCard";
+import type { ProjectRepoStat } from "@/components/home/ProjectRow";
 
-export async function ProjectsSection() {
+export async function ProjectsSection({ detailed = false }: { detailed?: boolean }) {
   const entries = await Promise.all(
     PROJECTS.map(async (project) => {
       const detail = project.repo ? await getRepoDetailSafe(project.slug) : null;
@@ -21,5 +21,5 @@ export async function ProjectsSection() {
 
   const stats = Object.fromEntries(entries.filter((entry): entry is NonNullable<typeof entry> => Boolean(entry)));
 
-  return <ProjectsList projects={PROJECTS} stats={stats} />;
+  return <ProjectsList projects={PROJECTS} stats={stats} detailed={detailed} />;
 }

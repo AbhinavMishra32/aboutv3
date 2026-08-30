@@ -1,6 +1,5 @@
 import { ArrowUpRight } from "lucide-react";
 import { WORK_ITEMS, type WorkItem } from "@/lib/portfolio";
-import { STATS } from "@/lib/site";
 import { Reveal } from "@/components/shell/Reveal";
 
 /**
@@ -107,18 +106,6 @@ export function Experience() {
         ))}
       </div>
 
-      <div className="grid grid-cols-2 gap-px overflow-hidden rounded-xl border border-[var(--line)] bg-[var(--line)] sm:grid-cols-4">
-        {STATS.map((stat) => (
-          <div key={stat.label} className="bg-[var(--card)] px-4 py-5">
-            <div className="serif text-[28px] leading-none tabular-nums text-[var(--fg)]">
-              {stat.value}
-            </div>
-            <div className="mono mt-2.5 text-[9.5px] uppercase leading-[1.4] tracking-[0.12em] text-[var(--soft)]">
-              {stat.label}
-            </div>
-          </div>
-        ))}
-      </div>
     </div>
   );
 }

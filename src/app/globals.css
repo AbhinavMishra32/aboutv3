@@ -561,8 +561,8 @@ a {
 
 /* Body copy scale, matched to the reference's 14.5px / 1.625 */
 .copy {
-  font-size: 15px;
-  line-height: 1.72;
+  font-size: 14.5px;
+  line-height: 1.68;
   color: var(--muted);
   letter-spacing: 0.001em;
 }

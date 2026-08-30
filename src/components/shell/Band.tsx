@@ -41,8 +41,8 @@ export function SectionHead({
 }) {
   return (
     <div id={id} className="rule-row scroll-mt-14">
-      <div className="col flex items-center justify-between gap-4 px-6 py-4 sm:px-8">
-        <h2 className="serif text-[26px] leading-8 text-[var(--fg)] sm:text-[28px]">{title}</h2>
+      <div className="col flex items-center justify-between gap-4 px-6 py-2.5 sm:px-8">
+        <h2 className="mono text-[11px] uppercase tracking-[0.16em] text-[var(--fg)]">{title}</h2>
         {meta ? <div className="tag shrink-0 uppercase">{meta}</div> : null}
       </div>
     </div>
