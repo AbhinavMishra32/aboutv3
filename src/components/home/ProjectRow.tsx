@@ -9,6 +9,11 @@ export type ProjectRepoStat = {
   pushedAt: string;
 };
 
+/** The domain, as it should be read aloud — no protocol, no www, no slash. */
+function domainOf(url: string) {
+  return url.replace(/^https?:\/\//, "").replace(/^www\./, "").replace(/\/$/, "");
+}
+
 const STATUS_LABEL = {
   live: "live",
   "in-progress": "building",
@@ -97,6 +102,25 @@ export function ProjectRow({
           </span>
         </div>
 
+        {project.live ? (
+          <a
+            href={project.live}
+            target="_blank"
+            rel="noreferrer"
+            className="mono group/domain mt-1 inline-flex items-center gap-1 text-[12px] text-[var(--fg)]"
+          >
+            <span className="relative">
+              {domainOf(project.live)}
+              <span className="absolute -bottom-0.5 left-0 h-px w-full bg-[var(--line-strong)] transition-colors duration-300 group-hover/domain:bg-[var(--fg)]" />
+            </span>
+            <ArrowUpRight
+              size={11}
+              strokeWidth={2}
+              className="text-[var(--soft)] transition-all duration-300 group-hover/domain:-translate-y-px group-hover/domain:translate-x-px group-hover/domain:text-[var(--fg)]"
+            />
+          </a>
+        ) : null}
+
         <p className="copy mt-1.5 max-w-[62ch] text-[14px]">{project.summary}</p>
 
         {detailed ? (
@@ -116,17 +140,6 @@ export function ProjectRow({
         <TechList stack={project.stack} />
 
         <div className="mono mt-2.5 flex flex-wrap items-center gap-x-4 gap-y-1 text-[10.5px] text-[var(--soft)]">
-          {project.live ? (
-            <a
-              href={project.live}
-              target="_blank"
-              rel="noreferrer"
-              className="flex items-center gap-1 text-[var(--muted)] transition-colors hover:text-[var(--fg)]"
-            >
-              visit
-              <ArrowUpRight size={10} strokeWidth={2} />
-            </a>
-          ) : null}
           {project.source ? (
             <a
               href={project.source}

@@ -11,7 +11,9 @@ export const metadata: Metadata = {
 };
 
 export default function ProjectsPage() {
-  const live = PROJECTS.filter((project) => project.status === "live").length;
+  // Count what's actually reachable, not the build status — Construct and Spar
+  // are live at their own domains while still being worked on.
+  const live = PROJECTS.filter((project) => project.live).length;
   const building = PROJECTS.filter((project) => project.status === "in-progress").length;
 
   return (
@@ -24,7 +26,7 @@ export default function ProjectsPage() {
           <>
             <span>{PROJECTS.length} projects</span>
             <span className="text-[var(--faint)]">·</span>
-            <span>{live} live</span>
+            <span>{live} live on their own domains</span>
             <span className="text-[var(--faint)]">·</span>
             <span>{building} in progress</span>
           </>

@@ -24,7 +24,10 @@ async function buildCommandItems(): Promise<CommandItem[]> {
     ...PROJECTS.map((project) => ({
       id: `project-${project.slug}`,
       label: project.name,
-      hint: project.focus,
+      // Lead with the domain where there is one — it is the thing worth knowing.
+      hint: project.live
+        ? project.live.replace(/^https?:\/\//, "").replace(/\/$/, "")
+        : project.focus,
       href: `/projects#${project.slug}`,
       group: "Projects" as const,
     })),
