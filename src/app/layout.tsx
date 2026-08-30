@@ -7,6 +7,7 @@ import {
   JetBrains_Mono,
 } from "next/font/google";
 import "./globals.css";
+import { PROFILE } from "@/lib/site";
 
 const instrumentSans = Instrument_Sans({
   variable: "--font-space",
@@ -82,6 +83,27 @@ export const viewport: Viewport = {
   ],
 };
 
+
+const personSchema = {
+  "@context": "https://schema.org",
+  "@type": "Person",
+  name: PROFILE.name,
+  jobTitle: "Full-stack engineer",
+  email: `mailto:${PROFILE.email}`,
+  url: process.env.NEXT_PUBLIC_SITE_URL ?? "https://www.abhinavmishra.in",
+  address: { "@type": "PostalAddress", addressLocality: "Ghaziabad", addressCountry: "IN" },
+  alumniOf: { "@type": "CollegeOrUniversity", name: PROFILE.education.school },
+  knowsAbout: [
+    "TypeScript",
+    "NestJS",
+    "Next.js",
+    "Kubernetes",
+    "Distributed systems",
+    "AI agent infrastructure",
+  ],
+  sameAs: [PROFILE.github, PROFILE.linkedin, PROFILE.x],
+};
+
 export default function RootLayout({
   children,
 }: Readonly<{
@@ -95,6 +117,10 @@ export default function RootLayout({
         <Script id="theme-init" strategy="beforeInteractive">
           {themeScript}
         </Script>
+        <script
+          type="application/ld+json"
+          dangerouslySetInnerHTML={{ __html: JSON.stringify(personSchema) }}
+        />
         {children}
       </body>
     </html>
