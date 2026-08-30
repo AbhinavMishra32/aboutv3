@@ -58,7 +58,7 @@ const themeScript = `
 `;
 
 const description =
-  "Abhinav Mishra — full-stack engineer building TypeScript products, backend systems, and AI tooling with a bias for depth.";
+  "Abhinav Mishra — full-stack engineer. I own BRAINER at Lunacal.ai, an autonomous agent platform running six company functions in isolated Kubernetes sandboxes. Smart India Hackathon 2024 winner. Contributor to MetaCall's 1,700-star runtime.";
 
 export const metadata: Metadata = {
   metadataBase: new URL(process.env.NEXT_PUBLIC_SITE_URL ?? "https://www.abhinavmishra.in"),

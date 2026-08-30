@@ -10,12 +10,10 @@ export function Identity() {
       <div className="flex items-start justify-between gap-6">
         <div>
           <h1 className="text-[17px] font-semibold tracking-[-0.01em] text-[var(--fg)]">{PROFILE.name}</h1>
-          <p className="mono mt-1.5 text-[12px] text-[var(--muted)]">
-            {PROFILE.role}
-            <span className="text-[var(--faint)]"> · </span>
-            {PROFILE.location}
-          </p>
+          <p className="mono mt-1.5 text-[12px] text-[var(--muted)]">{PROFILE.role}</p>
           <p className="mono mt-1 text-[11px] text-[var(--soft)]">
+            {PROFILE.location}
+            <span className="text-[var(--faint)]"> · </span>
             {PROFILE.education.degree}
             <span className="text-[var(--faint)]"> · </span>
             {PROFILE.education.short}

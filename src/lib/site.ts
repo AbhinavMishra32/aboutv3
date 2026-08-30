@@ -1,10 +1,12 @@
 export const PROFILE = {
   name: "Abhinav Mishra",
-  role: "Full-stack engineer",
-  /** Surface copy is deliberately short. Depth lives behind interaction. */
+  role: "Full-stack engineer · backend & agent infrastructure",
+  /** Short, but every line carries proof. */
   about: [
-    "I build product-facing TypeScript software and the backend systems underneath it. Right now I own BRAINER at Lunacal.ai — an autonomous agent platform running six company functions in isolated Kubernetes sandboxes.",
-    "Most of my work lives in the layers people don't see: deterministic rollouts, retry-aware pipelines, tracing that makes failure legible. I learn fastest close to the problem.",
+    "I'm a full-stack engineer who ends up owning the infrastructure everyone else's features depend on. At Lunacal.ai I own BRAINER end to end — an autonomous agent platform coordinating Codex, OpenCode, and Claude Code inside isolated Kubernetes sandboxes to run six company functions, from planning and QA through deployment and customer acquisition.",
+    "I built the production CI and rollout platform behind our Next.js + NestJS + tRPC stack: deterministic percentage releases, kill switches, and rollback in seconds instead of full redeployments. I shipped AI calling and SMS on QStash and Redis with credit accounting and retry-aware webhooks, and automated Azure domain provisioning across DNS, SSL, App Service, and Front Door — days of manual work down to about thirty minutes.",
+    "Before that I re-architected authentication for an ed-tech platform serving 200,000+ students, taking Lighthouse from ~45 to 85+, and built a document pipeline that chews through 100+ page PDFs in under five seconds. I won Smart India Hackathon 2024 against 80,000+ teams, and my TypeScript and VS Code IntelliSense work ships in MetaCall's 1,700-star polyglot runtime.",
+    "When I want to understand something properly, I build it. Most recently that was a blockchain in pure Python — five layers by hand, zero dependencies. I learn fastest close to the problem.",
   ],
   location: "Ghaziabad, India",
   email: "abhinavmishra3322@gmail.com",
@@ -37,13 +39,6 @@ export const HOME_INDEX: Array<{ id: string; label: string }> = [
   { id: "stack", label: "Stack" },
   { id: "writing", label: "Writing" },
   { id: "github", label: "GitHub" },
-];
-
-export const STATS: Array<{ value: string; label: string }> = [
-  { value: "98%", label: "Faster provisioning" },
-  { value: "45→85", label: "Lighthouse lift" },
-  { value: "1.7k", label: "Stars, OSS runtime" },
-  { value: "80k", label: "Teams beaten, SIH" },
 ];
 
 export const RECOGNITION: Array<{

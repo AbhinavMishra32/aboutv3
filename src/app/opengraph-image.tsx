@@ -31,8 +31,8 @@ export default async function OpengraphImage() {
         <div style={{ display: "flex", flexDirection: "column" }}>
           <div style={{ fontSize: 86, lineHeight: 1, letterSpacing: -2 }}>{PROFILE.name}</div>
           <div style={{ fontSize: 30, color: "#a1a1aa", marginTop: 26, maxWidth: 880, lineHeight: 1.4 }}>
-            Full-stack engineer. I build TypeScript products and the backend
-            systems underneath them.
+            Full-stack engineer. I own BRAINER at Lunacal.ai — autonomous
+            agents running six company functions in Kubernetes sandboxes.
           </div>
         </div>
 

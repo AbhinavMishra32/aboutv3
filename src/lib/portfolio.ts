@@ -263,7 +263,7 @@ export const WORK_ITEMS: WorkItem[] = [
     location: "Bhubaneswar, OD",
     period: "Jun 2025 — Sep 2025",
     summary:
-      "Owned PayEvenly end to end — client, backend, and CI/CD.",
+      "Owned PayEvenly end to end — React Native client, FastAPI backend, and Expo Cloud CI/CD — and cut split creation time by about 45%.",
     highlights: [
       "Owned PayEvenly end to end: React Native client, FastAPI + SQLite backend, Expo Cloud CI/CD.",
       "Added payment checks, AI voice input, and receipt parsing — split creation ~45% faster.",
