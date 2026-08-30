@@ -1,5 +1,4 @@
 import type { Metadata } from "next";
-import Image from "next/image";
 import Link from "next/link";
 import { ArrowUpRight } from "lucide-react";
 import { SiteShell } from "@/components/shell/SiteShell";
@@ -89,20 +88,6 @@ export default function StoryPage() {
                   </div>
                 ))}
               </dl>
-            </Reveal>
-          ) : null}
-
-          {chapter.image ? (
-            <Reveal delay={160}>
-              <div className="relative mt-9 aspect-[16/9] overflow-hidden rounded-lg border border-[var(--line)] bg-[var(--chip)]">
-                <Image
-                  src={chapter.image}
-                  alt={chapter.imageAlt ?? ""}
-                  fill
-                  sizes="(max-width: 700px) 100vw, 700px"
-                  className="plate object-cover object-center"
-                />
-              </div>
             </Reveal>
           ) : null}
 

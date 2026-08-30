@@ -9,8 +9,6 @@ export type StoryChapter = {
   pull?: string;
   /** Optional hard numbers earned in this chapter. */
   facts?: Array<{ value: string; label: string }>;
-  image?: string;
-  imageAlt?: string;
   link?: { label: string; href: string };
 };
 
@@ -51,8 +49,6 @@ export const STORY_CHAPTERS: StoryChapter[] = [
       { value: "80k+", label: "Teams competing" },
       { value: "1st", label: "Nationally" },
     ],
-    image: "/story-high-agency.svg",
-    imageAlt: "Illustration of product design boards and a build in progress.",
   },
   {
     id: "open-source",
@@ -81,8 +77,6 @@ export const STORY_CHAPTERS: StoryChapter[] = [
       { value: "−30%", label: "Redundant calls" },
       { value: "<5s", label: "100+ page PDFs" },
     ],
-    image: "/story-studybank-ai.svg",
-    imageAlt: "Illustration of an upload flow with AI-assisted autofill.",
   },
   {
     id: "ownership",
@@ -110,7 +104,7 @@ export const STORY_CHAPTERS: StoryChapter[] = [
     facts: [
       { value: "6", label: "Company functions automated" },
       { value: "98%", label: "Faster provisioning" },
-      { value: "s", label: "Rollback, not redeploys" },
+      { value: "3", label: "Workloads consolidated" },
     ],
   },
   {
