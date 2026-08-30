@@ -608,3 +608,94 @@ a {
 .group:hover .plate {
   filter: none;
 }
+
+/* ============================================================
+   OPENING SEQUENCE
+   No overlay. The real document is revealed top-down while its
+   bands settle in and the section rules sweep from the left —
+   the layout being typeset, rather than a curtain hiding it.
+   ============================================================ */
+
+:root[data-intro="playing"] header {
+  animation: intro-nav 0.7s cubic-bezier(0.32, 0.72, 0, 1) both;
+}
+
+/* The page is uncovered from the top, so the dashed column rules
+   appear to draw downward as the content arrives. */
+:root[data-intro="playing"] main {
+  animation: intro-reveal 1.15s cubic-bezier(0.65, 0, 0.35, 1) both;
+}
+
+/* Each band arrives just behind the edge of the reveal. */
+:root[data-intro="playing"] main > * {
+  animation: intro-band 0.75s cubic-bezier(0.32, 0.72, 0, 1) both;
+}
+
+/* The story rail is position:fixed inside main — a transform on it would
+   break that, so it sits out of the stagger. */
+:root[data-intro="playing"] main > nav {
+  animation: intro-nav 0.7s cubic-bezier(0.32, 0.72, 0, 1) 0.5s both;
+}
+
+:root[data-intro="playing"] main > *:nth-child(1) { animation-delay: 0.06s; }
+:root[data-intro="playing"] main > *:nth-child(2) { animation-delay: 0.14s; }
+:root[data-intro="playing"] main > *:nth-child(3) { animation-delay: 0.22s; }
+:root[data-intro="playing"] main > *:nth-child(4) { animation-delay: 0.30s; }
+:root[data-intro="playing"] main > *:nth-child(5) { animation-delay: 0.38s; }
+:root[data-intro="playing"] main > *:nth-child(6) { animation-delay: 0.46s; }
+:root[data-intro="playing"] main > *:nth-child(n + 7) { animation-delay: 0.54s; }
+
+/* Section rules draw out from the left as their band lands. */
+:root[data-intro="playing"] .rule-row {
+  animation: intro-rule 0.8s cubic-bezier(0.65, 0, 0.35, 1) both;
+  animation-delay: inherit;
+}
+
+@keyframes intro-reveal {
+  from {
+    clip-path: inset(0 0 100% 0);
+  }
+  to {
+    clip-path: inset(0 0 0 0);
+  }
+}
+
+@keyframes intro-band {
+  from {
+    opacity: 0;
+    transform: translateY(14px);
+  }
+  to {
+    opacity: 1;
+    transform: none;
+  }
+}
+
+@keyframes intro-rule {
+  from {
+    clip-path: inset(0 100% 0 0);
+  }
+  to {
+    clip-path: inset(0 0 0 0);
+  }
+}
+
+@keyframes intro-nav {
+  from {
+    opacity: 0;
+    transform: translateY(-8px);
+  }
+  to {
+    opacity: 1;
+    transform: none;
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  :root[data-intro="playing"] header,
+  :root[data-intro="playing"] main,
+  :root[data-intro="playing"] main > *,
+  :root[data-intro="playing"] .rule-row {
+    animation: none;
+  }
+}

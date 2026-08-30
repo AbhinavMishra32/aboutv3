@@ -2,15 +2,7 @@
 
 import { useCallback, useEffect, useMemo, useRef, useState } from "react";
 import { useRouter } from "next/navigation";
-import {
-  ArrowUpRight,
-  CornerDownLeft,
-  FileText,
-  Hash,
-  Layers,
-  Mail,
-  Search,
-} from "lucide-react";
+import { ArrowUpRight, CornerDownLeft } from "lucide-react";
 
 export type CommandItem = {
   id: string;
@@ -26,13 +18,6 @@ const OPEN_EVENT = "abhinav:open-command-palette";
 export function openCommandPalette() {
   window.dispatchEvent(new Event(OPEN_EVENT));
 }
-
-const GROUP_ICON = {
-  Pages: Hash,
-  Projects: Layers,
-  Writing: FileText,
-  Elsewhere: Mail,
-} as const;
 
 function score(query: string, item: CommandItem) {
   const q = query.toLowerCase().trim();
@@ -160,7 +145,7 @@ export function CommandPalette({ items }: { items: CommandItem[] }) {
 
   return (
     <div
-      className="fixed inset-0 z-[100] flex items-start justify-center px-4 pt-[12vh]"
+      className="fixed inset-0 z-[100] flex items-start justify-center px-4 pt-[14vh]"
       role="dialog"
       aria-modal="true"
       aria-label="Search this site"
@@ -169,83 +154,89 @@ export function CommandPalette({ items }: { items: CommandItem[] }) {
         type="button"
         aria-label="Close search"
         onClick={close}
-        className="absolute inset-0 cursor-default bg-black/55 backdrop-blur-[2px]"
-        style={{ animation: "fade .18s ease both" }}
+        className="absolute inset-0 cursor-default bg-[var(--bg)]/70 backdrop-blur-[3px]"
+        style={{ animation: "fade .16s ease both" }}
       />
 
       <div
-        className="relative w-full max-w-[520px] overflow-hidden rounded-xl border border-[var(--line-strong)] bg-[var(--card)] shadow-2xl"
-        style={{ animation: "rise .22s cubic-bezier(.16,1,.3,1) both" }}
+        className="relative w-full max-w-[540px] overflow-hidden rounded-xl border border-[var(--line-strong)] bg-[var(--bg)] shadow-[0_24px_64px_rgba(0,0,0,0.45)]"
+        style={{ animation: "rise .2s cubic-bezier(.32,.72,0,1) both" }}
       >
-        <div className="flex items-center gap-2.5 border-b border-dashed border-[var(--line)] px-3.5 py-3">
-          <Search size={14} className="shrink-0 text-[var(--soft)]" strokeWidth={2} />
+        {/* Query line — a prompt, in keeping with the rest of the site */}
+        <div className="flex items-center gap-2.5 border-b border-dashed border-[var(--line)] px-4 py-3.5">
+          <span className="mono select-none text-[13px] leading-none text-[var(--faint)]">
+            /
+          </span>
           <input
             autoFocus
             value={query}
             onChange={(event) => setQuery(event.target.value)}
-            placeholder="Search pages, projects, writing…"
-            className="mono w-full bg-transparent text-[13px] text-[var(--fg)] outline-none placeholder:text-[var(--faint)]"
+            placeholder="Jump to a page, project, or note"
+            className="w-full bg-transparent text-[14px] text-[var(--fg)] outline-none placeholder:text-[var(--faint)]"
           />
-          <kbd className="mono shrink-0 rounded border border-[var(--line)] bg-[var(--chip)] px-1.5 py-0.5 text-[10px] text-[var(--soft)]">
-            ESC
-          </kbd>
         </div>
 
-        <div ref={listRef} className="max-h-[52vh] overflow-y-auto p-1.5">
+        <div ref={listRef} className="max-h-[54vh] overflow-y-auto py-1">
           {grouped.length === 0 ? (
-            <p className="mono px-2.5 py-6 text-center text-[12px] text-[var(--soft)]">
-              No matches for “{query}”
+            <p className="mono px-4 py-8 text-center text-[12px] text-[var(--soft)]">
+              Nothing matches “{query}”
             </p>
           ) : (
-            grouped.map((section) => {
-              const Icon = GROUP_ICON[section.group];
-              return (
-                <div key={section.group} className="mb-1 last:mb-0">
-                  <div className="label px-2.5 pb-1 pt-2">{section.group}</div>
-                  {section.items.map((item) => {
-                    index += 1;
-                    const isActive = index === cursor;
-                    return (
-                      <button
-                        key={item.id}
-                        type="button"
-                        data-active={isActive}
-                        onMouseEnter={() => setCursor(flat.indexOf(item))}
-                        onClick={() => run(item)}
-                        className={`flex w-full items-center gap-2.5 rounded-lg px-2.5 py-2 text-left transition-colors ${
-                          isActive ? "bg-[var(--chip-strong)]" : "hover:bg-[var(--hover)]"
+            grouped.map((section) => (
+              <div key={section.group}>
+                <div className="mono px-4 pb-1.5 pt-3 text-[9.5px] uppercase tracking-[0.16em] text-[var(--faint)]">
+                  {section.group}
+                </div>
+                {section.items.map((item) => {
+                  index += 1;
+                  const isActive = index === cursor;
+                  return (
+                    <button
+                      key={item.id}
+                      type="button"
+                      data-active={isActive}
+                      onMouseEnter={() => setCursor(flat.indexOf(item))}
+                      onClick={() => run(item)}
+                      className={`relative flex w-full items-center gap-3 px-4 py-2 text-left transition-colors ${
+                        isActive ? "bg-[var(--hover)]" : ""
+                      }`}
+                    >
+                      <span
+                        aria-hidden="true"
+                        className={`absolute left-0 top-1/2 h-4 w-px -translate-y-1/2 transition-colors ${
+                          isActive ? "bg-[var(--fg)]" : "bg-transparent"
+                        }`}
+                      />
+                      <span
+                        className={`min-w-0 flex-1 truncate text-[13.5px] transition-colors ${
+                          isActive ? "text-[var(--fg)]" : "text-[var(--muted)]"
                         }`}
                       >
-                        <Icon
-                          size={13}
-                          strokeWidth={1.9}
-                          className="shrink-0 text-[var(--soft)]"
-                        />
-                        <span className="min-w-0 flex-1 truncate text-[13px] text-[var(--fg)]">
-                          {item.label}
+                        {item.label}
+                      </span>
+                      {item.hint ? (
+                        <span className="mono hidden shrink-0 truncate text-[10.5px] text-[var(--faint)] sm:block sm:max-w-[190px]">
+                          {item.hint}
                         </span>
-                        {item.hint ? (
-                          <span className="mono hidden shrink-0 truncate text-[10.5px] text-[var(--soft)] sm:block sm:max-w-[180px]">
-                            {item.hint}
-                          </span>
-                        ) : null}
-                        {item.external ? (
-                          <ArrowUpRight size={12} className="shrink-0 text-[var(--faint)]" />
-                        ) : isActive ? (
-                          <CornerDownLeft size={12} className="shrink-0 text-[var(--soft)]" />
-                        ) : null}
-                      </button>
-                    );
-                  })}
-                </div>
-              );
-            })
+                      ) : null}
+                      {item.external ? (
+                        <ArrowUpRight size={11} className="shrink-0 text-[var(--faint)]" />
+                      ) : isActive ? (
+                        <CornerDownLeft size={11} className="shrink-0 text-[var(--soft)]" />
+                      ) : (
+                        <span className="w-[11px] shrink-0" />
+                      )}
+                    </button>
+                  );
+                })}
+              </div>
+            ))
           )}
         </div>
 
-        <div className="mono flex items-center justify-between gap-3 border-t border-dashed border-[var(--line)] px-3.5 py-2 text-[10px] text-[var(--soft)]">
-          <span>↑↓ navigate · ⏎ open</span>
-          <span>{results.length} results</span>
+        <div className="mono flex items-center justify-between gap-3 border-t border-dashed border-[var(--line)] px-4 py-2.5 text-[9.5px] uppercase tracking-[0.14em] text-[var(--faint)]">
+          <span>↑↓ move · ⏎ open · esc close</span>
+          <span>{results.length}</span>
         </div>
       </div>
     </div>

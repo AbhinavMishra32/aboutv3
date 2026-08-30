@@ -50,6 +50,10 @@ const themeScript = `
     root.dataset.themePreference = preference;
     root.dataset.theme = resolved;
     root.style.colorScheme = resolved;
+
+    var reduced = window.matchMedia("(prefers-reduced-motion: reduce)").matches;
+    var seen = window.sessionStorage.getItem("intro-played");
+    root.dataset.intro = reduced || seen ? "done" : "playing";
   })();
 `;
 

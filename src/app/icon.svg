@@ -1,5 +1,8 @@
 <svg width="256" height="256" viewBox="0 0 256 256" fill="none" xmlns="http://www.w3.org/2000/svg">
-  <rect width="256" height="256" rx="64" fill="#F7F4ED"/>
-  <path d="M128 56L184 192H157L144 159H112L99 192H72L128 56ZM120 136H136L128 113L120 136Z" fill="#141413"/>
-  <circle cx="184" cy="192" r="18" fill="#1A5CFF"/>
+  <rect width="256" height="256" rx="56" fill="#0A0A0A"/>
+  <!-- the site's two column rules -->
+  <line x1="40" y1="34" x2="40" y2="222" stroke="#F5F5F4" stroke-opacity="0.28" stroke-width="8" stroke-linecap="round" stroke-dasharray="18 16"/>
+  <line x1="216" y1="34" x2="216" y2="222" stroke="#F5F5F4" stroke-opacity="0.28" stroke-width="8" stroke-linecap="round" stroke-dasharray="18 16"/>
+  <!-- serif A, drawn to stay legible at 16px -->
+  <path d="M128 48L188 208H154.5L142.5 174H113.5L101.5 208H68L128 48ZM122 146H134L128 122L122 146Z" fill="#F5F5F4"/>
 </svg>

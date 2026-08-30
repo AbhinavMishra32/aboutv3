@@ -289,9 +289,9 @@ export const WORK_ITEMS: WorkItem[] = [
   },
 ];
 
-export const CONTACT_LINKS: Array<{ label: string; href: string; icon: string }> = [
-  { label: "GitHub", href: "https://github.com/AbhinavMishra32", icon: "mdi:github" },
-  { label: "LinkedIn", href: "https://linkedin.com/in/im-abhinavmishra", icon: "mdi:linkedin" },
-  { label: "X", href: "https://x.com/do_anything_guy", icon: "ri:twitter-x-fill" },
-  { label: "Mail", href: "mailto:abhinavmishra3322@gmail.com", icon: "mdi:email-outline" },
+export const CONTACT_LINKS: Array<{ label: string; href: string }> = [
+  { label: "GitHub", href: "https://github.com/AbhinavMishra32" },
+  { label: "LinkedIn", href: "https://linkedin.com/in/im-abhinavmishra" },
+  { label: "X", href: "https://x.com/do_anything_guy" },
+  { label: "Mail", href: "mailto:abhinavmishra3322@gmail.com" },
 ];

@@ -15,7 +15,6 @@ export const PROFILE = {
     school: "ABES Engineering College",
     short: "ABES Engg.",
     degree: "B.Tech, Computer Science",
-    period: "2023—2027",
   },
 } as const;
 

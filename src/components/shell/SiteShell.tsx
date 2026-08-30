@@ -1,10 +1,12 @@
 import type { ReactNode } from "react";
-import { Icon } from "@iconify/react";
+import { ArrowUpRight } from "lucide-react";
 import { CONTACT_LINKS, PROJECTS } from "@/lib/portfolio";
 import { NAV_ITEMS, PROFILE, type NavKey } from "@/lib/site";
 import { getAllPosts } from "@/lib/blog";
 import { Band } from "@/components/shell/Band";
 import { TopNav } from "@/components/shell/TopNav";
+import { Intro } from "@/components/shell/Intro";
+import { LocalTime } from "@/components/shell/LocalTime";
 import { IndexRail } from "@/components/shell/IndexRail";
 import { CommandPalette, type CommandItem } from "@/components/shell/CommandPalette";
 
@@ -19,13 +21,6 @@ async function buildCommandItems(): Promise<CommandItem[]> {
       href: item.href,
       group: "Pages" as const,
     })),
-    {
-      id: "page-now",
-      label: "Now",
-      hint: "/now",
-      href: "/now",
-      group: "Pages" as const,
-    },
     ...PROJECTS.map((project) => ({
       id: `project-${project.slug}`,
       label: project.name,
@@ -65,6 +60,7 @@ export async function SiteShell({
 
   return (
     <div className="relative min-h-screen">
+      <Intro />
       <TopNav active={active} />
       {index ? <IndexRail items={index} /> : null}
       <CommandPalette items={commandItems} />
@@ -72,41 +68,53 @@ export async function SiteShell({
       <main className="relative pb-0">{children}</main>
 
       {/* Footer */}
-      <Band as="footer" className="border-t border-dashed border-[var(--line)] px-6 pb-10 pt-7 sm:px-8">
-        <div className="flex flex-col gap-6 sm:flex-row sm:items-end sm:justify-between">
-          <div>
-            <p className="serif text-[22px] leading-tight text-[var(--fg)]">
-              Let&apos;s build something that holds up.
-            </p>
-            <a
-              href={`mailto:${PROFILE.email}`}
-              className="mono mt-2 inline-flex items-center gap-1.5 text-[11.5px] text-[var(--muted)] underline decoration-[var(--line-strong)] underline-offset-4 transition-colors hover:text-[var(--fg)] hover:decoration-[var(--fg)]"
-            >
-              {PROFILE.email}
-            </a>
-          </div>
+      <Band as="footer" className="border-t border-dashed border-[var(--line)] px-6 pb-12 pt-12 sm:px-8">
+        <p className="serif whitespace-nowrap text-[28px] leading-none text-[var(--fg)] sm:text-[38px]">
+          Building something hard?
+        </p>
+        <p className="copy mt-3 max-w-[46ch]">
+          I&apos;m most useful on the parts that have to keep working — backend
+          systems, rollout safety, agents with guardrails.
+        </p>
 
-          <div className="flex items-center gap-1.5">
-            {CONTACT_LINKS.map((link) => (
+        <a
+          href={`mailto:${PROFILE.email}`}
+          className="group mt-6 inline-flex items-baseline gap-2 text-[17px] text-[var(--fg)] sm:text-[19px]"
+        >
+          <span className="relative">
+            {PROFILE.email}
+            <span className="absolute -bottom-0.5 left-0 h-px w-full origin-left scale-x-100 bg-[var(--line-strong)] transition-colors duration-300 group-hover:bg-[var(--fg)]" />
+          </span>
+          <ArrowUpRight
+            size={15}
+            className="shrink-0 text-[var(--soft)] transition-all duration-300 group-hover:-translate-y-0.5 group-hover:translate-x-0.5 group-hover:text-[var(--fg)]"
+          />
+        </a>
+
+        {/* Elsewhere — plain links, each with a rule that draws in on hover */}
+        <ul className="mono mt-10 flex flex-wrap gap-x-7 gap-y-3 text-[12px]">
+          {CONTACT_LINKS.map((link) => (
+            <li key={link.label}>
               <a
-                key={link.label}
                 href={link.href}
                 target={link.href.startsWith("http") ? "_blank" : undefined}
                 rel={link.href.startsWith("http") ? "noreferrer" : undefined}
-                aria-label={link.label}
-                title={link.label}
-                className="grid size-8 place-items-center rounded-lg border border-[var(--line)] bg-[var(--chip)] text-[var(--muted)] transition-colors hover:border-[var(--soft)] hover:text-[var(--fg)]"
+                className="group relative inline-flex items-center gap-1.5 py-1 text-[var(--muted)] transition-colors hover:text-[var(--fg)]"
               >
-                <Icon icon={link.icon} width={15} height={15} />
+                {link.label}
+                <ArrowUpRight
+                  size={11}
+                  className="text-[var(--faint)] transition-all duration-300 group-hover:-translate-y-px group-hover:translate-x-px group-hover:text-[var(--soft)]"
+                />
+                <span className="absolute bottom-0 left-0 h-px w-full origin-left scale-x-0 bg-[var(--fg)] transition-transform duration-300 ease-out group-hover:scale-x-100" />
               </a>
-            ))}
-          </div>
-        </div>
+            </li>
+          ))}
+        </ul>
 
-        <div className="mono mt-8 flex flex-wrap items-center justify-between gap-x-4 gap-y-2 border-t border-dashed border-[var(--line)] pt-4 text-[10.5px] uppercase tracking-[0.12em] text-[var(--soft)]">
-          <span>
-            © {year} {PROFILE.name}
-          </span>
+        <div className="mono mt-12 flex flex-wrap items-center justify-between gap-x-6 gap-y-2 border-t border-dashed border-[var(--line)] pt-5 text-[10px] uppercase tracking-[0.14em] text-[var(--soft)]">
+          <span>© {year} {PROFILE.name}</span>
+          <LocalTime />
         </div>
       </Band>
 

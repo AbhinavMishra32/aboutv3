@@ -19,8 +19,6 @@ export function Identity() {
             {PROFILE.education.degree}
             <span className="text-[var(--faint)]"> · </span>
             {PROFILE.education.short}
-            <span className="text-[var(--faint)]"> · </span>
-            {PROFILE.education.period}
           </p>
         </div>
 
