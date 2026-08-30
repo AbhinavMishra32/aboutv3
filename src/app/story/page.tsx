@@ -1,84 +1,135 @@
 import type { Metadata } from "next";
 import Image from "next/image";
+import Link from "next/link";
 import { ArrowUpRight } from "lucide-react";
 import { SiteShell } from "@/components/shell/SiteShell";
-import { PageIntro } from "@/components/shell/PageIntro";
-import { Band } from "@/components/shell/Band";
 import { Reveal } from "@/components/shell/Reveal";
-import { STORY_BEATS } from "@/lib/portfolio";
+import { StoryRail } from "@/components/story/StoryRail";
+import { STORY_CHAPTERS, STORY_INTRO } from "@/lib/story";
 
 export const metadata: Metadata = {
   title: "Story",
   description:
-    "The solo builds, internship work, and debugging moments that shaped how I approach engineering.",
+    "How I got here: a blockchain written from scratch, a national hackathon win, and the agent infrastructure I own today.",
 };
 
 export default function StoryPage() {
   return (
-    <SiteShell
-      active="story"
-      index={STORY_BEATS.map((beat) => ({ id: `beat-${beat.step}`, label: beat.label }))}
-    >
-      <PageIntro
-        eyebrow="Story"
-        title="How I learned to build."
-        lead="Most of my experience came from building alone. Solo projects taught me to turn rough ideas into working products; internships and hackathons taught me to bring that same ownership into real teams with real constraints."
+    <SiteShell active="story">
+      <StoryRail
+        items={STORY_CHAPTERS.map((chapter) => ({
+          id: chapter.id,
+          label: chapter.label,
+          year: chapter.year,
+        }))}
       />
 
-      {STORY_BEATS.map((beat, index) => (
-        <Band key={beat.step} id={`beat-${beat.step}`} className="scroll-mt-16 px-6 py-8 sm:px-8">
+      {/* Masthead */}
+      <div className="col px-6 pb-9 pt-14 sm:px-8 sm:pt-20">
+        <p className="mono text-[10px] uppercase tracking-[0.16em] text-[var(--soft)]">Story</p>
+        <h1 className="serif mt-4 max-w-[16ch] text-[38px] leading-[1.06] text-[var(--fg)] sm:text-[52px]">
+          How I got here.
+        </h1>
+        <p className="copy mt-5 max-w-[58ch] text-[16px]">{STORY_INTRO}</p>
+        <p className="mono mt-6 text-[10px] uppercase tracking-[0.14em] text-[var(--soft)]">
+          {STORY_CHAPTERS.length} chapters · 2024 — now
+        </p>
+      </div>
+
+      {STORY_CHAPTERS.map((chapter, index) => (
+        <section
+          key={chapter.id}
+          id={chapter.id}
+          className="col scroll-mt-14 border-t border-dashed border-[var(--line)] px-6 py-12 sm:px-8 sm:py-16"
+        >
           <Reveal>
-            <div className="mono flex items-center gap-3 text-[10.5px] uppercase tracking-[0.14em] text-[var(--soft)]">
-              <span className="grid size-6 place-items-center rounded border border-[var(--line)] bg-[var(--chip)] text-[var(--muted)]">
-                {beat.step}
+            {/* Chapter marker */}
+            <div className="mono flex items-center gap-3 text-[10px] uppercase tracking-[0.16em] text-[var(--soft)]">
+              <span className="text-[var(--faint)]">
+                {String(index + 1).padStart(2, "0")}
               </span>
-              {beat.label}
-              <span className="h-px flex-1 bg-[var(--line)]" />
+              <span className="h-px w-6 bg-[var(--line)]" />
+              <span>{chapter.year}</span>
             </div>
 
-            <h2 className="serif mt-4 max-w-[34ch] text-[26px] leading-[1.16] text-[var(--fg)] sm:text-[30px]">
-              {beat.title}
+            <h2 className="serif mt-5 max-w-[24ch] text-[27px] leading-[1.16] text-[var(--fg)] sm:text-[33px]">
+              {chapter.title}
             </h2>
+          </Reveal>
 
-            <div className="relative mt-5 aspect-[16/9] overflow-hidden rounded-xl border border-[var(--line)] bg-[var(--chip)]">
-              <Image
-                src={beat.image}
-                alt={beat.imageAlt}
-                fill
-                sizes="(max-width: 700px) 100vw, 700px"
-                className="plate object-cover object-center"
-              />
-              <div className="stripes pointer-events-none absolute inset-0 opacity-20" />
-            </div>
-
-            <div className="mt-5 space-y-3.5">
-              {beat.paragraphs.map((paragraph) => (
-                <p key={paragraph} className="copy">
+          <Reveal delay={80}>
+            <div className="mt-6 space-y-4">
+              {chapter.paragraphs.map((paragraph) => (
+                <p key={paragraph} className="copy max-w-[64ch] text-[15.5px]">
                   {paragraph}
                 </p>
               ))}
             </div>
-
-            {beat.linkHref ? (
-              <a
-                href={beat.linkHref}
-                target={beat.linkHref.startsWith("http") ? "_blank" : undefined}
-                rel={beat.linkHref.startsWith("http") ? "noreferrer" : undefined}
-                className="mono mt-5 inline-flex items-center gap-1.5 rounded-lg border border-[var(--line)] bg-[var(--chip)] px-3 py-1.5 text-[11px] text-[var(--muted)] transition-colors hover:border-[var(--soft)] hover:text-[var(--fg)]"
-              >
-                {beat.linkLabel}
-                <ArrowUpRight size={12} />
-              </a>
-            ) : null}
           </Reveal>
 
-          {index < STORY_BEATS.length - 1 ? null : (
-            <p className="serif mt-10 border-t border-dashed border-[var(--line)] pt-7 text-[20px] leading-[1.4] text-[var(--fg)]">
-              I do my best work in high-agency environments — close to the product, close to the
-              bugs, close to the people using it. That is where I learn fastest and build best.
-            </p>
-          )}
-        </Band>
+          {chapter.pull ? (
+            <Reveal delay={120}>
+              <blockquote className="serif mt-9 max-w-[30ch] border-l border-[var(--line-strong)] pl-5 text-[22px] leading-[1.35] text-[var(--fg)] sm:text-[25px]">
+                {chapter.pull}
+              </blockquote>
+            </Reveal>
+          ) : null}
+
+          {chapter.facts?.length ? (
+            <Reveal delay={140}>
+              <dl className="mt-9 flex flex-wrap gap-x-12 gap-y-5">
+                {chapter.facts.map((fact) => (
+                  <div key={fact.label}>
+                    <dt className="serif text-[30px] leading-none tabular-nums text-[var(--fg)]">
+                      {fact.value}
+                    </dt>
+                    <dd className="mono mt-2 text-[9.5px] uppercase tracking-[0.13em] text-[var(--soft)]">
+                      {fact.label}
+                    </dd>
+                  </div>
+                ))}
+              </dl>
+            </Reveal>
+          ) : null}
+
+          {chapter.image ? (
+            <Reveal delay={160}>
+              <div className="relative mt-9 aspect-[16/9] overflow-hidden rounded-lg border border-[var(--line)] bg-[var(--chip)]">
+                <Image
+                  src={chapter.image}
+                  alt={chapter.imageAlt ?? ""}
+                  fill
+                  sizes="(max-width: 700px) 100vw, 700px"
+                  className="plate object-cover object-center"
+                />
+              </div>
+            </Reveal>
+          ) : null}
+
+          {chapter.link ? (
+            <Reveal delay={180}>
+              {chapter.link.href.startsWith("http") ? (
+                <a
+                  href={chapter.link.href}
+                  target="_blank"
+                  rel="noreferrer"
+                  className="mono mt-8 inline-flex items-center gap-1.5 text-[11.5px] text-[var(--muted)] underline decoration-[var(--line-strong)] underline-offset-4 transition-colors hover:text-[var(--fg)] hover:decoration-[var(--fg)]"
+                >
+                  {chapter.link.label}
+                  <ArrowUpRight size={12} />
+                </a>
+              ) : (
+                <Link
+                  href={chapter.link.href}
+                  className="mono mt-8 inline-flex items-center gap-1.5 text-[11.5px] text-[var(--muted)] underline decoration-[var(--line-strong)] underline-offset-4 transition-colors hover:text-[var(--fg)] hover:decoration-[var(--fg)]"
+                >
+                  {chapter.link.label}
+                  <ArrowUpRight size={12} />
+                </Link>
+              )}
+            </Reveal>
+          ) : null}
+        </section>
       ))}
     </SiteShell>
   );
